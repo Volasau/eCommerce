@@ -3,7 +3,12 @@
   "version": "1.0.0",
   "description": "",
   "main": "webpack.base.config.js",
-  "scripts": {},
+  "scripts": {
+    "start": "webpack serve --open --config ./webpack.config.js --env mode=dev",
+    "build": "webpack --config ./webpack.config.js --env mode=prod",
+    "lint": "eslint ./src",
+    "lint:fix": "eslint ./src --fix"
+  },
   "repository": {
     "type": "git",
     "url": ""
@@ -20,7 +25,8 @@
     "css-loader": "^6.8.1",
     "eslint": "^8.42.0",
     "eslint-config-prettier": "^8.8.0",
-    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-html": "^7.1.0",
+    "eslint-plugin-import": "^2.28.0",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-webpack-plugin": "^4.0.1",
     "html-loader": "^4.2.0",
