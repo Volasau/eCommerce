@@ -67,6 +67,27 @@ Explore a variety of product categories:
 
 :wastebasket: Basket Page Implementation
 
+## Running Tests
+
+To run tests, run the following command
+
+```bash
+  npm run test
+```
+
+## Other commands
+`npm run build` - create a build directory with a production build of your app
+
+`npm run lint` - error checking by Eslint
+
+`npm run lint: fix` – automatically fixing errors by Eslint
+
+`npm run prettier: base` – run Prittier checking
+
+`npm run prettier: check` – check by Prettier, print the names of files that are different from Prettier's formatting
+
+`npm run prettier: write` – check by Prettier, edit files in-place
+
 
 ## Have an idea? Notice a bug?
 We'd love to hear your feedback! Feel free to log an issue on our [GitHub issues page](https://github.com/Volasau/eCommerce/issues).
