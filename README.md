@@ -13,11 +13,11 @@ Welcome to the Electronics Store Project, a single page application, which was c
 - [Mikalai Rusakovich](https://github.com/rukalarukala)
 - [Azimkhan Abdulsatarov](https://github.com/azimkhan93)
 
-# About Store
+## About Store
 
 Electronics Store a one-stop destination for the latest and greatest electronic gadgets and devices. When it comes to electronics, we believe you can have it all: great function and quality, at an affordable price.
 
-# Product categories
+## Product categories
 
 Explore a variety of product categories:
 
@@ -66,6 +66,32 @@ Explore a variety of product categories:
 :handbag: Shopping Cart Integration
 
 :wastebasket: Basket Page Implementation
+
+## Run Locally
+
+Clone the project
+
+```bash
+  git clone https://github.com/Volasau/eCommerce.git
+```
+
+Go to the project directory
+
+```bash
+  cd eCommerce
+```
+
+Install dependencies
+
+```bash
+  npm install
+```
+
+Start the server
+
+```bash
+  npm run start
+```
 
 ## Running Tests
 
