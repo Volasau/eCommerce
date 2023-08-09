@@ -3,7 +3,8 @@ export function createFormGroup(
     inputType: string,
     inputId: string,
     inputName: string,
-    errorId: string
+    errorId: string,
+    placeholder: string
 ) {
     const formGroup = document.createElement('div');
     formGroup.classList.add('form-group');
@@ -18,6 +19,7 @@ export function createFormGroup(
     input.name = inputName;
     input.required = true;
     input.setAttribute('autocomplete', 'off');
+    input.placeholder = placeholder;
 
     const error = document.createElement('span');
     error.classList.add('error');

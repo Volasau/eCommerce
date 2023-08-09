@@ -1,5 +1,6 @@
 import Page from '../../templates/page';
 import { createLoginForm } from './createForm';
+import '../../../css/login.css';
 
 class LoginPage extends Page {
     static TextObject = {

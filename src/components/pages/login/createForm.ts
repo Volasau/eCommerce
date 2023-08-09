@@ -4,8 +4,15 @@ export function createLoginForm() {
     const form = document.createElement('form');
     form.id = 'login-form';
 
-    const email = createFormGroup('Email', 'text', 'email', 'email', 'email-error');
-    const password = createFormGroup('Password', 'password', 'password', 'password', 'password-error');
+    const email = createFormGroup('Email', 'text', 'email', 'email', 'email-error', 'Введите e-mail');
+    const password = createFormGroup(
+        'Password',
+        'password',
+        'password',
+        'password',
+        'password-error',
+        'Введите пароль'
+    );
 
     const submitButton = document.createElement('button');
     submitButton.type = 'submit';
