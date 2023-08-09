@@ -1,4 +1,5 @@
 import MainPage from '../main/main';
+import LoginPage from '../login/loding';
 
 class App {
     private container: HTMLElement;
@@ -6,7 +7,8 @@ class App {
 
     constructor() {
         this.container = document.body;
-        this.initialPage = new MainPage('RssTeamShop');
+        // this.initialPage = new MainPage('main');
+        this.initialPage = new LoginPage('login');
     }
     run() {
         const mainPageHTML = this.initialPage.render();
