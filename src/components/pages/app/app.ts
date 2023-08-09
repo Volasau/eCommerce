@@ -1,11 +1,16 @@
+import MainPage from '../main/main';
+
 class App {
     private container: HTMLElement;
+    private initialPage: MainPage;
 
     constructor() {
         this.container = document.body;
+        this.initialPage = new MainPage('RssTeamShop');
     }
     run() {
-        this.container.innerText = 'RssTeamShop';
+        const mainPageHTML = this.initialPage.render();
+        this.container.append(mainPageHTML);
     }
 }
 
