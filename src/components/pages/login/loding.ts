@@ -1,4 +1,5 @@
 import Page from '../../templates/page';
+import { createLoginForm } from './createForm';
 
 class LoginPage extends Page {
     static TextObject = {
@@ -11,8 +12,8 @@ class LoginPage extends Page {
 
     render() {
         const title = this.createHeaderTitle(LoginPage.TextObject.MainTitle);
-
-        this.container.append(title);
+        const loginForm = createLoginForm();
+        this.container.append(title, loginForm);
         return this.container;
     }
 }
