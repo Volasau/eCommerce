@@ -1,4 +1,4 @@
-import { createFormGroup } from '../../forms/formInputs';
+import { createFormGroup } from '../../components/forms/formInputs';
 
 export function createLoginForm() {
     const form = document.createElement('form');
