@@ -1,5 +1,5 @@
 import Page from '../../core/template/page';
-import { createLoginForm } from './createForm';
+import { login } from './formObjects/loginObj';
 import '../../css/login.css';
 
 class LoginPage extends Page {
@@ -13,7 +13,7 @@ class LoginPage extends Page {
 
     render() {
         const title = this.createHeaderTitle(LoginPage.TextObject.MainTitle);
-        const loginForm = createLoginForm();
+        const loginForm = login.build();
         this.container.append(title, loginForm);
         return this.container;
     }
