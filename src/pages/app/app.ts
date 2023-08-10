@@ -1,20 +1,61 @@
 import MainPage from '../main/main';
-import LoginPage from '../logReg/loginPage';
 import RegistrPage from '../logReg/registrationPage';
+import Page from '../../core/template/page';
+import LoginPage from '../logReg/loginPage';
+import Header from '../../components/header';
+import ErrorPage from '../error';
+
+export const enum PageIds {
+    MainPage = 'main',
+    RegistrPage = 'registr',
+    LoginPage = 'login',
+}
 
 class App {
-    private container: HTMLElement;
+    private static container: HTMLElement = document.body;
+    private static defaultPageId = 'current-page';
     private initialPage: MainPage;
+    private header: Header;
+
+    static renderNewPage(idPage: string) {
+        const currentPageHTML = document.querySelector(`#${App.defaultPageId}`);
+        if (currentPageHTML) {
+            currentPageHTML.remove();
+        }
+
+        let page: Page | null = null;
+        if (idPage === PageIds.MainPage) {
+            page = new MainPage(idPage);
+        } else if (idPage === PageIds.LoginPage) {
+            page = new LoginPage(idPage);
+        } else if (idPage === PageIds.RegistrPage) {
+            page = new RegistrPage(idPage);
+        } else {
+            page = new ErrorPage(idPage, '404');
+        }
+        if (page) {
+            const pageHTML = page.render();
+            pageHTML.id = App.defaultPageId;
+            App.container.append(pageHTML);
+        }
+    }
+
+    private enableRouteChange() {
+        window.addEventListener('hashchange', () => {
+            const hash = window.location.hash.slice(1);
+            App.renderNewPage(hash);
+        });
+    }
 
     constructor() {
-        this.container = document.body;
         this.initialPage = new MainPage('main');
-        // this.initialPage = new LoginPage('login');
-        // this.initialPage = new RegistrPage('registr');
+        this.header = new Header('header', 'header');
     }
     run() {
-        const mainPageHTML = this.initialPage.render();
-        this.container.append(mainPageHTML);
+        App.container.append(this.header.render());
+
+        App.renderNewPage('main');
+        this.enableRouteChange();
     }
 }
 
