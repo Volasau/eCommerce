@@ -1,8 +1,8 @@
-import Page from '../../templates/page';
+import Page from '../../core/template/page';
 
 class MainPage extends Page {
     static TextOject = {
-        MainTitle: 'Shop RssTeam',
+        MainTitle: 'Catalog products',
     };
     constructor(id: string) {
         super(id);

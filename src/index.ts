@@ -1,4 +1,4 @@
-import App from './components/pages/app/app';
+import App from './pages/app/app';
 
 const app = new App();
 app.run();
