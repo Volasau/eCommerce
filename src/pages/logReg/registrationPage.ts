@@ -1,5 +1,5 @@
-import Page from '../../templates/page';
-import { createRegistrationForm } from './createForm';
+import Page from '../../core/template/page';
+import { registration } from './formObjects/registrationObj';
 
 class RegistrPage extends Page {
     static TextOject = {
@@ -12,7 +12,7 @@ class RegistrPage extends Page {
 
     render() {
         const title = this.createHeaderTitle(RegistrPage.TextOject.MainTitle);
-        const registrForm = createRegistrationForm();
+        const registrForm = registration.build();
         this.container.append(title, registrForm);
         return this.container;
     }
