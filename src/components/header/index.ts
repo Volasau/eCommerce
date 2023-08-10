@@ -1,5 +1,6 @@
 import Component from '../../core/template/components';
 import { PageIds } from '../../pages/app/app';
+import '../../css/header.css';
 
 const Buttons = [
     {
