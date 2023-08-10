@@ -1,4 +1,4 @@
-import Page from '../../templates/page';
+import Page from '../../core/template/page';
 
 class MainPage extends Page {
     static TextOject = {

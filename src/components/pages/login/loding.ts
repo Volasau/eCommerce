@@ -1,4 +1,4 @@
-import Page from '../../templates/page';
+import Page from '../../core/template/page';
 import { createLoginForm } from './createForm';
 import '../../../css/login.css';
 

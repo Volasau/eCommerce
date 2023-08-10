@@ -1,4 +1,4 @@
-import Page from '../../templates/page';
+import Page from '../../core/template/page';
 import { createRegistrationForm } from './createForm';
 
 class RegistrPage extends Page {
