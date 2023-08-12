@@ -4,6 +4,7 @@ import { startBirthDateValidation } from './validationFunction/startBirthDateVal
 import { startEmailValidation } from './validationFunction/startEmailValidation';
 import { startNameValidation } from './validationFunction/startNameValidation';
 import { startPasswordValidation } from './validationFunction/startPasswordValidation';
+import { startPostcodeValidation } from './validationFunction/startPostcodeValidation';
 
 export function validateThisInput(input: HTMLInputElement, error: HTMLElement) {
     input.addEventListener('input', (event: Event) => {
@@ -16,8 +17,8 @@ export function validateThisInput(input: HTMLInputElement, error: HTMLElement) {
             startNameValidation(target.value, error);
         } else if (target.id === 'birthdate') {
             startBirthDateValidation(target.value, error);
-            // } else if (target.id === 'postcode') {
-            //     startPostcodeValidation(target.value, error);
+        } else if (target.id === 'postcode') {
+            startPostcodeValidation(target.value, error);
         }
     });
 
