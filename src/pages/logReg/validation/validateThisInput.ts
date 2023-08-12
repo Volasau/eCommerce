@@ -1,3 +1,5 @@
+import { checkCountryInput } from './validationFunction/checkCountryInput';
+import { chooseCountry } from './validationFunction/chooseCountry/chooseCountry';
 import { startBirthDateValidation } from './validationFunction/startBirthDateValidation';
 import { startEmailValidation } from './validationFunction/startEmailValidation';
 import { startNameValidation } from './validationFunction/startNameValidation';
@@ -19,11 +21,11 @@ export function validateThisInput(input: HTMLInputElement, error: HTMLElement) {
         }
     });
 
-    // input.addEventListener('input', (event) => {
-    //     const target = event.target as HTMLInputElement;
-    //     if (target.id === 'country') {
-    //         checkCountryInput(target, error);
-    //         chooseCountry(target, error);
-    //     }
-    // });
+    input.addEventListener('input', (event) => {
+        const target = event.target as HTMLInputElement;
+        if (target.id === 'country') {
+            checkCountryInput(target, error);
+            chooseCountry(target, error);
+        }
+    });
 }
