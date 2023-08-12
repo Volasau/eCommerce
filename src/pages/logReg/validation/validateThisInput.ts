@@ -1,12 +1,13 @@
 import { startEmailValidation } from './validationFunction/startEmailValidation';
+import { startPasswordValidation } from './validationFunction/startPasswordValidation';
 
 export function validateThisInput(input: HTMLInputElement, error: HTMLElement) {
     input.addEventListener('input', (event: Event) => {
         const target = event.target as HTMLInputElement;
         if (target.id === 'email') {
             startEmailValidation(target.value, error);
-            // } else if (target.id === 'password') {
-            //     startPasswordValidation(target.value, error);
+        } else if (target.id === 'password') {
+            startPasswordValidation(target.value, error);
             // } else if (target.id === 'name' || target.id === 'last-name' || target.id === 'city') {
             //     startNameValidation(target.value, error);
             // } else if (target.id === 'birthdate') {
