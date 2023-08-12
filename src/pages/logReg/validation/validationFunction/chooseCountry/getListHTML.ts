@@ -1,6 +1,6 @@
-import { ICountry } from '../../../../../core/interfaces/countyInterface';
+import { ICountryObj } from '../../../../../core/interface/countryObjInterface';
 
-export function getCountryListHTML(countriesArr: ICountry[]) {
+export function getCountryListHTML(countriesArr: ICountryObj[]) {
     if (countriesArr.length > 0) {
         const html = countriesArr
             .map(

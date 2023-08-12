@@ -1,4 +1,4 @@
-import { ICountry } from '../../../../../core/interfaces/countyInterface';
+import { ICountryObj } from '../../../../../core/interface/countryObjInterface';
 import { countries } from '../../../../../data/country';
 import { chooseFromCountryList } from './chooseFromCountryList';
 import { getCountryListHTML } from './getListHTML';
@@ -11,7 +11,7 @@ export function chooseCountry(target: HTMLInputElement, errorHTML: HTMLElement) 
 
         if (countryInput.value === '') postCodeHTML.setAttribute('placeholder', 'Enter the postcode');
 
-        let countriesArr = countries.filter((country: ICountry) => {
+        let countriesArr = countries.filter((country: ICountryObj) => {
             const regex = new RegExp(`^${target.value}`, 'gi');
             return country.Country.match(regex);
         });
