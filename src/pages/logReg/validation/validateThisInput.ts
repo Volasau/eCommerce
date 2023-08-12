@@ -1,4 +1,5 @@
 import { startEmailValidation } from './validationFunction/startEmailValidation';
+import { startNameValidation } from './validationFunction/startNameValidation';
 import { startPasswordValidation } from './validationFunction/startPasswordValidation';
 
 export function validateThisInput(input: HTMLInputElement, error: HTMLElement) {
@@ -8,8 +9,8 @@ export function validateThisInput(input: HTMLInputElement, error: HTMLElement) {
             startEmailValidation(target.value, error);
         } else if (target.id === 'password') {
             startPasswordValidation(target.value, error);
-            // } else if (target.id === 'name' || target.id === 'last-name' || target.id === 'city') {
-            //     startNameValidation(target.value, error);
+        } else if (target.id === 'name' || target.id === 'last-name' || target.id === 'city') {
+            startNameValidation(target.value, error);
             // } else if (target.id === 'birthdate') {
             //     startBirthDateValidation(target.value, error);
             // } else if (target.id === 'postcode') {
