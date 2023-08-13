@@ -1,4 +1,5 @@
 import { IFormBuilder } from '../../../core/interface/FormBuilderInterface';
+import { makeVisiblePassword } from '../validation/makeVisiblePassword';
 
 export class FormBuilder implements IFormBuilder {
     formHTML: HTMLFormElement;
@@ -28,6 +29,9 @@ export class FormBuilder implements IFormBuilder {
         this.innerFormList.forEach((innerForm) => {
             if (innerForm.children[1].id === 'password') {
                 innerForm.append(this.checkbox, this.checkboxLabel);
+                const inputHTML = innerForm.children[1] as HTMLInputElement;
+                const checkbox = innerForm.children[3] as HTMLInputElement;
+                makeVisiblePassword(checkbox, inputHTML);
             }
             this.formHTML.append(innerForm);
         });

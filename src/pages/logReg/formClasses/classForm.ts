@@ -1,4 +1,5 @@
 import { IInnerForm } from '../../../core/interface/InnerFormInterface';
+import { validateThisInput } from '../validation/validateThisInput';
 
 export class InnerForm implements IInnerForm {
     labelText: string;
@@ -10,23 +11,16 @@ export class InnerForm implements IInnerForm {
     label: HTMLElement;
     inputHTML: HTMLInputElement;
     error: HTMLElement;
-    constructor(
-        labelText: string,
-        inputType: string,
-        inputId: string,
-        inputName: string,
-        errorId: string,
-        placeholder: string
-    ) {
+    constructor(labelText: string, inpType: string, inpId: string, inpName: string, errId: string, plHolder: string) {
         this.labelText = labelText;
-        this.inputType = inputType;
-        this.inputId = inputId;
-        this.inputName = inputName;
-        this.errorId = errorId;
+        this.inputType = inpType;
+        this.inputId = inpId;
+        this.inputName = inpName;
+        this.errorId = errId;
         this.formGroup = document.createElement('div');
         this.label = document.createElement('label');
         this.inputHTML = document.createElement('input');
-        this.inputHTML.setAttribute('placeholder', placeholder);
+        this.inputHTML.setAttribute('placeholder', plHolder);
         this.error = document.createElement('span');
     }
 
@@ -41,7 +35,20 @@ export class InnerForm implements IInnerForm {
         this.inputHTML.required = true;
         this.error.classList.add('error');
         this.error.id = this.errorId;
-        this.formGroup.append(this.label, this.inputHTML, this.error);
+
+        const list = document.createElement('div');
+        list.setAttribute('id', 'country-list');
+        if (this.inputId === 'country') {
+            this.formGroup.append(this.label, this.inputHTML, this.error, list);
+        } else {
+            this.formGroup.append(this.label, this.inputHTML, this.error);
+        }
+
+        this.valid();
         return this.formGroup;
+    }
+
+    valid() {
+        validateThisInput(this.inputHTML, this.error);
     }
 }
