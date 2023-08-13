@@ -21,6 +21,7 @@ export class InnerForm implements IInnerForm {
         this.label = document.createElement('label');
         this.inputHTML = document.createElement('input');
         this.inputHTML.setAttribute('placeholder', plHolder);
+        this.inputHTML.setAttribute('class', 'input');
         this.error = document.createElement('span');
     }
 
