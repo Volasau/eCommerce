@@ -1,4 +1,4 @@
-import { ICountryObj } from '../../../../../core/interface/countryObjInterface';
+import { ICountryObj } from '../../../../../core/interfaces/countryObjInterface';
 import { countries } from '../../../../../data/country';
 import { chooseFromCountryList } from './chooseFromCountryList';
 import { getCountryListHTML } from './getListHTML';

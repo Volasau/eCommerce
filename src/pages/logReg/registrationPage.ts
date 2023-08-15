@@ -1,7 +1,7 @@
-import { IRegObj } from '../../core/interface/regObjInterface';
+import { IRegObj } from '../../core/interfaces/regObjInterface';
 import Page from '../../core/template/page';
 import { registration } from './formObjects/registrationObj';
-import { submitData } from './validation/authorisationFunctions/submitData';
+import { submitData } from './validation/authorisationFunctions/submitData/submitData';
 
 class RegistrPage extends Page {
     static TextOject = {

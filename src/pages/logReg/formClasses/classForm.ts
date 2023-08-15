@@ -1,4 +1,4 @@
-import { IInnerForm } from '../../../core/interface/InnerFormInterface';
+import { IInnerForm } from '../../../core/interfaces/InnerFormInterface';
 import { validateThisInput } from '../validation/validateThisInput';
 
 export class InnerForm implements IInnerForm {

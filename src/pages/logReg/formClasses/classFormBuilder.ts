@@ -1,4 +1,4 @@
-import { IFormBuilder } from '../../../core/interface/FormBuilderInterface';
+import { IFormBuilder } from '../../../core/interfaces/FormBuilderInterface';
 import { makeVisiblePassword } from '../validation/makeVisiblePassword';
 
 export class FormBuilder implements IFormBuilder {

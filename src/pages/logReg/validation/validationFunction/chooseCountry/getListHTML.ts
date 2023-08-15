@@ -1,4 +1,4 @@
-import { ICountryObj } from '../../../../../core/interface/countryObjInterface';
+import { ICountryObj } from '../../../../../core/interfaces/countryObjInterface';
 
 export function getCountryListHTML(countriesArr: ICountryObj[]) {
     if (countriesArr.length > 0) {
