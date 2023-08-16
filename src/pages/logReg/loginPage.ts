@@ -1,8 +1,8 @@
 import Page from '../../core/template/page';
 import { login } from './formObjects/loginObj';
 import '../../css/login.css';
-import { IAuthorisObj } from '../../core/interface/aythorisObjInterface';
-import { submitData } from './validation/authorisationFunctions/submitData';
+import { IAuthorisObj } from '../../core/interfaces/aythorisObjInterface';
+import { submitData } from './validation/authorisationFunctions/submitData/submitData';
 
 class LoginPage extends Page {
     static TextObject = {
