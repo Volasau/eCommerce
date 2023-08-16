@@ -30,7 +30,7 @@ export class CustomerLogin {
             console.log('Response:', data.customer.firstName);
             return data.customer.firstName;
         } catch (error) {
-            console.error('Error:', error);
+            console.error('Error in CustomerLogin:', error);
             throw error;
         }
     }

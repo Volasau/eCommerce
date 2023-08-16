@@ -14,7 +14,7 @@ export class FormBuilder implements IFormBuilder {
         this.formId = formId;
         this.innerFormList = innerFormList;
         this.button = document.createElement('button');
-        this.button.type = 'submit';
+        this.button.type = 'button';
         this.buttonText = buttonText;
         this.button.textContent = buttonText;
         this.checkbox = document.createElement('input');
