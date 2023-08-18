@@ -42,7 +42,7 @@ export class TokenManager {
 
             if (!response.ok) {
                 // throw new Error(`Token request failed with status: ${response.status}`);
-                const status = 400;
+                const status = response.status;
                 handleServerErrorsLog(status, servError, email, password);
             }
 

@@ -5,6 +5,8 @@ import { CustomerLogin } from '../../../../server/CustomerLogin';
 import { TokenManager } from '../../../../server/access_token';
 import { IAccessTokenResponse } from '../../../../core/interfaces/AccessTokenResponse';
 
+export let bearer_token = '';
+
 export async function logInToServer(obj: IAuthorisObj, page: HTMLElement) {
     try {
         const requestData: ILoginRequest = {
@@ -14,6 +16,7 @@ export async function logInToServer(obj: IAuthorisObj, page: HTMLElement) {
 
         const tokenManager = new TokenManager(requestData.email, requestData.password);
         const tokenResponse = (await tokenManager.getToken(page)) as IAccessTokenResponse;
+        bearer_token = tokenResponse.access_token;
         const customerLogin = new CustomerLogin(constants.apiUrlLogin, tokenResponse.access_token);
         const loginResponse = (await customerLogin.loginUser(requestData)) as string;
 
