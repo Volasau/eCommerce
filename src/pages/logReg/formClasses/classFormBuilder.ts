@@ -1,4 +1,5 @@
 import { IFormBuilder } from '../../../core/interfaces/FormBuilderInterface';
+import { checkServErrors } from '../functions/checkServErrors';
 import { makeVisiblePassword } from '../validation/makeVisiblePassword';
 
 export class FormBuilder implements IFormBuilder {
@@ -14,7 +15,7 @@ export class FormBuilder implements IFormBuilder {
         this.formId = formId;
         this.innerFormList = innerFormList;
         this.button = document.createElement('button');
-        this.button.type = 'submit';
+        this.button.type = 'button';
         this.buttonText = buttonText;
         this.button.textContent = buttonText;
         this.checkbox = document.createElement('input');
@@ -35,7 +36,12 @@ export class FormBuilder implements IFormBuilder {
             }
             this.formHTML.append(innerForm);
         });
-        this.formHTML.append(this.button);
+        const serverError = document.createElement('div');
+        serverError.setAttribute('id', 'serv-error');
+        this.formHTML.append(serverError, this.button);
+
+        checkServErrors(this.formHTML);
+
         return this.formHTML;
     }
 }

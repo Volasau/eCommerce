@@ -1,6 +1,6 @@
 import App from './pages/app/app';
-import { tokenFetcher } from './server/access_token';
+import { createAnonymousCartId } from './server/createAnonymousCartId';
 
 const app = new App();
 app.run();
-export const bearerToken: Promise<string> = tokenFetcher.fetchAccessToken();
+createAnonymousCartId();

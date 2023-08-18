@@ -27,11 +27,11 @@ class RegistrPage extends Page {
         const title = this.createHeaderTitle(RegistrPage.TextOject.MainTitle);
         const registrForm = registration.build();
         this.container.append(title, registrForm);
-        this.autorisation();
+        this.logInOrReg();
         return this.container;
     }
 
-    autorisation() {
+    logInOrReg() {
         submitData(this.container, this.regObj);
     }
 }

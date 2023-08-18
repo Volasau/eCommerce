@@ -19,12 +19,7 @@ export function validateThisInput(input: HTMLInputElement, error: HTMLElement) {
             startBirthDateValidation(target.value, error);
         } else if (target.id === 'postcode') {
             startPostcodeValidation(target.value, error);
-        }
-    });
-
-    input.addEventListener('input', (event) => {
-        const target = event.target as HTMLInputElement;
-        if (target.id === 'country') {
+        } else if (target.id === 'country') {
             checkCountryInput(target, error);
             chooseCountry(target, error);
         }

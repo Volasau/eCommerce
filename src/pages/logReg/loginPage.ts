@@ -18,11 +18,11 @@ class LoginPage extends Page {
         const title = this.createHeaderTitle(LoginPage.TextObject.MainTitle);
         const loginForm = login.build();
         this.container.append(title, loginForm);
-        this.autorisation();
+        this.logInOrReg();
         return this.container;
     }
 
-    autorisation() {
+    logInOrReg() {
         submitData(this.container, this.authorisObj);
     }
 }
