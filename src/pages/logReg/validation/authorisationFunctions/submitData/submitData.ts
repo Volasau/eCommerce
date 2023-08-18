@@ -15,7 +15,7 @@ export function submitData(page: HTMLElement, obj: IAuthorisObj | IRegObj) {
         saveUsersDataInObject(inputList, obj);
 
         if (Object.keys(obj).length === 2) {
-            logInToServer(obj);
+            logInToServer(obj, page);
         } else {
             registerOnTheServer(obj);
         }

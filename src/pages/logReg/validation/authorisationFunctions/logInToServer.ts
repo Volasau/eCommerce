@@ -4,7 +4,7 @@ import { constants } from '../../../../data/constants';
 import { ILoginRequest } from '../../../../core/interfaces/LoginRequest';
 import { CustomerLogin } from '../../../../server/CustomerLogin';
 
-export async function logInToServer(obj: IAuthorisObj) {
+export async function logInToServer(obj: IAuthorisObj, page: HTMLElement) {
     try {
         const requestData: ILoginRequest = {
             email: obj.email,
@@ -16,11 +16,12 @@ export async function logInToServer(obj: IAuthorisObj) {
         };
 
         const customerLogin = new CustomerLogin(constants.apiUrlLogin, constants.bearerToken);
-        console.log(customerLogin);
-        const loginResponse = await customerLogin.loginUser(requestData);
+        const loginResponse = await customerLogin.loginUser(requestData, page);
         return loginResponse;
     } catch (error) {
-        console.error('Error in logInServer:', error);
-        throw error;
+        if (error === '400') {
+            console.log('Неверный логин или пароль');
+        }
+        // throw error;
     }
 }
