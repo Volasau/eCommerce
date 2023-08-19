@@ -4,6 +4,7 @@ import Page from '../../core/template/page';
 import LoginPage from '../logReg/loginPage';
 import Header from '../../components/header';
 import ErrorPage from '../error';
+import { isLoggedIn } from '../../data/isLoggedIn';
 
 export const enum PageIds {
     MainPage = 'main',
@@ -40,8 +41,18 @@ class App {
         }
     }
 
+    private checkAuthenticationAndRedirect() {
+        const hash = window.location.hash.slice(1);
+        if (hash === PageIds.LoginPage) {
+            if (isLoggedIn) {
+                window.location.hash = PageIds.MainPage;
+            }
+        }
+    }
+
     private enableRouteChange() {
         window.addEventListener('hashchange', () => {
+            this.checkAuthenticationAndRedirect();
             const hash = window.location.hash.slice(1);
             App.renderNewPage(hash);
         });
