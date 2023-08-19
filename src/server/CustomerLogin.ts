@@ -1,6 +1,8 @@
 import fetch from 'node-fetch';
 import { ICustomerSignInResponse } from '../core/interfaces/CustomerSignInResponse';
 import { ILoginRequest } from '../core/interfaces/LoginRequest';
+import App, { PageIds } from '../pages/app/app';
+import { setIsLoggedIn } from '../data/isLoggedIn';
 
 export class CustomerLogin {
     private apiUrlLogin: string;
@@ -24,6 +26,11 @@ export class CustomerLogin {
 
             if (!response.ok) {
                 console.log('Login error');
+            }
+
+            if (response.status === 200) {
+                App.renderNewPage(PageIds.MainPage);
+                setIsLoggedIn(true);
             }
 
             const data: ICustomerSignInResponse = await response.json();
