@@ -1,5 +1,7 @@
 export interface ICustomerResponse {
     addresses: [];
+    billingAddressIds: [];
+    shippingAddressIds: [];
     email: string;
     firstName: string;
     id: string;
@@ -11,3 +13,4 @@ export interface ICustomerResponse {
     lastModifiedAt: string;
     authenticationMode: string;
 }
+

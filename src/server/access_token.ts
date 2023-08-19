@@ -1,28 +1,37 @@
 import fetch from 'node-fetch';
+import { constants } from '../data/constants';
 import { IAccessTokenResponse } from '../core/interfaces/AccessTokenResponse';
+import { handleServerErrorsLog } from './handleServerErrorsLog';
 
-export const authUrl = 'https://auth.europe-west1.gcp.commercetools.com/oauth/token';
-export const clientId = 'evZAyazdZMrrHjVRwC-BYTHe';
-export const clientSecret = 'SjCFe1mgZ1njSSpehCpExMvHpXRjCBND';
-export const scope = 'manage_project:01082023';
-
-export class AccessTokenFetcher {
-    private authUrl: string;
+export class TokenManager {
+    private authHost: string;
+    private projectKey: string;
     private authHeader: string;
+    private scope: string;
     private requestData: URLSearchParams;
 
-    constructor(authUrl: string, clientId: string, clientSecret: string, scope: string) {
-        this.authUrl = authUrl;
-        this.authHeader = `Basic ${Buffer.from(`${clientId}:${clientSecret}`).toString('base64')}`;
+    constructor(email: string, password: string) {
+        this.authHost = constants.authHost;
+        this.projectKey = constants.projectKey;
+        this.authHeader = `Basic  ${Buffer.from('evZAyazdZMrrHjVRwC-BYTHe:SjCFe1mgZ1njSSpehCpExMvHpXRjCBND').toString(
+            'base64'
+        )}`;
+        this.scope = constants.scope;
         this.requestData = new URLSearchParams({
-            grant_type: 'client_credentials',
-            scope: scope,
+            grant_type: 'password',
+            username: email,
+            password: password,
+            scope: this.scope,
         });
     }
 
-    async fetchAccessToken(): Promise<string> {
+    async getToken(page: HTMLElement): Promise<IAccessTokenResponse | void> {
+        const tokenUrl = `https://${this.authHost}/oauth/${this.projectKey}/customers/token`;
+        const servError = page.querySelector('#serv-error') as HTMLDivElement;
+        const email = page.querySelector('#email') as HTMLInputElement;
+        const password = page.querySelector('#password') as HTMLInputElement;
         try {
-            const response = await fetch(this.authUrl, {
+            const response = await fetch(tokenUrl, {
                 method: 'POST',
                 headers: {
                     Authorization: this.authHeader,
@@ -32,18 +41,19 @@ export class AccessTokenFetcher {
             });
 
             if (!response.ok) {
-                throw new Error(`Request failed with status: ${response.status}`);
+                // throw new Error(`Token request failed with status: ${response.status}`);
+                const status = response.status;
+                handleServerErrorsLog(status, servError, email, password);
             }
 
             const data: IAccessTokenResponse = await response.json();
-            const access_token: string = data.access_token;
-            console.log('access_token:', access_token);
-            return access_token;
+            const accessToken: string = data.access_token;
+            console.log('Access Token:', accessToken);
+            return data;
         } catch (error) {
-            console.error('Error:', error);
-            throw error;
+            if (error === '400') {
+                console.error('Неверный логин или пароль');
+            }
         }
     }
 }
-
-export const tokenFetcher: AccessTokenFetcher = new AccessTokenFetcher(authUrl, clientId, clientSecret, scope);
