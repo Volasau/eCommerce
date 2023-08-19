@@ -28,11 +28,12 @@ export class CustomerLogin {
                 console.log('Login error');
             }
 
+            if (response.status === 200) {
+                App.renderNewPage(PageIds.MainPage);
+                setIsLoggedIn(true);
+            }
+
             const data: ICustomerSignInResponse = await response.json();
-
-            App.renderNewPage(PageIds.MainPage);
-            setIsLoggedIn(true);
-
             console.log('Response:', data.customer.firstName);
             return data.customer.firstName;
         } catch (error) {
