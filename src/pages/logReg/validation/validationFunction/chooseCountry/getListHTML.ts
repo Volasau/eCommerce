@@ -1,6 +1,6 @@
 import { ICountryObj } from '../../../../../core/interfaces/countryObjInterface';
 
-export function getCountryListHTML(countriesArr: ICountryObj[]) {
+export function getCountryListHTML(countriesArr: ICountryObj[], listId: string) {
     if (countriesArr.length > 0) {
         const html = countriesArr
             .map(
@@ -10,7 +10,7 @@ export function getCountryListHTML(countriesArr: ICountryObj[]) {
                     </div>`
             )
             .join('');
-        const list = document.getElementById('country-list') as HTMLElement;
+        const list = document.getElementById(listId) as HTMLElement;
         list.innerHTML = html;
     }
 }

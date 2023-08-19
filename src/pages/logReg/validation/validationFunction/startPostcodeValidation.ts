@@ -1,7 +1,7 @@
 import { countries } from '../../../../data/country';
 
-export function startPostcodeValidation(value: string, errorHTML: HTMLElement) {
-    const countryInput = document.getElementById('country') as HTMLInputElement;
+export function startPostcodeValidation(value: string, errorHTML: HTMLElement, id: string) {
+    const countryInput = document.getElementById(id) as HTMLInputElement;
     countries.forEach((country) => {
         if (countryInput.value === country.Country) {
             const regex = new RegExp(country.Regex);
