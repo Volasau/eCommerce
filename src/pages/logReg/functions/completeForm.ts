@@ -1,13 +1,16 @@
 import { makeVisiblePassword } from '../validation/makeVisiblePassword';
+// import { validateThisInput } from '../validation/validateThisInput';
+import { validateShipping } from '../validation/validationFunction/validateShipping';
 import { addCheckboxToInput } from './addCheckboxToInput';
-import { addShippingBlock } from './addShippingBlock';
+import { addShipping } from './addShipping';
+import { removeShippingBlock } from './removeShippingBlock';
 
-export function completeForm(formHTML: HTMLFormElement, innerFormList: HTMLElement[]) {
+export async function completeForm(formHTML: HTMLFormElement, innerFormList: HTMLElement[]) {
     const billingBlock = document.createElement('div') as HTMLDivElement;
     billingBlock.setAttribute('id', 'billing');
     billingBlock.innerHTML = '<h3>BILLING ADDRESS</h3>';
 
-    innerFormList.forEach((innerForm) => {
+    innerFormList.forEach(async (innerForm) => {
         if (
             innerForm.children[1].id === 'country' ||
             innerForm.children[1].id === 'city' ||
@@ -19,9 +22,12 @@ export function completeForm(formHTML: HTMLFormElement, innerFormList: HTMLEleme
             formHTML.append(innerForm);
         }
         addCheckboxToInput('password', 'Show password', innerForm, makeVisiblePassword);
-        addCheckboxToInput('postcode', 'Add shipping address', innerForm, addShippingBlock);
+        addCheckboxToInput('postcode', 'Add shipping address', innerForm, removeShippingBlock);
     });
+
     if (window.location.hash.slice(1) === 'registr') {
         formHTML.append(billingBlock);
+        billingBlock.after(addShipping());
+        validateShipping(formHTML);
     }
 }
