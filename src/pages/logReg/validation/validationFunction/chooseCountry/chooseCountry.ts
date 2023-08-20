@@ -3,11 +3,17 @@ import { countries } from '../../../../../data/country';
 import { chooseFromCountryList } from './chooseFromCountryList';
 import { getCountryListHTML } from './getListHTML';
 
-export function chooseCountry(target: HTMLInputElement, errorHTML: HTMLElement) {
-    if (target.id === 'country') {
-        const list = document.getElementById('country-list') as HTMLElement;
-        const countryInput = document.getElementById('country') as HTMLInputElement;
-        const postCodeHTML = document.getElementById('postcode') as HTMLInputElement;
+export function chooseCountry(
+    target: HTMLInputElement,
+    errorHTML: HTMLElement,
+    countryId: string,
+    listId: string,
+    codeId: string
+) {
+    if (target.id === countryId) {
+        const list = document.getElementById(listId) as HTMLElement;
+        const countryInput = document.getElementById(countryId) as HTMLInputElement;
+        const postCodeHTML = document.getElementById(codeId) as HTMLInputElement;
 
         if (countryInput.value === '') postCodeHTML.setAttribute('placeholder', 'Enter the postcode');
 
@@ -21,7 +27,7 @@ export function chooseCountry(target: HTMLInputElement, errorHTML: HTMLElement) 
             list.innerHTML = '';
         }
 
-        getCountryListHTML(countriesArr);
+        getCountryListHTML(countriesArr, listId);
 
         chooseFromCountryList(countryInput, list, postCodeHTML, errorHTML);
     }

@@ -11,7 +11,7 @@ export function submitData(page: HTMLElement, obj: IAuthorisObj | IRegObj) {
         const errorList = page.querySelectorAll('.error') as NodeList;
         const inputList = page.querySelectorAll('.input') as NodeList;
 
-        if (checkInputsForErrors(errorList)) return;
+        if (checkInputsForErrors(errorList, inputList)) return;
         saveUsersDataInObject(inputList, obj);
 
         if (Object.keys(obj).length === 2) {

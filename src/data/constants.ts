@@ -1,4 +1,6 @@
 export const constants = {
+    shipDefault: false,
+    billDefault: false,
     apiUrlCarts: 'https://api.europe-west1.gcp.commercetools.com/01082023/carts',
     apiUrlLogin: 'https://api.europe-west1.gcp.commercetools.com/01082023/login',
     authHost: 'auth.europe-west1.gcp.commercetools.com',

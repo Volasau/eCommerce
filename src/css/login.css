@@ -39,9 +39,6 @@ button[type="submit"]:hover {
   background-color: #2980b9;
 }
 
-.error {
-  color: red;
-}
 
 .show-password {
   margin-top: 10px;

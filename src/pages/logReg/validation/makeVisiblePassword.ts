@@ -1,4 +1,9 @@
-export function makeVisiblePassword(checkbox: HTMLInputElement, passwordInput: HTMLInputElement) {
+export interface IFunc {
+    (checkbox: HTMLInputElement, pswInput: HTMLElement): void;
+}
+
+export const makeVisiblePassword: IFunc = function (checkbox: HTMLInputElement, pswInput: HTMLElement) {
+    const passwordInput = pswInput as HTMLInputElement;
     checkbox.addEventListener('change', () => {
         if (checkbox.checked) {
             passwordInput.type = 'text';
@@ -6,4 +11,4 @@ export function makeVisiblePassword(checkbox: HTMLInputElement, passwordInput: H
             passwordInput.type = 'password';
         }
     });
-}
+};
