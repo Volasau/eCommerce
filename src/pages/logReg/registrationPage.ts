@@ -17,6 +17,12 @@ class RegistrPage extends Page {
         street: '',
         postcode: '',
         birthDate: '',
+        countryShip: '',
+        cityShip: '',
+        streetShip: '',
+        postcodeShip: '',
+        billingDefault: false,
+        shippingDefault: false,
     };
 
     constructor(id: string) {

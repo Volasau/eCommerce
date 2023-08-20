@@ -8,4 +8,10 @@ export interface IRegObj {
     street: string;
     postcode: string;
     birthDate: string;
+    countryShip: string;
+    cityShip: string;
+    streetShip: string;
+    postcodeShip: string;
+    billingDefault: boolean;
+    shippingDefault: boolean;
 }

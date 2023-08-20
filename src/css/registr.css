@@ -36,7 +36,7 @@ button[type="submit"]:hover {
   background-color: #2980b9;
 }
 
-.password-error {
+.checkbox {
   display: block;
   margin-bottom: 8px;
 }

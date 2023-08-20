@@ -1,9 +1,9 @@
 import { makeVisiblePassword } from '../validation/makeVisiblePassword';
-// import { validateThisInput } from '../validation/validateThisInput';
 import { validateShipping } from '../validation/validationFunction/validateShipping';
 import { addCheckboxToInput } from './addCheckboxToInput';
 import { addShipping } from './addShipping';
 import { removeShippingBlock } from './removeShippingBlock';
+import { saveAsDefaultAddress } from './saveAsDefaultAddress';
 
 export async function completeForm(formHTML: HTMLFormElement, innerFormList: HTMLElement[]) {
     const billingBlock = document.createElement('div') as HTMLDivElement;
@@ -22,12 +22,16 @@ export async function completeForm(formHTML: HTMLFormElement, innerFormList: HTM
             formHTML.append(innerForm);
         }
         addCheckboxToInput('password', 'Show password', innerForm, makeVisiblePassword);
-        addCheckboxToInput('postcode', 'Add shipping address', innerForm, removeShippingBlock);
+        addCheckboxToInput('postcode', 'Use as billing address', innerForm, removeShippingBlock);
+        addCheckboxToInput('postcode', 'Set as default address', innerForm, saveAsDefaultAddress);
     });
 
     if (window.location.hash.slice(1) === 'registr') {
         formHTML.append(billingBlock);
         billingBlock.after(addShipping());
+        const saveDefault = formHTML.querySelector('#set-as-default-address-ship') as HTMLInputElement;
+        const post = formHTML.querySelector('#postcode-errorShip') as HTMLInputElement;
+        saveAsDefaultAddress(saveDefault, post);
         validateShipping(formHTML);
     }
 }
