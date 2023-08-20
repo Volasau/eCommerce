@@ -5,6 +5,7 @@ import { startEmailValidation } from './validationFunction/startEmailValidation'
 import { startNameValidation } from './validationFunction/startNameValidation';
 import { startPasswordValidation } from './validationFunction/startPasswordValidation';
 import { startPostcodeValidation } from './validationFunction/startPostcodeValidation';
+import { startStreetValidation } from './validationFunction/startStreetValidation';
 
 export function validateThisInput(input: HTMLInputElement, error: HTMLElement) {
     input.addEventListener('input', (event: Event) => {
@@ -13,9 +14,9 @@ export function validateThisInput(input: HTMLInputElement, error: HTMLElement) {
             startEmailValidation(targ.value, error);
         } else if (targ.id === 'password') {
             startPasswordValidation(targ.value, error);
-        } else if (targ.id === 'name' || targ.id === 'last-name' || targ.id === 'city' || targ.id === 'cityShip') {
+        } else if (targ.id === 'name' || targ.id === 'lastName' || targ.id === 'city' || targ.id === 'cityShip') {
             startNameValidation(targ.value, error);
-        } else if (targ.id === 'birthdate') {
+        } else if (targ.id === 'birthDate') {
             startBirthDateValidation(targ.value, error);
         } else if (targ.id === 'postcode' || targ.id === 'postcodeShip') {
             startPostcodeValidation(targ.value, error, targ.id === 'postcode' ? 'country' : 'countryShip');
@@ -25,6 +26,8 @@ export function validateThisInput(input: HTMLInputElement, error: HTMLElement) {
             const codeId = targ.id === 'country' ? 'postcode' : 'postcodeShip';
             checkCountryInput(targ, error, targ.id);
             chooseCountry(targ, error, countryId, listId, codeId);
+        } else if (targ.id === 'street' || targ.id === 'streetShip') {
+            startStreetValidation(targ.value, error);
         }
     });
 }

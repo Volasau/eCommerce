@@ -10,14 +10,12 @@ export const saveAsDefaultAddress: IFunc = function (checkbox: HTMLInputElement,
             } else {
                 constants.shipDefault = false;
             }
-            console.log(constants.shipDefault);
         } else {
             if (checkbox.checked) {
                 constants.billDefault = true;
             } else {
                 constants.billDefault = false;
             }
-            console.log(constants.billDefault);
         }
     });
     element.innerHTML = element.innerHTML + '';
