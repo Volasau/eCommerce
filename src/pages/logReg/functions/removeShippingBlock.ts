@@ -1,15 +1,14 @@
 import { IFunc } from '../validation/makeVisiblePassword';
+import { addShipping } from './addShipping';
 
 export const removeShippingBlock: IFunc = function (checkbox: HTMLInputElement, element: HTMLElement) {
-    checkbox.addEventListener('change', (event) => {
-        console.log(event.target);
-        if (document.getElementById('shipping')) {
-            const shipping = document.getElementById('shipping') as HTMLDivElement;
-            if (checkbox.checked) {
-                shipping.style.display = 'none';
-            } else {
-                shipping.style.display = '';
-            }
+    checkbox.addEventListener('change', () => {
+        const shipping = document.getElementById('shipping') as HTMLDivElement;
+        const billing = document.getElementById('billing') as HTMLDivElement;
+        if (checkbox.checked) {
+            if (shipping) shipping.remove();
+        } else {
+            if (!shipping) billing.after(addShipping());
         }
     });
     element.innerHTML = element.innerHTML + '';
