@@ -10,10 +10,10 @@ export function saveUsersDataInObject(inputList: NodeList, obj: IAuthorisObj | I
     if (Object.keys(obj).length > 2) {
         const object = obj as IRegObj;
         if (!document.getElementById('shipping')) {
-            object.cityShip = '';
-            object.countryShip = '';
-            object.streetShip = '';
-            object.postcodeShip = '';
+            object.cityShip = object.city;
+            object.countryShip = object.country;
+            object.streetShip = object.street;
+            object.postcodeShip = object.postcode;
             constants.shipDefault = false;
         }
         object.billingDefault = constants.billDefault;
