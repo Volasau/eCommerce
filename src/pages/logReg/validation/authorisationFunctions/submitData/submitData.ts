@@ -17,7 +17,8 @@ export function submitData(page: HTMLElement, obj: IAuthorisObj | IRegObj) {
         if (Object.keys(obj).length === 2) {
             logInToServer(obj, page);
         } else {
-            registerOnTheServer(obj);
+            const objectReg = obj as IRegObj;
+            registerOnTheServer(objectReg);
         }
     });
 }
