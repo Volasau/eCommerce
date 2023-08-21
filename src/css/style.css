@@ -9,6 +9,6 @@
   text-decoration: none;
 }
 
-.link__text:hover {
+.link:hover {
   background-color: #294db9;
 }
