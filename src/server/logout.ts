@@ -46,5 +46,3 @@ export class TokenRevoker {
         await this.revokeToken(accessToken, 'access_token');
     }
 }
-
-// Example usage

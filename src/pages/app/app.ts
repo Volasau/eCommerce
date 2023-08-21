@@ -34,16 +34,21 @@ class App {
         } else if (idPage === PageIds.RegistrPage) {
             page = new RegistrPage(idPage);
         } else if (idPage === PageIds.LogoutPage) {
-            logoutAction();
-            showToast('You went out');
-            const newUrl = window.location.href.replace(`#${PageIds.LogoutPage}`, `#${PageIds.LoginPage}`);
-            window.history.replaceState({}, document.title, newUrl);
-            App.renderNewPage(PageIds.LoginPage);
-            const logoutBtn = document.querySelectorAll('.logout__page');
-            logoutBtn.forEach((el) => {
-                el.classList.remove('block');
-            });
-            setIsLoggedIn(false);
+            logoutAction()
+                .then(() => {
+                    showToast('You went out');
+                    const newUrl = window.location.href.replace(`#${PageIds.LogoutPage}`, `#${PageIds.LoginPage}`);
+                    window.history.replaceState({}, document.title, newUrl);
+                    App.renderNewPage(PageIds.LoginPage);
+                    const logoutBtn = document.querySelectorAll('.logout__page');
+                    logoutBtn.forEach((el) => {
+                        el.classList.remove('block');
+                    });
+                    setIsLoggedIn(false);
+                })
+                .catch(() => {
+                    showToast('Promlem');
+                });
         } else {
             page = new ErrorPage(idPage, '404');
         }
