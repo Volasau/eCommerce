@@ -13,7 +13,7 @@ const Buttons = [
     },
     {
         id: PageIds.MainPage,
-        text: 'HOME🌐',
+        text: 'HOME🏠',
         class: 'home__page',
     },
     {
