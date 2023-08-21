@@ -43,9 +43,9 @@
 }
 
 
-/* .logout__page {
+.logout__page {
   display: none;
-} */
+}
 
 
 .but__link {
@@ -68,6 +68,7 @@
 }
 
 .block {
+  width: 77px;
   display: block;
 }
 

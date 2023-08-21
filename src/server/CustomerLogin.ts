@@ -3,6 +3,7 @@ import { ICustomerSignInResponse } from '../core/interfaces/CustomerSignInRespon
 import { ILoginRequest } from '../core/interfaces/LoginRequest';
 import App, { PageIds } from '../pages/app/app';
 import { setIsLoggedIn } from '../data/isLoggedIn';
+import { showToast } from '../pages/logReg/functions/funcToastify';
 
 export class CustomerLogin {
     private apiUrlLogin: string;
@@ -29,7 +30,14 @@ export class CustomerLogin {
             }
 
             if (response.status === 200) {
+                showToast('You are logged in!');
+                const newUrl = window.location.href.replace(`#${PageIds.LoginPage}`, `#${PageIds.MainPage}`);
+                window.history.replaceState({}, document.title, newUrl);
                 App.renderNewPage(PageIds.MainPage);
+                const btnLogout = document.querySelectorAll('.logout__page');
+                btnLogout.forEach((el) => {
+                    el.classList.add('block');
+                });
                 setIsLoggedIn(true);
             }
 
