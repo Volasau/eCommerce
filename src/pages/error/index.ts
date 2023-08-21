@@ -19,7 +19,7 @@ class ErrorPage extends Page {
 
     render() {
         const title = this.createHeaderTitle(ErrorPage.TextObject[this.errorType]);
-        const mainLink = createLink('#main', 'To return to the home page click ', 'HOME', '');
+        const mainLink = createLink('#/main', 'To return to the home page click ', 'HOME', '');
         this.container.append(title, mainLink);
         return this.container;
     }

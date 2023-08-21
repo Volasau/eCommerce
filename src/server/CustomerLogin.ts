@@ -31,7 +31,7 @@ export class CustomerLogin {
 
             if (response.status === 200) {
                 showToast('You are logged in!');
-                const newUrl = window.location.href.replace(`#${PageIds.LoginPage}`, `#${PageIds.MainPage}`);
+                const newUrl = window.location.href.replace(`#/${PageIds.LoginPage}`, `#/${PageIds.MainPage}`);
                 window.history.replaceState({}, document.title, newUrl);
                 App.renderNewPage(PageIds.MainPage);
                 const btnLogout = document.querySelectorAll('.logout__page');

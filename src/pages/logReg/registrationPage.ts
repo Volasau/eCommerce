@@ -33,7 +33,7 @@ class RegistrPage extends Page {
     render() {
         const title = this.createHeaderTitle(RegistrPage.TextOject.MainTitle);
         const registrForm = registration.build();
-        const loginLink = createLink('#login', 'Already registered? Sign in ', 'Here🔑', '');
+        const loginLink = createLink('#/login', 'Already registered? Sign in ', 'Here🔑', '');
         this.container.append(title, registrForm, loginLink);
         this.logInOrReg();
         return this.container;

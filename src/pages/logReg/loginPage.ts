@@ -18,7 +18,7 @@ class LoginPage extends Page {
     render() {
         const title = this.createHeaderTitle(LoginPage.TextObject.MainTitle);
         const loginForm = login.build();
-        const registrLink = createLink('#registr', "Haven't registered yet? Sing up ", 'Here➕', '');
+        const registrLink = createLink('#/registr', "Haven't registered yet? Sing up ", 'Here➕', '');
         this.container.append(title, loginForm, registrLink);
         this.logInOrReg();
         return this.container;
