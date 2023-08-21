@@ -52,7 +52,7 @@ class Header extends Component {
                 buttonHTML.innerText = button.text;
             }
             buttonHTML.classList.add('but__link', `${button.class}`);
-            buttonHTML.href = `#${button.id}`;
+            buttonHTML.href = `#/${button.id}`;
             pageButtons.append(buttonHTML);
         });
         this.container.append(pageButtons);

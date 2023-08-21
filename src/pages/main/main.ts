@@ -4,7 +4,7 @@ import '../../css/style.css';
 
 class MainPage extends Page {
     static TextOject = {
-        MainTitle: '',
+        MainTitle: 'HOME Page',
     };
     constructor(id: string) {
         super(id);
@@ -12,9 +12,9 @@ class MainPage extends Page {
 
     render() {
         const title = this.createHeaderTitle(MainPage.TextOject.MainTitle);
-        const registrLink = createLink('#registr', '', 'Registration➕', '');
-        const loginLink = createLink('#login', '', 'Login🔑', '');
-        const logoutLink = createLink('#logout', '', 'Logout❌', 'logout__page');
+        const registrLink = createLink('#/registr', '', 'Registration➕', '');
+        const loginLink = createLink('#/login', '', 'Login🔑', '');
+        const logoutLink = createLink('#/logout', '', 'Logout❌', 'logout__page');
         this.container.append(loginLink, registrLink, logoutLink, title);
         return this.container;
     }

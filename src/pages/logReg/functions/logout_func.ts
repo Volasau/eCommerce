@@ -10,7 +10,7 @@ export const logoutAction = async () => {
     try {
         await tokenRevoker.revokeAccessToken(bearer_token_pf);
         showToast('You went out');
-        const newUrl = window.location.href.replace(`#${PageIds.LogoutPage}`, `#${PageIds.LoginPage}`);
+        const newUrl = window.location.href.replace(`#/${PageIds.LogoutPage}`, `#/${PageIds.LoginPage}`);
         window.history.replaceState({}, document.title, newUrl);
         App.renderNewPage(PageIds.LoginPage);
         const logoutBtn = document.querySelectorAll('.logout__page');

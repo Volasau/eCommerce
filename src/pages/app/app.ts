@@ -45,10 +45,10 @@ class App {
     }
 
     private checkAuthenticationAndRedirect() {
-        const hash = window.location.hash.slice(1);
+        const hash = window.location.hash.slice(2);
         if (hash === PageIds.LoginPage) {
             if (isLoggedIn) {
-                window.location.hash = PageIds.MainPage;
+                window.location.hash = `/${PageIds.MainPage}`;
             }
         }
     }
@@ -56,7 +56,7 @@ class App {
     private enableRouteChange() {
         window.addEventListener('hashchange', () => {
             this.checkAuthenticationAndRedirect();
-            const hash = window.location.hash.slice(1);
+            const hash = window.location.hash.slice(2);
             App.renderNewPage(hash);
         });
     }
