@@ -4,14 +4,15 @@ import Page from '../../core/template/page';
 import LoginPage from '../logReg/loginPage';
 import Header from '../../components/header';
 import ErrorPage from '../error';
-import { isLoggedIn } from '../../data/isLoggedIn';
+import { isLoggedIn, setIsLoggedIn } from '../../data/isLoggedIn';
+import { showToast } from '../logReg/functions/funcToastify';
 
 export const enum PageIds {
     MainPage = 'main',
     RegistrPage = 'registr',
     LoginPage = 'login',
+    LogoutPage = 'logout',
 }
-
 class App {
     private static container: HTMLElement = document.body;
     private static defaultPageId = 'current-page';
@@ -31,6 +32,16 @@ class App {
             page = new LoginPage(idPage);
         } else if (idPage === PageIds.RegistrPage) {
             page = new RegistrPage(idPage);
+        } else if (idPage === PageIds.LogoutPage) {
+            showToast('You went out');
+            const newUrl = window.location.href.replace(`#${PageIds.LogoutPage}`, `#${PageIds.LoginPage}`);
+            window.history.replaceState({}, document.title, newUrl);
+            App.renderNewPage(PageIds.LoginPage);
+            const logoutBtn = document.querySelectorAll('.logout__page');
+            logoutBtn.forEach((el) => {
+                el.classList.remove('block');
+            });
+            setIsLoggedIn(false);
         } else {
             page = new ErrorPage(idPage, '404');
         }

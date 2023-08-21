@@ -13,7 +13,6 @@
   font-size: 12px;
 }
 
-input[type="email"],
 input[type="password"],
 input[type="text"] {
   width: 100%;
@@ -22,7 +21,7 @@ input[type="text"] {
   border-radius: 5px;
 }
 
-button[type="submit"] {
+button[type="button"] {
   padding: 10px 20px;
   background-color: #3498db;
   color: white;
@@ -32,7 +31,7 @@ button[type="submit"] {
   font-size: 16px;
 }
 
-button[type="submit"]:hover {
+button[type="button"]:hover {
   background-color: #2980b9;
 }
 
