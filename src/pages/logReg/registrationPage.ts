@@ -1,6 +1,7 @@
 import { IRegObj } from '../../core/interfaces/regObjInterface';
 import Page from '../../core/template/page';
 import { registration } from './formObjects/registrationObj';
+import { createLink } from './functions/createLink';
 import { submitData } from './validation/authorisationFunctions/submitData/submitData';
 
 class RegistrPage extends Page {
@@ -32,7 +33,8 @@ class RegistrPage extends Page {
     render() {
         const title = this.createHeaderTitle(RegistrPage.TextOject.MainTitle);
         const registrForm = registration.build();
-        this.container.append(title, registrForm);
+        const loginLink = createLink('#login', 'Already registered? Sign in ', 'Here🔑', '');
+        this.container.append(title, registrForm, loginLink);
         this.logInOrReg();
         return this.container;
     }

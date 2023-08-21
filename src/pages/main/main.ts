@@ -1,8 +1,10 @@
 import Page from '../../core/template/page';
+import { createLink } from '../logReg/functions/createLink';
+import '../../css/style.css';
 
 class MainPage extends Page {
     static TextOject = {
-        MainTitle: 'Catalog products',
+        MainTitle: 'HOME Page',
     };
     constructor(id: string) {
         super(id);
@@ -10,7 +12,11 @@ class MainPage extends Page {
 
     render() {
         const title = this.createHeaderTitle(MainPage.TextOject.MainTitle);
-        this.container.append(title);
+        const registrLink = createLink('#registr', '', 'Registration➕', '');
+        const loginLink = createLink('#login', '', 'Login🔑', '');
+        const mainLink = createLink('#main', '', 'HOME', '');
+        const logoutLink = createLink('#logout', '', 'Logout❌', 'logout__page');
+        this.container.append(mainLink, loginLink, registrLink, logoutLink, title);
         return this.container;
     }
 }
