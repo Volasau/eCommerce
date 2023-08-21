@@ -12,6 +12,7 @@ export function chooseFromCountryList(
         countryInput.value = country.trim();
         list.innerHTML = '';
         errorHTML.innerHTML = '';
+        postCodeHTML.value = '';
         let pcFormat = '';
         countries.forEach((object) => {
             if (object.Country === country.trim()) {

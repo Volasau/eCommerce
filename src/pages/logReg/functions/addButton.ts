@@ -1,4 +1,4 @@
-export function getButton(innerFormList: HTMLElement[]): HTMLButtonElement {
+export function addButton(formHTML: HTMLFormElement, innerFormList: HTMLElement[]) {
     const button = document.createElement('button') as HTMLButtonElement;
     button.type = 'button';
     if (innerFormList.length <= 2) {
@@ -6,5 +6,5 @@ export function getButton(innerFormList: HTMLElement[]): HTMLButtonElement {
     } else {
         button.textContent = 'Register';
     }
-    return button;
+    formHTML.append(button);
 }
