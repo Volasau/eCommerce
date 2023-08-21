@@ -1,19 +1,30 @@
 import Component from '../../core/template/components';
-import { PageIds } from '../../pages/app/app';
+import App, { PageIds } from '../../pages/app/app';
 import '../../css/header.css';
+import { setIsLoggedIn } from '../../data/isLoggedIn';
+import logo from '../../assets/images/logo.jpg';
 
 const Buttons = [
     {
         id: PageIds.MainPage,
-        text: 'Main Page',
+        text: '',
+        class: 'mane__page',
+        logoImage: logo,
     },
     {
         id: PageIds.LoginPage,
-        text: 'Login',
+        text: 'Login🔑',
+        class: 'login__page',
     },
     {
         id: PageIds.RegistrPage,
-        text: 'Registration',
+        text: 'Registration➕',
+        class: 'registr__page',
+    },
+    {
+        id: PageIds.LogoutPage,
+        text: 'Logout❌',
+        class: 'logout__page',
     },
 ];
 
@@ -27,11 +38,30 @@ class Header extends Component {
         pageButtons.classList.add('header-container');
         Buttons.forEach((button) => {
             const buttonHTML = document.createElement('a');
+            if (button.logoImage) {
+                const logoImg = document.createElement('img');
+                logoImg.src = button.logoImage;
+                logoImg.classList.add('logo-image');
+                buttonHTML.appendChild(logoImg);
+            } else {
+                buttonHTML.innerText = button.text;
+            }
+            buttonHTML.classList.add('but__link', `${button.class}`);
             buttonHTML.href = `#${button.id}`;
-            buttonHTML.innerText = button.text;
             pageButtons.append(buttonHTML);
         });
         this.container.append(pageButtons);
+    }
+
+    handleButtonClick(pageId: PageIds) {
+        if (pageId === PageIds.LogoutPage) {
+            const logoutBtn = document.querySelector('.logout__page');
+            setIsLoggedIn(false);
+            logoutBtn?.classList.remove('block');
+            App.renderNewPage(PageIds.LoginPage);
+        } else {
+            App.renderNewPage(pageId);
+        }
     }
 
     render() {

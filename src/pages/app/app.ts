@@ -10,6 +10,7 @@ export const enum PageIds {
     MainPage = 'main',
     RegistrPage = 'registr',
     LoginPage = 'login',
+    LogoutPage = 'logout',
 }
 
 class App {
