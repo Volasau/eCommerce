@@ -47,7 +47,9 @@ class App {
                     setIsLoggedIn(false);
                 })
                 .catch(() => {
-                    showToast('Promlem');
+                    showToast('Problem');
+                    const hash = window.location.hash.slice(1);
+                    App.renderNewPage(hash);
                 });
         } else {
             page = new ErrorPage(idPage, '404');
