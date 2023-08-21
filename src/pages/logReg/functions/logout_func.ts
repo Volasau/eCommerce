@@ -1,4 +1,4 @@
-import { bearer_token } from '../validation/authorisationFunctions/logInToServer';
+import { bearer_token_pf } from '../validation/authorisationFunctions/logInToServer';
 import { TokenRevoker } from '../../../server/logout';
 import { showToast } from './funcToastify';
 import App, { PageIds } from '../../app/app';
@@ -8,7 +8,7 @@ export const logoutAction = async () => {
     const tokenRevoker = new TokenRevoker();
 
     try {
-        await tokenRevoker.revokeAccessToken(bearer_token);
+        await tokenRevoker.revokeAccessToken(bearer_token_pf);
         showToast('You went out');
         const newUrl = window.location.href.replace(`#${PageIds.LogoutPage}`, `#${PageIds.LoginPage}`);
         window.history.replaceState({}, document.title, newUrl);
