@@ -6,6 +6,7 @@ import Header from '../../components/header';
 import ErrorPage from '../error';
 import { isLoggedIn, setIsLoggedIn } from '../../data/isLoggedIn';
 import { showToast } from '../logReg/functions/funcToastify';
+import { logoutAction } from '../logReg/functions/logout_func';
 
 export const enum PageIds {
     MainPage = 'main',
@@ -33,6 +34,7 @@ class App {
         } else if (idPage === PageIds.RegistrPage) {
             page = new RegistrPage(idPage);
         } else if (idPage === PageIds.LogoutPage) {
+            logoutAction();
             showToast('You went out');
             const newUrl = window.location.href.replace(`#${PageIds.LogoutPage}`, `#${PageIds.LoginPage}`);
             window.history.replaceState({}, document.title, newUrl);
