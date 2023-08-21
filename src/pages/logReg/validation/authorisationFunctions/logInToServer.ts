@@ -17,9 +17,9 @@ export async function logInToServer(obj: IAuthorisObj, page: HTMLElement) {
         const tokenManager = new TokenManager(requestData.email, requestData.password);
         const tokenResponse = (await tokenManager.getToken(page)) as IAccessTokenResponse;
         bearer_token_pf = tokenResponse.access_token;
-        localStorage.setItem('bearer_token_pf', `${bearer_token_pf}`);
         const customerLogin = new CustomerLogin(constants.apiUrlLogin, tokenResponse.access_token);
         const loginResponse = (await customerLogin.loginUser(requestData)) as string;
+        localStorage.setItem('bearer_token_pf', `${bearer_token_pf}`);
 
         return loginResponse;
     } catch (error) {

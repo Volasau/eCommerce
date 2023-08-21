@@ -5,6 +5,7 @@ import { getISOCodeByCountryName } from './getISOCode';
 import { IAddressBilling } from '../../../core/interfaces/addressBilling';
 import { IAddressShipping } from '../../../core/interfaces/addressShipping';
 import { IConsolidatedData } from '../../../core/interfaces/consolidatedData';
+import { showToast } from './funcToastify';
 
 export async function customerManagerData(obj: IRegObj) {
     const customerManager = new CustomerManager(
@@ -67,6 +68,7 @@ export async function noDefaultAddress(consolidatedData: IConsolidatedData) {
         );
 
         await customerManager.createShippingAddress();
+        showToast('Registration is successful!');
     } catch (error) {
         console.error('An error occurred:', error);
     }
@@ -97,6 +99,7 @@ export async function defaultBillingAddress(consolidatedData: IConsolidatedData)
         );
 
         await customerManager.createShippingAddress();
+        showToast('Registration is successful!');
     } catch (error) {
         console.error('An error occurred:', error);
     }
@@ -127,6 +130,7 @@ export async function defaultShippingAddress(consolidatedData: IConsolidatedData
 
         await customerManager.createShippingAddress();
         await customerManager.setDefaultShippingAddress();
+        showToast('Registration is successful!');
     } catch (error) {
         console.error('An error occurred:', error);
     }
@@ -157,6 +161,7 @@ export async function defaultAddresses(consolidatedData: IConsolidatedData) {
 
         await customerManager.createShippingAddress();
         await customerManager.setDefaultShippingAddress();
+        showToast('Registration is successful!');
     } catch (error) {
         console.error('An error occurred:', error);
     }
