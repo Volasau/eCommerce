@@ -1,10 +1,9 @@
 import { constants } from '../../../data/constants';
-import { IFunc } from '../validation/makeVisiblePassword';
 
-export const saveAsDefaultAddress: IFunc = function (checkbox: HTMLInputElement, element: HTMLElement) {
+export function saveAsDefaultAddress(checkbox: HTMLInputElement) {
     checkbox.addEventListener('change', (event) => {
         const target = event.target as HTMLInputElement;
-        if (target.id === 'set-as-default-address-ship') {
+        if (target.id === 'set-as-default-shipping-address') {
             if (checkbox.checked) {
                 constants.shipDefault = true;
             } else {
@@ -18,5 +17,4 @@ export const saveAsDefaultAddress: IFunc = function (checkbox: HTMLInputElement,
             }
         }
     });
-    element.innerHTML = element.innerHTML + '';
-};
+}

@@ -11,7 +11,39 @@ const city = new InnerForm('City', 'text', 'city', 'city', 'city-error', 'Enter 
 const street = new InnerForm('Street', 'text', 'street', 'street', 'street-error', 'Enter the street');
 const postCode = new InnerForm('Post Code', 'text', 'postcode', 'postcode', 'postcode-error', 'Enter the postcode');
 const birthDate = new InnerForm('Date of Birth', 'date', 'birthDate', 'birthdate', 'birthdate-error', 'Choose date');
-const innerForms = [email, password, firstName, lastName, country, city, street, postCode, birthDate];
+const countryShip = new InnerForm(
+    'Country',
+    'text',
+    'countryShip',
+    'country',
+    'country-errorShip',
+    'Enter the country'
+);
+const cityShip = new InnerForm('City', 'text', 'cityShip', 'city', 'city-errorShip', 'Enter the city');
+const streetShip = new InnerForm('Street', 'text', 'streetShip', 'street', 'street-errorShip', 'Enter the street');
+const postCodeShip = new InnerForm(
+    'Post Code',
+    'text',
+    'postcodeShip',
+    'postcode',
+    'postcode-errorShip',
+    'Enter the postcode'
+);
+const innerForms = [
+    email,
+    password,
+    firstName,
+    lastName,
+    birthDate,
+    country,
+    city,
+    street,
+    postCode,
+    countryShip,
+    cityShip,
+    streetShip,
+    postCodeShip,
+];
 const innerFormList = innerForms.map((elem) => elem.create());
 
 export const registration = new FormBuilder(formId, innerFormList);

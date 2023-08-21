@@ -38,8 +38,11 @@ export class InnerForm implements IInnerForm {
         this.error.id = this.errorId;
 
         const list = document.createElement('div');
-        list.setAttribute('id', 'country-list');
         if (this.inputId === 'country') {
+            list.setAttribute('id', 'country-list');
+            this.formGroup.append(this.label, this.inputHTML, this.error, list);
+        } else if (this.inputId === 'countryShip') {
+            list.setAttribute('id', 'country-listShip');
             this.formGroup.append(this.label, this.inputHTML, this.error, list);
         } else {
             this.formGroup.append(this.label, this.inputHTML, this.error);
