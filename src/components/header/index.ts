@@ -12,6 +12,11 @@ const Buttons = [
         logoImage: logo,
     },
     {
+        id: PageIds.MainPage,
+        text: 'HOME🌐',
+        class: 'home__page',
+    },
+    {
         id: PageIds.LoginPage,
         text: 'Login🔑',
         class: 'login__page',

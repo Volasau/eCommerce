@@ -6,7 +6,7 @@ import { submitData } from './validation/authorisationFunctions/submitData/submi
 
 class RegistrPage extends Page {
     static TextOject = {
-        MainTitle: 'Registration page',
+        MainTitle: 'Registration Page',
     };
     protected regObj: IRegObj = {
         email: '',
