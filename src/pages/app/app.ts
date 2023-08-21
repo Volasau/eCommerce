@@ -4,8 +4,8 @@ import Page from '../../core/template/page';
 import LoginPage from '../logReg/loginPage';
 import Header from '../../components/header';
 import ErrorPage from '../error';
-import { isLoggedIn, setIsLoggedIn } from '../../data/isLoggedIn';
-import { showToast } from '../logReg/functions/funcToastify';
+import { isLoggedIn } from '../../data/isLoggedIn';
+import { logoutAction } from '../logReg/functions/logout_func';
 
 export const enum PageIds {
     MainPage = 'main',
@@ -19,7 +19,7 @@ class App {
     private initialPage: MainPage;
     private header: Header;
 
-    static renderNewPage(idPage: string) {
+    static async renderNewPage(idPage: string) {
         const currentPageHTML = document.querySelector(`#${App.defaultPageId}`);
         if (currentPageHTML) {
             currentPageHTML.remove();
@@ -33,15 +33,7 @@ class App {
         } else if (idPage === PageIds.RegistrPage) {
             page = new RegistrPage(idPage);
         } else if (idPage === PageIds.LogoutPage) {
-            showToast('You went out');
-            const newUrl = window.location.href.replace(`#${PageIds.LogoutPage}`, `#${PageIds.LoginPage}`);
-            window.history.replaceState({}, document.title, newUrl);
-            App.renderNewPage(PageIds.LoginPage);
-            const logoutBtn = document.querySelectorAll('.logout__page');
-            logoutBtn.forEach((el) => {
-                el.classList.remove('block');
-            });
-            setIsLoggedIn(false);
+            await logoutAction();
         } else {
             page = new ErrorPage(idPage, '404');
         }
