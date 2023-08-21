@@ -22,9 +22,6 @@ export class FormBuilder implements IFormBuilder {
         addShippingBlock(this.formHTML, this.innerFormList);
         addServerError(this.formHTML);
         addButton(this.formHTML, this.innerFormList);
-    }
-
-    build() {
         if (this.innerFormList.length > 2) {
             const checkboxOneAddress = this.formHTML.querySelector('#use-as-billing-address') as HTMLInputElement;
             const checkboxBill = this.formHTML.querySelector('#set-as-default-address') as HTMLInputElement;
@@ -37,6 +34,9 @@ export class FormBuilder implements IFormBuilder {
         const password = this.formHTML.querySelector('#password') as HTMLInputElement;
         makeVisiblePassword(checkboxPass, password);
         checkServErrors(this.formHTML);
+    }
+
+    build() {
         return this.formHTML;
     }
 }
