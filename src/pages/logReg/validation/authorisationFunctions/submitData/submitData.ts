@@ -19,6 +19,7 @@ export function submitData(page: HTMLElement, obj: IAuthorisObj | IRegObj) {
         } else {
             const objectReg = obj as IRegObj;
             registerOnTheServer(objectReg);
+            setTimeout(() => logInToServer(obj, page), 3000);
         }
     });
 }
