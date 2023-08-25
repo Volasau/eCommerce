@@ -31,7 +31,8 @@
 
 .login__page,
 .registr__page,
-.home__page {
+.home__page,
+.catalog__page {
   margin-right: 20px;
 }
 
