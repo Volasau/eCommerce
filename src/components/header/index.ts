@@ -17,6 +17,11 @@ const Buttons = [
         class: 'home__page',
     },
     {
+        id: PageIds.CatalogPage,
+        text: 'Catalog📦',
+        class: 'catalog__page',
+    },
+    {
         id: PageIds.LoginPage,
         text: 'Login🔑',
         class: 'login__page',

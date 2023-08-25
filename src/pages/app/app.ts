@@ -6,9 +6,11 @@ import Header from '../../components/header';
 import ErrorPage from '../error';
 import { isLoggedIn } from '../../data/isLoggedIn';
 import { logoutAction } from '../logReg/functions/logout_func';
+import CatalogPage from '../catalog/catalog';
 
 export const enum PageIds {
     MainPage = 'main',
+    CatalogPage = 'catalog',
     RegistrPage = 'registr',
     LoginPage = 'login',
     LogoutPage = 'logout',
@@ -28,6 +30,8 @@ class App {
         let page: Page | null = null;
         if (idPage === PageIds.MainPage) {
             page = new MainPage(idPage);
+        } else if (idPage === PageIds.CatalogPage) {
+            page = new CatalogPage(idPage);
         } else if (idPage === PageIds.LoginPage) {
             page = new LoginPage(idPage);
         } else if (idPage === PageIds.RegistrPage) {
