@@ -1,18 +1,17 @@
-import { IImg } from './imgInterface';
 import { IPrice } from './priceInterface';
 
-interface IColor {
+interface IValue {
     key: string;
     label: string;
 }
 
 export interface IAttribute {
     name: string;
-    color: IColor;
+    value: IValue[];
 }
 
 export interface IVariant {
     attributesRaw: IAttribute[];
-    images: IImg[];
+    images: string[];
     prices: IPrice[];
 }

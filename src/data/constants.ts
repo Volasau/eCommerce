@@ -13,4 +13,64 @@ export const constants = {
     requestDataCart: {
         currency: 'GBP',
     },
+    modalPage: 1,
+    modalImages: [
+        'https://83c548175751107cbc78-7e6ca5812cd490d87dba64b458c8c635.ssl.cf3.rackcdn.com/2-2-1Si2lfBl.jpg',
+        'https://83c548175751107cbc78-7e6ca5812cd490d87dba64b458c8c635.ssl.cf3.rackcdn.com/1-1-dIU7YJe-.jpg',
+        'https://83c548175751107cbc78-7e6ca5812cd490d87dba64b458c8c635.ssl.cf3.rackcdn.com/3-1-K1lyGYmZ.jpg',
+    ],
+    productList: [
+        {
+            id: 'f4fa932b-fb60-46ab-b8d4-a363d8727452',
+            name: 'Lenovo Performance',
+            description:
+                "Lenovo 2023 High Performance 15'' FHD IPS Laptop, Intel Quad-Core Pentium Processor Up to 3.0GHz, 8GB RAM, 256GB SSD, Super-Fast WiFi Speed, Windows 11 OS, Dale Blue (Ren",
+            allVariants: [
+                {
+                    attributesRaw: [
+                        {
+                            name: 'brand',
+                            value: [
+                                {
+                                    key: 'lenovo',
+                                    label: 'Lenovo',
+                                },
+                            ],
+                        },
+                        {
+                            name: 'screen',
+                            value: [
+                                {
+                                    key: 'screen-15.6"',
+                                    label: '15.6"',
+                                },
+                            ],
+                        },
+                        {
+                            name: 'capacity',
+                            value: [
+                                {
+                                    key: 'SSD-256 GB',
+                                    label: 'SSD-256 GB',
+                                },
+                            ],
+                        },
+                    ],
+                    images: [
+                        'https://83c548175751107cbc78-7e6ca5812cd490d87dba64b458c8c635.ssl.cf3.rackcdn.com/2-2-1Si2lfBl.jpg',
+                        'https://83c548175751107cbc78-7e6ca5812cd490d87dba64b458c8c635.ssl.cf3.rackcdn.com/1-1-dIU7YJe-.jpg',
+                        'https://83c548175751107cbc78-7e6ca5812cd490d87dba64b458c8c635.ssl.cf3.rackcdn.com/3-1-K1lyGYmZ.jpg',
+                    ],
+                    prices: [
+                        {
+                            value: {
+                                centAmount: 159900,
+                                currencyCode: 'GBP',
+                            },
+                        },
+                    ],
+                },
+            ],
+        },
+    ],
 };

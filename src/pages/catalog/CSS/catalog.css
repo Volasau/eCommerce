@@ -1,0 +1,16 @@
+@import './modal.css';
+
+.product {
+  width: 150px;
+  padding: 5px;
+  border: 1px solid grey;
+}
+
+.name {
+  font-weight: 600;
+}
+
+.product-img {
+  margin-left: 5px;
+  margin-right: 5px;
+}

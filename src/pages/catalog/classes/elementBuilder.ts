@@ -7,7 +7,7 @@ class ElementBuilder implements IBuilder {
         this.tag = tag;
     }
 
-    getElement(text: string, id: string, klass: string, url?: string, alt?: string, tag: string = this.tag) {
+    getElement(text: string, id: string, klas: string, url?: string, alt?: string, w?: string, tag: string = this.tag) {
         let element = document.createElement(tag);
         if (tag === 'div') {
             element = element as HTMLDivElement;
@@ -19,9 +19,10 @@ class ElementBuilder implements IBuilder {
             element = element as HTMLImageElement;
         }
         element.setAttribute('id', id);
-        element.setAttribute('class', klass);
-        if (url) element.setAttribute('href', url);
+        element.setAttribute('class', klas);
+        if (url) element.setAttribute('src', url);
         if (alt) element.setAttribute('alt', alt);
+        if (w) element.setAttribute('width', w);
         element.textContent = text;
         return element;
     }

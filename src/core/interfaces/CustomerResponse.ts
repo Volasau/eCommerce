@@ -13,4 +13,3 @@ export interface ICustomerResponse {
     lastModifiedAt: string;
     authenticationMode: string;
 }
-
