@@ -7,17 +7,21 @@ class ElementBuilder implements IBuilder {
         this.tag = tag;
     }
 
-    getElement(text: string, id: string, klass: string, tag: string = this.tag) {
+    getElement(text: string, id: string, klass: string, url?: string, alt?: string, tag: string = this.tag) {
         let element = document.createElement(tag);
         if (tag === 'div') {
             element = element as HTMLDivElement;
         } else if (tag === 'button') {
             element = element as HTMLButtonElement;
-        } else {
+        } else if (tag === 'input') {
+            element = element as HTMLInputElement;
+        } else if (tag === 'img') {
             element = element as HTMLImageElement;
         }
         element.setAttribute('id', id);
         element.setAttribute('class', klass);
+        if (url) element.setAttribute('href', url);
+        if (alt) element.setAttribute('alt', alt);
         element.textContent = text;
         return element;
     }
@@ -26,3 +30,4 @@ class ElementBuilder implements IBuilder {
 export const buttonHTML = new ElementBuilder('button');
 export const divHTML = new ElementBuilder('div');
 export const inpHTML = new ElementBuilder('input');
+export const imgHTML = new ElementBuilder('img');
