@@ -1,4 +1,5 @@
-import { divHTML, imgHTML } from '../classes/elementBuilder';
+import { cartSVG } from '../../../data/cartSVG';
+import { buttonHTML, divHTML, imgHTML } from '../classes/elementBuilder';
 import { IProduct } from '../interfaces/productInterface';
 
 export function buildProductItem(prod: IProduct): HTMLDivElement {
@@ -12,7 +13,9 @@ export function buildProductItem(prod: IProduct): HTMLDivElement {
     const name = divHTML.getElement(`${prodName}`, `${id}-name`, 'name min');
     const price = divHTML.getElement(`${prodPrice} GBP`, `${id}-price`, 'price min');
     const description = divHTML.getElement(`${descript}`, `${id}-description`, 'description min');
-    product.append(img, name, price, description);
+    const cartButton = buttonHTML.getElement('', `${id}-cart`, 'cart-but');
+    cartButton.innerHTML = `${cartSVG} BUY`;
+    product.append(img, name, price, description, cartButton);
 
     return product;
 }

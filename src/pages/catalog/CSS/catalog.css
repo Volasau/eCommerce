@@ -4,6 +4,7 @@
   width: 150px;
   padding: 5px;
   border: 1px solid grey;
+  cursor: pointer;
 }
 
 .product-img {
@@ -22,5 +23,25 @@
 }
 
 .description {
-  font-size: 10px;
+  font-size: 50%;
+}
+
+.cart-but {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  column-gap: 5%;
+  background-color: rgb(88, 200, 245);
+  border-radius: 10px;
+  border: 2px solid rgb(3, 126, 103);
+  width: 60%;
+  margin: auto;
+  color: white;
+  cursor: pointer;
+  border-style:outset;
+  transition: 0.5s;
+}
+
+.cart-but:hover {
+  font-size: 18px;
 }

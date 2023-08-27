@@ -9,6 +9,5 @@ export function buildProductList(container: HTMLElement) {
         const product = buildProductItem(prod);
         productList.append(product);
     });
-    console.log(productList);
     h1.after(productList);
 }
