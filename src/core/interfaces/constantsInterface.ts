@@ -2,8 +2,8 @@ import { IProduct } from '../../pages/catalog/interfaces/productInterface';
 import { ICreateCartRequest } from './CreateCartRequest';
 
 export interface IConstants {
-    shipDefault: string;
-    billDefault: string;
+    shipDefault: boolean;
+    billDefault: boolean;
     apiUrlCarts: string;
     apiUrlLogin: string;
     apiUrlCustomers: string;

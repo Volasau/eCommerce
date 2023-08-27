@@ -6,11 +6,21 @@
   border: 1px solid grey;
 }
 
+.product-img {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
 .name {
   font-weight: 600;
 }
 
-.product-img {
-  margin-left: 5px;
-  margin-right: 5px;
+.price {
+  font-size: 20px;
+  color: red;
+  font-weight: 600;
+}
+
+.description {
+  font-size: 10px;
 }
