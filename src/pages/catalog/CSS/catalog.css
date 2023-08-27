@@ -1,4 +1,5 @@
 @import './modal.css';
+@import './productPage.css';
 
 .product {
   width: 150px;
@@ -30,11 +31,11 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  column-gap: 5%;
+  column-gap: 0.3rem;
   background-color: rgb(88, 200, 245);
   border-radius: 10px;
   border: 2px solid rgb(3, 126, 103);
-  width: 60%;
+  width: 70%;
   margin: auto;
   color: white;
   cursor: pointer;
@@ -43,5 +44,5 @@
 }
 
 .cart-but:hover {
-  font-size: 18px;
+  font-size: 105%;
 }

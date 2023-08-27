@@ -1,5 +1,6 @@
 import './global.css';
 import App from './pages/app/app';
+import { openProductPage } from './pages/catalog/listeners/openProductPage';
 import { getModal } from './pages/catalog/listeners/getModal';
 import { paginateModal } from './pages/catalog/listeners/paginateModal';
 import { removeModal } from './pages/catalog/listeners/removeModal';
@@ -11,3 +12,4 @@ export const bearer_token_cc: Promise<string> = tokenFetcher.fetchAccessToken();
 getModal();
 removeModal();
 paginateModal();
+openProductPage();
