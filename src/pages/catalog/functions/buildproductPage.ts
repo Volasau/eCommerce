@@ -30,8 +30,9 @@ export function buildproductPage(prod: IProduct) {
     const onlyPrice = divHTML.getElement(`${price} GBP`, `${id}-onlyPrice`, 'only-price') as HTMLDivElement;
     const deliveryBlock = divHTML.getElement('Some Info', `${id}-delivery`, 'delivery-block') as HTMLDivElement;
     const cartButtonBlock = divHTML.getElement('', `${id}-cartButton`, 'cart-button-block') as HTMLDivElement;
-    const productCount = divHTML.getElement('1', `${id}-count`, 'product-count') as HTMLDivElement;
     const cartButton = buttonHTML.getElement('', `${id}-cartBut`, 'cart-button');
+    const productCount = divHTML.getElement('', `${id}-countBlock`, 'count-block') as HTMLDivElement;
+    const count = divHTML.getElement('1', `${id}-count`, 'count') as HTMLDivElement;
     const plusBut = buttonHTML.getElement('+', `${id}-plus`, 'plus-button') as HTMLButtonElement;
     const minusBut = buttonHTML.getElement('-', `${id}-minus`, 'minus-button') as HTMLButtonElement;
 
@@ -57,8 +58,7 @@ export function buildproductPage(prod: IProduct) {
     });
 
     // заполняем блок цены
-    productCount.prepend(minusBut);
-    productCount.append(plusBut);
+    productCount.append(minusBut, count, plusBut);
     cartButton.innerHTML = `${cartSVG} BUY`;
     cartButtonBlock.append(productCount, cartButton);
     priceBlock.append(onlyPrice, cartButtonBlock);

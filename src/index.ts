@@ -5,6 +5,7 @@ import { getModal } from './pages/catalog/listeners/getModal';
 import { paginateModal } from './pages/catalog/listeners/paginateModal';
 import { removeModal } from './pages/catalog/listeners/removeModal';
 import { tokenFetcher } from './server/access_token_cc';
+import { plusMinusOneProduct } from './pages/catalog/listeners/plusOneProduct';
 
 const app = new App();
 app.run();
@@ -13,3 +14,4 @@ getModal();
 removeModal();
 paginateModal();
 openProductPage();
+plusMinusOneProduct();
