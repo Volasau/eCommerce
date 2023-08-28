@@ -9,6 +9,8 @@ import { plusMinusOneProduct } from './pages/catalog/listeners/plusMinusOneProdu
 import { constants } from './data/constants';
 import { submitLogin } from './pages/logReg/validation/authorisationFunctions/submitData/submitLogin';
 import { submitReg } from './pages/logReg/validation/authorisationFunctions/submitData/submitReg';
+import { QueryAllProducts } from './server/products/QueryAllProducts';
+import { AllProductDetailsGQL } from './server/products/AllProductDetailsGQL';
 
 const app = new App();
 app.run();
@@ -20,3 +22,30 @@ removeModal();
 paginateModal();
 openProductPage();
 plusMinusOneProduct();
+
+const ids: string[] = [];
+(async () => {
+    const getAllProducts = new QueryAllProducts();
+
+    try {
+        const products = await getAllProducts.getAllProducts();
+        const productIds: string[] = products.map((product: { id: string }) => product.id);
+        console.log('All Products:', productIds);
+        const getAllAttributes = new AllProductDetailsGQL();
+        try {
+            productIds.forEach((productId) => {
+                (async () => {
+                    const productDetails = await getAllAttributes.getProductDetails(productId);
+                    productDetails['id'] = productId;
+                    console.log('Product Details:', productDetails);
+                })();
+            });
+        } catch (error) {
+            console.error('An error occurred:', error);
+        }
+
+        return ids;
+    } catch (error) {
+        console.error('An error occurred:', error);
+    }
+})();
