@@ -63,6 +63,38 @@ export class CustomerManager {
         }
     }
 
+    async createBirthDate(birthDate: string) {
+        const requestData = {
+            version: this.customerVersion,
+            actions: [
+                {
+                    action: 'setDateOfBirth',
+                    dateOfBirth: birthDate,
+                },
+            ],
+        };
+
+        const headers = {
+            Authorization: `Bearer ${await bearer_token_cc}`,
+            'Content-Type': 'application/json',
+        };
+
+        try {
+            const response = await fetch(this.apiUrlCustomers + `/${this.customerId}`, {
+                method: 'POST',
+                headers: headers,
+                body: JSON.stringify(requestData),
+            });
+            const res = await response.json();
+            this.customerVersion = this.customerVersion + 1;
+            console.log('Birthdate created:', res);
+            return res;
+        } catch (error) {
+            console.error('Error creating billing address:', error);
+            throw error;
+        }
+    }
+
     async createAddress(streetName: string, city: string, postalCode: string, country: string, index: number) {
         const requestData = {
             version: this.customerVersion,
