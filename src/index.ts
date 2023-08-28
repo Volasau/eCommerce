@@ -6,10 +6,15 @@ import { paginateModal } from './pages/catalog/listeners/paginateModal';
 import { removeModal } from './pages/catalog/listeners/removeModal';
 import { tokenFetcher } from './server/access_token_cc';
 import { plusMinusOneProduct } from './pages/catalog/listeners/plusMinusOneProduct';
+import { constants } from './data/constants';
+import { submitLogin } from './pages/logReg/validation/authorisationFunctions/submitData/submitLogin';
+import { submitReg } from './pages/logReg/validation/authorisationFunctions/submitData/submitReg';
 
 const app = new App();
 app.run();
 export const bearer_token_cc: Promise<string> = tokenFetcher.fetchAccessToken();
+submitLogin(constants.authorisObj);
+submitReg(constants.regObj);
 getModal();
 removeModal();
 paginateModal();

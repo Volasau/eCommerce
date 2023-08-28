@@ -1,5 +1,7 @@
 import { IProduct } from '../../pages/catalog/interfaces/productInterface';
 import { ICreateCartRequest } from './CreateCartRequest';
+import { IAuthorisObj } from './aythorisObjInterface';
+import { IRegObj } from './regObjInterface';
 
 export interface IConstants {
     shipDefault: boolean;
@@ -14,6 +16,8 @@ export interface IConstants {
     projectKey: string;
     scope: string;
     requestDataCart: ICreateCartRequest;
+    regObj: IRegObj;
+    autorisObj: IAuthorisObj;
     modalPage: number;
     modalImages: string[];
     productList: IProduct[];
