@@ -1,0 +1,48 @@
+@import './modal.css';
+@import './productPage.css';
+
+.product {
+  width: 150px;
+  padding: 5px;
+  border: 1px solid grey;
+  cursor: pointer;
+}
+
+.product-img {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.name {
+  font-weight: 600;
+}
+
+.price {
+  font-size: 20px;
+  color: red;
+  font-weight: 600;
+}
+
+.description {
+  font-size: 50%;
+}
+
+.cart-but {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  column-gap: 0.3rem;
+  background-color: rgb(88, 200, 245);
+  border-radius: 10px;
+  border: 2px solid rgb(3, 126, 103);
+  width: 70%;
+  margin: auto;
+  color: white;
+  cursor: pointer;
+  border-style:outset;
+  transition: 0.5s;
+}
+
+.cart-but:hover {
+  font-size: 105%;
+}
