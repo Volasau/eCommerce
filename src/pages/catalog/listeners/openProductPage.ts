@@ -1,5 +1,5 @@
 import { constants } from '../../../data/constants';
-import { buildProductPage } from '../functions/buildProductPageOne';
+import { buildProductPage } from '../functions/buildProductPage';
 
 export function openProductPage() {
     document.addEventListener('click', (event) => {
