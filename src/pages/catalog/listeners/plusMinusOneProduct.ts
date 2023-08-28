@@ -11,7 +11,6 @@ export function plusMinusOneProduct() {
             productCounter.innerHTML = `${count}`;
         } else if (target.className === 'minus-button') {
             const productCounter = target.nextElementSibling as HTMLDivElement;
-            // const plusBut = target.nextElementSibling as HTMLButtonElement;
             count = +productCounter.innerHTML;
             count -= 1;
             productCounter.innerHTML = `${count}`;

@@ -2,7 +2,7 @@ import { cartSVG } from '../../../data/cartSVG';
 import { buttonHTML, divHTML, imgHTML } from '../classes/elementBuilder';
 import { IProduct } from '../interfaces/productInterface';
 
-export function buildproductPage(prod: IProduct) {
+export function buildProductPage(prod: IProduct) {
     const id = prod.id;
     const name = prod.name;
     const description = prod.description;

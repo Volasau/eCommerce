@@ -1,5 +1,5 @@
 import { constants } from '../../../data/constants';
-import { buildproductPage } from '../functions/buildproductPage';
+import { buildProductPage } from '../functions/buildProductPage';
 
 export function openProductPage() {
     document.addEventListener('click', (event) => {
@@ -12,8 +12,9 @@ export function openProductPage() {
                     const h1 = document.querySelector('h1') as HTMLElement;
                     const prodList = document.querySelector('.prod-list') as HTMLDivElement;
                     prodList.remove();
-                    h1.after(buildproductPage(product));
-                    console.log(h1);
+                    h1.after(buildProductPage(product));
+                    const minusBut = document.querySelector('.minus-button') as HTMLButtonElement;
+                    minusBut.disabled = true;
                 }
             });
         }

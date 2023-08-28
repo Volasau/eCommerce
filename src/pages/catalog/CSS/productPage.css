@@ -118,3 +118,29 @@
 .plus-button {
     background-color: rgb(255, 149, 0);
 }
+
+@media screen and (max-width: 600px) {
+  .product-wrapper {
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+  .main-block {
+    flex-direction: column;
+  }
+
+  .main-image {
+    width: 60vw;
+  }
+
+  .prod-images {
+    margin: auto;
+  }
+
+  .descript-block {
+    font-size: 80%;
+  }
+
+  .cart-button {
+    width: 90px;
+  }
+}
