@@ -32,3 +32,4 @@ export const buttonHTML = new ElementBuilder('button');
 export const divHTML = new ElementBuilder('div');
 export const inpHTML = new ElementBuilder('input');
 export const imgHTML = new ElementBuilder('img');
+export const selectHTML = new ElementBuilder('select');
