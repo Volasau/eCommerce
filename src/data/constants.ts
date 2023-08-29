@@ -75,9 +75,18 @@ export const constants = {
                         },
                     ],
                     images: [
-                        'https://83c548175751107cbc78-7e6ca5812cd490d87dba64b458c8c635.ssl.cf3.rackcdn.com/2-2-1Si2lfBl.jpg',
-                        'https://83c548175751107cbc78-7e6ca5812cd490d87dba64b458c8c635.ssl.cf3.rackcdn.com/1-1-dIU7YJe-.jpg',
-                        'https://83c548175751107cbc78-7e6ca5812cd490d87dba64b458c8c635.ssl.cf3.rackcdn.com/3-1-K1lyGYmZ.jpg',
+                        {
+                            label: 'main',
+                            url: 'https://83c548175751107cbc78-7e6ca5812cd490d87dba64b458c8c635.ssl.cf3.rackcdn.com/2-2-1Si2lfBl.jpg',
+                        },
+                        {
+                            label: null,
+                            url: 'https://83c548175751107cbc78-7e6ca5812cd490d87dba64b458c8c635.ssl.cf3.rackcdn.com/1-1-dIU7YJe-.jpg',
+                        },
+                        {
+                            label: null,
+                            url: 'https://83c548175751107cbc78-7e6ca5812cd490d87dba64b458c8c635.ssl.cf3.rackcdn.com/3-1-K1lyGYmZ.jpg',
+                        },
                     ],
                     prices: [
                         {

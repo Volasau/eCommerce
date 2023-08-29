@@ -33,10 +33,12 @@ const ids: string[] = [];
         console.log('All Products:', productIds);
         const getAllAttributes = new AllProductDetailsGQL();
         try {
+            constants.productList = [];
             productIds.forEach((productId) => {
                 (async () => {
                     const productDetails = await getAllAttributes.getProductDetails(productId);
                     productDetails['id'] = productId;
+                    constants.productList.push(productDetails);
                     console.log('Product Details:', productDetails);
                 })();
             });

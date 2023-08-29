@@ -5,7 +5,7 @@ import { IProduct } from '../interfaces/productInterface';
 export function buildProductItem(prod: IProduct): HTMLDivElement {
     const id = prod.id;
     const prodName = prod.name;
-    const firstIMG = prod.allVariants[0].images[0];
+    const firstIMG = prod.allVariants[0].images[0].url;
     const prodPrice = prod.allVariants[0].prices[0].value.centAmount / 100;
     const descript = prod.description;
     const product = divHTML.getElement('', `${id}`, 'product min') as HTMLDivElement;

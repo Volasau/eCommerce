@@ -12,7 +12,7 @@ export class Modal implements IModal {
     // prices: IPrice[];
     constructor(product: IProduct) {
         const productName = product.name;
-        const url = product.allVariants[0].images[0];
+        const url = product.allVariants[0].images[0].url;
         const id = product.id;
         this.modalHTML = buildModal(id, url, productName) as HTMLDivElement;
 
