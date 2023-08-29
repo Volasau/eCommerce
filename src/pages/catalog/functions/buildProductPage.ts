@@ -7,7 +7,7 @@ export function buildProductPage(prod: IProduct) {
     const name = prod.name;
     const description = prod.description;
     const allImages = prod.allVariants[0].images;
-    const imgURL = prod.allVariants[0].images[0];
+    const imgURL = prod.allVariants[0].images[0].url;
     const price = prod.allVariants[0].prices[0].value.centAmount / 100;
     const wrapper = divHTML.getElement('', `${id}-wrapper`, 'product-wrapper') as HTMLDivElement;
     const nameBlock = divHTML.getElement(`${name}`, `${id}-prodName`, 'product-name') as HTMLDivElement;
@@ -42,7 +42,7 @@ export function buildProductPage(prod: IProduct) {
             '',
             `${id}-mainIMG`,
             'add-image',
-            `${imagesURL}`,
+            `${imagesURL.url}`,
             `${name} image`,
             '70px'
         ) as HTMLImageElement;

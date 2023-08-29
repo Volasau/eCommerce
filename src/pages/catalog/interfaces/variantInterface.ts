@@ -1,5 +1,10 @@
 import { IPrice } from './priceInterface';
 
+interface IImages {
+    label: string | null;
+    url: string;
+}
+
 interface IValue {
     key: string;
     label: string;
@@ -12,6 +17,6 @@ export interface IAttribute {
 
 export interface IVariant {
     attributesRaw: IAttribute[];
-    images: string[];
+    images: IImages[];
     prices: IPrice[];
 }

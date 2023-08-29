@@ -16,6 +16,7 @@ export async function customerManagerData(obj: IRegObj) {
         obj.password
     );
     await customerManager.createCustomer();
+    await customerManager.createBirthDate(obj.birthDate);
     const countryCodeBilling: string = await getISOCodeByCountryName(obj.country);
     const countryCodeShipping: string = await getISOCodeByCountryName(obj.countryShip);
 
