@@ -1,5 +1,5 @@
 import { constants } from '../../../data/constants';
-import { buildModal } from '../functions/buildModal';
+import { buildModal } from '../functions/product/buildModal';
 import { IModal } from '../interfaces/modalInterface';
 import { IProduct } from '../interfaces/productInterface';
 

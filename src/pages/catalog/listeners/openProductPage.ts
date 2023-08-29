@@ -1,5 +1,5 @@
 import { constants } from '../../../data/constants';
-import { buildProductPage } from '../functions/buildProductPage';
+import { buildProductPage } from '../functions/product/buildProductPage';
 
 export function openProductPage() {
     document.addEventListener('click', (event) => {
@@ -10,7 +10,7 @@ export function openProductPage() {
                 console.log(target.id.split('-').slice(0, -1).join('-'));
                 if (product.id === target.id.split('-').slice(0, -1).join('-')) {
                     const h1 = document.querySelector('h1') as HTMLElement;
-                    const prodList = document.querySelector('.prod-list') as HTMLDivElement;
+                    const prodList = document.querySelector('.product-view') as HTMLDivElement;
                     prodList.remove();
                     h1.after(buildProductPage(product));
                     const minusBut = document.querySelector('.minus-button') as HTMLButtonElement;

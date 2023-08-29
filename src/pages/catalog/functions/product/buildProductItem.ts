@@ -1,6 +1,6 @@
-import { cartSVG } from '../../../data/cartSVG';
-import { buttonHTML, divHTML, imgHTML } from '../classes/elementBuilder';
-import { IProduct } from '../interfaces/productInterface';
+import { cartSVG } from '../../../../data/cartSVG';
+import { buttonHTML, divHTML, imgHTML } from '../../classes/elementBuilder';
+import { IProduct } from '../../interfaces/productInterface';
 
 export function buildProductItem(prod: IProduct): HTMLDivElement {
     const id = prod.id;

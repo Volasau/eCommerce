@@ -1,6 +1,6 @@
 import { divHTML, selectHTML } from '../../classes/elementBuilder';
 
-export function createBrandFilter(brandValues: string[]) {
+export function createBrandFilterHTML(brandValues: string[]) {
     const wrapper = divHTML.getElement('', 'brand-wrap', 'brand') as HTMLDivElement;
     const brandName = divHTML.getElement('Brand', 'brand-name', 'brand-inner') as HTMLDivElement;
     const selectBlock = divHTML.getElement('', 'brand-selectBlock', 'brand-inner') as HTMLDivElement;

@@ -49,8 +49,8 @@ export const categories: ICategory[] = [
                 values: ['Vega', 'Samsung', 'LNJHJ'],
             },
             {
-                attribute: 'width',
-                values: ['24', '28', '29'],
+                attribute: 'power',
+                values: ['40Wt', '50Wt', '20Wt'],
             },
             {
                 attribute: 'height',
