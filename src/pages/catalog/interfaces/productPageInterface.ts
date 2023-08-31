@@ -1,7 +1,7 @@
-import { IProduct } from './productInterface';
+import { IProductResp } from './categoryResponse/categoryResponseInterface';
 
 export interface IProductPage {
     productHTML: HTMLDivElement;
-    product: IProduct;
+    product: IProductResp;
     render(): void;
 }

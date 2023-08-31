@@ -11,6 +11,8 @@ import { submitLogin } from './pages/logReg/validation/authorisationFunctions/su
 import { submitReg } from './pages/logReg/validation/authorisationFunctions/submitData/submitReg';
 import { QueryAllProducts } from './server/products/QueryAllProducts';
 import { AllProductDetailsGQL } from './server/products/AllProductDetailsGQL';
+import { openCategory } from './pages/catalog/listeners/openCategory';
+import { openSubCategories } from './pages/catalog/listeners/openSubCategories';
 
 const app = new App();
 app.run();
@@ -22,6 +24,8 @@ removeModal();
 paginateModal();
 openProductPage();
 plusMinusOneProduct();
+openCategory();
+openSubCategories();
 
 const ids: string[] = [];
 (async () => {

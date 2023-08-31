@@ -1,7 +1,8 @@
 import Page from '../../core/template/page';
 import '../../css/catalog.css';
+import { categoryResponse } from '../../data/categoryResponse';
 import { createLink } from '../logReg/functions/createLink';
-import { buildProductList } from './functions/buildProductList';
+import { CatalogRender } from './classes/catalogRenderClass';
 
 class CatalogPage extends Page {
     static TextObject = {
@@ -21,8 +22,10 @@ class CatalogPage extends Page {
 
         this.container.append(title, bodyCatolog, homeLink);
 
+        const catalog = new CatalogRender(categoryResponse, title);
+        catalog.renderCatalog();
+
         this.container.style.position = 'relative';
-        buildProductList(this.container);
 
         return this.container;
     }

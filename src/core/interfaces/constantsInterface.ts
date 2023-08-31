@@ -1,3 +1,4 @@
+import { IProductResp } from '../../pages/catalog/interfaces/categoryResponse/categoryResponseInterface';
 import { IProduct } from '../../pages/catalog/interfaces/productInterface';
 import { ICreateCartRequest } from './CreateCartRequest';
 import { ICustomerResponse } from './CustomerResponse';
@@ -22,5 +23,5 @@ export interface IConstants {
     autorisObj: IAuthorisObj;
     modalPage: number;
     modalImages: string[];
-    productList: IProduct[];
+    productList: IProductResp[];
 }

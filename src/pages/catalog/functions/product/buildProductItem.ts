@@ -1,8 +1,8 @@
-import { cartSVG } from '../../../data/cartSVG';
-import { buttonHTML, divHTML, imgHTML } from '../classes/elementBuilder';
-import { IProduct } from '../interfaces/productInterface';
+import { cartSVG } from '../../../../data/cartSVG';
+import { buttonHTML, divHTML, imgHTML } from '../../classes/elementBuilder';
+import { IProductResp } from '../../interfaces/categoryResponse/categoryResponseInterface';
 
-export function buildProductItem(prod: IProduct): HTMLDivElement {
+export function buildProductItem(prod: IProductResp): HTMLDivElement {
     const id = prod.id;
     const prodName = prod.name;
     const firstIMG = prod.allVariants[0].images[0].url;

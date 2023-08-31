@@ -1,4 +1,4 @@
-import { buttonHTML, divHTML, imgHTML } from '../classes/elementBuilder';
+import { buttonHTML, divHTML, imgHTML } from '../../classes/elementBuilder';
 
 export function buildModal(imgId: string, imgURL: string, productName: string) {
     const back = divHTML.getElement('', 'back', 'back') as HTMLDivElement;

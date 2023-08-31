@@ -1,0 +1,33 @@
+#category-view {
+  display: flex;
+  flex-direction: row;
+  column-gap: 1rem;
+  justify-content: center;
+  height: 10rem;
+  border-bottom: 1rem solid rgb(251, 208, 143);
+}
+
+.cards {
+  width: 30%;
+  height: 100%;
+  background-size:40cqh;
+}
+
+.sub-card-dark,
+.cat-card-dark {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: calc(14px + 1rem);
+  color: rgb(244, 103, 2);
+
+}
+
+.sub-card-dark:hover,
+.cat-card-dark:hover {
+  width: 100%;
+  height: 100%;
+  background-color: rgb(0, 0, 0, 0.5);
+}
