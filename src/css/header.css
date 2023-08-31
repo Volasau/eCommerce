@@ -32,7 +32,8 @@
 .login__page,
 .registr__page,
 .home__page,
-.catalog__page {
+.catalog__page,
+.logout__page {
   margin-right: 20px;
 }
 
@@ -45,7 +46,8 @@
 }
 
 
-.logout__page {
+.logout__page,
+.profile__page {
   display: none;
 }
 

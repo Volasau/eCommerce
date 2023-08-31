@@ -17,6 +17,11 @@ export const logoutAction = async () => {
         logoutBtn.forEach((el) => {
             el.classList.remove('block');
         });
+        const btnProfile = document.querySelector('.profile__page');
+        if (btnProfile) {
+            btnProfile.classList.remove('block');
+        }
+
         setIsLoggedIn(false);
     } catch (error) {
         showToast('Problem');

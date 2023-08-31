@@ -4,6 +4,9 @@ import { ILoginRequest } from '../core/interfaces/LoginRequest';
 import App, { PageIds } from '../pages/app/app';
 import { setIsLoggedIn } from '../data/isLoggedIn';
 import { showToast } from '../pages/logReg/functions/funcToastify';
+import { ICustomerResponse } from '../core/interfaces/CustomerResponse';
+
+export let dataCostomer: ICustomerResponse;
 
 export class CustomerLogin {
     private apiUrlLogin: string;
@@ -38,11 +41,18 @@ export class CustomerLogin {
                 btnLogout.forEach((el) => {
                     el.classList.add('block');
                 });
+
+                const btnProfile = document.querySelector('.profile__page');
+                if (btnProfile) {
+                    btnProfile.classList.add('block');
+                }
                 setIsLoggedIn(true);
             }
 
             const data: ICustomerSignInResponse = await response.json();
             console.log('Response:', data.customer.firstName);
+            console.log('Response:', data.customer);
+            dataCostomer = data.customer;
             return data.customer.firstName;
         } catch (error) {
             if (error === '400') {
