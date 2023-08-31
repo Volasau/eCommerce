@@ -7,6 +7,7 @@ import ErrorPage from '../error';
 import { isLoggedIn } from '../../data/isLoggedIn';
 import { logoutAction } from '../logReg/functions/logout_func';
 import CatalogPage from '../catalog/catalog';
+import ProfilePage from '../profile/profile';
 
 export const enum PageIds {
     MainPage = 'main',
@@ -14,6 +15,7 @@ export const enum PageIds {
     RegistrPage = 'registr',
     LoginPage = 'login',
     LogoutPage = 'logout',
+    ProfilePage = 'profile',
 }
 class App {
     private static container: HTMLElement = document.body;
@@ -37,10 +39,23 @@ class App {
         } else if (idPage === PageIds.RegistrPage) {
             page = new RegistrPage(idPage);
         } else if (idPage === PageIds.LogoutPage) {
-            await logoutAction();
+            const logoutLink = document.querySelector('a.logout__page.block');
+            if (logoutLink) {
+                await logoutAction();
+            } else {
+                page = new MainPage(idPage);
+            }
+        } else if (idPage === PageIds.ProfilePage) {
+            const profileLink = document.querySelector('a.profile__page.block');
+            if (profileLink) {
+                page = new ProfilePage(idPage);
+            } else {
+                page = new MainPage(idPage);
+            }
         } else {
             page = new ErrorPage(idPage, '404');
         }
+
         if (page) {
             const pageHTML = page.render();
             pageHTML.id = App.defaultPageId;

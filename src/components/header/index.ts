@@ -36,6 +36,11 @@ const Buttons = [
         text: 'Logout❌',
         class: 'logout__page',
     },
+    {
+        id: PageIds.ProfilePage,
+        text: 'Profile👤',
+        class: 'profile__page',
+    },
 ];
 
 class Header extends Component {
