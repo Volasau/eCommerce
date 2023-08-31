@@ -1,5 +1,4 @@
 import { divHTML, selectHTML } from '../../classes/elementBuilder';
-// import { IAttr } from '../../interfaces/attrInterface';
 import { ICategory } from '../../interfaces/categoryInterface';
 import { createBrandFilterBlock } from './createBrandFilterBlock';
 import { getAttributesFromObjects } from './getAttributesFromObjects';
@@ -15,8 +14,8 @@ export function createFilterBlock(categories: ICategory[]) {
         if (name.toLowerCase() !== 'brand') {
             const wrapper = divHTML.getElement('', `${name}-wrap`, 'filter') as HTMLDivElement;
             const brandName = divHTML.getElement(name, `${name}-name`, 'inner') as HTMLDivElement;
-            const selectBlock = divHTML.getElement('', `${name}-selectBlock`, 'inner') as HTMLDivElement;
-            const select = selectHTML.getElement('', `${name}-select`, 'inner') as HTMLSelectElement;
+            const selectBlock = divHTML.getElement('', `${name}-selectBlock`, 'selBlock') as HTMLDivElement;
+            const select = selectHTML.getElement('', `${name}-select`, 'select-inner') as HTMLSelectElement;
             const firstOption = document.createElement('option') as HTMLOptionElement;
             firstOption.text = `-please choose a ${name}-`;
             select.add(firstOption);

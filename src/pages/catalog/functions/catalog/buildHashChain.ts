@@ -1,7 +1,7 @@
 import urlImg from '../../../../assets/icons/arrow.svg';
 import { divHTML, spanHTML } from '../../classes/elementBuilder';
 
-export function buildHashChain() {
+export function buildHashChain(): HTMLDivElement {
     const wrapper = divHTML.getElement('', 'chain-wrap', 'catalog') as HTMLDivElement;
     const row = spanHTML.getElement('', 'row-chain', 'row') as HTMLSpanElement;
     const mainLink = spanHTML.getElement('Main', 'main-chain', 'chain') as HTMLSpanElement;

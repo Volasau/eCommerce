@@ -14,7 +14,7 @@ export class Category implements ICategory {
 
     constructor(categoryResponse: ICategoryResp) {
         this.catId = categoryResponse.id;
-        this.imageURL = categoryResponse.subcategories[0].products[0].allVariants[0].images[0].url[0];
+        this.imageURL = categoryResponse.subcategories[0].products[0].allVariants[0].images[0].url;
         this.catName = categoryResponse.name.en;
         this.attributes = getAttributeFromResponse(categoryResponse);
     }

@@ -3,3 +3,8 @@
 @import './css/header.css';
 @import './css/style.css';
 @import '../src/pages/catalog/CSS/catalog.css';
+
+html,
+body {
+  height: 100%;
+}
