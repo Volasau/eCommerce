@@ -1,7 +1,8 @@
 import { ICategory } from './categoryInterface';
-import { IProduct } from './productInterface';
+import { IProductResp } from './categoryResponse/categoryResponseInterface';
 
 export interface ICatalog {
+    curCatalog: Element | null;
     title: HTMLElement;
     wrapper: HTMLDivElement;
     hashChain: HTMLDivElement;
@@ -9,7 +10,7 @@ export interface ICatalog {
     categoryName: HTMLDivElement;
     catalogViewer: HTMLDivElement;
     categories: ICategory[];
-    product: IProduct;
+    product: IProductResp;
 
     renderCatalog(): void;
     renderProduct(): void;

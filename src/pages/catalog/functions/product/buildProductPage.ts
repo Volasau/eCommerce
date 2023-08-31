@@ -1,8 +1,8 @@
 import { cartSVG } from '../../../../data/cartSVG';
 import { buttonHTML, divHTML, imgHTML } from '../../classes/elementBuilder';
-import { IProduct } from '../../interfaces/productInterface';
+import { IProductResp } from '../../interfaces/categoryResponse/categoryResponseInterface';
 
-export function buildProductPage(prod: IProduct) {
+export function buildProductPage(prod: IProductResp) {
     const id = prod.id;
     const name = prod.name;
     const description = prod.description;
@@ -53,7 +53,7 @@ export function buildProductPage(prod: IProduct) {
     // заполняем блок атрибутов
     prod.allVariants[0].attributesRaw.forEach((attr) => {
         const attribute = attr.name;
-        const value = attr.value[0].label;
+        const value = Array.isArray(attr.value) ? attr.value[0].label : attr.value.label;
         attributtes.innerHTML += `<p>${attribute}: ${value}</p>`;
     });
 

@@ -1,6 +1,6 @@
-import { IProduct } from '../../interfaces/productInterface';
+import { IProductResp } from '../../interfaces/categoryResponse/categoryResponseInterface';
 
-export function getImagesFromProduct(product: IProduct) {
+export function getImagesFromProduct(product: IProductResp) {
     const images: string[] = [];
     product.allVariants.forEach((variant) => {
         variant.images.forEach((image) => {

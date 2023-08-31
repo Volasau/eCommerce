@@ -39,65 +39,85 @@ export const constants = {
     ],
     productList: [
         {
-            id: 'f4fa932b-fb60-46ab-b8d4-a363d8727452',
-            name: 'Lenovo Performance',
+            name: 'Philips HD9339/80',
             description:
-                "Lenovo 2023 High Performance 15'' FHD IPS Laptop, Intel Quad-Core Pentium Processor Up to 3.0GHz, 8GB RAM, 256GB SSD, Super-Fast WiFi Speed, Windows 11 OS, Dale Blue (Ren",
+                'The transparent flask makes the Philips HD9339/80 electric kettle very beautiful and easy to use. On both sides, marks are applied to it, which allow you to choose the optimal amount of water in liters or cups. When the power is turned on, it is illuminated from the inside with a pale blue color.\n\nONLY QUALITY MATERIALS\nThe teapot is made of stainless steel and tempered glass. These durable materials are practical and safe - they are easily cleaned of scale and do not emit harmful substances. The water in the device retains its natural taste and beneficial properties.\n\nMULTI-STAGE SAFETY SYSTEM\nElectronics takes care of the durability of the kettle. It turns off the power when boiling, lack of water and removed from the stand.\n\nCONVENIENT DESIGN\nThe removable microfilter will not allow scale to get into the cup. The lid opens with a light touch on the wide button, so your hands stay away from the jets of steam.',
+            categories: [
+                {
+                    id: 'deccc8ac-6aef-4fdb-bb8d-22d3ad6a4e3d',
+                },
+            ],
             allVariants: [
                 {
                     attributesRaw: [
                         {
+                            name: 'color',
+                            value: [
+                                {
+                                    key: 'color-silver',
+                                    label: 'silver',
+                                },
+                            ],
+                        },
+                        {
+                            name: 'material',
+                            value: [
+                                {
+                                    key: 'material-glass',
+                                    label: 'Glass',
+                                },
+                            ],
+                        },
+                        {
+                            name: 'volume',
+                            value: [
+                                {
+                                    key: 'volume-one-seven',
+                                    label: '1.7 L',
+                                },
+                            ],
+                        },
+                        {
                             name: 'brand',
                             value: [
                                 {
-                                    key: 'lenovo',
-                                    label: 'Lenovo',
-                                },
-                            ],
-                        },
-                        {
-                            name: 'screen',
-                            value: [
-                                {
-                                    key: 'screen-15.6"',
-                                    label: '15.6"',
-                                },
-                            ],
-                        },
-                        {
-                            name: 'capacity',
-                            value: [
-                                {
-                                    key: 'SSD-256 GB',
-                                    label: 'SSD-256 GB',
+                                    key: 'brand-philips',
+                                    label: 'Philips',
                                 },
                             ],
                         },
                     ],
                     images: [
                         {
+                            url: 'https://83c548175751107cbc78-7e6ca5812cd490d87dba64b458c8c635.ssl.cf3.rackcdn.com/20069500bb-w36wY7Ue.jpg',
                             label: 'main',
-                            url: 'https://83c548175751107cbc78-7e6ca5812cd490d87dba64b458c8c635.ssl.cf3.rackcdn.com/2-2-1Si2lfBl.jpg',
                         },
                         {
+                            url: 'https://83c548175751107cbc78-7e6ca5812cd490d87dba64b458c8c635.ssl.cf3.rackcdn.com/20069500bb1-CFkaNN6V.jpg',
                             label: null,
-                            url: 'https://83c548175751107cbc78-7e6ca5812cd490d87dba64b458c8c635.ssl.cf3.rackcdn.com/1-1-dIU7YJe-.jpg',
                         },
                         {
+                            url: 'https://83c548175751107cbc78-7e6ca5812cd490d87dba64b458c8c635.ssl.cf3.rackcdn.com/20069500bb3-L6nAEJMQ.jpg',
                             label: null,
-                            url: 'https://83c548175751107cbc78-7e6ca5812cd490d87dba64b458c8c635.ssl.cf3.rackcdn.com/3-1-K1lyGYmZ.jpg',
                         },
                     ],
                     prices: [
                         {
+                            discounted: {
+                                value: {
+                                    centAmount: 4654,
+                                    currencyCode: 'GBP',
+                                },
+                            },
                             value: {
-                                centAmount: 159900,
+                                centAmount: 4899,
                                 currencyCode: 'GBP',
                             },
                         },
                     ],
                 },
             ],
+            id: '75cac563-1c34-4274-ab6e-32806b07b28d',
         },
     ],
 };

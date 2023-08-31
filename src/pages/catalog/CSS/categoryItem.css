@@ -13,7 +13,8 @@
   background-size:40cqh;
 }
 
-.card-dark {
+.sub-card-dark,
+.cat-card-dark {
   width: 100%;
   height: 100%;
   display: flex;
@@ -24,7 +25,8 @@
 
 }
 
-.card-dark:hover {
+.sub-card-dark:hover,
+.cat-card-dark:hover {
   width: 100%;
   height: 100%;
   background-color: rgb(0, 0, 0, 0.5);
