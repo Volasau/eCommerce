@@ -5,6 +5,8 @@ export function startPostcodeValidation(value: string, errorHTML: HTMLElement, i
     countries.forEach((country) => {
         if (value !== '') {
             if (!countryInput.value) errorHTML.textContent = '';
+        } else {
+            errorHTML.innerHTML = '';
         }
         if (countryInput.value === country.Country) {
             const regex = new RegExp(country.Regex);
@@ -13,9 +15,6 @@ export function startPostcodeValidation(value: string, errorHTML: HTMLElement, i
             } else {
                 errorHTML.innerHTML = `*use this format for ${country.Country}:   ${country.Format}`;
             }
-        }
-        if (value === '') {
-            errorHTML.innerHTML = '';
         }
     });
 }

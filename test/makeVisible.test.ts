@@ -1,4 +1,4 @@
-import { makeVisiblePassword } from '../src/pages/logReg/functions/makeVisiblePassword';
+import { makeVisiblePassword } from '../src/pages/logReg/utils/makeVisiblePassword.utils';
 
 describe('makeVisiblePassword', () => {
     let checkbox: HTMLInputElement;

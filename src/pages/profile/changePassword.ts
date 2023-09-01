@@ -40,9 +40,6 @@ export default function showChangePasswordWindow(bodyProfile: HTMLElement) {
         if (changePasswordButton && changePasswordButton instanceof HTMLButtonElement) {
             changePasswordButton.disabled = false;
         }
-        // const oldPassword = oldPasswordInput.value;
-        // const newPassword = newPasswordInput.value;
-        // const repeatNewPassword = repeatNewPasswordInput.value;
 
         passwordChangeForm.remove();
     });

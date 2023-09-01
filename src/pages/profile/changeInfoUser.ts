@@ -1,17 +1,17 @@
-import { dataCostomer } from '../../server/CustomerLogin';
+import { dataCustomer } from '../../server/customerLogin';
 import { InnerForm } from '../logReg/formClasses/classForm';
 
 export default function showChangeInfoUser(bodyProfile: HTMLElement) {
     const UserChangeForm = document.createElement('form');
-    const email = new InnerForm('Email', 'text', 'email', 'email', 'emailp-error', `${dataCostomer.email}`);
-    const firstName = new InnerForm('First Name', 'text', 'name', 'name', 'name-error', `${dataCostomer.firstName}`);
+    const email = new InnerForm('Email', 'text', 'email', 'email', 'emailp-error', `${dataCustomer.email}`);
+    const firstName = new InnerForm('First Name', 'text', 'name', 'name', 'name-error', `${dataCustomer.firstName}`);
     const lastName = new InnerForm(
         'Last Name',
         'text',
         'lastName',
         'last-name',
         'last-name-error',
-        `${dataCostomer.lastName}`
+        `${dataCustomer.lastName}`
     );
     const birthDate = new InnerForm(
         'Date of Birth',
@@ -19,7 +19,7 @@ export default function showChangeInfoUser(bodyProfile: HTMLElement) {
         'birthDate',
         'birthdate',
         'birthdate-error',
-        `${dataCostomer.dateOfBirth}`
+        `${dataCustomer.dateOfBirth}`
     );
 
     UserChangeForm.appendChild(email.create());

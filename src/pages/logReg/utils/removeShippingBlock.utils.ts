@@ -1,6 +1,6 @@
 import { constants } from '../../../data/constants';
 import { validateThisInput } from '../validation/validateThisInput';
-import { saveAsDefaultAddress } from './saveAsDefaultAddress';
+import { saveAsDefaultAddress } from './saveAsDefaultAddress.utils';
 
 export function removeShippingBlock(checkbox: HTMLInputElement) {
     checkbox.addEventListener('change', () => {

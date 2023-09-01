@@ -1,4 +1,4 @@
-import { addCheckboxToInput } from './addCheckboxToInput';
+import { addCheckboxToInput } from './addCheckboxToInput.utils';
 
 export function addBillingBlock(formHTML: HTMLFormElement, innerFormList: HTMLElement[]) {
     const billingBlock = document.createElement('div') as HTMLDivElement;

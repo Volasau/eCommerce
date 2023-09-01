@@ -1,32 +1,23 @@
 import Page from '../../core/template/page';
-import { login } from './formObjects/loginObj';
+import { login } from './formObjects/login';
 import '../../css/login.css';
-// import { IAuthorisObj } from '../../core/interfaces/aythorisObjInterface';
-// import { submitData } from './validation/authorisationFunctions/submitData/submitData';
-import { createLink } from './functions/createLink';
+import { createLink } from './utils/createLink.utils';
 
 class LoginPage extends Page {
-    static TextObject = {
-        MainTitle: 'Login Page',
-    };
-    // protected authorisObj: IAuthorisObj = { email: '', password: '' };
+    textObject: string;
 
     constructor(id: string) {
         super(id);
+        this.textObject = 'Login Page';
     }
 
     render() {
-        const title = this.createHeaderTitle(LoginPage.TextObject.MainTitle);
+        const title = this.createHeaderTitle(this.textObject);
         const loginForm = login.build();
         const registrLink = createLink('#/registr', "Haven't registered yet? Sing up ", 'Here➕', '');
-        this.container.append(title, loginForm, registrLink);
-        // this.logInOrReg();
-        return this.container;
+        this._container.append(title, loginForm, registrLink);
+        return this._container;
     }
-
-    // logInOrReg() {
-    //     submitData(this.container, this.authorisObj);
-    // }
 }
 
 export default LoginPage;

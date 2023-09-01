@@ -1,5 +1,5 @@
 import { InnerForm } from '../logReg/formClasses/classForm';
-import { newAdress } from './dataForUpdet';
+import { newAdress } from './interfaces/dataForUpdet';
 
 export class AddressNew {
     container: HTMLDivElement;

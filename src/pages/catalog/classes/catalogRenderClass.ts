@@ -12,12 +12,19 @@ import { divHTML } from './elementBuilder';
 
 export class CatalogRender implements ICatalog {
     curCatalog: Element | null;
+
     title: HTMLElement;
+
     wrapper: HTMLDivElement;
+
     hashChain: HTMLDivElement;
+
     discount: HTMLDivElement;
+
     categoryName: HTMLDivElement;
+
     catalogViewer: HTMLDivElement;
+
     categories: ICategory[];
     product: IProductResp;
     constructor(categoryResponse: ICategoryResp[] | ICategory[] | IProductResp, title: HTMLElement) {

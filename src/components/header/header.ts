@@ -1,43 +1,43 @@
-import Component from '../../core/template/components';
-import App, { PageIds } from '../../pages/app/app';
+import Component from '../../core/template/component';
+import App, { PageId } from '../../pages/app/app';
 import '../../css/header.css';
-import { setIsLoggedIn } from '../../data/isLoggedIn';
 import logo from '../../assets/images/logo.jpg';
+import { constants } from '../../data/constants';
 
 const Buttons = [
     {
-        id: PageIds.MainPage,
+        id: PageId.MainPage,
         text: '',
         class: 'mane__page',
         logoImage: logo,
     },
     {
-        id: PageIds.MainPage,
+        id: PageId.MainPage,
         text: 'HOME🏠',
         class: 'home__page',
     },
     {
-        id: PageIds.CatalogPage,
+        id: PageId.CatalogPage,
         text: 'Catalog📦',
         class: 'catalog__page',
     },
     {
-        id: PageIds.LoginPage,
+        id: PageId.LoginPage,
         text: 'Login🔑',
         class: 'login__page',
     },
     {
-        id: PageIds.RegistrPage,
+        id: PageId.RegistrPage,
         text: 'Registration➕',
         class: 'registr__page',
     },
     {
-        id: PageIds.LogoutPage,
+        id: PageId.LogoutPage,
         text: 'Logout❌',
         class: 'logout__page',
     },
     {
-        id: PageIds.ProfilePage,
+        id: PageId.ProfilePage,
         text: 'Profile👤',
         class: 'profile__page',
     },
@@ -48,7 +48,7 @@ class Header extends Component {
         super(tagName, className);
     }
 
-    renderPageButtons() {
+    renderPageButtons(): void {
         const pageButtons = document.createElement('div');
         pageButtons.classList.add('header-container');
         Buttons.forEach((button) => {
@@ -65,23 +65,23 @@ class Header extends Component {
             buttonHTML.href = `#/${button.id}`;
             pageButtons.append(buttonHTML);
         });
-        this.container.append(pageButtons);
+        this._container.append(pageButtons);
     }
 
-    handleButtonClick(pageId: PageIds) {
-        if (pageId === PageIds.LogoutPage) {
+    handleButtonClick(pageId: PageId): void {
+        if (pageId === PageId.LogoutPage) {
             const logoutBtn = document.querySelector('.logout__page');
-            setIsLoggedIn(false);
+            constants.logIn = false;
             logoutBtn?.classList.remove('block');
-            App.renderNewPage(PageIds.LoginPage);
+            App.renderNewPage(PageId.LoginPage);
         } else {
             App.renderNewPage(pageId);
         }
     }
 
-    render() {
+    render(): HTMLElement {
         this.renderPageButtons();
-        return this.container;
+        return this._container;
     }
 }
 

@@ -1,16 +1,16 @@
-import { IRegObj } from '../../../../core/interfaces/regObjInterface';
+import { IRegistrationObject } from '../../../../core/interfaces/registrationObjectInterface';
+import { IConsolidatedData } from '../../../../core/interfaces/consolidatedData';
+import { IAddressBilling } from '../../../../core/interfaces/addressBilling';
+import { IAddressShipping } from '../../../../core/interfaces/addressShipping';
 import {
     customerManagerData,
     defaultAddresses,
     defaultBillingAddress,
     defaultShippingAddress,
     noDefaultAddress,
-} from '../../functions/customerManager';
-import { IConsolidatedData } from '../../../../core/interfaces/consolidatedData';
-import { IAddressBilling } from '../../../../core/interfaces/addressBilling';
-import { IAddressShipping } from '../../../../core/interfaces/addressShipping';
+} from '../../utils/customerManager.utils';
 
-export async function registerOnTheServer(obj: IRegObj) {
+export async function registerOnTheServer(obj: IRegistrationObject) {
     console.log(obj);
     const customerManager: IConsolidatedData = await customerManagerData(obj);
     const addressBilling: IAddressBilling = customerManager.addressBilling;
