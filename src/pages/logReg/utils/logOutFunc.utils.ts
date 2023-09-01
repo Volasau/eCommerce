@@ -1,8 +1,8 @@
-import { bearer_token_pf } from '../validation/authorisationFunctions/logInToServer';
 import { TokenRevoker } from '../../../server/logout';
-import { showToast } from './funcToastify';
-import App, { PageIds } from '../../app/app';
-import { setIsLoggedIn } from '../../../data/isLoggedIn';
+import { showToast } from './funcToastify.utils';
+import App, { PageId } from '../../app/app';
+import { bearer_token_pf } from '../validation/authorizationFunctions/logInToServer';
+import { constants } from '../../../data/constants';
 
 export const logoutAction = async () => {
     const tokenRevoker = new TokenRevoker();
@@ -10,9 +10,9 @@ export const logoutAction = async () => {
     try {
         await tokenRevoker.revokeAccessToken(bearer_token_pf);
         showToast('You went out');
-        const newUrl = window.location.href.replace(`#/${PageIds.LogoutPage}`, `#/${PageIds.LoginPage}`);
+        const newUrl = window.location.href.replace(`#/${PageId.LogoutPage}`, `#/${PageId.LoginPage}`);
         window.history.replaceState({}, document.title, newUrl);
-        App.renderNewPage(PageIds.LoginPage);
+        App.renderNewPage(PageId.LoginPage);
         const logoutBtn = document.querySelectorAll('.logout__page');
         logoutBtn.forEach((el) => {
             el.classList.remove('block');
@@ -22,7 +22,7 @@ export const logoutAction = async () => {
             btnProfile.classList.remove('block');
         }
 
-        setIsLoggedIn(false);
+        constants.logIn = false;
     } catch (error) {
         showToast('Problem');
         const hash = window.location.hash.slice(1);

@@ -1,47 +1,22 @@
-// import { IRegObj } from '../../core/interfaces/regObjInterface';
 import Page from '../../core/template/page';
-import { registration } from './formObjects/registrationObj';
-import { createLink } from './functions/createLink';
-// import { submitData } from './validation/authorisationFunctions/submitData/submitData';
+import { registration } from './formObjects/registration';
+import { createLink } from './utils/createLink.utils';
 
 class RegistrPage extends Page {
-    static TextOject = {
-        MainTitle: 'Registration Page',
-    };
-    // protected regObj: IRegObj = {
-    //     email: '',
-    //     password: '',
-    //     name: '',
-    //     lastName: '',
-    //     country: '',
-    //     city: '',
-    //     street: '',
-    //     postcode: '',
-    //     birthDate: '',
-    //     countryShip: '',
-    //     cityShip: '',
-    //     streetShip: '',
-    //     postcodeShip: '',
-    //     billingDefault: false,
-    //     shippingDefault: false,
-    // };
+    textObject: string;
 
     constructor(id: string) {
         super(id);
+        this.textObject = 'Registration Page';
     }
 
     render() {
-        const title = this.createHeaderTitle(RegistrPage.TextOject.MainTitle);
+        const title = this.createHeaderTitle(this.textObject);
         const registrForm = registration.build();
         const loginLink = createLink('#/login', 'Already registered? Sign in ', 'Here🔑', '');
-        this.container.append(title, registrForm, loginLink);
-        // this.logInOrReg();
-        return this.container;
+        this._container.append(title, registrForm, loginLink);
+        return this._container;
     }
-
-    // logInOrReg() {
-    //     submitData(this.container, this.regObj);
-    // }
 }
 
 export default RegistrPage;

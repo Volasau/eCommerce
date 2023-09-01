@@ -2,14 +2,14 @@ import MainPage from '../main/main';
 import RegistrPage from '../logReg/registrationPage';
 import Page from '../../core/template/page';
 import LoginPage from '../logReg/loginPage';
-import Header from '../../components/header';
-import ErrorPage from '../error';
-import { isLoggedIn } from '../../data/isLoggedIn';
-import { logoutAction } from '../logReg/functions/logout_func';
+import Header from '../../components/header/header';
+import ErrorPage from '../error/error';
 import CatalogPage from '../catalog/catalog';
 import ProfilePage from '../profile/profile';
+import { constants } from '../../data/constants';
+import { logoutAction } from '../logReg/utils/logOutFunc.utils';
 
-export const enum PageIds {
+export const enum PageId {
     MainPage = 'main',
     CatalogPage = 'catalog',
     RegistrPage = 'registr',
@@ -22,6 +22,10 @@ class App {
     private static defaultPageId = 'current-page';
     private initialPage: MainPage;
     private header: Header;
+    constructor() {
+        this.initialPage = new MainPage('main');
+        this.header = new Header('header', 'header');
+    }
 
     static async renderNewPage(idPage: string) {
         const currentPageHTML = document.querySelector(`#${App.defaultPageId}`);
@@ -30,30 +34,35 @@ class App {
         }
 
         let page: Page | null = null;
-        if (idPage === PageIds.MainPage) {
-            page = new MainPage(idPage);
-        } else if (idPage === PageIds.CatalogPage) {
-            page = new CatalogPage(idPage);
-        } else if (idPage === PageIds.LoginPage) {
-            page = new LoginPage(idPage);
-        } else if (idPage === PageIds.RegistrPage) {
-            page = new RegistrPage(idPage);
-        } else if (idPage === PageIds.LogoutPage) {
-            const logoutLink = document.querySelector('a.logout__page.block');
-            if (logoutLink) {
-                await logoutAction();
-            } else {
+        switch (idPage) {
+            case PageId.MainPage:
                 page = new MainPage(idPage);
-            }
-        } else if (idPage === PageIds.ProfilePage) {
-            const profileLink = document.querySelector('a.profile__page.block');
-            if (profileLink) {
-                page = new ProfilePage(idPage);
-            } else {
-                page = new MainPage(idPage);
-            }
-        } else {
-            page = new ErrorPage(idPage, '404');
+                break;
+            case PageId.CatalogPage:
+                page = new CatalogPage(idPage);
+                break;
+            case PageId.LoginPage:
+                page = new LoginPage(idPage);
+                break;
+            case PageId.RegistrPage:
+                page = new RegistrPage(idPage);
+                break;
+            case PageId.LogoutPage:
+                if (document.querySelector('a.logout__page.block')) {
+                    await logoutAction();
+                } else {
+                    page = new MainPage(idPage);
+                }
+                break;
+            case PageId.ProfilePage:
+                if (document.querySelector('a.profile__page.block')) {
+                    page = new ProfilePage(idPage);
+                } else {
+                    page = new MainPage(idPage);
+                }
+                break;
+            default:
+                page = new ErrorPage(idPage, '404');
         }
 
         if (page) {
@@ -65,9 +74,9 @@ class App {
 
     private checkAuthenticationAndRedirect() {
         const hash = window.location.hash.slice(2);
-        if (hash === PageIds.LoginPage) {
-            if (isLoggedIn) {
-                window.location.hash = `/${PageIds.MainPage}`;
+        if (hash === PageId.LoginPage) {
+            if (constants.logIn) {
+                window.location.hash = `/${PageId.MainPage}`;
             }
         }
     }
@@ -80,10 +89,6 @@ class App {
         });
     }
 
-    constructor() {
-        this.initialPage = new MainPage('main');
-        this.header = new Header('header', 'header');
-    }
     run() {
         App.container.append(this.header.render());
 

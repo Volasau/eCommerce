@@ -1,18 +1,18 @@
-import { ICustomerResponse } from '../../core/interfaces/CustomerResponse';
+import { ICustomerResponse } from '../../core/interfaces/customerResponse';
 import { findCountryNameByISO } from './findCountry';
 import { Address } from './formAdress';
 
-//////Создаем карточки для каждого адреса
+//Создаем карточки для каждого адреса
 
 export function renderAddresses(dataCostomer: ICustomerResponse) {
     const addressesContainer = document.createElement('div');
     addressesContainer.classList.add('adres__container');
 
     dataCostomer.addresses.forEach((address) => {
-        /////////Перевод имени страны с кода сокращения в полное название страны
+        // Перевод имени страны с кода сокращения в полное название страны
         const countryName = findCountryNameByISO(address.country);
 
-        ////////Получаем id адрессов для билинга шипинга и дефолтных
+        // Получаем id адрессов для билинга шипинга и дефолтных
         const isBillingAddress = dataCostomer.billingAddressIds.includes(address.id);
         const isShippingAddress = dataCostomer.shippingAddressIds.includes(address.id);
         const isDefaultShippingAddress = address.id === dataCostomer.defaultShippingAddressId;

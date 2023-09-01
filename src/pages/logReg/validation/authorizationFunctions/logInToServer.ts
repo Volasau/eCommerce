@@ -1,13 +1,13 @@
-import { IAuthorisObj } from '../../../../core/interfaces/aythorisObjInterface';
+import { IAuthorizationObject } from '../../../../core/interfaces/authorizationObjectInterface';
 import { constants } from '../../../../data/constants';
-import { ILoginRequest } from '../../../../core/interfaces/LoginRequest';
-import { CustomerLogin } from '../../../../server/CustomerLogin';
-import { TokenManager } from '../../../../server/access_token_pf';
-import { IAccessTokenResponse } from '../../../../core/interfaces/AccessTokenResponse';
+import { ILoginRequest } from '../../../../core/interfaces/loginRequest';
+import { CustomerLogin } from '../../../../server/customerLogin';
+import { TokenManager } from '../../../../server/accessTokenPF';
+import { IAccessTokenResponse } from '../../../../core/interfaces/accessTokenResponse';
 
 export let bearer_token_pf = '';
 
-export async function logInToServer(obj: IAuthorisObj, page: HTMLElement) {
+export async function logInToServer(obj: IAuthorizationObject, page: HTMLElement) {
     try {
         const requestData: ILoginRequest = {
             email: obj.email,

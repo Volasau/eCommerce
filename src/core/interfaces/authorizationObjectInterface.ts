@@ -1,4 +1,4 @@
-export interface IAuthorisObj {
+export interface IAuthorizationObject {
     email: string;
     password: string;
 }

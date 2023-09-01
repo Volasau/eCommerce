@@ -1,6 +1,6 @@
-import { countries } from '../../../../data/country';
+import { countries } from '../../../../../data/country';
 
-export function checkCountryInput(target: HTMLInputElement, errorHTML: HTMLElement, id: string) {
+export function checkCountryInput(target: HTMLInputElement, errorHTML: HTMLElement) {
     let countryValid = false;
     if (target.value === '') {
         errorHTML.innerHTML = '';
@@ -9,7 +9,7 @@ export function checkCountryInput(target: HTMLInputElement, errorHTML: HTMLEleme
             if (target.value.toLocaleLowerCase() === country.Country.toLocaleLowerCase()) {
                 target.value = country.Country;
                 countryValid = true;
-                const list = document.getElementById(id) as HTMLElement;
+                const list = document.getElementById(target.id) as HTMLElement;
                 list.innerHTML = '';
             }
         });

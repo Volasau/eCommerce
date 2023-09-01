@@ -1,33 +1,32 @@
 import Page from '../../core/template/page';
 import '../../css/catalog.css';
 import { categoryResponse } from '../../data/categoryResponse';
-import { createLink } from '../logReg/functions/createLink';
+import { createLink } from '../logReg/utils/createLink.utils';
 import { CatalogRender } from './classes/catalogRenderClass';
 
 class CatalogPage extends Page {
-    static TextObject = {
-        MainTitle: 'Catalog',
-    };
+    textObject: string;
 
     constructor(id: string) {
         super(id);
+        this.textObject = 'Catalog';
     }
 
     render() {
-        const title = this.createHeaderTitle(CatalogPage.TextObject.MainTitle);
+        const title = this.createHeaderTitle(this.textObject);
         const bodyCatolog = document.createElement('div');
         bodyCatolog.classList.add('product-card');
 
         const homeLink = createLink('#/main', 'To return to the home page click ', 'Here🏠', '');
 
-        this.container.append(title, bodyCatolog, homeLink);
+        this._container.append(title, bodyCatolog, homeLink);
 
         const catalog = new CatalogRender(categoryResponse, title);
         catalog.renderCatalog();
 
-        this.container.style.position = 'relative';
+        this._container.style.position = 'relative';
 
-        return this.container;
+        return this._container;
     }
 }
 

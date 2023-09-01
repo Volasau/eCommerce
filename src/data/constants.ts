@@ -1,4 +1,7 @@
-export const constants = {
+import { IConstants } from '../core/interfaces/constantsInterface';
+
+export const constants: IConstants = {
+    logIn: false,
     shipDefault: false,
     billDefault: false,
     apiUrlCarts: 'https://api.europe-west1.gcp.commercetools.com/01082023/carts',
@@ -30,7 +33,7 @@ export const constants = {
         billingDefault: false,
         shippingDefault: false,
     },
-    authorisObj: { email: '', password: '' },
+    authorizationObject: { email: '', password: '' },
     modalPage: 1,
     modalImages: [
         'https://83c548175751107cbc78-7e6ca5812cd490d87dba64b458c8c635.ssl.cf3.rackcdn.com/2-2-1Si2lfBl.jpg',
