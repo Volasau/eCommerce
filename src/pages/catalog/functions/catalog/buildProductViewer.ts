@@ -23,6 +23,6 @@ export function buildProductViewer(categories: ICategory[]) {
     displaySequence.append(cheap, alphabet, quantity);
     productWrapper.append(categoriesBlock, displaySequence, productList);
     wrapper.append(filter, productWrapper);
-
+    console.log(wrapper);
     return wrapper;
 }

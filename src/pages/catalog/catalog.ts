@@ -1,6 +1,6 @@
 import Page from '../../core/template/page';
 import '../../css/catalog.css';
-import { categoryResponse } from '../../data/categoryResponse';
+import { categoryStructuring } from '../../server/function/structureCategories';
 import { createLink } from '../logReg/utils/createLink.utils';
 import { CatalogRender } from './classes/catalogRenderClass';
 
@@ -12,7 +12,9 @@ class CatalogPage extends Page {
         this.textObject = 'Catalog';
     }
 
-    render() {
+    async render() {
+        const categoryResponse = await categoryStructuring();
+        console.log(categoryResponse);
         const title = this.createHeaderTitle(this.textObject);
         const bodyCatolog = document.createElement('div');
         bodyCatolog.classList.add('product-card');

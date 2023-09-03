@@ -43,6 +43,7 @@ export class AccessTokenFetcher {
 
             const data: AccessTokenResponse = await response.json();
             const access_token: string = data.access_token;
+            console.log(access_token);
             return access_token;
         } catch (error) {
             console.error('Error:', error);

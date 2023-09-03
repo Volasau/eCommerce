@@ -68,14 +68,14 @@ class Header extends Component {
         this._container.append(pageButtons);
     }
 
-    handleButtonClick(pageId: PageId): void {
+    async handleButtonClick(pageId: PageId): Promise<void> {
         if (pageId === PageId.LogoutPage) {
             const logoutBtn = document.querySelector('.logout__page');
             constants.logIn = false;
             logoutBtn?.classList.remove('block');
-            App.renderNewPage(PageId.LoginPage);
+            await App.renderNewPage(PageId.LoginPage);
         } else {
-            App.renderNewPage(pageId);
+            await App.renderNewPage(pageId);
         }
     }
 

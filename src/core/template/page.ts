@@ -13,8 +13,8 @@ abstract class Page {
         return headerTitle;
     }
 
-    render() {
-        return this._container;
+    render(): Promise<HTMLElement> {
+        return Promise.resolve(this._container);
     }
 }
 

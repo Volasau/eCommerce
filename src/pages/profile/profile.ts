@@ -4,7 +4,7 @@ import { renderAddresses } from './renderAdresses';
 import { User } from './formUser';
 import showChangePasswordWindow from './changePassword';
 import { AddressNew } from './formAddNewAdress';
-import { dataCustomer } from '../../server/customerLogin';
+import { dataCustomer } from '../../server/CustomerLogin';
 import { createLink } from '../logReg/utils/createLink.utils';
 
 class ProfilePage extends Page {
@@ -15,7 +15,7 @@ class ProfilePage extends Page {
         this.textObject = 'Profile';
     }
 
-    render() {
+    async render() {
         const title = this.createHeaderTitle(this.textObject);
         const bodyProfile = document.createElement('div');
         bodyProfile.classList.add('profile__container');

@@ -107,14 +107,22 @@ export const constants: IConstants = {
                     prices: [
                         {
                             discounted: {
+                                discount: {
+                                    id: '531c7259-ef69-47ed-a4ff-7378a582658f',
+                                    typeId: 'product-discount',
+                                },
                                 value: {
                                     centAmount: 4654,
                                     currencyCode: 'GBP',
+                                    fractionDigits: 2,
+                                    type: 'centPrecision',
                                 },
                             },
                             value: {
                                 centAmount: 4899,
                                 currencyCode: 'GBP',
+                                fractionDigits: 2,
+                                type: 'centPrecision',
                             },
                         },
                     ],

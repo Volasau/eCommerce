@@ -2,19 +2,21 @@ import fetch from 'node-fetch';
 import { constants } from '../../data/constants';
 import { bearer_token_cc } from '../..';
 
-export class QueryAllProducts {
+export class QueryAllCategories {
     projectKey: string;
-    productsEndpoint: string;
+    categoryEndpoint: string;
     constructor() {
         this.projectKey = constants.projectKey;
-        this.productsEndpoint = `https://api.europe-west1.gcp.commercetools.com/${this.projectKey}/products?limit=60`;
+        this.categoryEndpoint = `https://api.commercetools.com/${this.projectKey}`;
     }
 
-    async getAllProducts() {
-        const response = await fetch(this.productsEndpoint, {
+    async getCategories() {
+        const access_token = await bearer_token_cc;
+        console.log(access_token);
+        const response = await fetch(`${this.categoryEndpoint}/categories`, {
             method: 'GET',
             headers: {
-                Authorization: `Bearer ${await bearer_token_cc}`,
+                Authorization: `Bearer ${access_token}`,
                 'Content-Type': 'application/json',
             },
         });
@@ -27,3 +29,5 @@ export class QueryAllProducts {
         return data.results;
     }
 }
+
+export const AllCategoriees = new QueryAllCategories();

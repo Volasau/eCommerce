@@ -19,6 +19,9 @@ export class AllProductDetailsGQL {
             current {
               name(locale: "en")
               description(locale: "en")
+              categories{
+                id
+              }
               allVariants {
                 attributesRaw {
                   name

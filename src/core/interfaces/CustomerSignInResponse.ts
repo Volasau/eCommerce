@@ -1,4 +1,4 @@
-import { ICustomerResponse } from './customerResponse';
+import { ICustomerResponse } from './CustomerResponse';
 
 export interface ICustomerSignInResponse {
     customer: ICustomerResponse;
