@@ -1,6 +1,6 @@
 import fetch from 'node-fetch';
 import { constants } from '../data/constants';
-import { IAccessTokenResponse } from '../core/interfaces/ccessTokenResponse';
+import { IAccessTokenResponse } from '../core/interfaces/accessTokenResponse';
 import { handleServerErrorsLog } from './handleServerErrorsLog';
 
 export class TokenManager {

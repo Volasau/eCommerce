@@ -1,4 +1,4 @@
-import { IFormBuilder } from '../../../core/interfaces/rmBuilderInterface';
+import { IFormBuilder } from '../../../core/interfaces/formBuilderInterface';
 import { addBillingBlock } from '../utils/addBillingBlock.utils';
 import { addButton } from '../utils/addButton.utils';
 import { addCredentialsAndPersData } from '../utils/addCredentialsAndPersData.utils';

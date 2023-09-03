@@ -4,7 +4,7 @@ import { renderAddresses } from './renderAdresses';
 import { User } from './formUser';
 import showChangePasswordWindow from './changePassword';
 import { AddressNew } from './formAddNewAdress';
-import { dataCustomer } from '../../server/stomerLogin';
+import { dataCustomer } from '../../server/customerLogin';
 import { createLink } from '../logReg/utils/createLink.utils';
 
 class ProfilePage extends Page {

@@ -1,5 +1,5 @@
 import { constants } from '../../../data/constants';
-import { CustomerManager } from '../../../server/stomerRegistration';
+import { CustomerManager } from '../../../server/customerRegistration';
 import { IRegistrationObject } from '../../../core/interfaces/registrationObjectInterface';
 import { getISOCodeByCountryName } from './getISOCode.utils';
 import { IAddressBilling } from '../../../core/interfaces/addressBilling';
