@@ -1,4 +1,4 @@
-import { ICustomerResponse } from '../../core/interfaces/customerResponse';
+import { ICustomerResponse } from '../../core/interfaces/CustomerResponse';
 import { findCountryNameByISO } from './findCountry';
 import { Address } from './formAdress';
 

@@ -1,5 +1,5 @@
 import { IProductResp } from '../../pages/catalog/interfaces/categoryResponse/categoryResponseInterface';
-import { ICreateCartRequest } from './createCartRequest';
+import { ICreateCartRequest } from './CreateCartRequest';
 import { IAuthorizationObject } from './authorizationObjectInterface';
 import { IRegistrationObject } from './registrationObjectInterface';
 

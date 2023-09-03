@@ -1,8 +1,8 @@
 import fetch from 'node-fetch';
-import { ICustomerSignInResponse } from '../core/interfaces/customerSignInResponse';
-import { ILoginRequest } from '../core/interfaces/loginRequest';
+import { ICustomerSignInResponse } from '../core/interfaces/CustomerSignInResponse';
+import { ILoginRequest } from '../core/interfaces/LoginRequest';
 import App, { PageId } from '../pages/app/app';
-import { ICustomerResponse } from '../core/interfaces/customerResponse';
+import { ICustomerResponse } from '../core/interfaces/CustomerResponse';
 import { constants } from '../data/constants';
 import { showToast } from '../pages/logReg/utils/funcToastify.utils';
 

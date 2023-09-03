@@ -22,6 +22,7 @@ class App {
     private static defaultPageId = 'current-page';
     private initialPage: MainPage;
     private header: Header;
+
     constructor() {
         this.initialPage = new MainPage('main');
         this.header = new Header('header', 'header');
@@ -66,7 +67,7 @@ class App {
         }
 
         if (page) {
-            const pageHTML = page.render();
+            const pageHTML = await page.render();
             pageHTML.id = App.defaultPageId;
             App.container.append(pageHTML);
         }
@@ -82,17 +83,17 @@ class App {
     }
 
     private enableRouteChange() {
-        window.addEventListener('hashchange', () => {
+        window.addEventListener('hashchange', async () => {
             this.checkAuthenticationAndRedirect();
             const hash = window.location.hash.slice(2);
-            App.renderNewPage(hash);
+            await App.renderNewPage(hash);
         });
     }
 
-    run() {
+    async run() {
         App.container.append(this.header.render());
 
-        App.renderNewPage('main');
+        await App.renderNewPage('main');
         this.enableRouteChange();
     }
 }

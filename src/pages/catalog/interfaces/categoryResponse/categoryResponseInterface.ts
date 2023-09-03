@@ -24,9 +24,17 @@ export interface IImageResp {
 export interface IPriceValueResp {
     centAmount: number;
     currencyCode: string;
+    fractionDigits: number;
+    type: string;
+}
+
+export interface IDiscount {
+    id: string;
+    typeId: string;
 }
 
 export interface IDiscountResp {
+    discount: IDiscount;
     value: IPriceValueResp;
 }
 

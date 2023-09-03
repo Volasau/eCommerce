@@ -1,5 +1,5 @@
 import urlImg from '../../../assets/icons/arrow.svg';
-import { categoryResponse } from '../../../data/categoryResponse';
+import { categoryResponse } from '../../../server/function/structureCategories';
 import { CatalogRender } from '../classes/catalogRenderClass';
 import { spanHTML } from '../classes/elementBuilder';
 import { getSubCategoryWithAllAttr } from '../functions/filter/getSubCategoryWithAllAttr';
