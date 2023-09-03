@@ -5,8 +5,6 @@ import {
     ISubCategoryResp,
 } from '../../pages/catalog/interfaces/categoryResponse/categoryResponseInterface';
 import { QueryAllCategories } from '../categories/queryAllCategories';
-// import { AllProductDetailsGQL } from '../products/AllProductDetailsGQL';
-// import { QueryAllProducts } from '../products/QueryAllProducts';
 import { QueryProductProjections } from '../products/queryProductProjections';
 import { ICategoryResponse } from './interfaces';
 
