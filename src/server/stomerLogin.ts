@@ -1,10 +1,10 @@
 import fetch from 'node-fetch';
-import { ICustomerSignInResponse } from '../core/interfaces/CustomerSignInResponse';
-import { ILoginRequest } from '../core/interfaces/LoginRequest';
 import App, { PageId } from '../pages/app/app';
-import { ICustomerResponse } from '../core/interfaces/CustomerResponse';
 import { constants } from '../data/constants';
 import { showToast } from '../pages/logReg/utils/funcToastify.utils';
+import { ICustomerResponse } from '../core/interfaces/customerResponse';
+import { ILoginRequest } from '../core/interfaces/ginRequest';
+import { ICustomerSignInResponse } from '../core/interfaces/stomerSignInResponse';
 
 export let dataCustomer: ICustomerResponse;
 

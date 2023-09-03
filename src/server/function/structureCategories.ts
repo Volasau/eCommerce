@@ -4,15 +4,16 @@ import {
     IProductResp,
     ISubCategoryResp,
 } from '../../pages/catalog/interfaces/categoryResponse/categoryResponseInterface';
-import { QueryAllCategories } from '../categories/QueryAllCategories';
+import { QueryAllCategories } from '../categories/eryAllCategories';
 // import { AllProductDetailsGQL } from '../products/AllProductDetailsGQL';
 // import { QueryAllProducts } from '../products/QueryAllProducts';
-import { QueryProductProjections } from '../products/QueryProductProjections';
+import { QueryProductProjections } from '../products/ueryProductProjections';
 import { ICategoryResponse } from './interfaces';
 
-export const categoryResponse: ICategoryResp[] = [];
+export let categoryResponse: ICategoryResp[] = [];
 
 export async function categoryStructuring() {
+    categoryResponse = [];
     const allCategories = new QueryAllCategories();
     const allProducts = new QueryProductProjections();
 

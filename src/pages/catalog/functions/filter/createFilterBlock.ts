@@ -1,12 +1,14 @@
-import { divHTML, selectHTML } from '../../classes/elementBuilder';
+import { buttonHTML, divHTML, selectHTML } from '../../classes/elementBuilder';
 import { ICategory } from '../../interfaces/categoryInterface';
 import { createBrandFilterBlock } from './createBrandFilterBlock';
+import { createPriceFilter } from './createPriceFilter';
 import { getAttributesFromObjects } from './getAttributesFromObjects';
 
-export function createFilterBlock(categories: ICategory[]) {
+export function createFilterBlock(categories: ICategory[]): HTMLDivElement {
+    const priceFilter = createPriceFilter();
     const brandFilter = createBrandFilterBlock(categories);
     const mainWrap = divHTML.getElement('', 'other-attr-wrap', 'attr') as HTMLDivElement;
-    mainWrap.append(brandFilter);
+    mainWrap.append(priceFilter, brandFilter);
 
     const otherAttributes = getAttributesFromObjects(categories);
     otherAttributes.forEach((attr) => {
@@ -29,6 +31,11 @@ export function createFilterBlock(categories: ICategory[]) {
             mainWrap.append(wrapper);
         }
     });
+
+    const resetWrap = divHTML.getElement('', 'reset-wrap', 'filter') as HTMLDivElement;
+    const reset = buttonHTML.getElement('RESET', 'reset-but', 'reset') as HTMLButtonElement;
+    resetWrap.append(reset);
+    mainWrap.append(resetWrap);
 
     return mainWrap;
 }

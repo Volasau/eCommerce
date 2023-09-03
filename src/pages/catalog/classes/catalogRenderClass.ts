@@ -3,6 +3,7 @@ import { buildCategoryName } from '../functions/catalog/buildCategoryName';
 import { buildDiscountBlock } from '../functions/catalog/buildDiscountBlock';
 import { buildHashChain } from '../functions/catalog/buildHashChain';
 import { buildProductViewer } from '../functions/catalog/buildProductViewer';
+import { createSearchingWindow } from '../functions/filter/createSearchingWindow';
 import { buildProductPage } from '../functions/product/buildProductPage';
 import { ICatalog } from '../interfaces/catalogInterface';
 import { ICategory } from '../interfaces/categoryInterface';
@@ -18,6 +19,8 @@ export class CatalogRender implements ICatalog {
     wrapper: HTMLDivElement;
 
     hashChain: HTMLDivElement;
+
+    search: HTMLDivElement;
 
     discount: HTMLDivElement;
 
@@ -47,25 +50,26 @@ export class CatalogRender implements ICatalog {
         this.title = title;
         this.wrapper = divHTML.getElement('', 'view-catalog', 'full-catalog') as HTMLDivElement;
         this.hashChain = buildHashChain();
+        this.search = createSearchingWindow();
         this.discount = buildDiscountBlock();
         this.categoryName = buildCategoryName();
         this.catalogViewer = buildProductViewer(this.categories);
     }
 
     renderCatalog() {
-        this.wrapper.append(this.hashChain, this.discount, this.categoryName, this.catalogViewer);
+        this.wrapper.append(this.hashChain, this.search, this.discount, this.categoryName, this.catalogViewer);
         this.title.after(this.wrapper);
     }
 
     renderCategory() {
         if (this.curCatalog !== null) this.curCatalog.remove();
-        this.wrapper.append(this.hashChain, this.discount, this.categoryName, this.catalogViewer);
+        this.wrapper.append(this.hashChain, this.search, this.discount, this.categoryName, this.catalogViewer);
         this.title.after(this.wrapper);
     }
 
     renderSubCategory() {
         if (this.curCatalog !== null) this.curCatalog.remove();
-        this.wrapper.append(this.hashChain, this.discount, this.categoryName, this.catalogViewer);
+        this.wrapper.append(this.hashChain, this.search, this.discount, this.categoryName, this.catalogViewer);
         this.title.after(this.wrapper);
         const categoryBlock = document.getElementById('category-view') as HTMLDivElement;
         categoryBlock.remove();
@@ -73,7 +77,7 @@ export class CatalogRender implements ICatalog {
 
     renderProduct() {
         if (this.curCatalog !== null) this.curCatalog.remove();
-        this.wrapper.append(this.hashChain, buildProductPage(this.product));
+        this.wrapper.append(this.hashChain, this.search, buildProductPage(this.product));
         this.title.after(this.wrapper);
     }
 }

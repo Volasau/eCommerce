@@ -1,0 +1,8 @@
+#chain-wrap {
+  background-color: rgb(225, 225, 225);
+  color: #3b3b3b;
+}
+
+.chain:hover {
+  cursor: pointer;
+}

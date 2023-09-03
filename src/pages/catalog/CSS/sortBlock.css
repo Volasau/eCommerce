@@ -1,0 +1,14 @@
+#sequence-view {
+  display: flex;
+  flex-direction: row;
+  column-gap: 2rem;
+  justify-content: center;
+}
+
+.sequence-inner {
+  border-radius: 5px;
+}
+
+.sequence-inner:hover {
+  cursor: pointer;
+}

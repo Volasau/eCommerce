@@ -6,6 +6,7 @@ export interface ICatalog {
     title: HTMLElement;
     wrapper: HTMLDivElement;
     hashChain: HTMLDivElement;
+    search: HTMLDivElement;
     discount: HTMLDivElement;
     categoryName: HTMLDivElement;
     catalogViewer: HTMLDivElement;

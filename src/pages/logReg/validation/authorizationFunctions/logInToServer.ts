@@ -1,9 +1,9 @@
 import { IAuthorizationObject } from '../../../../core/interfaces/authorizationObjectInterface';
 import { constants } from '../../../../data/constants';
-import { ILoginRequest } from '../../../../core/interfaces/LoginRequest';
-import { CustomerLogin } from '../../../../server/CustomerLogin';
+import { ILoginRequest } from '../../../../core/interfaces/ginRequest';
 import { TokenManager } from '../../../../server/accessTokenPF';
-import { IAccessTokenResponse } from '../../../../core/interfaces/AccessTokenResponse';
+import { IAccessTokenResponse } from '../../../../core/interfaces/ccessTokenResponse';
+import { CustomerLogin } from '../../../../server/stomerLogin';
 
 export let bearer_token_pf = '';
 

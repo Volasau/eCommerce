@@ -1,5 +1,5 @@
 import { IProductResp } from '../../pages/catalog/interfaces/categoryResponse/categoryResponseInterface';
-import { ICreateCartRequest } from './CreateCartRequest';
+import { ICreateCartRequest } from './eateCartRequest';
 import { IAuthorizationObject } from './authorizationObjectInterface';
 import { IRegistrationObject } from './registrationObjectInterface';
 
@@ -17,7 +17,7 @@ export interface IConstants {
     projectKey: string;
     scope: string;
     requestDataCart: ICreateCartRequest;
-    regObj: IRegistrationObject;
+    registrationObj: IRegistrationObject;
     authorizationObject: IAuthorizationObject;
     modalPage: number;
     modalImages: string[];

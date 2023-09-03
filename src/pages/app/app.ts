@@ -8,6 +8,7 @@ import CatalogPage from '../catalog/catalog';
 import ProfilePage from '../profile/profile';
 import { constants } from '../../data/constants';
 import { logoutAction } from '../logReg/utils/logOutFunc.utils';
+import { routeProductPage } from '../catalog/listeners/routeProductPage';
 
 export const enum PageId {
     MainPage = 'main',
@@ -82,11 +83,36 @@ class App {
         }
     }
 
-    private enableRouteChange() {
+    private async enableRouteChange() {
         window.addEventListener('hashchange', async () => {
             this.checkAuthenticationAndRedirect();
-            const hash = window.location.hash.slice(2);
-            await App.renderNewPage(hash);
+            const h = window.location.hash;
+            if (h.split('/').length > 2) {
+                routeProductPage(h);
+                // console.log(h);
+                // if (h === '#Catalog/Electronics/Televisions/LG-2055UP760') {
+                //     constants.productList.forEach((product) => {
+                //         if (h.replace('-', ' ').includes(product.name)) {
+                //             console.log(h.replace('-', ' '));
+                //             console.log(1);
+                // const catalog = new CatalogPage('catalog');
+                // const cat = catalog.render();
+                // console.log(2);
+                // document.body.append(cat);
+                //             const prodList = document.querySelector('.full-catalog') as HTMLDivElement;
+                //             prodList.remove();
+                //             const title = document.querySelector('h1') as HTMLElement;
+                //             const productPage = new CatalogRender(product, title);
+                //             productPage.renderProduct();
+                //             const minusBut = document.querySelector('.minus-button') as HTMLButtonElement;
+                //             minusBut.disabled = true;
+                //             constants.modalImages = getImagesFromProduct(product);
+                //         }
+                //     });
+            } else {
+                const hash = window.location.hash.slice(2);
+                await App.renderNewPage(hash);
+            }
         });
     }
 

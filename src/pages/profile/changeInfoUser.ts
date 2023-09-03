@@ -1,4 +1,4 @@
-import { dataCustomer } from '../../server/CustomerLogin';
+import { dataCustomer } from '../../server/stomerLogin';
 import { InnerForm } from '../logReg/formClasses/classForm';
 
 export default function showChangeInfoUser(bodyProfile: HTMLElement) {
