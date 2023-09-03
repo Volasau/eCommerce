@@ -16,7 +16,7 @@ export const constants: IConstants = {
     requestDataCart: {
         currency: 'GBP',
     },
-    regObj: {
+    registrationObj: {
         email: '',
         password: '',
         name: '',
