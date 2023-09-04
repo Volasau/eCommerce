@@ -14,6 +14,7 @@ import { switchPhoto } from './pages/catalog/listeners/switchPhoto';
 import { addCategoryLink } from './pages/catalog/listeners/addCategoryLink';
 import { filterProductList } from './pages/catalog/listeners/filterProductList';
 import { searchByButton, searchByEnter } from './pages/catalog/listeners/searchProduct';
+import { sortByAlphabet, sortByCheap } from './pages/catalog/listeners/sortProducts';
 // function locationHashChanged() {
 //     if (location.hash) {
 //         const hash = location.hash.replace('#', '');
@@ -38,3 +39,5 @@ addCategoryLink();
 filterProductList();
 searchByButton();
 searchByEnter();
+sortByCheap();
+sortByAlphabet();
