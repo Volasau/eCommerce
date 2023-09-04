@@ -39,6 +39,7 @@ export function renderAddresses(dataCostomer: ICustomerResponse) {
         }
 
         const addressInstance = new Address(
+            address.id,
             addressTitle,
             addressDefaul,
             countryName,
