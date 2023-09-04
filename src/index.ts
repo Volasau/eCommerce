@@ -12,7 +12,7 @@ import { submitReg } from './pages/logReg/validation/authorizationFunctions/subm
 import { addSubLink } from './pages/catalog/listeners/addSubLink';
 import { switchPhoto } from './pages/catalog/listeners/switchPhoto';
 import { addCategoryLink } from './pages/catalog/listeners/addCategoryLink';
-
+import { filterProductList } from './pages/catalog/listeners/filterProductList';
 // function locationHashChanged() {
 //     if (location.hash) {
 //         const hash = location.hash.replace('#', '');
@@ -34,3 +34,4 @@ switchPhoto();
 addProductLink();
 addSubLink();
 addCategoryLink();
+filterProductList();
