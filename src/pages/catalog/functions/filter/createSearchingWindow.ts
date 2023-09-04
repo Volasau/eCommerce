@@ -9,6 +9,7 @@ export function createSearchingWindow() {
     search.placeholder = 'Search products';
     const magnifying = new Image();
     magnifying.src = urlImg;
+    magnifying.id = 'search-button';
     iconPart.append(magnifying);
     searchPart.append(search);
     wrapper.append(iconPart, searchPart);

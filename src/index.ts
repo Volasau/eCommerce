@@ -13,6 +13,7 @@ import { addSubLink } from './pages/catalog/listeners/addSubLink';
 import { switchPhoto } from './pages/catalog/listeners/switchPhoto';
 import { addCategoryLink } from './pages/catalog/listeners/addCategoryLink';
 import { filterProductList } from './pages/catalog/listeners/filterProductList';
+import { searchByButton, searchByEnter } from './pages/catalog/listeners/searchProduct';
 // function locationHashChanged() {
 //     if (location.hash) {
 //         const hash = location.hash.replace('#', '');
@@ -35,3 +36,5 @@ addProductLink();
 addSubLink();
 addCategoryLink();
 filterProductList();
+searchByButton();
+searchByEnter();
