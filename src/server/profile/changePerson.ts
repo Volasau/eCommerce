@@ -35,10 +35,6 @@ export class changeCustomerInfo {
                 body: JSON.stringify(requestData),
             });
             const res = await response.json();
-            // const index: number = res.addresses.length - 1;
-            // this.addressId = res.adresses[index].id;
-            // this.customerVersion = this.customerVersion + 1;
-            console.log('Address removed:', res, this.addressId);
             return res;
         } catch (error) {
             console.error('Error creating billing address:', error);
@@ -69,10 +65,6 @@ export class changeCustomerInfo {
                 body: JSON.stringify(requestData),
             });
             const res = await response.json();
-            // const index: number = res.addresses.length - 1;
-            // this.addressId = res.adresses[index].id;
-            // this.customerVersion = this.customerVersion + 1;
-            console.log('Address removed:', res);
             return res;
         } catch (error) {
             console.error('Error creating billing address:', error);
@@ -103,8 +95,6 @@ export class changeCustomerInfo {
                 body: JSON.stringify(requestData),
             });
             const res = await response.json();
-            // this.customerVersion = this.customerVersion + 1;
-            console.log('Birthdate created:', res);
             return res;
         } catch (error) {
             console.error('Error creating billing address:', error);
@@ -134,8 +124,6 @@ export class changeCustomerInfo {
                 body: JSON.stringify(requestData),
             });
             const res = await response.json();
-            // this.customerVersion = this.customerVersion + 1;
-            console.log('DD created:', res);
             return res;
         } catch (error) {
             console.error('Error creating billing address:', error);

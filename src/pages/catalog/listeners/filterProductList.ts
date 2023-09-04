@@ -18,7 +18,6 @@ export function filterProductList() {
 
             if (attribute && value) {
                 selectedFilters[attribute] = [value];
-                console.log(selectedFilters);
             }
             try {
                 const filteredProductsList: IProductResp[] = await filterProducts(selectedFilters);
@@ -30,8 +29,6 @@ export function filterProductList() {
                 filteredProductsList.forEach((prod) => {
                     prodList.append(buildProductItem(prod));
                 });
-
-                console.log('Filtered products:', filteredProductsList);
             } catch (error) {
                 console.error('Error filtering products:', error);
             }
@@ -68,7 +65,6 @@ async function filterProducts(selectedFilters: ISelectedFilters) {
     const queryString = filterParams.join('&');
 
     const fullUrl = `${productFilter.baseURL}&${queryString}`;
-    console.log('FullUrl:', fullUrl);
     const filteredProducts = await productFilter.filterByBrand(fullUrl);
     return filteredProducts;
 }

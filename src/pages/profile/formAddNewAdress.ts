@@ -155,7 +155,6 @@ export class AddressNew {
                             showToastError('Error ');
                         } else {
                             // Другие статусы ответа
-                            console.log('Address removal response:', response);
                             showToast('Add address');
                         }
                     } catch (error) {

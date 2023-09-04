@@ -105,7 +105,6 @@ export class ChangePassword {
 
             changePassworObj.passwordOld = passwordOld.inputHTML.value;
             changePassworObj.passwordNew = passwordNew.inputHTML.value;
-            console.log(changePassworObj);
             (async () => {
                 const customerManager = new changeCustomerPassword();
                 try {
@@ -122,7 +121,6 @@ export class ChangePassword {
                     } else {
                         // Другие статусы ответа
 
-                        console.log('Address removal response:', response);
                         showToast('Password changed');
                         await logoutAction();
                         if (changePasswordButton && changePasswordButton instanceof HTMLButtonElement) {

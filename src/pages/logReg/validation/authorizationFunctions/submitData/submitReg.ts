@@ -9,7 +9,6 @@ export function submitReg(obj: IRegistrationObject) {
         const target = event.target as HTMLButtonElement;
         if (target.id === 'registr-submit') {
             const page = document.getElementById('current-page') as HTMLDivElement;
-            console.log(page);
             const errorList = page.querySelectorAll('.error') as NodeList;
             const inputList = page.querySelectorAll('.input') as NodeList;
 

@@ -68,7 +68,6 @@ class ProfilePage extends Page {
 
         const homeLink = createLink('#/main', 'To return to the home page click ', 'Here🏠', '');
         this._container.append(title, bodyProfile, homeLink);
-        console.log(dataCustomer);
 
         return this._container;
     }

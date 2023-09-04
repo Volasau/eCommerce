@@ -41,15 +41,13 @@ export class TokenManager {
             });
 
             if (!response.ok) {
-                // throw new Error(`Token request failed with status: ${response.status}`);
                 const status = response.status;
                 handleServerErrorsLog(status, servError, email, password);
             }
 
             const data: IAccessTokenResponse = await response.json();
             const accessToken: string = data.access_token;
-            console.log('Access Token:', accessToken);
-            return data;
+            console.log(accessToken);
         } catch (error) {
             if (error === '400') {
                 console.error('Неверный логин или пароль');
