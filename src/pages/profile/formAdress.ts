@@ -1,4 +1,11 @@
+import { dataCustomer } from '../../server/customerLogin';
+import { changeCustomerAddAdress } from '../../server/profile/changeAddress';
+import { CustomerEditManager } from '../../server/profile/deletAddress';
 import { InnerForm } from '../logReg/formClasses/classForm';
+import { showToast, showToastError } from '../logReg/utils/funcToastify.utils';
+import { getISOCodeByCountryName } from '../logReg/utils/getISOCode.utils';
+import { logoutAction } from '../logReg/utils/logOutFunc.utils';
+import { changeAdress } from './interfaces/dataForUpdet';
 
 export class Address {
     container: HTMLDivElement;
@@ -6,8 +13,10 @@ export class Address {
     cityText: string;
     streetText: string;
     codePostText: string;
+    id: string;
 
     constructor(
+        id: string,
         title: string,
         defaultTitle: string,
         country: string,
@@ -19,10 +28,12 @@ export class Address {
         this.cityText = city;
         this.streetText = streetName;
         this.codePostText = postalCode;
-        this.container = this.createContainer(title, defaultTitle, country, city, streetName, postalCode);
+        this.id = id;
+        this.container = this.createContainer(id, title, defaultTitle, country, city, streetName, postalCode);
     }
 
     createContainer(
+        id: string,
         title: string,
         defaultTitle: string,
         country: string,
@@ -49,8 +60,10 @@ export class Address {
             addressPostalCode
         );
         const editButton = document.createElement('button');
-        editButton.textContent = 'Edit';
+        editButton.textContent = 'Edit✏️';
         editButton.classList.add('edit-button');
+        editButton.classList.add(`edit-${this.id}`);
+        editButton.id = `edit-${this.id}`;
         editButton.addEventListener('click', () => {
             editButton.disabled = true;
             const countryText = addressCountry.querySelector('span.adres__title')?.textContent || '';
@@ -86,72 +99,234 @@ export class Address {
         const street = new InnerForm('Street', 'text', 'street', 'street', 'street-error', streetNameText);
         const postCode = new InnerForm('Post Code', 'text', 'postcode', 'postcode', 'postcode-error', codePostText);
 
+        country.inputHTML.value = countryText;
+        city.inputHTML.value = cityText;
+        street.inputHTML.value = streetNameText;
+        postCode.inputHTML.value = codePostText;
+
         form.appendChild(country.create());
         form.appendChild(city.create());
         form.appendChild(street.create());
         form.appendChild(postCode.create());
 
-        const shippingCheckbox = document.createElement('input');
-        shippingCheckbox.type = 'checkbox';
-        shippingCheckbox.id = 'shipping';
-        form.appendChild(shippingCheckbox);
+        // const shippingCheckbox = document.createElement('input');
+        // shippingCheckbox.type = 'checkbox';
+        // shippingCheckbox.id = 'shipping';
+        // form.appendChild(shippingCheckbox);
 
-        const shippingLabel = document.createElement('label');
-        shippingLabel.htmlFor = 'shipping';
-        shippingLabel.textContent = 'Shipping';
-        form.appendChild(shippingLabel);
+        // const shippingLabel = document.createElement('label');
+        // shippingLabel.htmlFor = 'shipping';
+        // shippingLabel.textContent = 'Shipping';
+        // form.appendChild(shippingLabel);
 
-        const billingCheckbox = document.createElement('input');
-        billingCheckbox.type = 'checkbox';
-        billingCheckbox.id = 'billing';
-        form.appendChild(billingCheckbox);
+        // const billingCheckbox = document.createElement('input');
+        // billingCheckbox.type = 'checkbox';
+        // billingCheckbox.id = 'billing';
+        // form.appendChild(billingCheckbox);
 
-        const billingLabel = document.createElement('label');
-        billingLabel.htmlFor = 'billing';
-        billingLabel.textContent = 'Billing';
-        form.appendChild(billingLabel);
+        // const billingLabel = document.createElement('label');
+        // billingLabel.htmlFor = 'billing';
+        // billingLabel.textContent = 'Billing';
+        // form.appendChild(billingLabel);
 
-        const defaultCheckbox = document.createElement('input');
-        defaultCheckbox.type = 'checkbox';
-        defaultCheckbox.id = 'default';
-        form.appendChild(defaultCheckbox);
+        // const billingDefaultCheckbox = document.createElement('input');
+        // billingDefaultCheckbox.type = 'checkbox';
+        // billingDefaultCheckbox.id = 'billingDefault';
 
-        const defaultLabel = document.createElement('label');
-        defaultLabel.htmlFor = 'default';
-        defaultLabel.textContent = 'Default';
-        form.appendChild(defaultLabel);
+        // const billingDefaultLabel = document.createElement('label');
+        // billingDefaultLabel.htmlFor = 'billingDefault';
+        // billingDefaultLabel.textContent = 'Billing Default';
 
-        const btnEditL = document.querySelectorAll('.edit-button');
+        // form.appendChild(billingDefaultCheckbox);
+        // form.appendChild(billingDefaultLabel);
 
+        // const shippingDefaultCheckbox = document.createElement('input');
+        // shippingDefaultCheckbox.type = 'checkbox';
+        // shippingDefaultCheckbox.id = 'shippingDefault';
+
+        // const shippingDefaultLabel = document.createElement('label');
+        // shippingDefaultLabel.htmlFor = 'shippingDefault';
+        // shippingDefaultLabel.textContent = 'Shipping Default';
+
+        // form.appendChild(shippingDefaultCheckbox);
+        // form.appendChild(shippingDefaultLabel);
+
+        const btnEdit = document.querySelector(`.edit-${this.id}`);
+        ////////////////////////////////////////////////////////////////////////////BUTTON SAVE NEW ADDRES
         const saveButton = document.createElement('button');
+        saveButton.type = 'button';
+        saveButton.classList.add('btn_adress-card');
         saveButton.textContent = 'Save';
-        saveButton.addEventListener('click', () => {
-            btnEditL.forEach((btnEdit) => {
-                if (btnEdit && btnEdit instanceof HTMLButtonElement) {
-                    btnEdit.disabled = false;
+        saveButton.id = `save-${this.id}`;
+        saveButton.addEventListener('click', async () => {
+            const countryValue = country.inputHTML.value;
+            const cityValue = city.inputHTML.value;
+            const streetValue = street.inputHTML.value;
+            const postCodeValue = postCode.inputHTML.value;
+
+            // Проверяем, совпадают ли введенные значения с исходными данными
+            if (
+                countryValue === countryText &&
+                cityValue === cityText &&
+                streetValue === streetNameText &&
+                postCodeValue === codePostText
+            ) {
+                showToastError('No changes were made.');
+                return;
+            }
+
+            if (
+                !country.inputHTML.value ||
+                !city.inputHTML.value ||
+                !street.inputHTML.value ||
+                !postCode.inputHTML.value /*||*/
+                // (!billingDefaultCheckbox.checked &&
+                //     !shippingDefaultCheckbox.checked &&
+                //     !billingCheckbox.checked &&
+                //     !shippingCheckbox.checked)
+            ) {
+                showToastError('Please fill in all fields and select at least one checkbox before submitting.');
+                return;
+            }
+            //////////// запретим отправку формы если не проходит валидацую на стороне клиента
+            const errorSpans = form.querySelectorAll('.error');
+            let hasError = false;
+            errorSpans.forEach((errorSpan) => {
+                if (errorSpan.textContent) {
+                    hasError = true;
                 }
             });
+            if (hasError) {
+                showToastError('Please fix the errors before saving.');
+                return;
+            }
+
+            changeAdress.id = this.id;
+            changeAdress.country = country.inputHTML.value;
+            changeAdress.city = city.inputHTML.value;
+            changeAdress.street = street.inputHTML.value;
+            changeAdress.code = postCode.inputHTML.value;
+            // changeAdress.billingDefault = billingDefaultCheckbox.checked;
+            // changeAdress.shippingDefault = shippingDefaultCheckbox.checked;
+            // changeAdress.billing = billingCheckbox.checked;
+            // changeAdress.shipping = shippingCheckbox.checked;
+            const counry = await getISOCodeByCountryName(changeAdress.country);
+
+            (async () => {
+                const customerManager = new changeCustomerAddAdress(dataCustomer.version, this.id, dataCustomer.id);
+                try {
+                    const response = await customerManager.changeAddress(
+                        // this.id,
+                        counry,
+                        changeAdress.city,
+                        changeAdress.street,
+                        changeAdress.code
+                        // dataCostomer.version,
+                        // dataCostomer.id
+                    );
+
+                    // const deletBildAdress = await customerManager.deletBillingAddress();
+                    // const deletShipAdress = await customerManager.deletShippingAddress();
+                    // let billingAddress, shippingAddress, billingAddressDefault, shippingAddressDefault;
+
+                    // if (shippingCheckbox.checked) {
+                    //     shippingAddress = await customerManager.createShippingAddress();
+                    // }
+
+                    // if (billingCheckbox.checked) {
+                    //     billingAddress = await customerManager.createBillingAddress();
+                    // }
+
+                    // if (shippingDefaultCheckbox.checked) {
+                    //     shippingAddressDefault = await customerManager.setDefaultShippingAddress();
+                    // }
+
+                    // if (billingDefaultCheckbox.checked) {
+                    //     billingAddressDefault = await customerManager.setDefaultBillingAddress();
+                    // }
+                    if (
+                        response &&
+                        response.statusCode === 409 /*||*/
+                        // (billingAddress && billingAddress.statusCode === 409) ||
+                        // (shippingAddress && shippingAddress.statusCode === 409) ||
+                        /*(billingAddressDefault && billingAddressDefault.statusCode === 409) ||
+                        (shippingAddressDefault && shippingAddressDefault.statusCode === 409)*/
+                        // deletBildAdress.statusCode === 409 ||
+                        // deletShipAdress.statusCode === 409
+                    ) {
+                        showToastError('ERROR');
+                    } else {
+                        console.log('Address removal response:', response);
+                        showToast('CHANGE ADDRES');
+
+                        if (btnEdit && btnEdit instanceof HTMLButtonElement) {
+                            btnEdit.disabled = true;
+                        }
+                    }
+                } catch (error) {
+                    console.error('Error removing address:', error);
+                }
+            })();
+            console.log(changeAdress);
+
+            if (btnEdit && btnEdit instanceof HTMLButtonElement) {
+                btnEdit.disabled = false;
+            }
+            await logoutAction();
             form.remove();
         });
+
         const CancelButton = document.createElement('button');
+        CancelButton.type = 'button';
+        CancelButton.classList.add('btn_adress-card');
+
         CancelButton.textContent = 'Cancel';
         CancelButton.addEventListener('click', () => {
-            btnEditL.forEach((btnEdit) => {
-                if (btnEdit && btnEdit instanceof HTMLButtonElement) {
-                    btnEdit.disabled = false;
-                }
-            });
+            if (btnEdit && btnEdit instanceof HTMLButtonElement) {
+                btnEdit.disabled = false;
+            }
+
             form.remove();
         });
+
+        ////////////////////////////////////////////////////////////////////// BUTTON DELET
         const deletButton = document.createElement('button');
-        deletButton.textContent = 'Delet';
+        deletButton.type = 'button';
+        deletButton.classList.add('btn_adress-card');
+
+        deletButton.textContent = 'Delet❌';
+        deletButton.classList.add(`${this.id}`);
+        deletButton.id = `delete-${this.id}`;
         deletButton.addEventListener('click', () => {
-            btnEditL.forEach((btnEdit) => {
-                if (btnEdit && btnEdit instanceof HTMLButtonElement) {
-                    btnEdit.disabled = false;
+            ///////////////////////////////////// удаляем адресс с комерстулса//////
+            (async () => {
+                const customerManager = new CustomerEditManager();
+                try {
+                    const response = await customerManager.removeAddress(
+                        this.id,
+                        dataCustomer.version,
+                        dataCustomer.id
+                    );
+
+                    if (response.statusCode === 409) {
+                        showToastError('This address has already been deleted');
+                    } else {
+                        // Другие статусы ответа
+
+                        console.log('Address removal response:', response);
+                        showToast('This address DELETED');
+                        /////////////////////////////////////////////Выйти и перейти на страницу логина
+                        await logoutAction();
+
+                        if (btnEdit && btnEdit instanceof HTMLButtonElement) {
+                            btnEdit.disabled = true;
+                        }
+                    }
+                } catch (error) {
+                    console.error('Error removing address:', error);
                 }
-            });
-            // const address = dataCostomer.addresses.find((addr) => addr.id === this.addressId);
+            })();
+
             form.remove();
         });
         form.append(saveButton, CancelButton, deletButton);

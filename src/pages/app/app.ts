@@ -60,7 +60,7 @@ class App {
                 if (document.querySelector('a.profile__page.block')) {
                     page = new ProfilePage(idPage);
                 } else {
-                    page = new MainPage(idPage);
+                    page = new LoginPage(idPage);
                 }
                 break;
             default:

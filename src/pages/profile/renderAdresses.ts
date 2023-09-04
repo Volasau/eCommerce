@@ -1,4 +1,4 @@
-import { ICustomerResponse } from '../../core/interfaces/customerResponse';
+import { ICustomerResponse } from '../../core/interfaces/CustomerResponse';
 import { findCountryNameByISO } from './findCountry';
 import { Address } from './formAdress';
 
@@ -39,6 +39,7 @@ export function renderAddresses(dataCostomer: ICustomerResponse) {
         }
 
         const addressInstance = new Address(
+            address.id,
             addressTitle,
             addressDefaul,
             countryName,
