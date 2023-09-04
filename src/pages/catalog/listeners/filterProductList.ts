@@ -3,6 +3,8 @@ interface ISelectedFilters {
 }
 
 import { ProductFilter } from '../../../server/filter/filterCategory';
+import { buildProductItem } from '../functions/product/buildProductItem';
+import { IProductResp } from '../interfaces/categoryResponse/categoryResponseInterface';
 const productFilter = new ProductFilter();
 
 export function filterProductList() {
@@ -19,9 +21,17 @@ export function filterProductList() {
                 console.log(selectedFilters);
             }
             try {
-                const filteredProducts = await filterProducts(selectedFilters);
+                const filteredProductsList: IProductResp[] = await filterProducts(selectedFilters);
+                const quantity = document.querySelector('.quantity') as HTMLSpanElement;
+                quantity.textContent = `${filteredProductsList.length}`;
 
-                console.log('Filtered products:', filteredProducts);
+                const prodList = document.getElementById('product-view') as HTMLDivElement;
+                prodList.innerHTML = '';
+                filteredProductsList.forEach((prod) => {
+                    prodList.append(buildProductItem(prod));
+                });
+
+                console.log('Filtered products:', filteredProductsList);
             } catch (error) {
                 console.error('Error filtering products:', error);
             }

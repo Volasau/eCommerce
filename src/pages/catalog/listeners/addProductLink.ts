@@ -12,7 +12,7 @@ export function addProductLink() {
                         if (prod.id === prodID) {
                             document.location = `#/Catalog/${cat.name.en}/${sub.name.en}/${prod.name}`.replace(
                                 / /g,
-                                '-'
+                                '_'
                             );
                         }
                     });

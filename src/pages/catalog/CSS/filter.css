@@ -2,16 +2,17 @@
   display: flex;
   flex-direction: column;
   row-gap: 0.3rem;
+  width: 190px;
 }
 
 .select-inner,
 .select,
+.selBlock,
 #price-filter-block {
   width: 175px;
 }
 
 .inner,
-.brand-inner,
 #price-filter-name {
   font-size: large;
   font-weight: 600;

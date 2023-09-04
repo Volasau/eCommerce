@@ -1,10 +1,10 @@
 import { divHTML, selectHTML } from '../../classes/elementBuilder';
 
 export function createBrandFilterHTML(brandValues: string[]) {
-    const wrapper = divHTML.getElement('', 'brand-wrap', 'brand') as HTMLDivElement;
+    const wrapper = divHTML.getElement('', 'brand-wrap', 'filter') as HTMLDivElement;
     const brandName = divHTML.getElement('Brand', 'brand-name', 'brand-inner') as HTMLDivElement;
-    const selectBlock = divHTML.getElement('', 'brand-selectBlock', 'brand-inner') as HTMLDivElement;
-    const select = selectHTML.getElement('', 'brand-select', 'select') as HTMLSelectElement;
+    const selectBlock = divHTML.getElement('', 'brand-selectBlock', 'selBlock') as HTMLDivElement;
+    const select = selectHTML.getElement('', 'brand-select', 'select-inner') as HTMLSelectElement;
     const firstOption = document.createElement('option') as HTMLOptionElement;
     firstOption.text = '-please choose a brand-';
     select.add(firstOption);

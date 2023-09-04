@@ -13,7 +13,12 @@ import { addSubLink } from './pages/catalog/listeners/addSubLink';
 import { switchPhoto } from './pages/catalog/listeners/switchPhoto';
 import { addCategoryLink } from './pages/catalog/listeners/addCategoryLink';
 import { filterProductList } from './pages/catalog/listeners/filterProductList';
+<<<<<<< Updated upstream
 import { searchByButton, searchByEnter } from './pages/catalog/listeners/searchProduct';
+=======
+import { searchProduct } from './pages/catalog/listeners/searchProduct';
+
+>>>>>>> Stashed changes
 // function locationHashChanged() {
 //     if (location.hash) {
 //         const hash = location.hash.replace('#', '');
@@ -36,5 +41,9 @@ addProductLink();
 addSubLink();
 addCategoryLink();
 filterProductList();
+<<<<<<< Updated upstream
 searchByButton();
 searchByEnter();
+=======
+searchProduct();
+>>>>>>> Stashed changes

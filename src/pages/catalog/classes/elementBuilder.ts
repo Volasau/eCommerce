@@ -34,3 +34,4 @@ export const inpHTML = new ElementBuilder('input');
 export const imgHTML = new ElementBuilder('img');
 export const selectHTML = new ElementBuilder('select');
 export const spanHTML = new ElementBuilder('span');
+export const formHTML = new ElementBuilder('form');
