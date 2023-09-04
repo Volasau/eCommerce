@@ -2,7 +2,7 @@ import fetch from 'node-fetch';
 import App, { PageId } from '../pages/app/app';
 import { constants } from '../data/constants';
 import { showToast } from '../pages/logReg/utils/funcToastify.utils';
-import { ICustomerResponse } from '../core/interfaces/stomerResponse';
+import { ICustomerResponse } from '../core/interfaces/customerResponse';
 import { ILoginRequest } from '../core/interfaces/loginRequest';
 import { ICustomerSignInResponse } from '../core/interfaces/customerSignInResponse';
 
