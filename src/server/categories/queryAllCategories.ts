@@ -12,7 +12,6 @@ export class QueryAllCategories {
 
     async getCategories() {
         const access_token = await bearer_token_cc;
-        console.log(access_token);
         const response = await fetch(`${this.categoryEndpoint}/categories`, {
             method: 'GET',
             headers: {

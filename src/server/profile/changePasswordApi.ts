@@ -31,7 +31,6 @@ export class changeCustomerPassword {
             });
             const res = await response.json();
             this.customerVersion = this.customerVersion + 1;
-            console.log('Address removed:', res);
             return res;
         } catch (error) {
             console.error('Error creating billing address:', error);

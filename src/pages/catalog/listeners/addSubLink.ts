@@ -9,7 +9,7 @@ export function addSubLink() {
             categoryResponse.forEach((cat: ICategoryResp) => {
                 cat.subcategories.forEach((sub) => {
                     if (sub.id === subCategoryID) {
-                        document.location = `#/Catalog/${cat.name.en}/${sub.name.en}`.replace(/ /g, '-');
+                        document.location = `#/Catalog/${cat.name.en}/${sub.name.en}`.replace(/ /g, '_');
                     }
                 });
             });

@@ -204,7 +204,6 @@ export class QueryProductProjections {
                 };
                 return productObj;
             });
-            console.log(productsWithAttributes);
             return productsWithAttributes;
         } catch (error) {
             console.error('An error occurred:', error);

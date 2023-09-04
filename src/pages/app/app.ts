@@ -89,26 +89,6 @@ class App {
             const h = window.location.hash;
             if (h.split('/').length > 2) {
                 routeProductPage(h);
-                // console.log(h);
-                // if (h === '#Catalog/Electronics/Televisions/LG-2055UP760') {
-                //     constants.productList.forEach((product) => {
-                //         if (h.replace('-', ' ').includes(product.name)) {
-                //             console.log(h.replace('-', ' '));
-                //             console.log(1);
-                // const catalog = new CatalogPage('catalog');
-                // const cat = catalog.render();
-                // console.log(2);
-                // document.body.append(cat);
-                //             const prodList = document.querySelector('.full-catalog') as HTMLDivElement;
-                //             prodList.remove();
-                //             const title = document.querySelector('h1') as HTMLElement;
-                //             const productPage = new CatalogRender(product, title);
-                //             productPage.renderProduct();
-                //             const minusBut = document.querySelector('.minus-button') as HTMLButtonElement;
-                //             minusBut.disabled = true;
-                //             constants.modalImages = getImagesFromProduct(product);
-                //         }
-                //     });
             } else {
                 const hash = window.location.hash.slice(2);
                 await App.renderNewPage(hash);

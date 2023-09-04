@@ -13,12 +13,11 @@ export function searchByButton() {
                 try {
                     const data = await productSearch.searchProducts(searchWord);
                     const result = productForm(data);
-                    console.log('Product search results:', result);
+                    return result;
                 } catch (error) {
                     console.error('Error:', error);
                 }
             }
-            console.log(searchWord);
         }
     });
 }
@@ -35,7 +34,7 @@ export function searchByEnter() {
                 try {
                     const data = await productSearch.searchProducts(value);
                     const result = productForm(data);
-                    console.log('Product search results:', result);
+                    return result;
                 } catch (error) {
                     console.error('Error:', error);
                 }

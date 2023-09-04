@@ -55,7 +55,6 @@ export class CustomerManager {
             const customer: Customer = res.customer;
             this.customerId = customer.id;
             this.customerVersion = customer.version;
-            console.log('Customer created:', customer);
             return customer;
         } catch (error) {
             console.error('Error creating customer:', error);
@@ -87,7 +86,6 @@ export class CustomerManager {
             });
             const res = await response.json();
             this.customerVersion = this.customerVersion + 1;
-            console.log('Birthdate created:', res);
             return res;
         } catch (error) {
             console.error('Error creating billing address:', error);
@@ -125,7 +123,6 @@ export class CustomerManager {
             const res = await response.json();
             this.addressId = res.addresses[index].id;
             this.customerVersion = this.customerVersion + 1;
-            console.log('Address created:', res, this.addressId);
             return res;
         } catch (error) {
             console.error('Error creating billing address:', error);
@@ -159,7 +156,6 @@ export class CustomerManager {
             const billingAddress = await response.json();
             this.billingAddressId = billingAddress.id;
             this.customerVersion = this.customerVersion + 1;
-            console.log('Billing address created:', billingAddress);
             return billingAddress;
         } catch (error) {
             console.error('Error creating billing address:', error);
@@ -193,7 +189,6 @@ export class CustomerManager {
             const shippingAddress = await response.json();
             this.shippingAddressId = shippingAddress.id;
             this.customerVersion = this.customerVersion + 1;
-            console.log('Shipping address created:', shippingAddress);
             return shippingAddress;
         } catch (error) {
             console.error('Error creating shipping address:', error);
@@ -227,7 +222,6 @@ export class CustomerManager {
             const defaultBillingAddress = await response.json();
             this.defaultBillingAddressId = defaultBillingAddress.id;
             this.customerVersion = this.customerVersion + 1;
-            console.log('Default Billing address created:', defaultBillingAddress);
             return defaultBillingAddress;
         } catch (error) {
             console.error('Error creating billing address:', error);
@@ -261,7 +255,6 @@ export class CustomerManager {
             const defaultShippingAddress = await response.json();
             this.defaultShippingAddressId = defaultShippingAddress.id;
             this.customerVersion = this.customerVersion + 1;
-            console.log('Default Billing address created:', defaultShippingAddress);
             return defaultShippingAddress;
         } catch (error) {
             console.error('Error creating billing address:', error);

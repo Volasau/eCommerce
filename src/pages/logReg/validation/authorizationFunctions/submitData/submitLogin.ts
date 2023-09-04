@@ -8,7 +8,6 @@ export function submitLogin(obj: IAuthorizationObject) {
         const target = event.target as HTMLButtonElement;
         if (target.id === 'login-submit') {
             const page = document.getElementById('current-page') as HTMLDivElement;
-            console.log(page);
             const errorList = page.querySelectorAll('.error') as NodeList;
             const inputList = page.querySelectorAll('.input') as NodeList;
 

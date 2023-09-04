@@ -23,8 +23,6 @@ export class User {
         changeInfoUser.addEventListener('click', () => {
             changeInfoUser.disabled = true;
             showChangeInfoUser(userData);
-
-            // console.log('changeInfo');
         });
 
         userData.append(emails, userFirstName, userLastName, userBirthDate, changeInfoUser);

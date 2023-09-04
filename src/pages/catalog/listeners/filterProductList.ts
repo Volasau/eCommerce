@@ -3,6 +3,8 @@ interface ISelectedFilters {
 }
 
 import { ProductFilter } from '../../../server/filter/filterCategory';
+import { buildProductItem } from '../functions/product/buildProductItem';
+import { IProductResp } from '../interfaces/categoryResponse/categoryResponseInterface';
 const productFilter = new ProductFilter();
 
 export function filterProductList() {
@@ -16,12 +18,17 @@ export function filterProductList() {
 
             if (attribute && value) {
                 selectedFilters[attribute] = [value];
-                console.log(selectedFilters);
             }
             try {
-                const filteredProducts = await filterProducts(selectedFilters);
+                const filteredProductsList: IProductResp[] = await filterProducts(selectedFilters);
+                const quantity = document.querySelector('.quantity') as HTMLSpanElement;
+                quantity.textContent = `${filteredProductsList.length}`;
 
-                console.log('Filtered products:', filteredProducts);
+                const prodList = document.getElementById('product-view') as HTMLDivElement;
+                prodList.innerHTML = '';
+                filteredProductsList.forEach((prod) => {
+                    prodList.append(buildProductItem(prod));
+                });
             } catch (error) {
                 console.error('Error filtering products:', error);
             }
@@ -58,7 +65,6 @@ async function filterProducts(selectedFilters: ISelectedFilters) {
     const queryString = filterParams.join('&');
 
     const fullUrl = `${productFilter.baseURL}&${queryString}`;
-    console.log('FullUrl:', fullUrl);
     const filteredProducts = await productFilter.filterByBrand(fullUrl);
     return filteredProducts;
 }

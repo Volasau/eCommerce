@@ -29,4 +29,7 @@ export function openCategoryPage(cat: ICategoryResp) {
         const cat = item.firstChild as HTMLDivElement;
         cat.className = 'sub-card-dark';
     });
+
+    const categoryNameHTML = document.getElementById('category-name') as HTMLDivElement;
+    categoryNameHTML.textContent = `${cat.name.en}`;
 }

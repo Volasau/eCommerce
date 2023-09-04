@@ -39,4 +39,7 @@ export function openSubcategoryPage(subCateg: ISubCategoryResp) {
     arrow2.src = urlImg;
 
     hash.append(categoryName, arrow2, subCategoryName, arrow1);
+
+    const subNameHTML = document.getElementById('category-name') as HTMLDivElement;
+    subNameHTML.textContent = `${subCateg.name.en}`;
 }

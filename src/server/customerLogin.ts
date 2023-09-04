@@ -28,10 +28,6 @@ export class CustomerLogin {
                 body: JSON.stringify(requestData),
             });
 
-            if (!response.ok) {
-                console.log('Login error');
-            }
-
             if (response.status === 200) {
                 showToast('You are logged in!');
                 const newUrl = window.location.href.replace(`#/${PageId.LoginPage}`, `#/${PageId.MainPage}`);
@@ -50,8 +46,6 @@ export class CustomerLogin {
             }
 
             const data: ICustomerSignInResponse = await response.json();
-            console.log('Response:', data.customer.firstName);
-            console.log('Response:', data.customer);
             dataCustomer = data.customer;
             return data.customer.firstName;
         } catch (error) {

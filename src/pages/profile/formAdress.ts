@@ -256,7 +256,6 @@ export class Address {
                     ) {
                         showToastError('ERROR');
                     } else {
-                        console.log('Address removal response:', response);
                         showToast('CHANGE ADDRES');
 
                         if (btnEdit && btnEdit instanceof HTMLButtonElement) {
@@ -267,7 +266,6 @@ export class Address {
                     console.error('Error removing address:', error);
                 }
             })();
-            console.log(changeAdress);
 
             if (btnEdit && btnEdit instanceof HTMLButtonElement) {
                 btnEdit.disabled = false;
@@ -313,7 +311,6 @@ export class Address {
                     } else {
                         // Другие статусы ответа
 
-                        console.log('Address removal response:', response);
                         showToast('This address DELETED');
                         /////////////////////////////////////////////Выйти и перейти на страницу логина
                         await logoutAction();

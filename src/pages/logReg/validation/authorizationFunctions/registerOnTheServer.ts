@@ -11,7 +11,6 @@ import {
 } from '../../utils/customerManager.utils';
 
 export async function registerOnTheServer(obj: IRegistrationObject) {
-    console.log(obj);
     const customerManager: IConsolidatedData = await customerManagerData(obj);
     const addressBilling: IAddressBilling = customerManager.addressBilling;
     const addressShipping: IAddressShipping = customerManager.addressShipping;

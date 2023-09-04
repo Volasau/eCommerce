@@ -66,7 +66,6 @@ export function productForm(data: any) {
     constants.productList = [];
     productsWithAttributes.forEach((product: IProductResp) => {
         constants.productList.push(product);
-        console.log('constants:', constants.productList);
     });
     return productsWithAttributes;
 }

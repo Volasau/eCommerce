@@ -4,7 +4,7 @@ import { openSubcategoryPage } from '../functions/catalog/openSubcategoryPage';
 import { openCategoryPage } from '../functions/catalog/openCategoryPage';
 
 export function routeProductPage(locHash: string) {
-    const localHash = locHash.replace(/-/g, ' ');
+    const localHash = locHash.replace(/_/g, ' ');
 
     categoryResponse.forEach((cat) => {
         cat.subcategories.forEach((sub) => {

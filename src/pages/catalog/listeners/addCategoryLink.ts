@@ -8,7 +8,7 @@ export function addCategoryLink() {
             const categoryId = target.id.split('-').slice(0, -1).join('-');
             categoryResponse.forEach((cat: ICategoryResp) => {
                 if (cat.id === categoryId) {
-                    document.location = `#/Catalog/${cat.name.en}`.replace(/ /g, '-');
+                    document.location = `#/Catalog/${cat.name.en}`.replace(/ /g, '_');
                 }
             });
         }

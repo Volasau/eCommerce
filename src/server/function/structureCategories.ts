@@ -17,7 +17,6 @@ export async function categoryStructuring() {
 
     try {
         const categories = await allCategories.getCategories();
-        console.log('Categories:', categories);
 
         const products = await allProducts.getAllProducts();
         const productIds: string[] = products.map((product: { id: string }) => product.id);
