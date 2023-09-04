@@ -14,6 +14,9 @@ export function validateThisInput(input: HTMLInputElement, error: HTMLElement) {
                 startEmailValidation(target.value, error);
                 break;
             case 'password':
+            case 'passwordOld':
+            case 'passwordNew':
+            case 'passwordRet':
                 startPasswordValidation(target.value, error);
                 break;
             case 'name':
