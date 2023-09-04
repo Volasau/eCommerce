@@ -12,3 +12,18 @@ export function showToast(message: string) {
         },
     }).showToast();
 }
+
+export function showToastError(message: string) {
+    Toastify({
+        text: message,
+        duration: 3000,
+        close: true,
+        style: {
+            background: '#FF0000',
+        },
+        offset: {
+            x: 150,
+            y: 150,
+        },
+    }).showToast();
+}
