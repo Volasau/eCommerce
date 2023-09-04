@@ -48,6 +48,7 @@ export class TokenManager {
             const data: IAccessTokenResponse = await response.json();
             const accessToken: string = data.access_token;
             console.log(accessToken);
+            return data;
         } catch (error) {
             if (error === '400') {
                 console.error('Неверный логин или пароль');
