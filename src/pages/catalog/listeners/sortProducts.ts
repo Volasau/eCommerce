@@ -21,6 +21,11 @@ export function sortByCheap() {
                 });
                 const quantity = document.querySelector('.quantity') as HTMLSpanElement;
                 quantity.textContent = `${result.length}`;
+
+                const alpha = document.getElementById('alpha-view') as HTMLButtonElement;
+                alpha.style.color = '';
+                target.style.color = 'rgb(88, 200, 245)';
+                target.style.color = 'rgb(88, 200, 245)';
             } catch (error) {
                 console.error('Error:', error);
             }
@@ -45,6 +50,11 @@ export function sortByAlphabet() {
                 });
                 const quantity = document.querySelector('.quantity') as HTMLSpanElement;
                 quantity.textContent = `${result.length}`;
+
+                const cheap = document.getElementById('cheap-view') as HTMLButtonElement;
+                cheap.style.color = '';
+                target.style.color = 'rgb(88, 200, 245)';
+                target.style.color = 'rgb(88, 200, 245)';
             } catch (error) {
                 console.error('Error:', error);
             }
