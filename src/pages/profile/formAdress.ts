@@ -129,27 +129,27 @@ export class Address {
         // billingLabel.textContent = 'Billing';
         // form.appendChild(billingLabel);
 
-        // const billingDefaultCheckbox = document.createElement('input');
-        // billingDefaultCheckbox.type = 'checkbox';
-        // billingDefaultCheckbox.id = 'billingDefault';
+        const billingDefaultCheckbox = document.createElement('input');
+        billingDefaultCheckbox.type = 'checkbox';
+        billingDefaultCheckbox.id = 'billingDefault';
 
-        // const billingDefaultLabel = document.createElement('label');
-        // billingDefaultLabel.htmlFor = 'billingDefault';
-        // billingDefaultLabel.textContent = 'Billing Default';
+        const billingDefaultLabel = document.createElement('label');
+        billingDefaultLabel.htmlFor = 'billingDefault';
+        billingDefaultLabel.textContent = 'Billing Default';
 
-        // form.appendChild(billingDefaultCheckbox);
-        // form.appendChild(billingDefaultLabel);
+        form.appendChild(billingDefaultCheckbox);
+        form.appendChild(billingDefaultLabel);
 
-        // const shippingDefaultCheckbox = document.createElement('input');
-        // shippingDefaultCheckbox.type = 'checkbox';
-        // shippingDefaultCheckbox.id = 'shippingDefault';
+        const shippingDefaultCheckbox = document.createElement('input');
+        shippingDefaultCheckbox.type = 'checkbox';
+        shippingDefaultCheckbox.id = 'shippingDefault';
 
-        // const shippingDefaultLabel = document.createElement('label');
-        // shippingDefaultLabel.htmlFor = 'shippingDefault';
-        // shippingDefaultLabel.textContent = 'Shipping Default';
+        const shippingDefaultLabel = document.createElement('label');
+        shippingDefaultLabel.htmlFor = 'shippingDefault';
+        shippingDefaultLabel.textContent = 'Shipping Default';
 
-        // form.appendChild(shippingDefaultCheckbox);
-        // form.appendChild(shippingDefaultLabel);
+        form.appendChild(shippingDefaultCheckbox);
+        form.appendChild(shippingDefaultLabel);
 
         const btnEdit = document.querySelector(`.edit-${this.id}`);
         ////////////////////////////////////////////////////////////////////////////BUTTON SAVE NEW ADDRES
@@ -163,17 +163,18 @@ export class Address {
             const cityValue = city.inputHTML.value;
             const streetValue = street.inputHTML.value;
             const postCodeValue = postCode.inputHTML.value;
-
+            // const shippingValue = shippingDefaultCheckbox.checked
+            // const shippingValue = billingDefaultCheckbox.checked
             // Проверяем, совпадают ли введенные значения с исходными данными
-            if (
-                countryValue === countryText &&
-                cityValue === cityText &&
-                streetValue === streetNameText &&
-                postCodeValue === codePostText
-            ) {
-                showToastError('No changes were made.');
-                return;
-            }
+            // if (
+            //     countryValue === countryText &&
+            //     cityValue === cityText &&
+            //     streetValue === streetNameText &&
+            //     postCodeValue === codePostText
+            // ) {
+            //     showToastError('No changes were made.');
+            //     return;
+            // }
 
             if (
                 !country.inputHTML.value ||
@@ -206,8 +207,8 @@ export class Address {
             changeAdress.city = city.inputHTML.value;
             changeAdress.street = street.inputHTML.value;
             changeAdress.code = postCode.inputHTML.value;
-            // changeAdress.billingDefault = billingDefaultCheckbox.checked;
-            // changeAdress.shippingDefault = shippingDefaultCheckbox.checked;
+            changeAdress.billingDefault = billingDefaultCheckbox.checked;
+            changeAdress.shippingDefault = shippingDefaultCheckbox.checked;
             // changeAdress.billing = billingCheckbox.checked;
             // changeAdress.shipping = shippingCheckbox.checked;
             const counry = await getISOCodeByCountryName(changeAdress.country);
@@ -215,19 +216,27 @@ export class Address {
             (async () => {
                 const customerManager = new changeCustomerAddAdress(dataCustomer.version, this.id, dataCustomer.id);
                 try {
-                    const response = await customerManager.changeAddress(
-                        // this.id,
-                        counry,
-                        changeAdress.city,
-                        changeAdress.street,
-                        changeAdress.code
-                        // dataCostomer.version,
-                        // dataCostomer.id
-                    );
-
+                    let response;
+                    if (
+                        countryValue !== countryText &&
+                        cityValue !== cityText &&
+                        streetValue !== streetNameText &&
+                        postCodeValue !== codePostText
+                    ) {
+                        response = await customerManager.changeAddress(
+                            // this.id,
+                            counry,
+                            changeAdress.city,
+                            changeAdress.street,
+                            changeAdress.code
+                            // dataCostomer.version,
+                            // dataCostomer.id
+                        );
+                    }
                     // const deletBildAdress = await customerManager.deletBillingAddress();
                     // const deletShipAdress = await customerManager.deletShippingAddress();
-                    // let billingAddress, shippingAddress, billingAddressDefault, shippingAddressDefault;
+                    let billingAddressDefault, shippingAddressDefault;
+                    /*billingAddress, shippingAddress,*/
 
                     // if (shippingCheckbox.checked) {
                     //     shippingAddress = await customerManager.createShippingAddress();
@@ -237,20 +246,19 @@ export class Address {
                     //     billingAddress = await customerManager.createBillingAddress();
                     // }
 
-                    // if (shippingDefaultCheckbox.checked) {
-                    //     shippingAddressDefault = await customerManager.setDefaultShippingAddress();
-                    // }
+                    if (shippingDefaultCheckbox.checked) {
+                        shippingAddressDefault = await customerManager.setDefaultShippingAddress();
+                    }
 
-                    // if (billingDefaultCheckbox.checked) {
-                    //     billingAddressDefault = await customerManager.setDefaultBillingAddress();
-                    // }
+                    if (billingDefaultCheckbox.checked) {
+                        billingAddressDefault = await customerManager.setDefaultBillingAddress();
+                    }
                     if (
-                        response &&
-                        response.statusCode === 409 /*||*/
+                        (response && response.statusCode === 409) ||
                         // (billingAddress && billingAddress.statusCode === 409) ||
                         // (shippingAddress && shippingAddress.statusCode === 409) ||
-                        /*(billingAddressDefault && billingAddressDefault.statusCode === 409) ||
-                        (shippingAddressDefault && shippingAddressDefault.statusCode === 409)*/
+                        (billingAddressDefault && billingAddressDefault.statusCode === 409) ||
+                        (shippingAddressDefault && shippingAddressDefault.statusCode === 409)
                         // deletBildAdress.statusCode === 409 ||
                         // deletShipAdress.statusCode === 409
                     ) {
@@ -312,7 +320,7 @@ export class Address {
                         // Другие статусы ответа
 
                         showToast('This address DELETED');
-                        /////////////////////////////////////////////Выйти и перейти на страницу логина
+                        //Выйти и перейти на страницу логина
                         await logoutAction();
 
                         if (btnEdit && btnEdit instanceof HTMLButtonElement) {
