@@ -15,6 +15,7 @@ import { addCategoryLink } from './pages/catalog/listeners/addCategoryLink';
 import { filterProductList } from './pages/catalog/listeners/filterProductList';
 import { searchByButton, searchByEnter } from './pages/catalog/listeners/searchProduct';
 import { sortByAlphabet, sortByCheap } from './pages/catalog/listeners/sortProducts';
+import { showFilter } from './pages/catalog/listeners/showFilter';
 // function locationHashChanged() {
 //     if (location.hash) {
 //         const hash = location.hash.replace('#', '');
@@ -41,3 +42,4 @@ searchByButton();
 searchByEnter();
 sortByCheap();
 sortByAlphabet();
+showFilter();
