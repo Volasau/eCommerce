@@ -11,7 +11,7 @@ export class ProductSearchManager {
     }
 
     async searchProducts(query: string) {
-        const fullUrl = `${this.baseURL}?limit=60&text.en=${encodeURIComponent(query)}`;
+        const fullUrl = `${this.baseURL}?fuzzy=true&limit=60&text.en=${encodeURIComponent(query)}`;
         const headers = {
             Authorization: `Bearer ${await bearer_token_cc}`,
         };
