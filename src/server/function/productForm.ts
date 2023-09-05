@@ -14,7 +14,7 @@ import { IProductResp } from '../../pages/catalog/interfaces/categoryResponse/ca
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function productForm(data: any) {
-    const productsWithAttributes = data.results.map((product: IProductProjection) => {
+    const productsWithAttributes: IProductResp[] = data.results.map((product: IProductProjection) => {
         const categoriesArr: ICategories[] = [...product.categories];
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const variantObjs: any[] = [];
