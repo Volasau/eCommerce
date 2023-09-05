@@ -12,3 +12,12 @@
 .sequence-inner:hover {
   cursor: pointer;
 }
+
+@media screen and (max-width: 640px) {
+  #sequence-view {
+    display: flex;
+    flex-direction: column;
+    row-gap: 0.5rem;
+    justify-content: center;
+  }
+}

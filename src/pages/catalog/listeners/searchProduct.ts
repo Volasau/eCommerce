@@ -13,7 +13,7 @@ export function searchByButton() {
                 try {
                     const data = await productSearch.searchProducts(searchWord);
                     const result = productForm(data);
-                    return result;
+                    console.log(result);
                 } catch (error) {
                     console.error('Error:', error);
                 }
