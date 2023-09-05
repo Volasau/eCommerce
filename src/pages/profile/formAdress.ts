@@ -218,9 +218,9 @@ export class Address {
                 try {
                     let response;
                     if (
-                        countryValue !== countryText &&
-                        cityValue !== cityText &&
-                        streetValue !== streetNameText &&
+                        countryValue !== countryText ||
+                        cityValue !== cityText ||
+                        streetValue !== streetNameText ||
                         postCodeValue !== codePostText
                     ) {
                         response = await customerManager.changeAddress(
