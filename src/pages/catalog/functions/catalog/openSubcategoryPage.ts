@@ -1,9 +1,13 @@
 import urlImg from '../../../../assets/icons/arrow.svg';
 import { categoryResponse } from '../../../../server/function/structureCategories';
 import { CatalogRender } from '../../classes/catalogRenderClass';
-import { spanHTML } from '../../classes/elementBuilder';
+import { buttonHTML, spanHTML } from '../../classes/elementBuilder';
+// import { ICategory } from '../../interfaces/categoryInterface';
 import { ISubCategoryResp } from '../../interfaces/categoryResponse/categoryResponseInterface';
+// import { getAllAttrFromProducts } from '../filter/getAllAttrFromProducts';
 import { getSubCategoryWithAllAttr } from '../filter/getSubCategoryWithAllAttr';
+import { buildProductItem } from '../product/buildProductItem';
+// import buildCategoryItem from './buildCategoryItem';
 
 export function openSubcategoryPage(subCateg: ISubCategoryResp) {
     const title = document.querySelector('h1') as HTMLElement;
@@ -41,5 +45,16 @@ export function openSubcategoryPage(subCateg: ISubCategoryResp) {
     hash.append(categoryName, arrow2, subCategoryName, arrow1);
 
     const subNameHTML = document.getElementById('category-name') as HTMLDivElement;
+    const filterBut = buttonHTML.getElement('FILTER', 'filter-but', 'filt') as HTMLButtonElement;
     subNameHTML.textContent = `${subCateg.name.en}`;
+    subNameHTML.append(filterBut);
+
+    const prodList = document.getElementById('product-view') as HTMLDivElement;
+    prodList.innerHTML = '';
+    subCateg.products.forEach((prod) => {
+        prodList.append(buildProductItem(prod));
+    });
+
+    const quantity = document.querySelector('.quantity') as HTMLSpanElement;
+    quantity.textContent = `${subCateg.products.length}`;
 }
