@@ -166,3 +166,8 @@ button[type="button"].btn_adress-delet:hover,
 .user__container {
   margin-bottom: 10px;
 }
+
+.text__information {
+  font-size: large;
+  color: #0b2bdf;
+}

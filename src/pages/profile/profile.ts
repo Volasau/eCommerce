@@ -17,6 +17,10 @@ class ProfilePage extends Page {
 
     async render() {
         const title = this.createHeaderTitle(this.textObject);
+        const textInfo = document.createElement('div');
+        textInfo.classList.add('text__information');
+        textInfo.innerHTML = 'After any changes, you must login again!';
+
         const bodyProfile = document.createElement('div');
         bodyProfile.classList.add('profile__container');
         const userContaner = document.createElement('div');
@@ -47,7 +51,6 @@ class ProfilePage extends Page {
 
         const addressesContainer = document.createElement('div');
         addressesContainer.classList.add('adresAll__container');
-
         const addresses = renderAddresses(dataCustomer);
 
         const addAddressButton = document.createElement('button');
@@ -67,7 +70,7 @@ class ProfilePage extends Page {
         bodyProfile.appendChild(addressesContainer);
 
         const homeLink = createLink('#/main', 'To return to the home page click ', 'Here🏠', '');
-        this._container.append(title, bodyProfile, homeLink);
+        this._container.append(title, textInfo, bodyProfile, homeLink);
 
         return this._container;
     }
