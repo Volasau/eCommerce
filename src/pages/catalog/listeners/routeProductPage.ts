@@ -9,14 +9,17 @@ export function routeProductPage(locHash: string) {
     categoryResponse.forEach((cat) => {
         cat.subcategories.forEach((sub) => {
             sub.products.forEach((prod) => {
+                const catName = cat.name.en.toLocaleLowerCase();
+                const subName = sub.name.en.toLocaleLowerCase();
+                const prodName = prod.name.toLocaleLowerCase();
                 switch (localHash) {
-                    case `#/Catalog/${cat.name.en}/${sub.name.en}/${prod.name}`:
+                    case `#/catalog/${catName}/${subName}/${prodName}`:
                         openProductPage(prod);
                         break;
-                    case `#/Catalog/${cat.name.en}/${sub.name.en}`:
+                    case `#/catalog/${catName}/${subName}`:
                         openSubcategoryPage(sub);
                         break;
-                    case `#/Catalog/${cat.name.en}`:
+                    case `#/catalog/${catName}`:
                         openCategoryPage(cat);
                         break;
                 }

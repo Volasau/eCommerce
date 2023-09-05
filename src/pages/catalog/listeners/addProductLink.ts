@@ -10,10 +10,10 @@ export function addProductLink() {
                 cat.subcategories.forEach((sub) => {
                     sub.products.forEach((prod) => {
                         if (prod.id === prodID) {
-                            document.location = `#/Catalog/${cat.name.en}/${sub.name.en}/${prod.name}`.replace(
-                                / /g,
-                                '_'
-                            );
+                            const catName = cat.name.en.toLocaleLowerCase();
+                            const subName = sub.name.en.toLocaleLowerCase();
+                            const prodName = prod.name.toLocaleLowerCase();
+                            document.location = `#/catalog/${catName}/${subName}/${prodName}`.replace(/ /g, '_');
                         }
                     });
                 });
