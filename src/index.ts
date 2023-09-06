@@ -17,7 +17,7 @@ import { searchByButton, searchByEnter } from './pages/catalog/listeners/searchP
 import { sortByAlphabet, sortByCheap } from './pages/catalog/listeners/sortProducts';
 import { showFilter } from './pages/catalog/listeners/showFilter';
 import { switchPageByHashChain } from './pages/catalog/listeners/switchPageByHashChain';
-import { resetFilter } from './pages/catalog/listeners/resetFilter';
+// import { resetFilter } from './pages/catalog/listeners/resetFilter';
 // function locationHashChanged() {
 //     if (location.hash) {
 //         const hash = location.hash.replace('#', '');
@@ -46,4 +46,4 @@ sortByCheap();
 sortByAlphabet();
 showFilter();
 switchPageByHashChain();
-resetFilter();
+// resetFilter();

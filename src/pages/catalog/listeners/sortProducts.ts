@@ -55,6 +55,7 @@ export function sortByAlphabet() {
 
 function mainCatalogSort(result: IProductResp[]) {
     const prodList = document.getElementById('product-view') as HTMLDivElement;
+    console.log(prodList);
     prodList.innerHTML = '';
     result.forEach((prod) => {
         prodList.append(buildProductItem(prod));
@@ -71,12 +72,14 @@ function subCategorySort(result: IProductResp[], currCategoryLastTagId: string) 
         const prodList = document.getElementById('product-view') as HTMLDivElement;
         prodList.innerHTML = '';
         result.forEach((prod) => {
+            console.log(prod.categories[0].id);
             if (catTest.includes(prod.categories[0].id)) {
                 prodList.append(buildProductItem(prod));
             }
         });
     } else {
         const prodList = document.getElementById('product-view') as HTMLDivElement;
+        console.log(prodList);
         prodList.innerHTML = '';
         result.forEach((prod) => {
             if (prod.categories[0].id === currCategoryId) {
@@ -99,6 +102,7 @@ function categoryRelatedIds() {
                 const currSubId: string = subId.join('-');
                 subIdsArr.push(currSubId);
             }
+            console.log(subIdsArr);
             return subIdsArr;
         }
     }
