@@ -16,7 +16,7 @@ class ErrorPage extends Page {
         this.text = '404: Error! The page was not found.';
     }
 
-    async render() {
+    async render(): Promise<HTMLElement> {
         const title = this.createHeaderTitle(this.text);
         const mainLink = createLink('#/main', 'To return to the home page click ', 'HOME', '');
         this._container.append(title, mainLink);

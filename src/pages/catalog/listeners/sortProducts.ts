@@ -1,5 +1,6 @@
 import { productForm } from '../../../server/function/productForm';
 import { ProductSort } from '../../../server/sort/sort';
+import { changeQuantity } from '../functions/catalog/changeQuantity';
 import { buildProductItem } from '../functions/product/buildProductItem';
 import { IProductResp } from '../interfaces/categoryResponse/categoryResponseInterface';
 
@@ -20,7 +21,7 @@ export function sortByCheap() {
                 } else {
                     subCategorySort(result, currCategoryLastTagId);
                 }
-                sortAlphaStyle(result, target);
+                sort(target);
             } catch (error) {
                 console.error('Error:', error);
             }
@@ -45,7 +46,7 @@ export function sortByAlphabet() {
                 } else {
                     subCategorySort(result, currCategoryLastTagId);
                 }
-                sortCheapStyle(result, target);
+                sort(target);
             } catch (error) {
                 console.error('Error:', error);
             }
@@ -108,22 +109,12 @@ function categoryRelatedIds() {
     }
 }
 
-function sortAlphaStyle(result: IProductResp[], target: HTMLButtonElement) {
-    const quantity = document.querySelector('.quantity') as HTMLSpanElement;
-    quantity.textContent = `${result.length}`;
+function sort(target: HTMLButtonElement) {
+    changeQuantity();
 
-    const alpha = document.getElementById('alpha-view') as HTMLButtonElement;
-    alpha.style.color = '';
-    target.style.color = 'rgb(88, 200, 245)';
-    target.style.color = 'rgb(88, 200, 245)';
-}
-
-function sortCheapStyle(result: IProductResp[], target: HTMLButtonElement) {
-    const quantity = document.querySelector('.quantity') as HTMLSpanElement;
-    quantity.textContent = `${result.length}`;
-
-    const cheap = document.getElementById('cheap-view') as HTMLButtonElement;
-    cheap.style.color = '';
+    const choice = target.textContent === 'CHEAP' ? 'alpha' : 'cheap';
+    const secondBut = document.getElementById(`${choice}-view`) as HTMLButtonElement;
+    secondBut.style.color = '';
     target.style.color = 'rgb(88, 200, 245)';
     target.style.color = 'rgb(88, 200, 245)';
 }
