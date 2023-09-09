@@ -53,15 +53,18 @@ export class ProductFilter {
                     variantObjs.push(variantObj);
                 });
 
-                const allVarAttrArr: IAttributes[] = [
-                    ...variantObjs.reduce((acc, variant) => [...acc, ...variant.variantAttr], []),
-                ];
-                const allVarImgArr: IImages[] = [
-                    ...variantObjs.reduce((acc, variant) => [...acc, ...variant.variantImg], []),
-                ];
-                const allVarPricesArr: IPricesStr[] = [
-                    ...variantObjs.reduce((acc, variant) => [...acc, ...variant.variantPrices], []),
-                ];
+                const allVarAttrArr: IAttributes[] = variantObjs.reduce(
+                    (acc, variant) => [...acc, ...variant.variantAttr],
+                    []
+                );
+                const allVarImgArr: IImages[] = variantObjs.reduce(
+                    (acc, variant) => [...acc, ...variant.variantImg],
+                    []
+                );
+                const allVarPricesArr: IPricesStr[] = variantObjs.reduce(
+                    (acc, variant) => [...acc, ...variant.variantPrices],
+                    []
+                );
 
                 const allVariants: IAllVariants[] = [
                     {
