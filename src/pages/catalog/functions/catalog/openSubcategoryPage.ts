@@ -2,12 +2,9 @@ import urlImg from '../../../../assets/icons/arrow.svg';
 import { categoryResponse } from '../../../../server/function/structureCategories';
 import { CatalogRender } from '../../classes/catalogRenderClass';
 import { buttonHTML, spanHTML } from '../../classes/elementBuilder';
-// import { ICategory } from '../../interfaces/categoryInterface';
 import { ISubCategoryResp } from '../../interfaces/categoryResponse/categoryResponseInterface';
-// import { getAllAttrFromProducts } from '../filter/getAllAttrFromProducts';
 import { getSubCategoryWithAllAttr } from '../filter/getSubCategoryWithAllAttr';
 import { buildProductItem } from '../product/buildProductItem';
-// import buildCategoryItem from './buildCategoryItem';
 
 export function openSubcategoryPage(subCateg: ISubCategoryResp) {
     const title = document.querySelector('h1') as HTMLElement;

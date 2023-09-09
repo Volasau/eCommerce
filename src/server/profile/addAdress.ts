@@ -12,14 +12,7 @@ export class CustomerAddAdress {
         this.apiUrlCustomers = constants.apiUrlCustomers;
         this.addressId = '';
     }
-    async addAddress(
-        country: string,
-        city: string,
-        street: string,
-        postalCode: string,
-        // customerVersion: number,
-        customerId: string
-    ) {
+    async addAddress(country: string, city: string, street: string, postalCode: string, customerId: string) {
         const requestData = {
             version: this.customerVersion,
             actions: [
@@ -182,7 +175,6 @@ export class CustomerAddAdress {
             });
 
             const defaultShippingAddress = await response.json();
-            // this.defaultShippingAddressId = defaultShippingAddress.id;
             this.customerVersion = this.customerVersion + 1;
 
             return defaultShippingAddress;

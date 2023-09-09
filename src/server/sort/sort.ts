@@ -1,7 +1,6 @@
 import fetch from 'node-fetch';
 import { constants } from '../../data/constants';
 import { bearer_token_cc } from '../..';
-// import { productForm } from '../function/productForm';
 
 export class ProductSort {
     projectKey: string;

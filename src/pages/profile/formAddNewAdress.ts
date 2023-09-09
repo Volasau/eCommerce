@@ -85,7 +85,6 @@ export class AddressNew {
         submitButton.textContent = 'Submit';
         submitButton.type = 'button';
         submitButton.addEventListener('click', async () => {
-            //////////// запретим отправку формы если не проходит валидацую на стороне клиента
             const errorSpans = form.querySelectorAll('.error');
             let hasError = false;
             errorSpans.forEach((errorSpan) => {
@@ -154,7 +153,6 @@ export class AddressNew {
                         ) {
                             showToastError('Error ');
                         } else {
-                            // Другие статусы ответа
                             showToast('Add address');
                         }
                     } catch (error) {
@@ -192,6 +190,6 @@ export class AddressNew {
     }
 
     closeForm(container: HTMLDivElement) {
-        container.remove(); // Функция для закрытия формы
+        container.remove();
     }
 }

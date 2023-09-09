@@ -44,10 +44,8 @@ async function filterProducts(selectedFilters: ISelectedFilters) {
         const filteredValues = values.filter((value) => !value.toLowerCase().includes('please'));
 
         if (filteredValues.length > 0) {
-            // Check if this attribute has already been added to filterParams
             const isAttributePresent = filterParams.some((param) => param.includes(attribute));
 
-            // If it's not present, add it to filterParams
             if (!isAttributePresent) {
                 const param: string = filteredValues
                     .map(

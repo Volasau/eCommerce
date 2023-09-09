@@ -90,7 +90,6 @@ export class Address {
     }
 
     showEditForm(countryText: string, cityText: string, streetNameText: string, codePostText: string) {
-        // Создаем форму редактирования
         const form = document.createElement('form');
         form.classList.add('form__adress');
 
@@ -108,26 +107,6 @@ export class Address {
         form.appendChild(city.create());
         form.appendChild(street.create());
         form.appendChild(postCode.create());
-
-        // const shippingCheckbox = document.createElement('input');
-        // shippingCheckbox.type = 'checkbox';
-        // shippingCheckbox.id = 'shipping';
-        // form.appendChild(shippingCheckbox);
-
-        // const shippingLabel = document.createElement('label');
-        // shippingLabel.htmlFor = 'shipping';
-        // shippingLabel.textContent = 'Shipping';
-        // form.appendChild(shippingLabel);
-
-        // const billingCheckbox = document.createElement('input');
-        // billingCheckbox.type = 'checkbox';
-        // billingCheckbox.id = 'billing';
-        // form.appendChild(billingCheckbox);
-
-        // const billingLabel = document.createElement('label');
-        // billingLabel.htmlFor = 'billing';
-        // billingLabel.textContent = 'Billing';
-        // form.appendChild(billingLabel);
 
         const billingDefaultCheckbox = document.createElement('input');
         billingDefaultCheckbox.type = 'checkbox';
@@ -163,33 +142,16 @@ export class Address {
             const cityValue = city.inputHTML.value;
             const streetValue = street.inputHTML.value;
             const postCodeValue = postCode.inputHTML.value;
-            // const shippingValue = shippingDefaultCheckbox.checked
-            // const shippingValue = billingDefaultCheckbox.checked
-            // Проверяем, совпадают ли введенные значения с исходными данными
-            // if (
-            //     countryValue === countryText &&
-            //     cityValue === cityText &&
-            //     streetValue === streetNameText &&
-            //     postCodeValue === codePostText
-            // ) {
-            //     showToastError('No changes were made.');
-            //     return;
-            // }
 
             if (
                 !country.inputHTML.value ||
                 !city.inputHTML.value ||
                 !street.inputHTML.value ||
                 !postCode.inputHTML.value /*||*/
-                // (!billingDefaultCheckbox.checked &&
-                //     !shippingDefaultCheckbox.checked &&
-                //     !billingCheckbox.checked &&
-                //     !shippingCheckbox.checked)
             ) {
                 showToastError('Please fill in all fields and select at least one checkbox before submitting.');
                 return;
             }
-            //////////// запретим отправку формы если не проходит валидацую на стороне клиента
             const errorSpans = form.querySelectorAll('.error');
             let hasError = false;
             errorSpans.forEach((errorSpan) => {
@@ -209,8 +171,6 @@ export class Address {
             changeAdress.code = postCode.inputHTML.value;
             changeAdress.billingDefault = billingDefaultCheckbox.checked;
             changeAdress.shippingDefault = shippingDefaultCheckbox.checked;
-            // changeAdress.billing = billingCheckbox.checked;
-            // changeAdress.shipping = shippingCheckbox.checked;
             const counry = await getISOCodeByCountryName(changeAdress.country);
 
             (async () => {
@@ -224,27 +184,13 @@ export class Address {
                         postCodeValue !== codePostText
                     ) {
                         response = await customerManager.changeAddress(
-                            // this.id,
                             counry,
                             changeAdress.city,
                             changeAdress.street,
                             changeAdress.code
-                            // dataCostomer.version,
-                            // dataCostomer.id
                         );
                     }
-                    // const deletBildAdress = await customerManager.deletBillingAddress();
-                    // const deletShipAdress = await customerManager.deletShippingAddress();
                     let billingAddressDefault, shippingAddressDefault;
-                    /*billingAddress, shippingAddress,*/
-
-                    // if (shippingCheckbox.checked) {
-                    //     shippingAddress = await customerManager.createShippingAddress();
-                    // }
-
-                    // if (billingCheckbox.checked) {
-                    //     billingAddress = await customerManager.createBillingAddress();
-                    // }
 
                     if (shippingDefaultCheckbox.checked) {
                         shippingAddressDefault = await customerManager.setDefaultShippingAddress();
@@ -255,12 +201,8 @@ export class Address {
                     }
                     if (
                         (response && response.statusCode === 409) ||
-                        // (billingAddress && billingAddress.statusCode === 409) ||
-                        // (shippingAddress && shippingAddress.statusCode === 409) ||
                         (billingAddressDefault && billingAddressDefault.statusCode === 409) ||
                         (shippingAddressDefault && shippingAddressDefault.statusCode === 409)
-                        // deletBildAdress.statusCode === 409 ||
-                        // deletShipAdress.statusCode === 409
                     ) {
                         showToastError('ERROR');
                     } else {
@@ -295,7 +237,6 @@ export class Address {
             form.remove();
         });
 
-        ////////////////////////////////////////////////////////////////////// BUTTON DELET
         const deletButton = document.createElement('button');
         deletButton.type = 'button';
         deletButton.classList.add('btn_adress-card');
@@ -304,7 +245,6 @@ export class Address {
         deletButton.classList.add(`${this.id}`);
         deletButton.id = `delete-${this.id}`;
         deletButton.addEventListener('click', () => {
-            ///////////////////////////////////// удаляем адресс с комерстулса//////
             (async () => {
                 const customerManager = new CustomerEditManager();
                 try {
@@ -317,10 +257,7 @@ export class Address {
                     if (response.statusCode === 409) {
                         showToastError('This address has already been deleted');
                     } else {
-                        // Другие статусы ответа
-
                         showToast('This address DELETED');
-                        //Выйти и перейти на страницу логина
                         await logoutAction();
 
                         if (btnEdit && btnEdit instanceof HTMLButtonElement) {

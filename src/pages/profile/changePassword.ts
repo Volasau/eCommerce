@@ -55,7 +55,6 @@ export class ChangePassword {
         showPasswordLabel.appendChild(showPasswordCheckbox);
         passwordChangeForm.appendChild(showPasswordLabel);
 
-        // Обработчик для чекбокса
         showPasswordCheckbox.addEventListener('change', () => {
             const passwordInputs = [passwordOld, passwordNew, passwordRetNew];
             passwordInputs.forEach((input) => {
@@ -81,7 +80,6 @@ export class ChangePassword {
             const newPassword = newPasswordInput.value;
             const repeatNewPassword = repeatNewPasswordInput.value;
 
-            // Проверка на совпадение
             if (newPassword !== repeatNewPassword) {
                 showToastError('New passwords do not match. Please make sure they are the same.');
                 return;
@@ -119,8 +117,6 @@ export class ChangePassword {
                         showToastError('The given current password does not match');
                         return;
                     } else {
-                        // Другие статусы ответа
-
                         showToast('Password changed');
                         await logoutAction();
                         if (changePasswordButton && changePasswordButton instanceof HTMLButtonElement) {
@@ -131,7 +127,6 @@ export class ChangePassword {
                     console.error('Error removing address:', error);
                 }
             })();
-            // await logoutAction();
 
             if (changePasswordButton && changePasswordButton instanceof HTMLButtonElement) {
                 changePasswordButton.disabled = false;
@@ -158,6 +153,6 @@ export class ChangePassword {
     }
 
     closeForm(container: HTMLDivElement) {
-        container.remove(); // Функция для закрытия формы
+        container.remove();
     }
 }

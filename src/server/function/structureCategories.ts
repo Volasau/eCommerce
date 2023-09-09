@@ -44,7 +44,6 @@ export async function categoryStructuring() {
                         products: [],
                     };
                     cat.subcategories.push(newSubCategory);
-                    // Assign products to subcategory
                     products.forEach((product: IProductResp) => {
                         if (product.categories[0].id === category.id) {
                             constants.productList.push(product);

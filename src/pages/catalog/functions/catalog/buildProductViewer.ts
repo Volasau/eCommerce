@@ -20,7 +20,6 @@ export function buildProductViewer(categories: ICategory[]) {
         categoriesBlock.append(buildCategoryItem(category));
     });
 
-    // const productCount = document.querySelectorAll('.product min') as NodeList;
     quantity.innerHTML = `Quantity: <span class="quantity">${constants.productList.length}</span> products`;
     displaySequence.append(cheap, alphabet, quantity);
     productWrapper.append(categoriesBlock, displaySequence, productList);
