@@ -86,12 +86,12 @@ class App {
     private async enableRouteChange() {
         window.addEventListener('hashchange', async () => {
             this.checkAuthenticationAndRedirect();
-            const h = window.location.hash;
-            if (h.split('/').length > 2) {
-                routeProductPage(h);
+            const hash1 = window.location.hash;
+            if (hash1.split('/').length > 2) {
+                routeProductPage(hash1);
             } else {
-                const hash = window.location.hash.slice(2);
-                await App.renderNewPage(hash);
+                const hash2 = window.location.hash.slice(2);
+                await App.renderNewPage(hash2);
             }
         });
     }
