@@ -2,7 +2,7 @@ import fetch from 'node-fetch';
 import { bearer_token_cc } from '../..';
 import { constants } from '../../data/constants';
 
-export class changeCustomerAddAdress {
+export class СhangeCustomerAddAdress {
     private apiUrlCustomers: string;
     private customerVersion: number;
     private customerId: string;
