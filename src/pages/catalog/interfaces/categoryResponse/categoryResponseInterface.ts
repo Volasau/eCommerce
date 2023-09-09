@@ -1,8 +1,6 @@
-export interface IName {
-    en: string;
-}
+import { IName, IUser } from '../../../../server/function/interfaces';
 
-export interface ICategoryIdResp {
+export interface ICatId {
     id: string;
 }
 
@@ -28,13 +26,8 @@ export interface IPriceValueResp {
     type: string;
 }
 
-export interface IDiscount {
-    id: string;
-    typeId: string;
-}
-
 export interface IDiscountResp {
-    discount: IDiscount;
+    discount: IUser;
     value: IPriceValueResp;
 }
 
@@ -53,7 +46,7 @@ export interface IProductResp {
     id: string;
     name: string;
     description: string;
-    categories: ICategoryIdResp[];
+    categories: ICatId[];
     allVariants: IVariantResp[];
 }
 
