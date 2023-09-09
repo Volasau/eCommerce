@@ -5,7 +5,8 @@ export function addCategoryLink() {
     document.addEventListener('click', (event) => {
         const target = event.target as HTMLElement;
         if (target.classList.contains('cat-card-dark')) {
-            const categoryId = target.id.split('-').slice(0, -1).join('-');
+            const id = target.id;
+            const categoryId = id.slice(0, id.lastIndexOf('-'));
             categoryResponse.forEach((cat: ICategoryResp) => {
                 if (cat.id === categoryId) {
                     document.location = `#/catalog/${cat.name.en.toLocaleLowerCase()}`.replace(/ /g, '_');

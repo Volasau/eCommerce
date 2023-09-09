@@ -5,7 +5,8 @@ export function addProductLink() {
     document.addEventListener('click', (event) => {
         const target = event.target as HTMLElement;
         if (target.classList.contains('min')) {
-            const prodID = target.id.split('-').slice(0, -1).join('-');
+            const id = target.id;
+            const prodID = id.slice(0, id.lastIndexOf('-'));
             categoryResponse.forEach((cat: ICategoryResp) => {
                 cat.subcategories.forEach((sub) => {
                     sub.products.forEach((prod) => {
