@@ -5,16 +5,16 @@ import { createLink } from '../logReg/utils/createLink.utils';
 import { CatalogRender } from './classes/catalogRenderClass';
 
 class CatalogPage extends Page {
-    textObj: string;
+    text: string;
 
     constructor(id: string) {
         super(id);
-        this.textObj = 'Catalog';
+        this.text = 'Catalog';
     }
 
     async render() {
         const categoryResponse = await categoryStructuring();
-        const title = this.createHeaderTitle(this.textObj);
+        const title = this.createHeaderTitle(this.text);
         const bodyCatalog = document.createElement('div');
         bodyCatalog.classList.add('product-card');
 

@@ -8,15 +8,15 @@ import { dataCustomer } from '../../server/customerLogin';
 import { createLink } from '../logReg/utils/createLink.utils';
 
 class ProfilePage extends Page {
-    textObj: string;
+    text: string;
 
     constructor(id: string) {
         super(id);
-        this.textObj = 'Profile';
+        this.text = 'Profile';
     }
 
     async render() {
-        const title = this.createHeaderTitle(this.textObj);
+        const title = this.createHeaderTitle(this.text);
         const textInfo = document.createElement('div');
         textInfo.classList.add('text__information');
         textInfo.innerHTML = 'After any changes, you must login again!';
@@ -46,8 +46,6 @@ class ProfilePage extends Page {
             const changePassword = new ChangePassword();
             passwordContainer.appendChild(changePassword.container);
         });
-
-        ////////////////////////////////////////////////////////////////////////////////////////////////
 
         const addressesContainer = document.createElement('div');
         addressesContainer.classList.add('adresAll__container');

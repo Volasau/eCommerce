@@ -4,15 +4,15 @@ import '../../css/login.css';
 import { createLink } from './utils/createLink.utils';
 
 class LoginPage extends Page {
-    textObj: string;
+    text: string;
 
     constructor(id: string) {
         super(id);
-        this.textObj = 'Login Page';
+        this.text = 'Login Page';
     }
 
     async render() {
-        const title = this.createHeaderTitle(this.textObj);
+        const title = this.createHeaderTitle(this.text);
         const loginForm = login.build();
         const registrLink = createLink('#/registr', "Haven't registered yet? Sing up ", 'Here➕', '');
         this._container.append(title, loginForm, registrLink);

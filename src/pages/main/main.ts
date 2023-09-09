@@ -3,15 +3,15 @@ import '../../css/style.css';
 import { createLink } from '../logReg/utils/createLink.utils';
 
 class MainPage extends Page {
-    textObj: string;
+    text: string;
 
     constructor(id: string) {
         super(id);
-        this.textObj = 'HOME Page';
+        this.text = 'HOME Page';
     }
 
     async render() {
-        const title = this.createHeaderTitle(this.textObj);
+        const title = this.createHeaderTitle(this.text);
         const registrLink = createLink('#/registr', '', 'Registration➕', '');
         const loginLink = createLink('#/login', '', 'Login🔑', '');
         const logoutLink = createLink('#/logout', '', 'Logout❌', 'logout__page');
