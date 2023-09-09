@@ -5,6 +5,7 @@ import { buttonHTML, spanHTML } from '../../classes/elementBuilder';
 import { ISubCategoryResp } from '../../interfaces/categoryResponse/categoryResponseInterface';
 import { getSubCategoryWithAllAttr } from '../filter/getSubCategoryWithAllAttr';
 import { buildProductItem } from '../product/buildProductItem';
+import { changeQuantity } from './changeQuantity';
 
 export function openSubcategoryPage(subCateg: ISubCategoryResp) {
     const title = document.querySelector('h1') as HTMLElement;
@@ -52,6 +53,5 @@ export function openSubcategoryPage(subCateg: ISubCategoryResp) {
         prodList.append(buildProductItem(prod));
     });
 
-    const quantity = document.querySelector('.quantity') as HTMLSpanElement;
-    quantity.textContent = `${subCateg.products.length}`;
+    changeQuantity();
 }
