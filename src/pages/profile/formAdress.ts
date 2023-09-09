@@ -1,5 +1,5 @@
 import { dataCustomer } from '../../server/customerLogin';
-import { changeCustomerAddAdress } from '../../server/profile/changeAddress';
+import { СhangeCustomerAddAdress } from '../../server/profile/changeAddress';
 import { CustomerEditManager } from '../../server/profile/deletAddress';
 import { InnerForm } from '../logReg/formClasses/classForm';
 import { showToast, showToastError } from '../logReg/utils/funcToastify.utils';
@@ -173,7 +173,7 @@ export class Address {
             const country = await getISOCodeByCountryName(changeAdress.country);
 
             (async () => {
-                const customerManager = new changeCustomerAddAdress(dataCustomer.version, this.id, dataCustomer.id);
+                const customerManager = new СhangeCustomerAddAdress(dataCustomer.version, this.id, dataCustomer.id);
                 try {
                     let response;
                     if (

@@ -3,14 +3,12 @@ import { constants } from '../../data/constants';
 import { bearer_token_cc } from '../..';
 
 export class ProductSort {
-    projectKey: string;
     baseURL: string;
     priceSort: string;
     nameSort: string;
 
     constructor() {
-        this.projectKey = constants.projectKey;
-        this.baseURL = `https://api.europe-west1.gcp.commercetools.com/${this.projectKey}/product-projections/search?`;
+        this.baseURL = `https://api.europe-west1.gcp.commercetools.com/${constants.projectKey}/product-projections/search?`;
         this.priceSort = `price asc`;
         this.nameSort = `name.en asc`;
     }
