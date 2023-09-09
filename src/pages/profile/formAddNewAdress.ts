@@ -13,7 +13,7 @@ export class AddressNew {
         this.container = this.createContainer();
     }
 
-    createContainer() {
+    createContainer(): HTMLDivElement {
         const addressesContainer = document.createElement('div');
         addressesContainer.classList.add('adresS__container');
 
@@ -168,7 +168,6 @@ export class AddressNew {
             } else {
                 showToastError('Please fill in all fields and select at least one checkbox before submitting.');
             }
-            /////////////////////////////////////////////////
         });
 
         const cancelButton = document.createElement('button');

@@ -12,7 +12,7 @@ class CatalogPage extends Page {
         this.text = 'Catalog';
     }
 
-    async render() {
+    async render(): Promise<HTMLElement> {
         const categoryResponse = await categoryStructuring();
         const title = this.createHeaderTitle(this.text);
         const bodyCatalog = document.createElement('div');

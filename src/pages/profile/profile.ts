@@ -15,7 +15,7 @@ class ProfilePage extends Page {
         this.text = 'Profile';
     }
 
-    async render() {
+    async render(): Promise<HTMLElement> {
         const title = this.createHeaderTitle(this.text);
         const textInfo = document.createElement('div');
         textInfo.classList.add('text__information');

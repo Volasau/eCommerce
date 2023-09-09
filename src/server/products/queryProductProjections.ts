@@ -1,6 +1,7 @@
 import fetch from 'node-fetch';
 import { constants } from '../../data/constants';
 import { bearer_token_cc } from '../..';
+import { IProductResp } from '../../pages/catalog/interfaces/categoryResponse/categoryResponseInterface';
 
 export interface IImageDimensions {
     w: number;
@@ -137,7 +138,7 @@ export class QueryProductProjections {
         this.apiUrl = `https://api.europe-west1.gcp.commercetools.com/${this.projectKey}`;
     }
 
-    async getAllProducts() {
+    async getAllProducts(): Promise<IProductResp[]> {
         try {
             const response = await fetch(`${this.apiUrl}/product-projections?limit=60`, {
                 method: 'GET',
@@ -153,7 +154,7 @@ export class QueryProductProjections {
 
             const data = await response.json();
 
-            const productsWithAttributes = data.results.map((product: IProductProjection) => {
+            const productsWithAttributes: IProductResp[] = data.results.map((product: IProductProjection) => {
                 const categoriesArr: ICategories[] = [...product.categories];
                 // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 const variantObjs: any[] = [];

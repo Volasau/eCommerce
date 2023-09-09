@@ -5,7 +5,7 @@ import { createFilterBlock } from '../filter/createFilterBlock';
 import { buildProductList } from '../product/buildProductList';
 import buildCategoryItem from './buildCategoryItem';
 
-export function buildProductViewer(categories: ICategory[]) {
+export function buildProductViewer(categories: ICategory[]): HTMLDivElement {
     const wrapper = divHTML.getElement('', 'viewer-wrap', 'catalog') as HTMLDivElement;
     const filter = createFilterBlock(categories);
     const productWrapper = divHTML.getElement('', 'pr-wrap', 'viewer') as HTMLDivElement;

@@ -1,7 +1,7 @@
 import { ICategory } from '../../interfaces/categoryInterface';
 import { createBrandFilterHTML } from './createBrandFilterHTML';
 
-export function createBrandFilterBlock(categories: ICategory[]) {
+export function createBrandFilterBlock(categories: ICategory[]): HTMLDivElement {
     let brands: string[] = [];
     categories.forEach((cat) => {
         cat.attributes.forEach((attr) => {

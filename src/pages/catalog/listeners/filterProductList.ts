@@ -36,7 +36,7 @@ export function filterProductList() {
     });
 }
 
-async function filterProducts(selectedFilters: ISelectedFilters) {
+async function filterProducts(selectedFilters: ISelectedFilters): Promise<IProductResp[]> {
     const filterParams: string[] = [];
 
     for (const attribute in selectedFilters) {

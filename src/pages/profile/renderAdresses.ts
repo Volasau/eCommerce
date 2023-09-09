@@ -2,7 +2,7 @@ import { ICustomerResponse } from '../../core/interfaces/customerResponse';
 import { findCountryNameByISO } from './findCountry';
 import { Address } from './formAdress';
 
-export function renderAddresses(dataCostomer: ICustomerResponse) {
+export function renderAddresses(dataCostomer: ICustomerResponse): HTMLDivElement {
     const addressesContainer = document.createElement('div');
     addressesContainer.classList.add('adres__container');
 

@@ -7,7 +7,7 @@ export class User {
         this.container = this.createContainer(email, firstName, lastName, dateOfBirth);
     }
 
-    createContainer(email: string, firstName: string, lastName: string, dateOfBirth: string) {
+    createContainer(email: string, firstName: string, lastName: string, dateOfBirth: string): HTMLDivElement {
         const userData = document.createElement('div');
         userData.classList.add('user__container');
 
@@ -30,7 +30,7 @@ export class User {
         return userData;
     }
 
-    createElementWithSpan(title: string, className: string, content: string) {
+    createElementWithSpan(title: string, className: string, content: string): HTMLParagraphElement {
         const element = document.createElement('p');
         element.classList.add(className);
         element.innerHTML = `${title}: <span class='${className}'>${content}</span>`;

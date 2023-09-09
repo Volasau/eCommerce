@@ -22,7 +22,7 @@ export class ProductFilter {
         this.baseURL = `https://api.europe-west1.gcp.commercetools.com/${this.projectKey}/product-projections/search?limit=60`;
     }
 
-    async filterByBrand(url: string) {
+    async filterByBrand(url: string): Promise<IProductResp[]> {
         try {
             const fullUrl: string = url;
             const response = await fetch(fullUrl, {
@@ -34,7 +34,7 @@ export class ProductFilter {
             });
             const data = await response.json();
 
-            const productsWithAttributes = data.results.map((product: IProductProjection) => {
+            const productsWithAttributes: IProductResp[] = data.results.map((product: IProductProjection) => {
                 const categoriesArr: ICategories[] = [...product.categories];
                 // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 const variantObjs: any[] = [];

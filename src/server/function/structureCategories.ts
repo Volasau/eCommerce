@@ -10,15 +10,15 @@ import { ICategoryResponse } from './interfaces';
 
 export let categoryResponse: ICategoryResp[] = [];
 
-export async function categoryStructuring() {
+export async function categoryStructuring(): Promise<ICategoryResp[]> {
     categoryResponse = [];
     const allCategories = new QueryAllCategories();
     const allProducts = new QueryProductProjections();
 
     try {
-        const categories = await allCategories.getCategories();
+        const categories: ICategoryResponse[] = await allCategories.getCategories();
 
-        const products = await allProducts.getAllProducts();
+        const products: IProductResp[] = await allProducts.getAllProducts();
         const productIds: string[] = products.map((product: { id: string }) => product.id);
 
         console.log('All Products:', productIds);

@@ -1,6 +1,7 @@
 import fetch from 'node-fetch';
 import { constants } from '../../data/constants';
 import { bearer_token_cc } from '../..';
+import { IProductResp } from '../../pages/catalog/interfaces/categoryResponse/categoryResponseInterface';
 
 export class QueryAllProducts {
     projectKey: string;
@@ -10,7 +11,7 @@ export class QueryAllProducts {
         this.productsEndpoint = `https://api.europe-west1.gcp.commercetools.com/${this.projectKey}/products?limit=60`;
     }
 
-    async getAllProducts() {
+    async getAllProducts(): Promise<IProductResp[]> {
         const response = await fetch(this.productsEndpoint, {
             method: 'GET',
             headers: {

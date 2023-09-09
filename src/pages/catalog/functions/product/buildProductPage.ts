@@ -3,7 +3,7 @@ import { cartSVG } from '../../../../data/cartSVG';
 import { buttonHTML, divHTML, imgHTML } from '../../classes/elementBuilder';
 import { IProductResp } from '../../interfaces/categoryResponse/categoryResponseInterface';
 
-export function buildProductPage(prod: IProductResp) {
+export function buildProductPage(prod: IProductResp): HTMLDivElement {
     const id = prod.id;
     const name = prod.name;
     const description = prod.description;

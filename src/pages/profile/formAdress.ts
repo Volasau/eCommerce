@@ -40,7 +40,7 @@ export class Address {
         city: string,
         streetName: string,
         postalCode: string
-    ) {
+    ): HTMLDivElement {
         const addressesContainer = document.createElement('div');
         addressesContainer.classList.add('adresS__container');
 
@@ -78,14 +78,14 @@ export class Address {
         return addressesContainer;
     }
 
-    createElement(tagName: string, className: string, innerText: string) {
+    createElement(tagName: string, className: string, innerText: string): HTMLElement {
         const element = document.createElement(tagName);
         element.classList.add(className);
         element.innerHTML = innerText;
         return element;
     }
 
-    createElementWithSpan(title: string, className: string, content: string) {
+    createElementWithSpan(title: string, className: string, content: string): HTMLElement {
         return this.createElement('p', className, `${title}: <span class='${className}'>${content}</span>`);
     }
 
@@ -93,17 +93,17 @@ export class Address {
         const form = document.createElement('form');
         form.classList.add('form__adress');
 
-        const country = new InnerForm('Country', 'text', 'country', 'country', 'country-error', countryText);
+        const countryForm = new InnerForm('Country', 'text', 'country', 'country', 'country-error', countryText);
         const city = new InnerForm('City', 'text', 'city', 'city', 'city-error', cityText);
         const street = new InnerForm('Street', 'text', 'street', 'street', 'street-error', streetNameText);
         const postCode = new InnerForm('Post Code', 'text', 'postcode', 'postcode', 'postcode-error', codePostText);
 
-        country.inputHTML.value = countryText;
+        countryForm.inputHTML.value = countryText;
         city.inputHTML.value = cityText;
         street.inputHTML.value = streetNameText;
         postCode.inputHTML.value = codePostText;
 
-        form.appendChild(country.create());
+        form.appendChild(countryForm.create());
         form.appendChild(city.create());
         form.appendChild(street.create());
         form.appendChild(postCode.create());
@@ -131,20 +131,19 @@ export class Address {
         form.appendChild(shippingDefaultLabel);
 
         const btnEdit = document.querySelector(`.edit-${this.id}`);
-        ////////////////////////////////////////////////////////////////////////////BUTTON SAVE NEW ADDRES
         const saveButton = document.createElement('button');
         saveButton.type = 'button';
         saveButton.classList.add('btn_adress-card');
         saveButton.textContent = 'Save';
         saveButton.id = `save-${this.id}`;
         saveButton.addEventListener('click', async () => {
-            const countryValue = country.inputHTML.value;
+            const countryValue = countryForm.inputHTML.value;
             const cityValue = city.inputHTML.value;
             const streetValue = street.inputHTML.value;
             const postCodeValue = postCode.inputHTML.value;
 
             if (
-                !country.inputHTML.value ||
+                !countryForm.inputHTML.value ||
                 !city.inputHTML.value ||
                 !street.inputHTML.value ||
                 !postCode.inputHTML.value /*||*/
@@ -165,13 +164,13 @@ export class Address {
             }
 
             changeAdress.id = this.id;
-            changeAdress.country = country.inputHTML.value;
+            changeAdress.country = countryForm.inputHTML.value;
             changeAdress.city = city.inputHTML.value;
             changeAdress.street = street.inputHTML.value;
             changeAdress.code = postCode.inputHTML.value;
             changeAdress.billingDefault = billingDefaultCheckbox.checked;
             changeAdress.shippingDefault = shippingDefaultCheckbox.checked;
-            const counry = await getISOCodeByCountryName(changeAdress.country);
+            const country = await getISOCodeByCountryName(changeAdress.country);
 
             (async () => {
                 const customerManager = new changeCustomerAddAdress(dataCustomer.version, this.id, dataCustomer.id);
@@ -184,7 +183,7 @@ export class Address {
                         postCodeValue !== codePostText
                     ) {
                         response = await customerManager.changeAddress(
-                            counry,
+                            country,
                             changeAdress.city,
                             changeAdress.street,
                             changeAdress.code

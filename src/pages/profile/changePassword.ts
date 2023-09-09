@@ -12,7 +12,7 @@ export class ChangePassword {
         this.container = this.createContainer();
     }
 
-    createContainer() {
+    createContainer(): HTMLDivElement {
         const passwordContainer = document.createElement('div');
         passwordContainer.classList.add('password__container-title');
 
@@ -47,7 +47,7 @@ export class ChangePassword {
         passwordChangeForm.appendChild(passwordOld.create());
         passwordChangeForm.appendChild(passwordNew.create());
         passwordChangeForm.appendChild(passwordRetNew.create());
-        ///////////////////////////////////////////////////////////////
+
         const showPasswordCheckbox = document.createElement('input');
         showPasswordCheckbox.type = 'checkbox';
         const showPasswordLabel = document.createElement('label');
@@ -66,7 +66,6 @@ export class ChangePassword {
                 }
             });
         });
-        ////////////////////////////////////////////////////////////////////////
 
         const changePasswordButton = document.querySelector('.btn__change-pass');
 
@@ -106,7 +105,7 @@ export class ChangePassword {
             (async () => {
                 const customerManager = new changeCustomerPassword();
                 try {
-                    const response = await customerManager.changePasword(
+                    const response = await customerManager.changePassword(
                         changePassworObj.passwordOld,
                         changePassworObj.passwordNew,
                         dataCustomer.version,
@@ -135,7 +134,6 @@ export class ChangePassword {
             this.closeForm(passwordContainer);
         });
 
-        /////////////////////////////////////////////////////////////////////////
         const сancelButton = document.createElement('button');
         сancelButton.type = 'button';
 

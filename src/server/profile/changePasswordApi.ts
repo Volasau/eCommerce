@@ -10,7 +10,7 @@ export class changeCustomerPassword {
         this.customerVersion = 0;
         this.apiUrlCustomers = constants.apiUrlCustomers;
     }
-    async changePasword(passwordOld: string, passwordNew: string, customerVersion: number, customerId: string) {
+    async changePassword(passwordOld: string, passwordNew: string, customerVersion: number, customerId: string) {
         const requestData = {
             id: customerId,
             version: customerVersion,
