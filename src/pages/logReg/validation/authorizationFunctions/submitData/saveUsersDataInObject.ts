@@ -1,21 +1,21 @@
-import { IAuthorizationObject } from '../../../../../core/interfaces/authorizationObjectInterface';
-import { IRegistrationObject } from '../../../../../core/interfaces/registrationObjectInterface';
+import { IAuthorizationObj } from '../../../../../core/interfaces/authorizationObjInterface';
+import { IRegistrationObj } from '../../../../../core/interfaces/registrationObjInterface';
 import { constants } from '../../../../../data/constants';
 
-export function saveUsersDataInObject(inputList: NodeList, obj: IAuthorizationObject | IRegistrationObject) {
+export function saveUsersDataInObj(inputList: NodeList, obj: IAuthorizationObj | IRegistrationObj) {
     inputList.forEach((inp) => {
         const input = inp as HTMLInputElement;
         Object.defineProperty(obj, input.id, { value: input.value });
     });
     if (Object.keys(obj).length > 2) {
-        const object = obj as IRegistrationObject;
+        const myObj = obj as IRegistrationObj;
         if (!document.getElementById('shipping')?.innerHTML) {
-            object.cityShip = object.city;
-            object.countryShip = object.country;
-            object.streetShip = object.street;
-            object.postcodeShip = object.postcode;
+            myObj.cityShip = myObj.city;
+            myObj.countryShip = myObj.country;
+            myObj.streetShip = myObj.street;
+            myObj.postcodeShip = myObj.postcode;
         }
-        object.billingDefault = constants.billDefault;
-        object.shippingDefault = constants.shipDefault;
+        myObj.billingDefault = constants.billDefault;
+        myObj.shippingDefault = constants.shipDefault;
     }
 }

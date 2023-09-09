@@ -14,9 +14,9 @@ export function chooseFromCountryList(
         errorHTML.innerHTML = '';
         postCodeHTML.value = '';
         let pcFormat = '';
-        countries.forEach((object) => {
-            if (object.Country === country.trim()) {
-                pcFormat = object.Format;
+        countries.forEach((obj) => {
+            if (obj.Country === country.trim()) {
+                pcFormat = obj.Format;
             }
         });
         postCodeHTML.setAttribute('placeholder', `${pcFormat}: mandatory format of postcode for ${country.trim()}`);

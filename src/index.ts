@@ -29,7 +29,7 @@ import { switchPageByHashChain } from './pages/catalog/listeners/switchPageByHas
 const app = new App();
 app.run();
 export const bearer_token_cc: Promise<string> = tokenFetcher.fetchAccessToken();
-submitLogin(constants.authorizationObject);
+submitLogin(constants.authorizationObj);
 submitReg(constants.registrationObj);
 getModal();
 removeModal();

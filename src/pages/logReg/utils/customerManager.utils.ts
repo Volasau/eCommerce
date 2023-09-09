@@ -1,13 +1,13 @@
 import { constants } from '../../../data/constants';
 import { CustomerManager } from '../../../server/customerRegistration';
-import { IRegistrationObject } from '../../../core/interfaces/registrationObjectInterface';
+import { IRegistrationObj } from '../../../core/interfaces/registrationObjInterface';
 import { getISOCodeByCountryName } from './getISOCode.utils';
 import { IAddressBilling } from '../../../core/interfaces/addressBilling';
 import { IAddressShipping } from '../../../core/interfaces/addressShipping';
 import { IConsolidatedData } from '../../../core/interfaces/consolidatedData';
 import { showToast } from './funcToastify.utils';
 
-export async function customerManagerData(obj: IRegistrationObject) {
+export async function customerManagerData(obj: IRegistrationObj) {
     const customerManager = new CustomerManager(
         constants.apiUrlCustomers,
         obj.email,

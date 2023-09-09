@@ -1,4 +1,4 @@
-import { IAuthorizationObject } from '../../../../core/interfaces/authorizationObjectInterface';
+import { IAuthorizationObj } from '../../../../core/interfaces/authorizationObjInterface';
 import { constants } from '../../../../data/constants';
 import { ILoginRequest } from '../../../../core/interfaces/loginRequest';
 import { TokenManager } from '../../../../server/accessTokenPF';
@@ -7,7 +7,7 @@ import { CustomerLogin } from '../../../../server/customerLogin';
 
 export let bearer_token_pf = '';
 
-export async function logInToServer(obj: IAuthorizationObject, page: HTMLElement) {
+export async function logInToServer(obj: IAuthorizationObj, page: HTMLElement) {
     try {
         const requestData: ILoginRequest = {
             email: obj.email,

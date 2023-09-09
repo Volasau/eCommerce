@@ -8,15 +8,15 @@ import { dataCustomer } from '../../server/customerLogin';
 import { createLink } from '../logReg/utils/createLink.utils';
 
 class ProfilePage extends Page {
-    textObject: string;
+    textObj: string;
 
     constructor(id: string) {
         super(id);
-        this.textObject = 'Profile';
+        this.textObj = 'Profile';
     }
 
     async render() {
-        const title = this.createHeaderTitle(this.textObject);
+        const title = this.createHeaderTitle(this.textObj);
         const textInfo = document.createElement('div');
         textInfo.classList.add('text__information');
         textInfo.innerHTML = 'After any changes, you must login again!';
