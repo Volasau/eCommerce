@@ -1,15 +1,9 @@
 import fetch from 'node-fetch';
-import { constants } from '../../data/constants';
 import { bearer_token_cc } from '../..';
 import { ICategoryResponse } from '../function/interfaces';
 
 export class QueryAllCategories {
-    projectKey: string;
-    categoryEndpoint: string;
-    constructor() {
-        this.projectKey = constants.projectKey;
-        this.categoryEndpoint = `https://api.commercetools.com/${this.projectKey}`;
-    }
+    private readonly categoryEndpoint = 'https://api.commercetools.com/01082023';
 
     async getCategories(): Promise<ICategoryResponse[]> {
         const access_token = await bearer_token_cc;

@@ -1,14 +1,8 @@
 import fetch from 'node-fetch';
-import { constants } from '../../data/constants';
 import { bearer_token_cc } from '../..';
 
 export class getCategoryById {
-    projectKey: string;
-    categoryEndpoint: string;
-    constructor() {
-        this.projectKey = constants.projectKey;
-        this.categoryEndpoint = `https://api.commercetools.com/${this.projectKey}`;
-    }
+    private readonly categoryEndpoint = 'https://api.commercetools.com/01082023';
 
     async getCategoryById(categoryId: string) {
         try {
