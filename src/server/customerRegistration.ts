@@ -5,17 +5,29 @@ import { PARSE } from './interfaces/parseEnum';
 
 export class CustomerManager {
     private url: string;
+
     private auth: string;
+
     private email: string;
+
     private firstName: string;
+
     private lastName: string;
+
     private password: string;
+
     private customerId: string;
+
     private customerVersion: number;
+
     private addressId: string;
+
     protected billingAddressId: null;
+
     protected shippingAddressId: null;
+
     protected defaultBillingAddressId: string;
+
     protected defaultShippingAddressId: string;
 
     constructor(bearer: string, email: string, firstName: string, lastName: string, password: string) {

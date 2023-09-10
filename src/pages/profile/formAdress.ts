@@ -9,10 +9,15 @@ import { changeAdress } from './interfaces/dataForUpdet';
 
 export class Address {
     container: HTMLDivElement;
+
     countryText: string;
+
     cityText: string;
+
     streetText: string;
+
     codePostText: string;
+
     id: string;
 
     constructor(

@@ -5,7 +5,9 @@ import { PARSE } from '../interfaces/parseEnum';
 
 export class СhangeCustomerAddAdress {
     private customerVersion: number;
+
     private customerId: string;
+
     protected addressId: string;
 
     constructor(customerVersion: number, addressId: string, customerId: string) {
