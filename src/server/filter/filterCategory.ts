@@ -1,6 +1,4 @@
-import fetch from 'node-fetch';
 import { constants } from '../../data/constants';
-import { bearer_token_cc } from '../..';
 import {
     IAllVariants,
     IAttributes,
@@ -12,6 +10,7 @@ import {
     IVariantObj,
 } from '../products/queryProductProjections';
 import { IProductResp } from '../../pages/catalog/interfaces/categoryResponse/categoryResponseInterface';
+import { request } from '../classes/requestClass';
 
 export class ProductFilter {
     projectKey: string;
@@ -19,20 +18,13 @@ export class ProductFilter {
 
     constructor() {
         this.projectKey = constants.projectKey;
-        this.baseURL = `https://api.europe-west1.gcp.commercetools.com/${this.projectKey}/product-projections/search?limit=60`;
+        this.baseURL = `${constants.baseURL}?limit=60`;
     }
 
     async filterByBrand(url: string): Promise<IProductResp[]> {
         try {
-            const fullUrl: string = url;
-            const response = await fetch(fullUrl, {
-                method: 'GET',
-                headers: {
-                    Authorization: `Bearer ${await bearer_token_cc}`,
-                    'Content-Type': 'application/json',
-                },
-            });
-            const data = await response.json();
+            const res = await request.getAuth(url);
+            const data = await res.json();
 
             const productsWithAttributes: IProductResp[] = data.results.map((product: IProductProjection) => {
                 const categoriesArr: ICategories[] = [...product.categories];

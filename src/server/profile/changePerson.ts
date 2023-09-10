@@ -1,16 +1,17 @@
-import fetch from 'node-fetch';
 import { bearer_token_cc } from '../..';
 import { constants } from '../../data/constants';
+import { request } from '../classes/requestClass';
+import { PARSE } from '../interfaces/parseEnum';
 
 export class changeCustomerInfo {
-    private apiUrlCustomers: string;
     private addressId: string;
     private customerVersion: number;
+    private auth: string;
 
     constructor() {
         this.customerVersion = 0;
-        this.apiUrlCustomers = constants.apiUrlCustomers;
         this.addressId = '';
+        this.auth = '';
     }
     async changeLastName(lastName: string, customerVersion: number, customerId: string) {
         const requestData = {
@@ -23,19 +24,11 @@ export class changeCustomerInfo {
             ],
         };
 
-        const headers = {
-            Authorization: `Bearer ${await bearer_token_cc}`,
-            'Content-Type': 'application/json',
-        };
-
         try {
-            const response = await fetch(this.apiUrlCustomers + `/${customerId}`, {
-                method: 'POST',
-                headers: headers,
-                body: JSON.stringify(requestData),
-            });
-            const res = await response.json();
-            return res;
+            const url = `${constants.apiUrlCustomers}/${customerId}`;
+            const res = await request.postAuth(url, this.auth, PARSE.Json, JSON.stringify(requestData));
+            const response = await res.json();
+            return response;
         } catch (error) {
             console.error('Error creating billing address:', error);
             throw error;
@@ -53,19 +46,12 @@ export class changeCustomerInfo {
             ],
         };
 
-        const headers = {
-            Authorization: `Bearer ${await bearer_token_cc}`,
-            'Content-Type': 'application/json',
-        };
-
         try {
-            const response = await fetch(this.apiUrlCustomers + `/${customerId}`, {
-                method: 'POST',
-                headers: headers,
-                body: JSON.stringify(requestData),
-            });
-            const res = await response.json();
-            return res;
+            this.auth = `Bearer ${await bearer_token_cc}`;
+            const url = `${constants.apiUrlCustomers}/${customerId}`;
+            const res = await request.postAuth(url, this.auth, PARSE.Json, JSON.stringify(requestData));
+            const response = await res.json();
+            return response;
         } catch (error) {
             console.error('Error creating billing address:', error);
             throw error;
@@ -83,19 +69,11 @@ export class changeCustomerInfo {
             ],
         };
 
-        const headers = {
-            Authorization: `Bearer ${await bearer_token_cc}`,
-            'Content-Type': 'application/json',
-        };
-
         try {
-            const response = await fetch(this.apiUrlCustomers + `/${customerId}`, {
-                method: 'POST',
-                headers: headers,
-                body: JSON.stringify(requestData),
-            });
-            const res = await response.json();
-            return res;
+            const url = `${constants.apiUrlCustomers}/${customerId}`;
+            const res = await request.postAuth(url, this.auth, PARSE.Json, JSON.stringify(requestData));
+            const response = await res.json();
+            return response;
         } catch (error) {
             console.error('Error creating billing address:', error);
             throw error;
@@ -112,19 +90,11 @@ export class changeCustomerInfo {
             ],
         };
 
-        const headers = {
-            Authorization: `Bearer ${await bearer_token_cc}`,
-            'Content-Type': 'application/json',
-        };
-
         try {
-            const response = await fetch(this.apiUrlCustomers + `/${customerId}`, {
-                method: 'POST',
-                headers: headers,
-                body: JSON.stringify(requestData),
-            });
-            const res = await response.json();
-            return res;
+            const url = `${constants.apiUrlCustomers}/${customerId}`;
+            const res = await request.postAuth(url, this.auth, PARSE.Json, JSON.stringify(requestData));
+            const response = await res.json();
+            return response;
         } catch (error) {
             console.error('Error creating billing address:', error);
             throw error;

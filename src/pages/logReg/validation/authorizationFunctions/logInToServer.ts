@@ -1,5 +1,4 @@
 import { IAuthorizationObj } from '../../../../core/interfaces/authorizationObjInterface';
-import { constants } from '../../../../data/constants';
 import { ILoginRequest } from '../../../../core/interfaces/loginRequest';
 import { TokenManager } from '../../../../server/accessTokenPF';
 import { IAccessTokenResponse } from '../../../../core/interfaces/accessTokenResponse';
@@ -17,7 +16,7 @@ export async function logInToServer(obj: IAuthorizationObj, page: HTMLElement) {
         const tokenManager = new TokenManager(requestData.email, requestData.password);
         const tokenResponse = (await tokenManager.getToken(page)) as IAccessTokenResponse;
         bearer_token_pf = tokenResponse.access_token;
-        const customerLogin = new CustomerLogin(constants.apiUrlLogin, tokenResponse.access_token);
+        const customerLogin = new CustomerLogin(tokenResponse.access_token);
         const loginResponse = (await customerLogin.loginUser(requestData)) as string;
         localStorage.setItem('bearer_token_pf', `${bearer_token_pf}`);
 

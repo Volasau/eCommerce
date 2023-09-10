@@ -1,51 +1,34 @@
-import fetch from 'node-fetch';
 import { constants } from '../data/constants';
 import { IAccessTokenResponse } from '../core/interfaces/accessTokenResponse';
 import { handleServerErrorsLog } from './handleServerErrorsLog';
+import { request } from './classes/requestClass';
+import { PARSE } from './interfaces/parseEnum';
 
 export class TokenManager {
-    private authHost: string;
-    private projectKey: string;
-    private authHeader: string;
-    private scope: string;
     private requestData: URLSearchParams;
 
     constructor(email: string, password: string) {
-        this.authHost = constants.authHost;
-        this.projectKey = constants.projectKey;
-        this.authHeader = `Basic  ${Buffer.from('evZAyazdZMrrHjVRwC-BYTHe:SjCFe1mgZ1njSSpehCpExMvHpXRjCBND').toString(
-            'base64'
-        )}`;
-        this.scope = constants.scope;
         this.requestData = new URLSearchParams({
             grant_type: 'password',
             username: email,
             password: password,
-            scope: this.scope,
+            scope: constants.scope,
         });
     }
 
     async getToken(page: HTMLElement): Promise<IAccessTokenResponse | void> {
-        const tokenUrl = `https://${this.authHost}/oauth/${this.projectKey}/customers/token`;
         const servError = page.querySelector('#serv-error') as HTMLDivElement;
         const email = page.querySelector('#email') as HTMLInputElement;
         const password = page.querySelector('#password') as HTMLInputElement;
         try {
-            const response = await fetch(tokenUrl, {
-                method: 'POST',
-                headers: {
-                    Authorization: this.authHeader,
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                },
-                body: this.requestData,
-            });
+            const res = await request.postAuth(constants.tokenUrl, constants.authHeader, PARSE.Xwww, this.requestData);
 
-            if (!response.ok) {
-                const status = response.status;
+            if (!res.ok) {
+                const status = res.status;
                 handleServerErrorsLog(status, servError, email, password);
             }
 
-            const data: IAccessTokenResponse = await response.json();
+            const data: IAccessTokenResponse = await res.json();
             const accessToken: string = data.access_token;
             console.log(accessToken);
             return data;

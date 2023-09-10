@@ -1,9 +1,11 @@
-import fetch from 'node-fetch';
-import { bearer_token_cc } from '..';
 import { Customer } from '@commercetools/platform-sdk';
+import { constants } from '../data/constants';
+import { request } from './classes/requestClass';
+import { PARSE } from './interfaces/parseEnum';
 
 export class CustomerManager {
-    private apiUrlCustomers: string;
+    private url: string;
+    private auth: string;
     private email: string;
     private firstName: string;
     private lastName: string;
@@ -16,7 +18,8 @@ export class CustomerManager {
     protected defaultBillingAddressId: string;
     protected defaultShippingAddressId: string;
 
-    constructor(apiUrlCustomers: string, email: string, firstName: string, lastName: string, password: string) {
+    constructor(bearer: string, email: string, firstName: string, lastName: string, password: string) {
+        this.auth = bearer;
         this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -26,34 +29,26 @@ export class CustomerManager {
         this.addressId = '';
         this.billingAddressId = null;
         this.shippingAddressId = null;
-        this.apiUrlCustomers = apiUrlCustomers;
         this.defaultBillingAddressId = '';
         this.defaultShippingAddressId = '';
+        this.url = '';
     }
 
     async createCustomer() {
-        const newCustomer = {
+        const data = {
             email: this.email,
             firstName: this.firstName,
             lastName: this.lastName,
             password: this.password,
         };
 
-        const headers = {
-            Authorization: `Bearer ${await bearer_token_cc}`,
-            'Content-Type': 'application/json',
-        };
-
         try {
-            const response = await fetch(this.apiUrlCustomers, {
-                method: 'POST',
-                headers: headers,
-                body: JSON.stringify(newCustomer),
-            });
+            const res = await request.postAuth(constants.apiUrlCustomers, this.auth, PARSE.Json, JSON.stringify(data));
 
-            const res = await response.json();
-            const customer: Customer = res.customer;
+            const response = await res.json();
+            const customer: Customer = response.customer;
             this.customerId = customer.id;
+            this.url = `${constants.apiUrlCustomers}/${this.customerId}`;
             this.customerVersion = customer.version;
             return customer;
         } catch (error) {
@@ -73,20 +68,11 @@ export class CustomerManager {
             ],
         };
 
-        const headers = {
-            Authorization: `Bearer ${await bearer_token_cc}`,
-            'Content-Type': 'application/json',
-        };
-
         try {
-            const response = await fetch(this.apiUrlCustomers + `/${this.customerId}`, {
-                method: 'POST',
-                headers: headers,
-                body: JSON.stringify(requestData),
-            });
-            const res = await response.json();
+            const res = await request.postAuth(this.url, this.auth, PARSE.Json, JSON.stringify(requestData));
+            const response = await res.json();
             this.customerVersion = this.customerVersion + 1;
-            return res;
+            return response;
         } catch (error) {
             console.error('Error creating billing address:', error);
             throw error;
@@ -109,21 +95,12 @@ export class CustomerManager {
             ],
         };
 
-        const headers = {
-            Authorization: `Bearer ${await bearer_token_cc}`,
-            'Content-Type': 'application/json',
-        };
-
         try {
-            const response = await fetch(this.apiUrlCustomers + `/${this.customerId}`, {
-                method: 'POST',
-                headers: headers,
-                body: JSON.stringify(requestData),
-            });
-            const res = await response.json();
-            this.addressId = res.addresses[index].id;
+            const res = await request.postAuth(this.url, this.auth, PARSE.Json, JSON.stringify(requestData));
+            const response = await res.json();
+            this.addressId = response.addresses[index].id;
             this.customerVersion = this.customerVersion + 1;
-            return res;
+            return response;
         } catch (error) {
             console.error('Error creating billing address:', error);
             throw error;
@@ -141,19 +118,9 @@ export class CustomerManager {
             ],
         };
 
-        const headers = {
-            Authorization: `Bearer ${await bearer_token_cc}`,
-            'Content-Type': 'application/json',
-        };
-
         try {
-            const response = await fetch(this.apiUrlCustomers + `/${this.customerId}`, {
-                method: 'POST',
-                headers: headers,
-                body: JSON.stringify(requestData),
-            });
-
-            const billingAddress = await response.json();
+            const res = await request.postAuth(this.url, this.auth, PARSE.Json, JSON.stringify(requestData));
+            const billingAddress = await res.json();
             this.billingAddressId = billingAddress.id;
             this.customerVersion = this.customerVersion + 1;
             return billingAddress;
@@ -174,19 +141,9 @@ export class CustomerManager {
             ],
         };
 
-        const headers = {
-            Authorization: `Bearer ${await bearer_token_cc}`,
-            'Content-Type': 'application/json',
-        };
-
         try {
-            const response = await fetch(this.apiUrlCustomers + `/${this.customerId}`, {
-                method: 'POST',
-                headers: headers,
-                body: JSON.stringify(requestData),
-            });
-
-            const shippingAddress = await response.json();
+            const res = await request.postAuth(this.url, this.auth, PARSE.Json, JSON.stringify(requestData));
+            const shippingAddress = await res.json();
             this.shippingAddressId = shippingAddress.id;
             this.customerVersion = this.customerVersion + 1;
             return shippingAddress;
@@ -207,19 +164,9 @@ export class CustomerManager {
             ],
         };
 
-        const headers = {
-            Authorization: `Bearer ${await bearer_token_cc}`,
-            'Content-Type': 'application/json',
-        };
-
         try {
-            const response = await fetch(this.apiUrlCustomers + `/${this.customerId}`, {
-                method: 'POST',
-                headers: headers,
-                body: JSON.stringify(requestData),
-            });
-
-            const defaultBillingAddress = await response.json();
+            const res = await request.postAuth(this.url, this.auth, PARSE.Json, JSON.stringify(requestData));
+            const defaultBillingAddress = await res.json();
             this.defaultBillingAddressId = defaultBillingAddress.id;
             this.customerVersion = this.customerVersion + 1;
             return defaultBillingAddress;
@@ -240,19 +187,9 @@ export class CustomerManager {
             ],
         };
 
-        const headers = {
-            Authorization: `Bearer ${await bearer_token_cc}`,
-            'Content-Type': 'application/json',
-        };
-
         try {
-            const response = await fetch(this.apiUrlCustomers + `/${this.customerId}`, {
-                method: 'POST',
-                headers: headers,
-                body: JSON.stringify(requestData),
-            });
-
-            const defaultShippingAddress = await response.json();
+            const res = await request.postAuth(this.url, this.auth, PARSE.Json, JSON.stringify(requestData));
+            const defaultShippingAddress = await res.json();
             this.defaultShippingAddressId = defaultShippingAddress.id;
             this.customerVersion = this.customerVersion + 1;
             return defaultShippingAddress;

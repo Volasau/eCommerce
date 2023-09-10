@@ -1,7 +1,6 @@
-import fetch from 'node-fetch';
 import { constants } from '../../data/constants';
-import { bearer_token_cc } from '../..';
 import { IProductResp } from '../../pages/catalog/interfaces/categoryResponse/categoryResponseInterface';
+import { request } from '../classes/requestClass';
 
 export interface IImageDimensions {
     w: number;
@@ -24,17 +23,7 @@ export interface IAttributes {
     value: IValue[];
 }
 
-export interface IMasterVariant {
-    id: number;
-    sku: string;
-    key: string;
-    prices: IPricesStr[];
-    images: IImages[];
-    attributes: IAttributes[];
-    assets: [];
-}
-
-export interface IVariants {
+export interface IVariant {
     id: number;
     sku: string;
     key: string;
@@ -45,10 +34,6 @@ export interface IVariants {
 }
 
 export interface IName {
-    en: string;
-}
-
-export interface IDescription {
     en: string;
 }
 
@@ -75,14 +60,14 @@ export interface IProductProjection {
     version: number;
     productType: ICategories;
     name: IName;
-    description: IDescription;
+    description: IName;
     categories: ICategories[];
     categoryOrderHints: Record<string, never>;
     slug: IName;
     metaTitle: IName;
-    metaDescription: IDescription;
-    masterVariant: IMasterVariant;
-    variants: IVariants[];
+    metaDescription: IName;
+    masterVariant: IVariant;
+    variants: IVariant[];
     searchKeywords: ISearchKeyWords;
     hasStagedChanges: boolean;
     published: boolean;
@@ -131,22 +116,10 @@ export interface IVariantObj {
 }
 
 export class QueryProductProjections {
-    projectKey: string;
-    apiUrl: string;
-    constructor() {
-        this.projectKey = constants.projectKey;
-        this.apiUrl = `https://api.europe-west1.gcp.commercetools.com/${this.projectKey}`;
-    }
-
     async getAllProducts(): Promise<IProductResp[]> {
         try {
-            const response = await fetch(`${this.apiUrl}/product-projections?limit=60`, {
-                method: 'GET',
-                headers: {
-                    Authorization: `Bearer ${await bearer_token_cc}`,
-                    'Content-Type': 'application/json',
-                },
-            });
+            const url = `${constants.apiUrl}/product-projections?limit=60`;
+            const response = await request.getAuth(url);
 
             if (!response.ok) {
                 throw new Error(`Failed to fetch products: ${response.statusText}`);

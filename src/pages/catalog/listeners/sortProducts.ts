@@ -13,10 +13,10 @@ export function sortByValue(value: string) {
                 const productSort = new ProductSort();
                 let result: IProductResp[] = [];
                 if (value === 'cheap-view') {
-                    const data = await productSort.sortBy(productSort.priceSort);
+                    const data = await productSort.sortBy('price asc');
                     result = productForm(data);
                 } else if (value === 'alpha-view') {
-                    const data = await productSort.sortBy(productSort.nameSort);
+                    const data = await productSort.sortBy('name.en asc');
                     result = productForm(data);
                 }
                 const chain = document.getElementById('row-chain') as HTMLElement;

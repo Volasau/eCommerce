@@ -1,16 +1,15 @@
-import fetch from 'node-fetch';
 import { bearer_token_cc } from '../..';
 import { constants } from '../../data/constants';
+import { request } from '../classes/requestClass';
+import { PARSE } from '../interfaces/parseEnum';
 
 export class СhangeCustomerAddAdress {
-    private apiUrlCustomers: string;
     private customerVersion: number;
     private customerId: string;
     protected addressId: string;
 
     constructor(customerVersion: number, addressId: string, customerId: string) {
         this.customerVersion = customerVersion;
-        this.apiUrlCustomers = constants.apiUrlCustomers;
         this.addressId = addressId;
         this.customerId = customerId;
     }
@@ -31,20 +30,13 @@ export class СhangeCustomerAddAdress {
             ],
         };
 
-        const headers = {
-            Authorization: `Bearer ${await bearer_token_cc}`,
-            'Content-Type': 'application/json',
-        };
-
         try {
-            const response = await fetch(this.apiUrlCustomers + `/${this.customerId}`, {
-                method: 'POST',
-                headers: headers,
-                body: JSON.stringify(requestData),
-            });
-            const res = await response.json();
+            const url = `${constants.apiUrlCustomers}/${this.customerId}`;
+            const auth = `Bearer ${await bearer_token_cc}`;
+            const res = await request.postAuth(url, auth, PARSE.Json, JSON.stringify(requestData));
+            const response = await res.json();
             this.customerVersion = this.customerVersion + 1;
-            return res;
+            return response;
         } catch (error) {
             console.error('Error creating billing address:', error);
             throw error;
@@ -62,19 +54,12 @@ export class СhangeCustomerAddAdress {
             ],
         };
 
-        const headers = {
-            Authorization: `Bearer ${await bearer_token_cc}`,
-            'Content-Type': 'application/json',
-        };
-
         try {
-            const response = await fetch(this.apiUrlCustomers + `/${this.customerId}`, {
-                method: 'POST',
-                headers: headers,
-                body: JSON.stringify(requestData),
-            });
+            const url = `${constants.apiUrlCustomers}/${this.customerId}`;
+            const auth = `Bearer ${await bearer_token_cc}`;
+            const res = await request.postAuth(url, auth, PARSE.Json, JSON.stringify(requestData));
 
-            const defaultBillingAddress = await response.json();
+            const defaultBillingAddress = await res.json();
             this.customerVersion = this.customerVersion + 1;
 
             return defaultBillingAddress;
@@ -95,19 +80,12 @@ export class СhangeCustomerAddAdress {
             ],
         };
 
-        const headers = {
-            Authorization: `Bearer ${await bearer_token_cc}`,
-            'Content-Type': 'application/json',
-        };
-
         try {
-            const response = await fetch(this.apiUrlCustomers + `/${this.customerId}`, {
-                method: 'POST',
-                headers: headers,
-                body: JSON.stringify(requestData),
-            });
+            const url = `${constants.apiUrlCustomers}/${this.customerId}`;
+            const auth = `Bearer ${await bearer_token_cc}`;
+            const res = await request.postAuth(url, auth, PARSE.Json, JSON.stringify(requestData));
 
-            const defaultShippingAddress = await response.json();
+            const defaultShippingAddress = await res.json();
             this.customerVersion = this.customerVersion + 1;
 
             return defaultShippingAddress;

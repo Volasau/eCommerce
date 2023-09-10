@@ -1,4 +1,3 @@
-import { constants } from '../../../data/constants';
 import { CustomerManager } from '../../../server/customerRegistration';
 import { IRegistrationObj } from '../../../core/interfaces/registrationObjInterface';
 import { getISOCodeByCountryName } from './getISOCode.utils';
@@ -6,15 +5,11 @@ import { IAddressBilling } from '../../../core/interfaces/addressBilling';
 import { IAddressShipping } from '../../../core/interfaces/addressShipping';
 import { IConsolidatedData } from '../../../core/interfaces/consolidatedData';
 import { showToast } from './funcToastify.utils';
+import { bearer_token_cc } from '../../..';
 
 export async function customerManagerData(obj: IRegistrationObj) {
-    const customerManager = new CustomerManager(
-        constants.apiUrlCustomers,
-        obj.email,
-        obj.name,
-        obj.lastName,
-        obj.password
-    );
+    const authBearer = `Bearer ${await bearer_token_cc}`;
+    const customerManager = new CustomerManager(authBearer, obj.email, obj.name, obj.lastName, obj.password);
     await customerManager.createCustomer();
     await customerManager.createBirthDate(obj.birthDate);
     const countryCodeBilling: string = await getISOCodeByCountryName(obj.country);

@@ -1,51 +1,16 @@
-import fetch from 'node-fetch';
 import { constants } from '../../data/constants';
-import { bearer_token_cc } from '../..';
+import { request } from '../classes/requestClass';
 
 export class ProductSort {
-    baseURL: string;
-    priceSort: string;
-    nameSort: string;
-
-    constructor() {
-        this.baseURL = `https://api.europe-west1.gcp.commercetools.com/${constants.projectKey}/product-projections/search?`;
-        this.priceSort = `price asc`;
-        this.nameSort = `name.en asc`;
-    }
-
     async sortBy(value: string) {
         try {
-            const fullUrl = `${this.baseURL}sort=${encodeURIComponent(value)}&limit=60`;
-            const response = await fetch(fullUrl, {
-                method: 'GET',
-                headers: {
-                    Authorization: `Bearer ${await bearer_token_cc}`,
-                    'Content-Type': 'application/json',
-                },
-            });
-            const data = await response.json();
+            const fullUrl = `${constants.baseURL}?sort=${encodeURIComponent(value)}&limit=60`;
+            const res = await request.getAuth(fullUrl);
+            const data = await res.json();
             return data;
         } catch (error) {
             console.error('Error:', error);
             throw error;
         }
     }
-
-    // async sortByName() {
-    //     try {
-    //         const fullUrl = `${this.baseURL}sort=${encodeURIComponent(this.nameSort)}&limit=60`;
-    //         const response = await fetch(fullUrl, {
-    //             method: 'GET',
-    //             headers: {
-    //                 Authorization: `Bearer ${await bearer_token_cc}`,
-    //                 'Content-Type': 'application/json',
-    //             },
-    //         });
-    //         const data = await response.json();
-    //         return data;
-    //     } catch (error) {
-    //         console.error('Error:', error);
-    //         throw error;
-    //     }
-    // }
 }

@@ -14,7 +14,7 @@ export class AddressNew {
     }
 
     createContainer(): HTMLDivElement {
-        const addressesContainer = document.createElement('div');
+        const addressesContainer = document.createElement('div') as HTMLDivElement;
         addressesContainer.classList.add('adresS__container');
 
         addressesContainer.innerText = 'Add New Adress';
@@ -145,7 +145,7 @@ export class AddressNew {
                         }
 
                         if (
-                            (response && response.statusCode === 409) ||
+                            (response && response.status === 409) ||
                             (billingAddress && billingAddress.statusCode === 409) ||
                             (shippingAddress && shippingAddress.statusCode === 409) ||
                             (billingAddressDefault && billingAddressDefault.statusCode === 409) ||

@@ -1,36 +1,19 @@
-import fetch from 'node-fetch';
 import { constants } from '../data/constants';
+import { request } from './classes/requestClass';
+import { PARSE } from './interfaces/parseEnum';
 
 export class TokenRevoker {
-    private authHost: string;
-    private clientId: string;
-    private clientSecret: string;
-
-    constructor() {
-        this.authHost = constants.authHost;
-        this.clientId = constants.client_id;
-        this.clientSecret = constants.client_secret;
-    }
-
     private async revokeToken(token: string, tokenTypeHint: string): Promise<void> {
-        const revokeUrl = `https://${this.authHost}/oauth/token/revoke`;
-
         try {
-            const credentials = `${this.clientId}:${this.clientSecret}`;
+            const credentials = `${constants.client_id}:${constants.client_secret}`;
             const base64Credentials: string = btoa(credentials);
+            const auth = `Basic ${base64Credentials}`;
 
             const requestData = new URLSearchParams();
             requestData.append('token', token);
             requestData.append('token_type_hint', tokenTypeHint);
 
-            const response = await fetch(revokeUrl, {
-                method: 'POST',
-                headers: {
-                    Authorization: `Basic ${base64Credentials}`,
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                },
-                body: requestData.toString(),
-            });
+            const response = await request.postAuth(constants.revokeUrl, auth, PARSE.Xwww, requestData.toString());
 
             if (response.status === 200) {
                 console.log('Token successfully revoked.');
