@@ -21,8 +21,8 @@ import { switchPageByHashChain } from './pages/catalog/listeners/switchPageByHas
 const app = new App();
 app.run();
 export const bearer_token_cc: Promise<string> = tokenFetcher.fetchAccessToken();
-submitLogin(constants.authorizationObj);
-submitReg(constants.registrationObj);
+submitLogin(constants.authorization);
+submitReg(constants.registration);
 getModal();
 removeModal();
 paginateModal();

@@ -2,7 +2,7 @@ import { buttonHTML, divHTML, formHTML, selectHTML } from '../../classes/element
 import { ICategory } from '../../interfaces/categoryInterface';
 import { createBrandFilterBlock } from './createBrandFilterBlock';
 import { createPriceFilter } from './createPriceFilter';
-import { getAttributesFromObjs } from './getAttributesFromObjects';
+import { getAttributesFromCategories } from './getAttributesFromCategories';
 
 export function createFilterBlock(categories: ICategory[]): HTMLFormElement {
     const priceFilter = createPriceFilter();
@@ -10,7 +10,7 @@ export function createFilterBlock(categories: ICategory[]): HTMLFormElement {
     const mainWrap = formHTML.getElement('', 'other-attr-wrap', 'attr') as HTMLFormElement;
     mainWrap.append(priceFilter, brandFilter);
 
-    const otherAttributes = getAttributesFromObjs(categories);
+    const otherAttributes = getAttributesFromCategories(categories);
     otherAttributes.forEach((attr) => {
         const name = attr.attribute;
         if (name.toLowerCase() !== 'brand') {

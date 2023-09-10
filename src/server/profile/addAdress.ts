@@ -40,7 +40,6 @@ export class CustomerAddAdress {
                 this.addressId = response.addresses[index].id;
             }
             this.customerVersion = this.customerVersion + 1;
-            console.log(res);
             return res;
         } catch (error) {
             console.error('Error creating billing address:', error);

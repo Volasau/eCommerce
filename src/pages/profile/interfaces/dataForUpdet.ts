@@ -55,7 +55,7 @@ interface IChangePassword {
     passwordNew: string;
 }
 
-export const changePassworObj: IChangePassword = {
+export const passwordChanger: IChangePassword = {
     passwordOld: '',
     passwordNew: '',
 };

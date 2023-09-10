@@ -3,7 +3,7 @@ import { changeCustomerPassword } from '../../server/profile/changePasswordApi';
 import { InnerForm } from '../logReg/formClasses/classForm';
 import { showToast, showToastError } from '../logReg/utils/funcToastify.utils';
 import { logoutAction } from '../logReg/utils/logOutFunc.utils';
-import { changePassworObj } from './interfaces/dataForUpdet';
+import { passwordChanger } from './interfaces/dataForUpdet';
 
 export class ChangePassword {
     container: HTMLDivElement;
@@ -100,14 +100,14 @@ export class ChangePassword {
                 return;
             }
 
-            changePassworObj.passwordOld = passwordOld.inputHTML.value;
-            changePassworObj.passwordNew = passwordNew.inputHTML.value;
+            passwordChanger.passwordOld = passwordOld.inputHTML.value;
+            passwordChanger.passwordNew = passwordNew.inputHTML.value;
             (async () => {
                 const customerManager = new changeCustomerPassword();
                 try {
                     const response = await customerManager.changePassword(
-                        changePassworObj.passwordOld,
-                        changePassworObj.passwordNew,
+                        passwordChanger.passwordOld,
+                        passwordChanger.passwordNew,
                         dataCustomer.version,
                         dataCustomer.id
                     );

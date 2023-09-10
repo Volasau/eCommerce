@@ -10,7 +10,6 @@ class Request implements IRequest {
                 'Content-Type': 'application/json',
             },
         });
-        console.log(response);
         return response;
     }
 
@@ -21,7 +20,6 @@ class Request implements IRequest {
                 Authorization: `Bearer ${await bearer_token_cc}`,
             },
         });
-        console.log(response);
         return response;
     }
 
@@ -39,7 +37,6 @@ class Request implements IRequest {
             },
             body: bodyValue,
         });
-        console.log(response);
         return response;
     }
 }

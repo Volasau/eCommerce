@@ -24,7 +24,7 @@ export const constants: IConstants = {
     requestDataCart: {
         currency: 'GBP',
     },
-    registrationObj: {
+    registration: {
         email: '',
         password: '',
         name: '',
@@ -41,7 +41,7 @@ export const constants: IConstants = {
         billingDefault: false,
         shippingDefault: false,
     },
-    authorizationObj: { email: '', password: '' },
+    authorization: { email: '', password: '' },
     modalPage: 1,
     modalImages: [
         'https://83c548175751107cbc78-7e6ca5812cd490d87dba64b458c8c635.ssl.cf3.rackcdn.com/2-2-1Si2lfBl.jpg',

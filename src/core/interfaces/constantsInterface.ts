@@ -1,7 +1,7 @@
 import { IProductResp } from '../../pages/catalog/interfaces/categoryResponse/categoryResponseInterface';
 import { ICreateCartRequest } from './createCartRequest';
-import { IAuthorizationObj } from './authorizationObjInterface';
-import { IRegistrationObj } from './registrationObjInterface';
+import { IAuthorization } from './authorizationInterface';
+import { IRegistration } from './registrationInterface';
 
 export interface IConstants {
     logIn: boolean;
@@ -25,8 +25,8 @@ export interface IConstants {
     projectKey: string;
     scope: string;
     requestDataCart: ICreateCartRequest;
-    registrationObj: IRegistrationObj;
-    authorizationObj: IAuthorizationObj;
+    registration: IRegistration;
+    authorization: IAuthorization;
     modalPage: number;
     modalImages: string[];
     productList: IProductResp[];

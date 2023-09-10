@@ -1,7 +1,7 @@
 import { IAttr } from '../../interfaces/attrInterface';
 import { ICategory } from '../../interfaces/categoryInterface';
 
-export function getAttributesFromObjs(categories: ICategory[]): IAttr[] {
+export function getAttributesFromCategories(categories: ICategory[]): IAttr[] {
     let allAttr: IAttr[] = [];
     let attrList: string[] = [];
     const attrResult: IAttr[] = [];

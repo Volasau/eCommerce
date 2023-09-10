@@ -109,7 +109,7 @@ export interface IProduct {
     allVariants: IAllVariants[];
 }
 
-export interface IVariantObj {
+export interface IVariantProps {
     variantAttr: IAttributes[];
     variantImg: IImages[];
     variantPrices: IPricesStr[];
@@ -130,30 +130,30 @@ export class QueryProductProjections {
             const productsWithAttributes: IProductResp[] = data.results.map((product: IProductProjection) => {
                 const categoriesArr: ICategories[] = [...product.categories];
                 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                const variantObjs: any[] = [];
+                const variants: any[] = [];
                 product.variants.map((variant) => {
                     const { attributes, images, prices } = variant;
                     const variantAttr: IAttributes[] = [...attributes];
                     const variantImg: IImages[] = [...images];
                     const variantPrices: IPricesStr[] = [...prices];
 
-                    const variantObj: IVariantObj = {
+                    const variantProps: IVariantProps = {
                         variantAttr,
                         variantImg,
                         variantPrices,
                     };
 
-                    variantObjs.push(variantObj);
+                    variants.push(variantProps);
                 });
 
                 const allVarAttrArr: IAttributes[] = [
-                    ...variantObjs.reduce((acc, variant) => [...acc, ...variant.variantAttr], []),
+                    ...variants.reduce((acc, variant) => [...acc, ...variant.variantAttr], []),
                 ];
                 const allVarImgArr: IImages[] = [
-                    ...variantObjs.reduce((acc, variant) => [...acc, ...variant.variantImg], []),
+                    ...variants.reduce((acc, variant) => [...acc, ...variant.variantImg], []),
                 ];
                 const allVarPricesArr: IPricesStr[] = [
-                    ...variantObjs.reduce((acc, variant) => [...acc, ...variant.variantPrices], []),
+                    ...variants.reduce((acc, variant) => [...acc, ...variant.variantPrices], []),
                 ];
 
                 const allVariants: IAllVariants[] = [
@@ -169,14 +169,14 @@ export class QueryProductProjections {
                     },
                 ];
 
-                const productObj: IProduct = {
+                const productProps: IProduct = {
                     id: product.id,
                     name: product.name.en,
                     description: product.description.en,
                     categories: categoriesArr,
                     allVariants,
                 };
-                return productObj;
+                return productProps;
             });
             return productsWithAttributes;
         } catch (error) {

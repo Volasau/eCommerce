@@ -1,4 +1,4 @@
-export interface IRegistrationObj {
+export interface IRegistration {
     email: string;
     password: string;
     name: string;

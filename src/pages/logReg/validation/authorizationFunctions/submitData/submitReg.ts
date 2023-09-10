@@ -1,10 +1,10 @@
-import { IRegistrationObj } from '../../../../../core/interfaces/registrationObjInterface';
+import { IRegistration } from '../../../../../core/interfaces/registrationInterface';
 import { logInToServer } from '../logInToServer';
 import { registerOnTheServer } from '../registerOnTheServer';
 import { checkInputsForErrors } from './checkInputsForErrors';
-import { saveUsersDataInObj } from './saveUsersDataInObject';
+import { saveUsersData } from './saveUsersData';
 
-export function submitReg(obj: IRegistrationObj) {
+export function submitReg(reg: IRegistration) {
     document.addEventListener('click', (event) => {
         const target = event.target as HTMLButtonElement;
         if (target.id === 'registr-submit') {
@@ -13,11 +13,11 @@ export function submitReg(obj: IRegistrationObj) {
             const inputList = page.querySelectorAll('.input') as NodeList;
 
             if (checkInputsForErrors(errorList, inputList)) return;
-            saveUsersDataInObj(inputList, obj);
+            saveUsersData(inputList, reg);
 
-            const objectReg = obj as IRegistrationObj;
-            registerOnTheServer(objectReg);
-            setTimeout(() => logInToServer(obj, page), 3000);
+            const signIn = reg as IRegistration;
+            registerOnTheServer(signIn);
+            setTimeout(() => logInToServer(reg, page), 3000);
         }
     });
 }
