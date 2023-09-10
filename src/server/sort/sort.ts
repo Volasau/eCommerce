@@ -13,9 +13,9 @@ export class ProductSort {
         this.nameSort = `name.en asc`;
     }
 
-    async sortByPrice() {
+    async sortBy(value: string) {
         try {
-            const fullUrl = `${this.baseURL}sort=${encodeURIComponent(this.priceSort)}&limit=60`;
+            const fullUrl = `${this.baseURL}sort=${encodeURIComponent(value)}&limit=60`;
             const response = await fetch(fullUrl, {
                 method: 'GET',
                 headers: {
@@ -31,21 +31,21 @@ export class ProductSort {
         }
     }
 
-    async sortByName() {
-        try {
-            const fullUrl = `${this.baseURL}sort=${encodeURIComponent(this.nameSort)}&limit=60`;
-            const response = await fetch(fullUrl, {
-                method: 'GET',
-                headers: {
-                    Authorization: `Bearer ${await bearer_token_cc}`,
-                    'Content-Type': 'application/json',
-                },
-            });
-            const data = await response.json();
-            return data;
-        } catch (error) {
-            console.error('Error:', error);
-            throw error;
-        }
-    }
+    // async sortByName() {
+    //     try {
+    //         const fullUrl = `${this.baseURL}sort=${encodeURIComponent(this.nameSort)}&limit=60`;
+    //         const response = await fetch(fullUrl, {
+    //             method: 'GET',
+    //             headers: {
+    //                 Authorization: `Bearer ${await bearer_token_cc}`,
+    //                 'Content-Type': 'application/json',
+    //             },
+    //         });
+    //         const data = await response.json();
+    //         return data;
+    //     } catch (error) {
+    //         console.error('Error:', error);
+    //         throw error;
+    //     }
+    // }
 }

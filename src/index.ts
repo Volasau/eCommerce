@@ -14,7 +14,7 @@ import { switchPhoto } from './pages/catalog/listeners/switchPhoto';
 import { addCategoryLink } from './pages/catalog/listeners/addCategoryLink';
 import { filterProductList } from './pages/catalog/listeners/filterProductList';
 import { searchByButton, searchByEnter } from './pages/catalog/listeners/searchProduct';
-import { sortByAlphabet, sortByCheap } from './pages/catalog/listeners/sortProducts';
+import { sortByValue } from './pages/catalog/listeners/sortProducts';
 import { showFilter } from './pages/catalog/listeners/showFilter';
 import { switchPageByHashChain } from './pages/catalog/listeners/switchPageByHashChain';
 
@@ -34,7 +34,7 @@ addCategoryLink();
 filterProductList();
 searchByButton();
 searchByEnter();
-sortByCheap();
-sortByAlphabet();
+sortByValue('cheap-view');
+sortByValue('alpha-view');
 showFilter();
 switchPageByHashChain();

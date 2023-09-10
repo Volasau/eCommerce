@@ -4,40 +4,21 @@ import { changeQuantity } from '../functions/catalog/changeQuantity';
 import { buildProductItem } from '../functions/product/buildProductItem';
 import { IProductResp } from '../interfaces/categoryResponse/categoryResponseInterface';
 
-export function sortByCheap() {
+export function sortByValue(value: string) {
     document.addEventListener('click', async (event) => {
         const target = event.target as HTMLButtonElement;
 
-        if (target.id === 'cheap-view') {
+        if (target.id === value) {
             try {
                 const productSort = new ProductSort();
-                const data = await productSort.sortByPrice();
-                const result: IProductResp[] = productForm(data);
-                const chain = document.getElementById('row-chain') as HTMLElement;
-                const chainChildren: HTMLCollectionOf<HTMLSpanElement> = chain.getElementsByTagName('span');
-                const currCategoryLastTagId: string = chainChildren[chainChildren.length - 1].id;
-                if (currCategoryLastTagId === 'catalog-chain') {
-                    mainCatalogSort(result);
-                } else {
-                    subCategorySort(result, currCategoryLastTagId);
+                let result: IProductResp[] = [];
+                if (value === 'cheap-view') {
+                    const data = await productSort.sortBy(productSort.priceSort);
+                    result = productForm(data);
+                } else if (value === 'alpha-view') {
+                    const data = await productSort.sortBy(productSort.nameSort);
+                    result = productForm(data);
                 }
-                sort(target);
-            } catch (error) {
-                console.error('Error:', error);
-            }
-        }
-    });
-}
-
-export function sortByAlphabet() {
-    document.addEventListener('click', async (event) => {
-        const target = event.target as HTMLButtonElement;
-
-        if (target.id === 'alpha-view') {
-            try {
-                const productSort = new ProductSort();
-                const data = await productSort.sortByName();
-                const result: IProductResp[] = productForm(data);
                 const chain = document.getElementById('row-chain') as HTMLElement;
                 const chainChildren: HTMLCollectionOf<HTMLSpanElement> = chain.getElementsByTagName('span');
                 const currCategoryLastTagId: string = chainChildren[chainChildren.length - 1].id;
