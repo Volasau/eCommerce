@@ -14,5 +14,7 @@ export interface ICatalog {
     product: IProductResp;
 
     renderCatalog(): void;
+    renderCategory(): void;
+    renderSubCategory(): void;
     renderProduct(): void;
 }

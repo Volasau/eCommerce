@@ -8,7 +8,7 @@ import {
     IProduct,
     IProductProjection,
     IVariantProps,
-} from '../products/queryProductProjections';
+} from '../interfaces/productProjectionInterface';
 import { IProductResp } from '../../pages/catalog/interfaces/categoryResponse/categoryResponseInterface';
 import { request } from '../classes/requestClass';
 

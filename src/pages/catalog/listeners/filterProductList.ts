@@ -1,10 +1,8 @@
-interface ISelectedFilters {
-    [key: string]: string[] | undefined;
-}
-
 import { ProductFilter } from '../../../server/filter/filterCategory';
 import { buildProductItem } from '../functions/product/buildProductItem';
 import { IProductResp } from '../interfaces/categoryResponse/categoryResponseInterface';
+import { ISelectedFilters } from '../interfaces/selectedFiltersInterface';
+
 const productFilter = new ProductFilter();
 
 export function filterProductList() {

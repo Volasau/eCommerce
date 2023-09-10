@@ -1,4 +1,5 @@
 import { constants } from '../../data/constants';
+import { IProductResp } from '../../pages/catalog/interfaces/categoryResponse/categoryResponseInterface';
 import {
     IAllVariants,
     IAttributes,
@@ -8,9 +9,7 @@ import {
     IProduct,
     IProductProjection,
     IVariantProps,
-} from '../../server/products/queryProductProjections';
-
-import { IProductResp } from '../../pages/catalog/interfaces/categoryResponse/categoryResponseInterface';
+} from '../interfaces/productProjectionInterface';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function productForm(data: any): IProductResp[] {

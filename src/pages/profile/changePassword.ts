@@ -3,7 +3,7 @@ import { changeCustomerPassword } from '../../server/profile/changePasswordApi';
 import { InnerForm } from '../logReg/formClasses/classForm';
 import { showToast, showToastError } from '../logReg/utils/funcToastify.utils';
 import { logoutAction } from '../logReg/utils/logOutFunc.utils';
-import { passwordChanger } from './interfaces/dataForUpdet';
+import { passwordChanger } from './interfaces/dataForUpdate';
 
 export class ChangePassword {
     container: HTMLDivElement;

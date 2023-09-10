@@ -1,10 +1,10 @@
 import { dataCustomer } from '../../server/customerLogin';
-import { CustomerAddAdress } from '../../server/profile/addAdress';
+import { CustomerAddAddress } from '../../server/profile/addAdress';
 import { InnerForm } from '../logReg/formClasses/classForm';
 import { showToast, showToastError } from '../logReg/utils/funcToastify.utils';
 import { getISOCodeByCountryName } from '../logReg/utils/getISOCode.utils';
 import { logoutAction } from '../logReg/utils/logOutFunc.utils';
-import { newAdress } from './interfaces/dataForUpdet';
+import { newAddress } from './interfaces/dataForUpdate';
 
 export class AddressNew {
     container: HTMLDivElement;
@@ -106,24 +106,24 @@ export class AddressNew {
                     billingCheckbox.checked ||
                     shippingCheckbox.checked)
             ) {
-                newAdress.country = countryN.inputHTML.value;
-                newAdress.city = cityN.inputHTML.value;
-                newAdress.street = street.inputHTML.value;
-                newAdress.code = postCode.inputHTML.value;
-                newAdress.billingDefault = billingDefaultCheckbox.checked;
-                newAdress.shippingDefault = shippingDefaultCheckbox.checked;
-                newAdress.billing = billingCheckbox.checked;
-                newAdress.shipping = shippingCheckbox.checked;
+                newAddress.country = countryN.inputHTML.value;
+                newAddress.city = cityN.inputHTML.value;
+                newAddress.street = street.inputHTML.value;
+                newAddress.code = postCode.inputHTML.value;
+                newAddress.billingDefault = billingDefaultCheckbox.checked;
+                newAddress.shippingDefault = shippingDefaultCheckbox.checked;
+                newAddress.billing = billingCheckbox.checked;
+                newAddress.shipping = shippingCheckbox.checked;
 
-                const counry = await getISOCodeByCountryName(newAdress.country);
+                const counry = await getISOCodeByCountryName(newAddress.country);
                 (async () => {
-                    const customerManager = new CustomerAddAdress(dataCustomer.version);
+                    const customerManager = new CustomerAddAddress(dataCustomer.version);
                     try {
                         const response = await customerManager.addAddress(
                             counry,
-                            newAdress.city,
-                            newAdress.street,
-                            newAdress.code,
+                            newAddress.city,
+                            newAddress.street,
+                            newAddress.code,
                             dataCustomer.id
                         );
                         let billingAddress, shippingAddress, billingAddressDefault, shippingAddressDefault;

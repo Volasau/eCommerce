@@ -1,11 +1,11 @@
 import { dataCustomer } from '../../server/customerLogin';
-import { СhangeCustomerAddAdress } from '../../server/profile/changeAddress';
+import { ChangeCustomerAddAddress } from '../../server/profile/changeAddress';
 import { CustomerEditManager } from '../../server/profile/deletAddress';
 import { InnerForm } from '../logReg/formClasses/classForm';
 import { showToast, showToastError } from '../logReg/utils/funcToastify.utils';
 import { getISOCodeByCountryName } from '../logReg/utils/getISOCode.utils';
 import { logoutAction } from '../logReg/utils/logOutFunc.utils';
-import { changeAdress } from './interfaces/dataForUpdet';
+import { changeAddress } from './interfaces/dataForUpdate';
 
 export class Address {
     container: HTMLDivElement;
@@ -168,17 +168,17 @@ export class Address {
                 return;
             }
 
-            changeAdress.id = this.id;
-            changeAdress.country = countryForm.inputHTML.value;
-            changeAdress.city = city.inputHTML.value;
-            changeAdress.street = street.inputHTML.value;
-            changeAdress.code = postCode.inputHTML.value;
-            changeAdress.billingDefault = billingDefaultCheckbox.checked;
-            changeAdress.shippingDefault = shippingDefaultCheckbox.checked;
-            const country = await getISOCodeByCountryName(changeAdress.country);
+            changeAddress.id = this.id;
+            changeAddress.country = countryForm.inputHTML.value;
+            changeAddress.city = city.inputHTML.value;
+            changeAddress.street = street.inputHTML.value;
+            changeAddress.code = postCode.inputHTML.value;
+            changeAddress.billingDefault = billingDefaultCheckbox.checked;
+            changeAddress.shippingDefault = shippingDefaultCheckbox.checked;
+            const country = await getISOCodeByCountryName(changeAddress.country);
 
             (async () => {
-                const customerManager = new СhangeCustomerAddAdress(dataCustomer.version, this.id, dataCustomer.id);
+                const customerManager = new ChangeCustomerAddAddress(dataCustomer.version, this.id, dataCustomer.id);
                 try {
                     let response;
                     if (
@@ -189,9 +189,9 @@ export class Address {
                     ) {
                         response = await customerManager.changeAddress(
                             country,
-                            changeAdress.city,
-                            changeAdress.street,
-                            changeAdress.code
+                            changeAddress.city,
+                            changeAddress.street,
+                            changeAddress.code
                         );
                     }
                     let billingAddressDefault, shippingAddressDefault;

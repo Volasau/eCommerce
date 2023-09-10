@@ -3,7 +3,7 @@ import { constants } from '../../data/constants';
 import { request } from '../classes/requestClass';
 import { PARSE } from '../interfaces/parseEnum';
 
-export class СhangeCustomerAddAdress {
+export class ChangeCustomerAddAddress {
     private customerVersion: number;
 
     private customerId: string;
