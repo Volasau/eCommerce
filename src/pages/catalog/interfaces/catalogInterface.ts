@@ -1,5 +1,5 @@
+import { IProduct } from '../../../server/products/queryProductProjections';
 import { ICategory } from './categoryInterface';
-import { IProductResp } from './categoryResponse/categoryResponseInterface';
 
 export interface ICatalog {
     curCatalog: Element | null;
@@ -11,7 +11,7 @@ export interface ICatalog {
     categoryName: HTMLDivElement;
     catalogViewer: HTMLDivElement;
     categories: ICategory[];
-    product: IProductResp;
+    product: IProduct;
 
     renderCatalog(): void;
     renderProduct(): void;

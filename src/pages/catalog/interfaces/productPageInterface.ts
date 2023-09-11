@@ -1,7 +1,7 @@
-import { IProductResp } from './categoryResponse/categoryResponseInterface';
+import { IProduct } from '../../../server/products/queryProductProjections';
 
 export interface IProductPage {
     productHTML: HTMLDivElement;
-    product: IProductResp;
+    product: IProduct;
     render(): void;
 }

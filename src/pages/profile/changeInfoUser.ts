@@ -1,5 +1,5 @@
 import { changeCustomerInfo } from '../../server/profile/changePerson';
-import { dataCustomer } from '../../server/customerLogin';
+import { dataCustomer } from '../../server/customer/customerLogin';
 import { InnerForm } from '../logReg/formClasses/classForm';
 import { logoutAction } from '../logReg/utils/logOutFunc.utils';
 import { showToast, showToastError } from '../logReg/utils/funcToastify.utils';
@@ -24,7 +24,7 @@ export default function showChangeInfoUser(bodyProfile: HTMLElement) {
         'birthdate-error',
         `${dataCustomer.dateOfBirth}`
     );
-    // Заполнянм поля данными
+
     email.inputHTML.value = dataCustomer.email;
     firstName.inputHTML.value = dataCustomer.firstName;
     lastName.inputHTML.value = dataCustomer.lastName;
@@ -34,8 +34,6 @@ export default function showChangeInfoUser(bodyProfile: HTMLElement) {
     UserChangeForm.appendChild(firstName.create());
     UserChangeForm.appendChild(lastName.create());
     UserChangeForm.appendChild(birthDate.create());
-
-    //Кнопка отмены
 
     const changeInfoUser = document.querySelector('.btn__change-infouser');
     const submitButton = document.createElement('button');
@@ -48,7 +46,6 @@ export default function showChangeInfoUser(bodyProfile: HTMLElement) {
         const lastNameValue = lastName.inputHTML.value;
         const birthDateValue = birthDate.inputHTML.value;
 
-        // Проверяем, совпадают ли введенные значения с исходными данными
         if (
             emailValue === dataCustomer.email &&
             firstNameValue === dataCustomer.firstName &&
@@ -64,7 +61,6 @@ export default function showChangeInfoUser(bodyProfile: HTMLElement) {
             return;
         }
 
-        // запретим отправку формы если не проходит валидацую на стороне клиента
         const errorSpans = UserChangeForm.querySelectorAll('.error');
         let hasError = false;
         errorSpans.forEach((errorSpan) => {
@@ -77,7 +73,6 @@ export default function showChangeInfoUser(bodyProfile: HTMLElement) {
             return;
         }
 
-        // отправляем запрос на сервер
         (async function changeCustomerApi() {
             const newInfo = new changeCustomerInfo();
 
@@ -108,7 +103,6 @@ export default function showChangeInfoUser(bodyProfile: HTMLElement) {
         }
     });
 
-    //Кнопка отмены
     const сancelButton = document.createElement('button');
     сancelButton.type = 'button';
 

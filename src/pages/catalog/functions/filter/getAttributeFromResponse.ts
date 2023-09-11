@@ -1,14 +1,11 @@
+import { IAttributes } from '../../../../server/products/queryProductProjections';
 import { IAttr } from '../../interfaces/attrInterface';
-import {
-    IAttrValueResp,
-    IAttributeResp,
-    ICategoryResp,
-} from '../../interfaces/categoryResponse/categoryResponseInterface';
+import { IAttrValueResp, ICategoryResp } from '../../interfaces/categoryResponse/categoryResponseInterface';
 
 export function getAttributeFromResponse(categoryResponse: ICategoryResp): IAttr[] {
     const result: IAttr[] = [];
 
-    const allAttrList: IAttributeResp[] = [];
+    const allAttrList: IAttributes[] = [];
     categoryResponse.subcategories.forEach((subCat) => {
         subCat.products.forEach((product) => {
             product.allVariants.forEach((variant) => {

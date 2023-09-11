@@ -1,15 +1,16 @@
-import fetch from 'node-fetch';
 import { bearer_token_cc } from '../..';
+import { ICustomerResponse } from '../../core/interfaces/customerResponse';
 import { constants } from '../../data/constants';
+import { request } from '../classes/requestClass';
+import { PARSE } from '../interfaces/parseEnum';
 
 export class CustomerAddAdress {
-    private apiUrlCustomers: string;
     private customerVersion: number;
+
     protected addressId: string;
 
     constructor(customerVersion: number) {
         this.customerVersion = customerVersion;
-        this.apiUrlCustomers = constants.apiUrlCustomers;
         this.addressId = '';
     }
     async addAddress(
@@ -17,9 +18,8 @@ export class CustomerAddAdress {
         city: string,
         street: string,
         postalCode: string,
-        // customerVersion: number,
         customerId: string
-    ) {
+    ): Promise<Response> {
         const requestData = {
             version: this.customerVersion,
             actions: [
@@ -35,24 +35,19 @@ export class CustomerAddAdress {
             ],
         };
 
-        const headers = {
-            Authorization: `Bearer ${await bearer_token_cc}`,
-            'Content-Type': 'application/json',
-        };
-
         try {
-            const response = await fetch(this.apiUrlCustomers + `/${customerId}`, {
-                method: 'POST',
-                headers: headers,
-                body: JSON.stringify(requestData),
-            });
-            const res = await response.json();
-            const index: number = res.addresses.length - 1;
+            const url = `${constants.apiUrlCustomers}/${customerId}`;
+            const auth = `Bearer ${await bearer_token_cc}`;
+            const res: Response = await request.postAuth(url, auth, PARSE.Json, JSON.stringify(requestData));
 
-            if (res.addresses && res.addresses.length > index) {
-                this.addressId = res.addresses[index].id;
+            const response: ICustomerResponse = await res.json();
+            const index: number = response.addresses.length - 1;
+
+            if (response.addresses && response.addresses.length > index) {
+                this.addressId = response.addresses[index].id;
             }
             this.customerVersion = this.customerVersion + 1;
+            console.log(res);
             return res;
         } catch (error) {
             console.error('Error creating billing address:', error);
@@ -71,19 +66,13 @@ export class CustomerAddAdress {
             ],
         };
 
-        const headers = {
-            Authorization: `Bearer ${await bearer_token_cc}`,
-            'Content-Type': 'application/json',
-        };
-
         try {
-            const response = await fetch(this.apiUrlCustomers + `/${customerId}`, {
-                method: 'POST',
-                headers: headers,
-                body: JSON.stringify(requestData),
-            });
+            const url = `${constants.apiUrlCustomers}/${customerId}`;
+            const auth = `Bearer ${await bearer_token_cc}`;
+            const res: Response = await request.postAuth(url, auth, PARSE.Json, JSON.stringify(requestData));
 
-            const billingAddress = await response.json();
+            const billingAddress = await res.json();
+            console.log('TEST:', billingAddress);
             this.customerVersion = this.customerVersion + 1;
             return billingAddress;
         } catch (error) {
@@ -103,19 +92,12 @@ export class CustomerAddAdress {
             ],
         };
 
-        const headers = {
-            Authorization: `Bearer ${await bearer_token_cc}`,
-            'Content-Type': 'application/json',
-        };
-
         try {
-            const response = await fetch(this.apiUrlCustomers + `/${customerId}`, {
-                method: 'POST',
-                headers: headers,
-                body: JSON.stringify(requestData),
-            });
+            const url = `${constants.apiUrlCustomers}/${customerId}`;
+            const auth = `Bearer ${await bearer_token_cc}`;
+            const res = await request.postAuth(url, auth, PARSE.Json, JSON.stringify(requestData));
 
-            const shippingAddress = await response.json();
+            const shippingAddress = await res.json();
             this.customerVersion = this.customerVersion + 1;
 
             return shippingAddress;
@@ -136,19 +118,12 @@ export class CustomerAddAdress {
             ],
         };
 
-        const headers = {
-            Authorization: `Bearer ${await bearer_token_cc}`,
-            'Content-Type': 'application/json',
-        };
-
         try {
-            const response = await fetch(this.apiUrlCustomers + `/${customerId}`, {
-                method: 'POST',
-                headers: headers,
-                body: JSON.stringify(requestData),
-            });
+            const url = `${constants.apiUrlCustomers}/${customerId}`;
+            const auth = `Bearer ${await bearer_token_cc}`;
+            const res = await request.postAuth(url, auth, PARSE.Json, JSON.stringify(requestData));
 
-            const defaultBillingAddress = await response.json();
+            const defaultBillingAddress = await res.json();
             this.customerVersion = this.customerVersion + 1;
 
             return defaultBillingAddress;
@@ -169,20 +144,12 @@ export class CustomerAddAdress {
             ],
         };
 
-        const headers = {
-            Authorization: `Bearer ${await bearer_token_cc}`,
-            'Content-Type': 'application/json',
-        };
-
         try {
-            const response = await fetch(this.apiUrlCustomers + `/${customerId}`, {
-                method: 'POST',
-                headers: headers,
-                body: JSON.stringify(requestData),
-            });
+            const url = `${constants.apiUrlCustomers}/${customerId}`;
+            const auth = `Bearer ${await bearer_token_cc}`;
+            const res = await request.postAuth(url, auth, PARSE.Json, JSON.stringify(requestData));
 
-            const defaultShippingAddress = await response.json();
-            // this.defaultShippingAddressId = defaultShippingAddress.id;
+            const defaultShippingAddress = await res.json();
             this.customerVersion = this.customerVersion + 1;
 
             return defaultShippingAddress;

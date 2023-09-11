@@ -1,31 +1,27 @@
 import { constants } from '../../data/constants';
 import {
     ICategoryResp,
-    IProductResp,
     ISubCategoryResp,
 } from '../../pages/catalog/interfaces/categoryResponse/categoryResponseInterface';
 import { QueryAllCategories } from '../categories/queryAllCategories';
-import { QueryProductProjections } from '../products/queryProductProjections';
-import { ICategoryResponse } from './interfaces';
+import { IProduct, QueryProductProjections } from '../products/queryProductProjections';
+import { ICategoryResponseResult } from './interfaces';
 
 export let categoryResponse: ICategoryResp[] = [];
 
-export async function categoryStructuring() {
+export async function categoryStructuring(): Promise<ICategoryResp[]> {
     categoryResponse = [];
     const allCategories = new QueryAllCategories();
     const allProducts = new QueryProductProjections();
 
     try {
-        const categories = await allCategories.getCategories();
+        const categories: ICategoryResponseResult[] = await allCategories.getCategories();
 
-        const products = await allProducts.getAllProducts();
-        const productIds: string[] = products.map((product: { id: string }) => product.id);
-
-        console.log('All Products:', productIds);
+        const products: IProduct[] = await allProducts.getAllProducts();
 
         constants.productList = [];
 
-        categories.forEach((category: ICategoryResponse) => {
+        categories.forEach((category: ICategoryResponseResult) => {
             const newCategory = {
                 id: category.id,
                 name: category.name,
@@ -44,8 +40,7 @@ export async function categoryStructuring() {
                         products: [],
                     };
                     cat.subcategories.push(newSubCategory);
-                    // Assign products to subcategory
-                    products.forEach((product: IProductResp) => {
+                    products.forEach((product: IProduct) => {
                         if (product.categories[0].id === category.id) {
                             constants.productList.push(product);
                             newSubCategory.products.push(product);

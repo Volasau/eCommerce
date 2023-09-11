@@ -2,72 +2,40 @@ import Page from '../../core/template/page';
 import '../../css/profile.css';
 import { renderAddresses } from './renderAdresses';
 import { User } from './formUser';
-import { ChangePassword } from './changePassword';
-import { AddressNew } from './formAddNewAdress';
-import { dataCustomer } from '../../server/customerLogin';
+import { dataCustomer as customer } from '../../server/customer/customerLogin';
 import { createLink } from '../logReg/utils/createLink.utils';
+import { buttonHTML, divHTML } from '../catalog/classes/elementBuilder';
+import { addBlock } from './listeners/addBlock';
 
-class ProfilePage extends Page {
-    textObject: string;
+export default class ProfilePage extends Page {
+    text: string;
 
     constructor(id: string) {
         super(id);
-        this.textObject = 'Profile';
+        this.text = 'Profile';
     }
 
-    async render() {
-        const title = this.createHeaderTitle(this.textObject);
-        const textInfo = document.createElement('div');
-        textInfo.classList.add('text__information');
-        textInfo.innerHTML = 'After any changes, you must login again!';
+    async render(): Promise<HTMLElement> {
+        const text = 'After any changes, you must login again!';
+        const title = this.createHeaderTitle(this.text);
+        const textInfo = divHTML.getElement(text, 'txt-info', 'text__information');
+        const bodyProfile = divHTML.getElement('', 'profile__cont', 'profile__container');
+        const userContainer = divHTML.getElement('', 'userC', 'userC__container');
+        const passwordContainer = divHTML.getElement('', 'passw__cont', 'password__container');
+        const addressesContainer = divHTML.getElement('', 'address-all', 'adresAll__container');
+        const changePasswordButton = buttonHTML.getElement('Change Password 🔑', 'btn_ch', 'btn__change-pass');
+        const addAddressButton = buttonHTML.getElement('Add Address📬', 'btn_ad', 'btn__add-address');
+        const addresses = renderAddresses(customer);
 
-        const bodyProfile = document.createElement('div');
-        bodyProfile.classList.add('profile__container');
-        const userContaner = document.createElement('div');
-        userContaner.classList.add('userC__container');
+        const userProfile = new User(customer.email, customer.firstName, customer.lastName, customer.dateOfBirth);
+        userContainer.append(userProfile.container);
 
-        const userProfile = new User(
-            dataCustomer.email,
-            dataCustomer.firstName,
-            dataCustomer.lastName,
-            dataCustomer.dateOfBirth
-        );
+        addBlock(changePasswordButton, passwordContainer);
+        addBlock(addAddressButton, addressesContainer);
 
-        userContaner.append(userProfile.container);
-
-        const passwordContainer = document.createElement('div');
-        passwordContainer.classList.add('password__container');
-
-        const changePasswordButton = document.createElement('button');
-        changePasswordButton.classList.add('btn__change-pass');
-        changePasswordButton.textContent = 'Change Password 🔑';
-        changePasswordButton.addEventListener('click', () => {
-            changePasswordButton.disabled = true;
-            const changePassword = new ChangePassword();
-            passwordContainer.appendChild(changePassword.container);
-        });
-
-        ////////////////////////////////////////////////////////////////////////////////////////////////
-
-        const addressesContainer = document.createElement('div');
-        addressesContainer.classList.add('adresAll__container');
-        const addresses = renderAddresses(dataCustomer);
-
-        const addAddressButton = document.createElement('button');
-        addAddressButton.classList.add('btn__add-address');
-        addAddressButton.textContent = 'Add Address📬';
-        addAddressButton.addEventListener('click', () => {
-            addAddressButton.disabled = true;
-            const newAdressBlock = new AddressNew();
-            addressesContainer.appendChild(newAdressBlock.container);
-        });
-
-        addressesContainer.append(addresses);
-        bodyProfile.appendChild(userContaner);
-        passwordContainer.appendChild(changePasswordButton);
-        bodyProfile.appendChild(passwordContainer);
-        addressesContainer.appendChild(addAddressButton);
-        bodyProfile.appendChild(addressesContainer);
+        addressesContainer.append(addresses, addAddressButton);
+        passwordContainer.append(changePasswordButton);
+        bodyProfile.append(userContainer, passwordContainer, addressesContainer);
 
         const homeLink = createLink('#/main', 'To return to the home page click ', 'Here🏠', '');
         this._container.append(title, textInfo, bodyProfile, homeLink);
@@ -75,5 +43,3 @@ class ProfilePage extends Page {
         return this._container;
     }
 }
-
-export default ProfilePage;

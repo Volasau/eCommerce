@@ -2,7 +2,7 @@ import { ICategory } from '../../interfaces/categoryInterface';
 import { ICategoryResp } from '../../interfaces/categoryResponse/categoryResponseInterface';
 import { getAttributesFromSubCategory } from '../filter/getAttributesFromSubCategory';
 
-export function getSubCategoriesFrom(categoryResponse: ICategoryResp) {
+export function getSubCategoriesFrom(categoryResponse: ICategoryResp): ICategory[] {
     const subCategories: ICategory[] = [];
 
     categoryResponse.subcategories.forEach((sub) => {

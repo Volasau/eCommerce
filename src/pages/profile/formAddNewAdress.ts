@@ -1,10 +1,10 @@
-import { dataCustomer } from '../../server/customerLogin';
+import { dataCustomer } from '../../server/customer/customerLogin';
 import { CustomerAddAdress } from '../../server/profile/addAdress';
 import { InnerForm } from '../logReg/formClasses/classForm';
 import { showToast, showToastError } from '../logReg/utils/funcToastify.utils';
 import { getISOCodeByCountryName } from '../logReg/utils/getISOCode.utils';
 import { logoutAction } from '../logReg/utils/logOutFunc.utils';
-import { newAdress } from './interfaces/dataForUpdet';
+import { newAddress } from './interfaces/dataForUpdate';
 
 export class AddressNew {
     container: HTMLDivElement;
@@ -13,8 +13,8 @@ export class AddressNew {
         this.container = this.createContainer();
     }
 
-    createContainer() {
-        const addressesContainer = document.createElement('div');
+    createContainer(): HTMLDivElement {
+        const addressesContainer = document.createElement('div') as HTMLDivElement;
         addressesContainer.classList.add('adresS__container');
 
         addressesContainer.innerText = 'Add New Adress';
@@ -85,7 +85,6 @@ export class AddressNew {
         submitButton.textContent = 'Submit';
         submitButton.type = 'button';
         submitButton.addEventListener('click', async () => {
-            //////////// запретим отправку формы если не проходит валидацую на стороне клиента
             const errorSpans = form.querySelectorAll('.error');
             let hasError = false;
             errorSpans.forEach((errorSpan) => {
@@ -107,24 +106,24 @@ export class AddressNew {
                     billingCheckbox.checked ||
                     shippingCheckbox.checked)
             ) {
-                newAdress.country = countryN.inputHTML.value;
-                newAdress.city = cityN.inputHTML.value;
-                newAdress.street = street.inputHTML.value;
-                newAdress.code = postCode.inputHTML.value;
-                newAdress.billingDefault = billingDefaultCheckbox.checked;
-                newAdress.shippingDefault = shippingDefaultCheckbox.checked;
-                newAdress.billing = billingCheckbox.checked;
-                newAdress.shipping = shippingCheckbox.checked;
+                newAddress.country = countryN.inputHTML.value;
+                newAddress.city = cityN.inputHTML.value;
+                newAddress.street = street.inputHTML.value;
+                newAddress.code = postCode.inputHTML.value;
+                newAddress.billingDefault = billingDefaultCheckbox.checked;
+                newAddress.shippingDefault = shippingDefaultCheckbox.checked;
+                newAddress.billing = billingCheckbox.checked;
+                newAddress.shipping = shippingCheckbox.checked;
 
-                const counry = await getISOCodeByCountryName(newAdress.country);
+                const counry = await getISOCodeByCountryName(newAddress.country);
                 (async () => {
                     const customerManager = new CustomerAddAdress(dataCustomer.version);
                     try {
                         const response = await customerManager.addAddress(
                             counry,
-                            newAdress.city,
-                            newAdress.street,
-                            newAdress.code,
+                            newAddress.city,
+                            newAddress.street,
+                            newAddress.code,
                             dataCustomer.id
                         );
                         let billingAddress, shippingAddress, billingAddressDefault, shippingAddressDefault;
@@ -146,7 +145,7 @@ export class AddressNew {
                         }
 
                         if (
-                            (response && response.statusCode === 409) ||
+                            (response && response.status === 409) ||
                             (billingAddress && billingAddress.statusCode === 409) ||
                             (shippingAddress && shippingAddress.statusCode === 409) ||
                             (billingAddressDefault && billingAddressDefault.statusCode === 409) ||
@@ -154,7 +153,6 @@ export class AddressNew {
                         ) {
                             showToastError('Error ');
                         } else {
-                            // Другие статусы ответа
                             showToast('Add address');
                         }
                     } catch (error) {
@@ -170,7 +168,6 @@ export class AddressNew {
             } else {
                 showToastError('Please fill in all fields and select at least one checkbox before submitting.');
             }
-            /////////////////////////////////////////////////
         });
 
         const cancelButton = document.createElement('button');
@@ -192,6 +189,6 @@ export class AddressNew {
     }
 
     closeForm(container: HTMLDivElement) {
-        container.remove(); // Функция для закрытия формы
+        container.remove();
     }
 }

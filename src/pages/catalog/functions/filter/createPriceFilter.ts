@@ -1,7 +1,7 @@
 import { constants } from '../../../../data/constants';
 import { divHTML, inpHTML } from '../../classes/elementBuilder';
 
-export function createPriceFilter() {
+export function createPriceFilter(): HTMLDivElement {
     let maxProductPrice = 0;
     constants.productList.forEach((cat) => {
         cat.allVariants.forEach((sub) => {

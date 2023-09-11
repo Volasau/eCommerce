@@ -7,7 +7,15 @@ class ElementBuilder implements IBuilder {
         this.tag = tag;
     }
 
-    getElement(text: string, id: string, klas: string, url?: string, alt?: string, w?: string, tag: string = this.tag) {
+    getElement(
+        text: string,
+        id: string,
+        klas: string,
+        url?: string,
+        alt?: string,
+        w?: string,
+        tag: string = this.tag
+    ): HTMLElement {
         let element = document.createElement(tag);
         if (tag === 'div') {
             element = element as HTMLDivElement;

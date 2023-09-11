@@ -1,7 +1,7 @@
 import { ProductSearchManager } from '../../../server/search/search';
 import { productForm } from '../../../server/function/productForm';
-import { IProductResp } from '../interfaces/categoryResponse/categoryResponseInterface';
 import { buildProductItem } from '../functions/product/buildProductItem';
+import { IProduct, IProductsData } from '../../../server/products/queryProductProjections';
 
 export function searchByButton() {
     document.addEventListener('click', async (event) => {
@@ -13,8 +13,8 @@ export function searchByButton() {
             if (searchWord) {
                 const productSearch = new ProductSearchManager();
                 try {
-                    const data = await productSearch.searchProducts(searchWord);
-                    const result: IProductResp[] = productForm(data);
+                    const data: IProductsData = await productSearch.searchProducts(searchWord);
+                    const result: IProduct[] = productForm(data);
 
                     const prodList = document.getElementById('product-view') as HTMLDivElement;
                     prodList.innerHTML = '';
@@ -41,8 +41,8 @@ export function searchByEnter() {
             if (value) {
                 const productSearch = new ProductSearchManager();
                 try {
-                    const data = await productSearch.searchProducts(value);
-                    const result = productForm(data);
+                    const data: IProductsData = await productSearch.searchProducts(value);
+                    const result: IProduct[] = productForm(data);
                     return result;
                 } catch (error) {
                     console.error('Error:', error);

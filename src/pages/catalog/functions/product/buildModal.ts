@@ -1,6 +1,6 @@
 import { buttonHTML, divHTML, imgHTML } from '../../classes/elementBuilder';
 
-export function buildModal(imgId: string, imgURL: string, productName: string) {
+export function buildModal(imgId: string, imgURL: string, productName: string): HTMLDivElement {
     const back = divHTML.getElement('', 'back', 'back') as HTMLDivElement;
     const modalWrap = divHTML.getElement('', `${imgId}-wrap`, 'modal-wrap') as HTMLDivElement;
     const prevButton = buttonHTML.getElement('<<<', `${imgId}-prev`, 'prev') as HTMLButtonElement;

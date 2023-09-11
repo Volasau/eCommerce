@@ -3,8 +3,8 @@ interface ISelectedFilters {
 }
 
 import { ProductFilter } from '../../../server/filter/filterCategory';
+import { IProduct } from '../../../server/products/queryProductProjections';
 import { buildProductItem } from '../functions/product/buildProductItem';
-import { IProductResp } from '../interfaces/categoryResponse/categoryResponseInterface';
 const productFilter = new ProductFilter();
 
 export function filterProductList() {
@@ -20,7 +20,7 @@ export function filterProductList() {
                 selectedFilters[attribute] = [value];
             }
             try {
-                const filteredProductsList: IProductResp[] = await filterProducts(selectedFilters);
+                const filteredProductsList: IProduct[] = await filterProducts(selectedFilters);
                 const quantity = document.querySelector('.quantity') as HTMLSpanElement;
                 quantity.textContent = `${filteredProductsList.length}`;
 
@@ -36,7 +36,7 @@ export function filterProductList() {
     });
 }
 
-async function filterProducts(selectedFilters: ISelectedFilters) {
+async function filterProducts(selectedFilters: ISelectedFilters): Promise<IProduct[]> {
     const filterParams: string[] = [];
 
     for (const attribute in selectedFilters) {
@@ -44,10 +44,8 @@ async function filterProducts(selectedFilters: ISelectedFilters) {
         const filteredValues = values.filter((value) => !value.toLowerCase().includes('please'));
 
         if (filteredValues.length > 0) {
-            // Check if this attribute has already been added to filterParams
             const isAttributePresent = filterParams.some((param) => param.includes(attribute));
 
-            // If it's not present, add it to filterParams
             if (!isAttributePresent) {
                 const param: string = filteredValues
                     .map(
@@ -62,9 +60,9 @@ async function filterProducts(selectedFilters: ISelectedFilters) {
         }
     }
 
-    const queryString = filterParams.join('&');
+    const queryString: string = filterParams.join('&');
 
     const fullUrl = `${productFilter.baseURL}&${queryString}`;
-    const filteredProducts = await productFilter.filterByBrand(fullUrl);
+    const filteredProducts: IProduct[] = await productFilter.filterByBrand(fullUrl);
     return filteredProducts;
 }

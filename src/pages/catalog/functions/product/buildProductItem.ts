@@ -1,9 +1,9 @@
 import urlImg from '../../../../assets/icons/discount.svg';
 import { cartSVG } from '../../../../data/cartSVG';
+import { IProduct } from '../../../../server/products/queryProductProjections';
 import { buttonHTML, divHTML, imgHTML } from '../../classes/elementBuilder';
-import { IProductResp } from '../../interfaces/categoryResponse/categoryResponseInterface';
 
-export function buildProductItem(prod: IProductResp): HTMLDivElement {
+export function buildProductItem(prod: IProduct): HTMLDivElement {
     const id = prod.id;
     const prodName = prod.name;
     const firstIMG = prod.allVariants[0].images[0].url;

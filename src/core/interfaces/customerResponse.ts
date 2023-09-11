@@ -9,7 +9,7 @@ interface IUser {
     id: string;
 }
 
-interface IAddresses {
+interface IAddress {
     id: string;
     streetName: string;
     postalCode: string;
@@ -41,7 +41,7 @@ export interface ICustomerResponse {
     title?: string;
     salutation?: string;
     password: string;
-    addresses: IAddresses[];
+    addresses: IAddress[];
     defaultShippingAddressId: string;
     defaultBillingAddressId: string;
     shippingAddressIds: string[];

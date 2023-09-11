@@ -1,4 +1,4 @@
-export interface ICountryObj {
+export interface ICountryProp {
     Note: string;
     Country: string;
     ISO: string;

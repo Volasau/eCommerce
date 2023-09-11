@@ -1,32 +1,16 @@
-import fetch from 'node-fetch';
 import { constants } from '../../data/constants';
-import { bearer_token_cc } from '../..';
+import { request } from '../classes/requestClass';
+import { ICategoryResponse, ICategoryResponseResult } from '../function/interfaces';
 
 export class QueryAllCategories {
-    projectKey: string;
-    categoryEndpoint: string;
-    constructor() {
-        this.projectKey = constants.projectKey;
-        this.categoryEndpoint = `https://api.commercetools.com/${this.projectKey}`;
-    }
+    async getCategories(): Promise<ICategoryResponseResult[]> {
+        const res: Response = await request.getAuth(constants.categoryEndpoint);
 
-    async getCategories() {
-        const access_token = await bearer_token_cc;
-        const response = await fetch(`${this.categoryEndpoint}/categories`, {
-            method: 'GET',
-            headers: {
-                Authorization: `Bearer ${access_token}`,
-                'Content-Type': 'application/json',
-            },
-        });
-
-        if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
+        if (!res.ok) {
+            throw new Error(`HTTP error! Status: ${res.status}`);
         }
 
-        const data = await response.json();
+        const data: ICategoryResponse = await res.json();
         return data.results;
     }
 }
-
-export const AllCategoriees = new QueryAllCategories();

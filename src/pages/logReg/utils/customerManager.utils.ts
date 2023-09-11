@@ -1,39 +1,34 @@
-import { constants } from '../../../data/constants';
-import { CustomerManager } from '../../../server/customerRegistration';
-import { IRegistrationObject } from '../../../core/interfaces/registrationObjectInterface';
+import { CustomerManager } from '../../../server/customer/customerRegistration';
+import { IRegistration } from '../../../core/interfaces/registrationInterface';
 import { getISOCodeByCountryName } from './getISOCode.utils';
 import { IAddressBilling } from '../../../core/interfaces/addressBilling';
 import { IAddressShipping } from '../../../core/interfaces/addressShipping';
 import { IConsolidatedData } from '../../../core/interfaces/consolidatedData';
 import { showToast } from './funcToastify.utils';
+import { bearer_token_cc } from '../../..';
 
-export async function customerManagerData(obj: IRegistrationObject) {
-    const customerManager = new CustomerManager(
-        constants.apiUrlCustomers,
-        obj.email,
-        obj.name,
-        obj.lastName,
-        obj.password
-    );
+export async function customerManagerData(reg: IRegistration) {
+    const authBearer = `Bearer ${await bearer_token_cc}`;
+    const customerManager = new CustomerManager(authBearer, reg.email, reg.name, reg.lastName, reg.password);
     await customerManager.createCustomer();
-    await customerManager.createBirthDate(obj.birthDate);
-    const countryCodeBilling: string = await getISOCodeByCountryName(obj.country);
-    const countryCodeShipping: string = await getISOCodeByCountryName(obj.countryShip);
+    await customerManager.createBirthDate(reg.birthDate);
+    const countryCodeBilling: string = await getISOCodeByCountryName(reg.country);
+    const countryCodeShipping: string = await getISOCodeByCountryName(reg.countryShip);
 
     const addressBilling: IAddressBilling = {
-        streetName: obj.street,
-        city: obj.city,
-        postCode: obj.postcode,
+        streetName: reg.street,
+        city: reg.city,
+        postCode: reg.postcode,
         country: countryCodeBilling,
-        billingDefault: obj.billingDefault,
+        billingDefault: reg.billingDefault,
     };
 
     const addressShipping: IAddressShipping = {
-        streetName: obj.streetShip,
-        city: obj.cityShip,
-        postCode: obj.postcodeShip,
+        streetName: reg.streetShip,
+        city: reg.cityShip,
+        postCode: reg.postcodeShip,
         country: countryCodeShipping,
-        shippingDefault: obj.shippingDefault,
+        shippingDefault: reg.shippingDefault,
     };
 
     const consolidatedData: IConsolidatedData = {

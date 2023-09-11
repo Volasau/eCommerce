@@ -1,17 +1,24 @@
 import { productForm } from '../../../server/function/productForm';
+import { IProduct } from '../../../server/products/queryProductProjections';
 import { ProductSort } from '../../../server/sort/sort';
+import { changeQuantity } from '../functions/catalog/changeQuantity';
 import { buildProductItem } from '../functions/product/buildProductItem';
-import { IProductResp } from '../interfaces/categoryResponse/categoryResponseInterface';
 
-export function sortByCheap() {
+export function sortByValue(value: string): void {
     document.addEventListener('click', async (event) => {
         const target = event.target as HTMLButtonElement;
 
-        if (target.id === 'cheap-view') {
+        if (target.id === value) {
             try {
                 const productSort = new ProductSort();
-                const data = await productSort.sortByPrice();
-                const result: IProductResp[] = productForm(data);
+                let result: IProduct[] = [];
+                if (value === 'cheap-view') {
+                    const data = await productSort.sortBy('price asc');
+                    result = productForm(data);
+                } else if (value === 'alpha-view') {
+                    const data = await productSort.sortBy('name.en asc');
+                    result = productForm(data);
+                }
                 const chain = document.getElementById('row-chain') as HTMLElement;
                 const chainChildren: HTMLCollectionOf<HTMLSpanElement> = chain.getElementsByTagName('span');
                 const currCategoryLastTagId: string = chainChildren[chainChildren.length - 1].id;
@@ -20,7 +27,7 @@ export function sortByCheap() {
                 } else {
                     subCategorySort(result, currCategoryLastTagId);
                 }
-                sortAlphaStyle(result, target);
+                sort(target);
             } catch (error) {
                 console.error('Error:', error);
             }
@@ -28,41 +35,15 @@ export function sortByCheap() {
     });
 }
 
-export function sortByAlphabet() {
-    document.addEventListener('click', async (event) => {
-        const target = event.target as HTMLButtonElement;
-
-        if (target.id === 'alpha-view') {
-            try {
-                const productSort = new ProductSort();
-                const data = await productSort.sortByName();
-                const result: IProductResp[] = productForm(data);
-                const chain = document.getElementById('row-chain') as HTMLElement;
-                const chainChildren: HTMLCollectionOf<HTMLSpanElement> = chain.getElementsByTagName('span');
-                const currCategoryLastTagId: string = chainChildren[chainChildren.length - 1].id;
-                if (currCategoryLastTagId === 'catalog-chain') {
-                    mainCatalogSort(result);
-                } else {
-                    subCategorySort(result, currCategoryLastTagId);
-                }
-                sortCheapStyle(result, target);
-            } catch (error) {
-                console.error('Error:', error);
-            }
-        }
-    });
-}
-
-function mainCatalogSort(result: IProductResp[]) {
+function mainCatalogSort(result: IProduct[]) {
     const prodList = document.getElementById('product-view') as HTMLDivElement;
-    console.log(prodList);
     prodList.innerHTML = '';
     result.forEach((prod) => {
         prodList.append(buildProductItem(prod));
     });
 }
 
-function subCategorySort(result: IProductResp[], currCategoryLastTagId: string) {
+function subCategorySort(result: IProduct[], currCategoryLastTagId: string) {
     const currCategoryIdArr: string[] = currCategoryLastTagId.split('-');
     currCategoryIdArr.splice(-2);
     const currCategoryId: string = currCategoryIdArr.join('-');
@@ -79,7 +60,6 @@ function subCategorySort(result: IProductResp[], currCategoryLastTagId: string) 
         });
     } else {
         const prodList = document.getElementById('product-view') as HTMLDivElement;
-        console.log(prodList);
         prodList.innerHTML = '';
         result.forEach((prod) => {
             if (prod.categories[0].id === currCategoryId) {
@@ -102,28 +82,17 @@ function categoryRelatedIds() {
                 const currSubId: string = subId.join('-');
                 subIdsArr.push(currSubId);
             }
-            console.log(subIdsArr);
             return subIdsArr;
         }
     }
 }
 
-function sortAlphaStyle(result: IProductResp[], target: HTMLButtonElement) {
-    const quantity = document.querySelector('.quantity') as HTMLSpanElement;
-    quantity.textContent = `${result.length}`;
+function sort(target: HTMLButtonElement) {
+    changeQuantity();
 
-    const alpha = document.getElementById('alpha-view') as HTMLButtonElement;
-    alpha.style.color = '';
-    target.style.color = 'rgb(88, 200, 245)';
-    target.style.color = 'rgb(88, 200, 245)';
-}
-
-function sortCheapStyle(result: IProductResp[], target: HTMLButtonElement) {
-    const quantity = document.querySelector('.quantity') as HTMLSpanElement;
-    quantity.textContent = `${result.length}`;
-
-    const cheap = document.getElementById('cheap-view') as HTMLButtonElement;
-    cheap.style.color = '';
+    const choice = target.textContent === 'CHEAP' ? 'alpha' : 'cheap';
+    const secondBut = document.getElementById(`${choice}-view`) as HTMLButtonElement;
+    secondBut.style.color = '';
     target.style.color = 'rgb(88, 200, 245)';
     target.style.color = 'rgb(88, 200, 245)';
 }

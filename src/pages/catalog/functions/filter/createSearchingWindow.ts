@@ -1,7 +1,7 @@
 import urlImg from '../../../../assets/icons/magnifying.svg';
 import { divHTML, inpHTML } from '../../classes/elementBuilder';
 
-export function createSearchingWindow() {
+export function createSearchingWindow(): HTMLDivElement {
     const wrapper = divHTML.getElement('', 'search-wrap', 'search') as HTMLDivElement;
     const iconPart = divHTML.getElement('', 'icon-part', 'icon') as HTMLDivElement;
     const searchPart = divHTML.getElement('', 'search-part', 'search-part') as HTMLDivElement;

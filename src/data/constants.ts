@@ -4,6 +4,8 @@ export const constants: IConstants = {
     logIn: false,
     shipDefault: false,
     billDefault: false,
+    baseURL: 'https://api.europe-west1.gcp.commercetools.com/01082023/product-projections/search',
+    apiUrl: 'https://api.europe-west1.gcp.commercetools.com/01082023',
     apiUrlCarts: 'https://api.europe-west1.gcp.commercetools.com/01082023/carts',
     apiUrlLogin: 'https://api.europe-west1.gcp.commercetools.com/01082023/login',
     apiUrlCustomers: 'https://api.europe-west1.gcp.commercetools.com/01082023/customers',
@@ -11,12 +13,18 @@ export const constants: IConstants = {
     cartID: '',
     client_id: 'evZAyazdZMrrHjVRwC-BYTHe',
     client_secret: 'SjCFe1mgZ1njSSpehCpExMvHpXRjCBND',
+    authHeader: `Basic ${Buffer.from('evZAyazdZMrrHjVRwC-BYTHe:SjCFe1mgZ1njSSpehCpExMvHpXRjCBND').toString('base64')}`,
+    authURL: 'https://auth.europe-west1.gcp.commercetools.com/oauth/token',
+    tokenUrl: `https://auth.europe-west1.gcp.commercetools.com/oauth/01082023/customers/token`,
+    revokeUrl: `https://auth.europe-west1.gcp.commercetools.com/oauth/token/revoke`,
+    categoryEndpoint: 'https://api.commercetools.com/01082023/categories',
+    productsEndpoint: 'https://api.europe-west1.gcp.commercetools.com/01082023/products?limit=60',
     projectKey: '01082023',
     scope: 'manage_project:01082023',
     requestDataCart: {
         currency: 'GBP',
     },
-    registrationObj: {
+    registration: {
         email: '',
         password: '',
         name: '',
@@ -33,7 +41,7 @@ export const constants: IConstants = {
         billingDefault: false,
         shippingDefault: false,
     },
-    authorizationObject: { email: '', password: '' },
+    authorization: { email: '', password: '' },
     modalPage: 1,
     modalImages: [
         'https://83c548175751107cbc78-7e6ca5812cd490d87dba64b458c8c635.ssl.cf3.rackcdn.com/2-2-1Si2lfBl.jpg',

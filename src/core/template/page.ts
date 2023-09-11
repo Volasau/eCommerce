@@ -1,6 +1,6 @@
 abstract class Page {
     protected _container: HTMLElement;
-    abstract textObject: string;
+    abstract text: string;
 
     constructor(id: string) {
         this._container = document.createElement('div');

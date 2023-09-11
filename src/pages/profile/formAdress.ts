@@ -1,18 +1,23 @@
-import { dataCustomer } from '../../server/customerLogin';
-import { changeCustomerAddAdress } from '../../server/profile/changeAddress';
+import { dataCustomer } from '../../server/customer/customerLogin';
+import { ChangeCustomerAddAddress } from '../../server/profile/changeAddress';
 import { CustomerEditManager } from '../../server/profile/deletAddress';
 import { InnerForm } from '../logReg/formClasses/classForm';
 import { showToast, showToastError } from '../logReg/utils/funcToastify.utils';
 import { getISOCodeByCountryName } from '../logReg/utils/getISOCode.utils';
 import { logoutAction } from '../logReg/utils/logOutFunc.utils';
-import { changeAdress } from './interfaces/dataForUpdet';
+import { changeAddress } from './interfaces/dataForUpdate';
 
 export class Address {
     container: HTMLDivElement;
+
     countryText: string;
+
     cityText: string;
+
     streetText: string;
+
     codePostText: string;
+
     id: string;
 
     constructor(
@@ -40,7 +45,7 @@ export class Address {
         city: string,
         streetName: string,
         postalCode: string
-    ) {
+    ): HTMLDivElement {
         const addressesContainer = document.createElement('div');
         addressesContainer.classList.add('adresS__container');
 
@@ -78,56 +83,35 @@ export class Address {
         return addressesContainer;
     }
 
-    createElement(tagName: string, className: string, innerText: string) {
+    createElement(tagName: string, className: string, innerText: string): HTMLElement {
         const element = document.createElement(tagName);
         element.classList.add(className);
         element.innerHTML = innerText;
         return element;
     }
 
-    createElementWithSpan(title: string, className: string, content: string) {
+    createElementWithSpan(title: string, className: string, content: string): HTMLElement {
         return this.createElement('p', className, `${title}: <span class='${className}'>${content}</span>`);
     }
 
     showEditForm(countryText: string, cityText: string, streetNameText: string, codePostText: string) {
-        // Создаем форму редактирования
         const form = document.createElement('form');
         form.classList.add('form__adress');
 
-        const country = new InnerForm('Country', 'text', 'country', 'country', 'country-error', countryText);
+        const countryForm = new InnerForm('Country', 'text', 'country', 'country', 'country-error', countryText);
         const city = new InnerForm('City', 'text', 'city', 'city', 'city-error', cityText);
         const street = new InnerForm('Street', 'text', 'street', 'street', 'street-error', streetNameText);
         const postCode = new InnerForm('Post Code', 'text', 'postcode', 'postcode', 'postcode-error', codePostText);
 
-        country.inputHTML.value = countryText;
+        countryForm.inputHTML.value = countryText;
         city.inputHTML.value = cityText;
         street.inputHTML.value = streetNameText;
         postCode.inputHTML.value = codePostText;
 
-        form.appendChild(country.create());
+        form.appendChild(countryForm.create());
         form.appendChild(city.create());
         form.appendChild(street.create());
         form.appendChild(postCode.create());
-
-        // const shippingCheckbox = document.createElement('input');
-        // shippingCheckbox.type = 'checkbox';
-        // shippingCheckbox.id = 'shipping';
-        // form.appendChild(shippingCheckbox);
-
-        // const shippingLabel = document.createElement('label');
-        // shippingLabel.htmlFor = 'shipping';
-        // shippingLabel.textContent = 'Shipping';
-        // form.appendChild(shippingLabel);
-
-        // const billingCheckbox = document.createElement('input');
-        // billingCheckbox.type = 'checkbox';
-        // billingCheckbox.id = 'billing';
-        // form.appendChild(billingCheckbox);
-
-        // const billingLabel = document.createElement('label');
-        // billingLabel.htmlFor = 'billing';
-        // billingLabel.textContent = 'Billing';
-        // form.appendChild(billingLabel);
 
         const billingDefaultCheckbox = document.createElement('input');
         billingDefaultCheckbox.type = 'checkbox';
@@ -152,44 +136,26 @@ export class Address {
         form.appendChild(shippingDefaultLabel);
 
         const btnEdit = document.querySelector(`.edit-${this.id}`);
-        ////////////////////////////////////////////////////////////////////////////BUTTON SAVE NEW ADDRES
         const saveButton = document.createElement('button');
         saveButton.type = 'button';
         saveButton.classList.add('btn_adress-card');
         saveButton.textContent = 'Save';
         saveButton.id = `save-${this.id}`;
         saveButton.addEventListener('click', async () => {
-            const countryValue = country.inputHTML.value;
+            const countryValue = countryForm.inputHTML.value;
             const cityValue = city.inputHTML.value;
             const streetValue = street.inputHTML.value;
             const postCodeValue = postCode.inputHTML.value;
-            // const shippingValue = shippingDefaultCheckbox.checked
-            // const shippingValue = billingDefaultCheckbox.checked
-            // Проверяем, совпадают ли введенные значения с исходными данными
-            // if (
-            //     countryValue === countryText &&
-            //     cityValue === cityText &&
-            //     streetValue === streetNameText &&
-            //     postCodeValue === codePostText
-            // ) {
-            //     showToastError('No changes were made.');
-            //     return;
-            // }
 
             if (
-                !country.inputHTML.value ||
+                !countryForm.inputHTML.value ||
                 !city.inputHTML.value ||
                 !street.inputHTML.value ||
                 !postCode.inputHTML.value /*||*/
-                // (!billingDefaultCheckbox.checked &&
-                //     !shippingDefaultCheckbox.checked &&
-                //     !billingCheckbox.checked &&
-                //     !shippingCheckbox.checked)
             ) {
                 showToastError('Please fill in all fields and select at least one checkbox before submitting.');
                 return;
             }
-            //////////// запретим отправку формы если не проходит валидацую на стороне клиента
             const errorSpans = form.querySelectorAll('.error');
             let hasError = false;
             errorSpans.forEach((errorSpan) => {
@@ -202,19 +168,17 @@ export class Address {
                 return;
             }
 
-            changeAdress.id = this.id;
-            changeAdress.country = country.inputHTML.value;
-            changeAdress.city = city.inputHTML.value;
-            changeAdress.street = street.inputHTML.value;
-            changeAdress.code = postCode.inputHTML.value;
-            changeAdress.billingDefault = billingDefaultCheckbox.checked;
-            changeAdress.shippingDefault = shippingDefaultCheckbox.checked;
-            // changeAdress.billing = billingCheckbox.checked;
-            // changeAdress.shipping = shippingCheckbox.checked;
-            const counry = await getISOCodeByCountryName(changeAdress.country);
+            changeAddress.id = this.id;
+            changeAddress.country = countryForm.inputHTML.value;
+            changeAddress.city = city.inputHTML.value;
+            changeAddress.street = street.inputHTML.value;
+            changeAddress.code = postCode.inputHTML.value;
+            changeAddress.billingDefault = billingDefaultCheckbox.checked;
+            changeAddress.shippingDefault = shippingDefaultCheckbox.checked;
+            const country = await getISOCodeByCountryName(changeAddress.country);
 
             (async () => {
-                const customerManager = new changeCustomerAddAdress(dataCustomer.version, this.id, dataCustomer.id);
+                const customerManager = new ChangeCustomerAddAddress(dataCustomer.version, this.id, dataCustomer.id);
                 try {
                     let response;
                     if (
@@ -224,27 +188,13 @@ export class Address {
                         postCodeValue !== codePostText
                     ) {
                         response = await customerManager.changeAddress(
-                            // this.id,
-                            counry,
-                            changeAdress.city,
-                            changeAdress.street,
-                            changeAdress.code
-                            // dataCostomer.version,
-                            // dataCostomer.id
+                            country,
+                            changeAddress.city,
+                            changeAddress.street,
+                            changeAddress.code
                         );
                     }
-                    // const deletBildAdress = await customerManager.deletBillingAddress();
-                    // const deletShipAdress = await customerManager.deletShippingAddress();
                     let billingAddressDefault, shippingAddressDefault;
-                    /*billingAddress, shippingAddress,*/
-
-                    // if (shippingCheckbox.checked) {
-                    //     shippingAddress = await customerManager.createShippingAddress();
-                    // }
-
-                    // if (billingCheckbox.checked) {
-                    //     billingAddress = await customerManager.createBillingAddress();
-                    // }
 
                     if (shippingDefaultCheckbox.checked) {
                         shippingAddressDefault = await customerManager.setDefaultShippingAddress();
@@ -255,12 +205,8 @@ export class Address {
                     }
                     if (
                         (response && response.statusCode === 409) ||
-                        // (billingAddress && billingAddress.statusCode === 409) ||
-                        // (shippingAddress && shippingAddress.statusCode === 409) ||
                         (billingAddressDefault && billingAddressDefault.statusCode === 409) ||
                         (shippingAddressDefault && shippingAddressDefault.statusCode === 409)
-                        // deletBildAdress.statusCode === 409 ||
-                        // deletShipAdress.statusCode === 409
                     ) {
                         showToastError('ERROR');
                     } else {
@@ -295,7 +241,6 @@ export class Address {
             form.remove();
         });
 
-        ////////////////////////////////////////////////////////////////////// BUTTON DELET
         const deletButton = document.createElement('button');
         deletButton.type = 'button';
         deletButton.classList.add('btn_adress-card');
@@ -304,7 +249,6 @@ export class Address {
         deletButton.classList.add(`${this.id}`);
         deletButton.id = `delete-${this.id}`;
         deletButton.addEventListener('click', () => {
-            ///////////////////////////////////// удаляем адресс с комерстулса//////
             (async () => {
                 const customerManager = new CustomerEditManager();
                 try {
@@ -317,10 +261,7 @@ export class Address {
                     if (response.statusCode === 409) {
                         showToastError('This address has already been deleted');
                     } else {
-                        // Другие статусы ответа
-
                         showToast('This address DELETED');
-                        //Выйти и перейти на страницу логина
                         await logoutAction();
 
                         if (btnEdit && btnEdit instanceof HTMLButtonElement) {

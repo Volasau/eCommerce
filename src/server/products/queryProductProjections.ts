@@ -1,6 +1,6 @@
-import fetch from 'node-fetch';
 import { constants } from '../../data/constants';
-import { bearer_token_cc } from '../..';
+import { request } from '../classes/requestClass';
+import { productForm } from '../function/productForm';
 
 export interface IImageDimensions {
     w: number;
@@ -9,13 +9,13 @@ export interface IImageDimensions {
 
 export interface IImages {
     url: string;
-    label: string;
+    label: string | null;
     dimensions?: IImageDimensions;
 }
 
 export interface IValue {
     key: string;
-    label: string;
+    label?: string;
 }
 
 export interface IAttributes {
@@ -23,17 +23,7 @@ export interface IAttributes {
     value: IValue[];
 }
 
-export interface IMasterVariant {
-    id: number;
-    sku: string;
-    key: string;
-    prices: IPricesStr[];
-    images: IImages[];
-    attributes: IAttributes[];
-    assets: [];
-}
-
-export interface IVariants {
+export interface IVariant {
     id: number;
     sku: string;
     key: string;
@@ -47,13 +37,9 @@ export interface IName {
     en: string;
 }
 
-export interface IDescription {
-    en: string;
-}
-
 export interface ICategories {
-    typeId: string;
     id: string;
+    typeId?: string;
 }
 
 export interface ISuggestTokenizer {
@@ -69,19 +55,28 @@ export interface ISearchKeyWords {
     en: ISearchKeyWordsSub[];
 }
 
+export interface IProductsData {
+    count: number;
+    facets: object;
+    limit: number;
+    offset: number;
+    results: IProductProjection[];
+    total: number;
+}
+
 export interface IProductProjection {
     id: string;
     version: number;
     productType: ICategories;
     name: IName;
-    description: IDescription;
+    description: IName;
     categories: ICategories[];
     categoryOrderHints: Record<string, never>;
     slug: IName;
     metaTitle: IName;
-    metaDescription: IDescription;
-    masterVariant: IMasterVariant;
-    variants: IVariants[];
+    metaDescription: IName;
+    masterVariant: IVariant;
+    variants: IVariant[];
     searchKeywords: ISearchKeyWords;
     hasStagedChanges: boolean;
     published: boolean;
@@ -93,14 +88,18 @@ export interface IProductProjection {
 
 export interface ICategories {
     id: string;
+    typeId?: string;
 }
 
 export interface IPricesStrValue {
     centAmount: number;
     currencyCode: string;
+    fractionDigits?: number;
+    type?: string;
 }
 
 export interface IDiscountedStr {
+    discount?: ICategories;
     value: IPricesStrValue;
 }
 
@@ -124,87 +123,25 @@ export interface IProduct {
 }
 
 export interface IVariantObj {
-    variantAttr: IAttributes[];
-    variantImg: IImages[];
-    variantPrices: IPricesStr[];
+    variantAttr?: IAttributes[];
+    variantImg?: IImages[];
+    variantPrices?: IPricesStr[];
 }
 
 export class QueryProductProjections {
-    projectKey: string;
-    apiUrl: string;
-    constructor() {
-        this.projectKey = constants.projectKey;
-        this.apiUrl = `https://api.europe-west1.gcp.commercetools.com/${this.projectKey}`;
-    }
-
-    async getAllProducts() {
+    async getAllProducts(): Promise<IProduct[]> {
         try {
-            const response = await fetch(`${this.apiUrl}/product-projections?limit=60`, {
-                method: 'GET',
-                headers: {
-                    Authorization: `Bearer ${await bearer_token_cc}`,
-                    'Content-Type': 'application/json',
-                },
-            });
+            const url = `${constants.apiUrl}/product-projections?limit=60`;
+            const response = await request.getAuth(url);
 
             if (!response.ok) {
                 throw new Error(`Failed to fetch products: ${response.statusText}`);
             }
 
-            const data = await response.json();
+            const data: IProductsData = await response.json();
 
-            const productsWithAttributes = data.results.map((product: IProductProjection) => {
-                const categoriesArr: ICategories[] = [...product.categories];
-                // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                const variantObjs: any[] = [];
-                product.variants.map((variant) => {
-                    const { attributes, images, prices } = variant;
-                    const variantAttr: IAttributes[] = [...attributes];
-                    const variantImg: IImages[] = [...images];
-                    const variantPrices: IPricesStr[] = [...prices];
-
-                    const variantObj: IVariantObj = {
-                        variantAttr,
-                        variantImg,
-                        variantPrices,
-                    };
-
-                    variantObjs.push(variantObj);
-                });
-
-                const allVarAttrArr: IAttributes[] = [
-                    ...variantObjs.reduce((acc, variant) => [...acc, ...variant.variantAttr], []),
-                ];
-                const allVarImgArr: IImages[] = [
-                    ...variantObjs.reduce((acc, variant) => [...acc, ...variant.variantImg], []),
-                ];
-                const allVarPricesArr: IPricesStr[] = [
-                    ...variantObjs.reduce((acc, variant) => [...acc, ...variant.variantPrices], []),
-                ];
-
-                const allVariants: IAllVariants[] = [
-                    {
-                        attributesRaw: product.masterVariant.attributes,
-                        images: product.masterVariant.images,
-                        prices: product.masterVariant.prices,
-                    },
-                    {
-                        attributesRaw: allVarAttrArr,
-                        images: allVarImgArr,
-                        prices: allVarPricesArr,
-                    },
-                ];
-
-                const productObj: IProduct = {
-                    id: product.id,
-                    name: product.name.en,
-                    description: product.description.en,
-                    categories: categoriesArr,
-                    allVariants,
-                };
-                return productObj;
-            });
-            return productsWithAttributes;
+            const result: IProduct[] = productForm(data);
+            return result;
         } catch (error) {
             console.error('An error occurred:', error);
             throw error;

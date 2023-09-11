@@ -2,7 +2,7 @@ import { ICategory } from '../../interfaces/categoryInterface';
 import { ISubCategoryResp } from '../../interfaces/categoryResponse/categoryResponseInterface';
 import { getAllAttrFromProducts } from './getAllAttrFromProducts';
 
-export function getSubCategoryWithAllAttr(subCategoryResp: ISubCategoryResp) {
+export function getSubCategoryWithAllAttr(subCategoryResp: ISubCategoryResp): ICategory[] {
     const subCategory: ICategory[] = [
         {
             catId: subCategoryResp.id,

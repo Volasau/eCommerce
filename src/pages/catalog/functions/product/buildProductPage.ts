@@ -1,9 +1,9 @@
 import urlImg from '../../../../assets/icons/discount.svg';
 import { cartSVG } from '../../../../data/cartSVG';
+import { IProduct } from '../../../../server/products/queryProductProjections';
 import { buttonHTML, divHTML, imgHTML } from '../../classes/elementBuilder';
-import { IProductResp } from '../../interfaces/categoryResponse/categoryResponseInterface';
 
-export function buildProductPage(prod: IProductResp) {
+export function buildProductPage(prod: IProduct): HTMLDivElement {
     const id = prod.id;
     const name = prod.name;
     const description = prod.description;
@@ -42,7 +42,6 @@ export function buildProductPage(prod: IProductResp) {
     const plusBut = buttonHTML.getElement('+', `${id}-plus`, 'plus-button') as HTMLButtonElement;
     const minusBut = buttonHTML.getElement('-', `${id}-minus`, 'minus-button') as HTMLButtonElement;
 
-    // заполняем блок картинок
     allImages.forEach((imagesURL) => {
         const addIMG = imgHTML.getElement(
             '',
@@ -57,14 +56,14 @@ export function buildProductPage(prod: IProductResp) {
     images.append(mainImage);
     if (allImages.length > 1) images.append(addImages);
 
-    // заполняем блок атрибутов
     prod.allVariants[0].attributesRaw.forEach((attr) => {
-        const attribute = attr.name;
-        const value = Array.isArray(attr.value) ? attr.value[0].label : attr.value.label;
+        const attribute: string = attr.name;
+        const value = (
+            Array.isArray(attr.value) ? attr.value[0].label : (attr.value as { label: string }).label
+        ) as string;
         attributtes.innerHTML += `<p>${attribute}: ${value}</p>`;
     });
 
-    // заполняем блок цены
     realPrice.textContent = prodDiscount ? String(prodDiscount) : String(price);
     oldPrice.textContent = prodDiscount ? String(price) : '';
     productCount.append(minusBut, count, plusBut);
@@ -73,13 +72,10 @@ export function buildProductPage(prod: IProductResp) {
     priceBlock.append(realPrice, oldPrice, cartButtonBlock);
     prices.append(priceBlock, deliveryBlock);
 
-    //заполняем main блок
     main.append(images, attributtes, prices);
 
-    //заполняем весь блок
     productBlock.append(main, descriptWord, descript);
 
-    //добавляем блок на страницу
     wrapper.append(nameBlock, productBlock);
 
     const discountLabel = new Image();

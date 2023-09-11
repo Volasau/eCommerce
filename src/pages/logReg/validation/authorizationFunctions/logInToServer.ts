@@ -1,24 +1,24 @@
-import { IAuthorizationObject } from '../../../../core/interfaces/authorizationObjectInterface';
-import { constants } from '../../../../data/constants';
+import { IAuthorization } from '../../../../core/interfaces/authorizationInterface';
 import { ILoginRequest } from '../../../../core/interfaces/loginRequest';
-import { TokenManager } from '../../../../server/accessTokenPF';
+import { TokenManager } from '../../../../server/token/accessTokenPF';
 import { IAccessTokenResponse } from '../../../../core/interfaces/accessTokenResponse';
-import { CustomerLogin } from '../../../../server/customerLogin';
+import { CustomerLogin } from '../../../../server/customer/customerLogin';
+import { Customer } from '@commercetools/platform-sdk';
 
 export let bearer_token_pf = '';
 
-export async function logInToServer(obj: IAuthorizationObject, page: HTMLElement) {
+export async function logInToServer(log: IAuthorization, page: HTMLElement) {
     try {
         const requestData: ILoginRequest = {
-            email: obj.email,
-            password: obj.password,
+            email: log.email,
+            password: log.password,
         };
 
         const tokenManager = new TokenManager(requestData.email, requestData.password);
         const tokenResponse = (await tokenManager.getToken(page)) as IAccessTokenResponse;
         bearer_token_pf = tokenResponse.access_token;
-        const customerLogin = new CustomerLogin(constants.apiUrlLogin, tokenResponse.access_token);
-        const loginResponse = (await customerLogin.loginUser(requestData)) as string;
+        const customerLogin = new CustomerLogin(tokenResponse.access_token);
+        const loginResponse = (await customerLogin.loginUser(requestData)) as Customer;
         localStorage.setItem('bearer_token_pf', `${bearer_token_pf}`);
 
         return loginResponse;

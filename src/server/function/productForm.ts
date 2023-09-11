@@ -7,39 +7,43 @@ import {
     IPricesStr,
     IProduct,
     IProductProjection,
+    IProductsData,
     IVariantObj,
 } from '../../server/products/queryProductProjections';
 
-import { IProductResp } from '../../pages/catalog/interfaces/categoryResponse/categoryResponseInterface';
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function productForm(data: any) {
-    const productsWithAttributes: IProductResp[] = data.results.map((product: IProductProjection) => {
+export function productForm(data: IProductsData): IProduct[] {
+    const productsWithAttributes: IProduct[] = data.results.map((product: IProductProjection) => {
         const categoriesArr: ICategories[] = [...product.categories];
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const variantObjs: any[] = [];
-        product.variants.map((variant) => {
+        const variantObjs: IVariantObj[] = product.variants.map((variant) => {
             const { attributes, images, prices } = variant;
-            const variantAttr: IAttributes[] = [...attributes];
-            const variantImg: IImages[] = [...images];
-            const variantPrices: IPricesStr[] = [...prices];
 
             const variantObj: IVariantObj = {
-                variantAttr,
-                variantImg,
-                variantPrices,
+                variantAttr: attributes ? [...attributes] : [],
+                variantImg: images ? [...images] : [],
+                variantPrices: prices ? [...prices] : [],
             };
 
-            variantObjs.push(variantObj);
+            return variantObj;
         });
 
-        const allVarAttrArr: IAttributes[] = [
-            ...variantObjs.reduce((acc, variant) => [...acc, ...variant.variantAttr], []),
-        ];
-        const allVarImgArr: IImages[] = [...variantObjs.reduce((acc, variant) => [...acc, ...variant.variantImg], [])];
-        const allVarPricesArr: IPricesStr[] = [
-            ...variantObjs.reduce((acc, variant) => [...acc, ...variant.variantPrices], []),
-        ];
+        const allVarAttrArr: IAttributes[] = variantObjs.reduce((acc: IAttributes[], variant: IVariantObj) => {
+            if (variant.variantAttr) {
+                acc.push(...variant.variantAttr);
+            }
+            return acc;
+        }, []);
+        const allVarImgArr: IImages[] = variantObjs.reduce((acc: IImages[], variant) => {
+            if (variant.variantImg) {
+                acc.push(...variant.variantImg);
+            }
+            return acc;
+        }, []);
+        const allVarPricesArr: IPricesStr[] = variantObjs.reduce((acc: IPricesStr[], variant) => {
+            if (variant.variantPrices) {
+                acc.push(...variant.variantPrices);
+            }
+            return acc;
+        }, []);
 
         const allVariants: IAllVariants[] = [
             {
@@ -64,7 +68,7 @@ export function productForm(data: any) {
         return productObj;
     });
     constants.productList = [];
-    productsWithAttributes.forEach((product: IProductResp) => {
+    productsWithAttributes.forEach((product: IProduct) => {
         constants.productList.push(product);
     });
     return productsWithAttributes;

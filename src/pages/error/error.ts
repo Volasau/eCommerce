@@ -8,16 +8,16 @@ export const enum ErrorTypes {
 class ErrorPage extends Page {
     private errorType: ErrorTypes | string;
 
-    textObject: string;
+    text: string;
 
     constructor(id: string, errorType: ErrorTypes | string) {
         super(id);
         this.errorType = errorType;
-        this.textObject = '404: Error! The page was not found.';
+        this.text = '404: Error! The page was not found.';
     }
 
-    async render() {
-        const title = this.createHeaderTitle(this.textObject);
+    async render(): Promise<HTMLElement> {
+        const title = this.createHeaderTitle(this.text);
         const mainLink = createLink('#/main', 'To return to the home page click ', 'HOME', '');
         this._container.append(title, mainLink);
         return this._container;

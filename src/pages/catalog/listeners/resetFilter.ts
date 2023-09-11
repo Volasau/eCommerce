@@ -7,7 +7,6 @@ import { buildProductItem } from '../functions/product/buildProductItem';
 export function resetFilter() {
     document.addEventListener('click', (event) => {
         const target = event.target as HTMLButtonElement;
-        console.log(target);
         if (target.id === 'reset-but') {
             const productList = document.getElementById('product-view') as HTMLDivElement;
             productList.innerHTML = '';

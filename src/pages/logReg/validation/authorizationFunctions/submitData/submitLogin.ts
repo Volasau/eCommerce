@@ -1,9 +1,9 @@
-import { IAuthorizationObject } from '../../../../../core/interfaces/authorizationObjectInterface';
+import { IAuthorization } from '../../../../../core/interfaces/authorizationInterface';
 import { logInToServer } from '../logInToServer';
 import { checkInputsForErrors } from './checkInputsForErrors';
-import { saveUsersDataInObject } from './saveUsersDataInObject';
+import { saveUsersData } from './saveUsersData';
 
-export function submitLogin(obj: IAuthorizationObject) {
+export function submitLogin(log: IAuthorization) {
     document.addEventListener('click', (event) => {
         const target = event.target as HTMLButtonElement;
         if (target.id === 'login-submit') {
@@ -12,9 +12,9 @@ export function submitLogin(obj: IAuthorizationObject) {
             const inputList = page.querySelectorAll('.input') as NodeList;
 
             if (checkInputsForErrors(errorList, inputList)) return;
-            saveUsersDataInObject(inputList, obj);
+            saveUsersData(inputList, log);
 
-            logInToServer(obj, page);
+            logInToServer(log, page);
         }
     });
 }

@@ -3,11 +3,6 @@ export interface IUser {
     id: string;
 }
 
-export interface ILastModifiedBy {
-    isPlatformClient: boolean;
-    user: IUser;
-}
-
 export interface ICreatedBy {
     isPlatformClient: boolean;
     user: IUser;
@@ -17,49 +12,31 @@ export interface IName {
     en: string;
 }
 
-export interface ISlug {
-    en: string;
-}
-
-export interface IDescription {
-    en: string;
-}
-
-export interface IAncestors {
-    typeId: string;
-    id: string;
-}
-
-export interface IParent {
-    typeId: string;
-    id: string;
-}
-
-export interface IMetaTitle {
-    en: string;
-}
-
-export interface IMetaDescription {
-    en: string;
-}
-
-export interface ICategoryResponse {
+export interface ICategoryResponseResult {
     id: string;
     version: number;
     versionModifiedAt: string;
     lastMessageSequenceNumber: number;
     createdAt: string;
     lastModifiedAt: string;
-    lastModifiedBy: ILastModifiedBy;
+    lastModifiedBy: ICreatedBy;
     createdBy: ICreatedBy;
     key: string;
     name: IName;
-    slug: ISlug;
-    description: IDescription;
-    ancestors: IAncestors[];
-    parent: IParent | null;
+    slug: IName;
+    description: IName;
+    ancestors: IUser[];
+    parent: IUser | null;
     orderHint: string;
-    metaTitle: IMetaTitle;
-    metaDescription: IMetaDescription;
+    metaTitle: IName;
+    metaDescription: IName;
     assets: [];
+}
+
+export interface ICategoryResponse {
+    limit: number;
+    offset: number;
+    count: number;
+    total: number;
+    results: ICategoryResponseResult[];
 }

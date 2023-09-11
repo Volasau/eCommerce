@@ -1,9 +1,9 @@
-import { dataCustomer } from '../../server/customerLogin';
+import { dataCustomer } from '../../server/customer/customerLogin';
 import { changeCustomerPassword } from '../../server/profile/changePasswordApi';
 import { InnerForm } from '../logReg/formClasses/classForm';
 import { showToast, showToastError } from '../logReg/utils/funcToastify.utils';
 import { logoutAction } from '../logReg/utils/logOutFunc.utils';
-import { changePassworObj } from './interfaces/dataForUpdet';
+import { passwordChanger } from './interfaces/dataForUpdate';
 
 export class ChangePassword {
     container: HTMLDivElement;
@@ -12,7 +12,7 @@ export class ChangePassword {
         this.container = this.createContainer();
     }
 
-    createContainer() {
+    createContainer(): HTMLDivElement {
         const passwordContainer = document.createElement('div');
         passwordContainer.classList.add('password__container-title');
 
@@ -47,7 +47,7 @@ export class ChangePassword {
         passwordChangeForm.appendChild(passwordOld.create());
         passwordChangeForm.appendChild(passwordNew.create());
         passwordChangeForm.appendChild(passwordRetNew.create());
-        ///////////////////////////////////////////////////////////////
+
         const showPasswordCheckbox = document.createElement('input');
         showPasswordCheckbox.type = 'checkbox';
         const showPasswordLabel = document.createElement('label');
@@ -55,7 +55,6 @@ export class ChangePassword {
         showPasswordLabel.appendChild(showPasswordCheckbox);
         passwordChangeForm.appendChild(showPasswordLabel);
 
-        // Обработчик для чекбокса
         showPasswordCheckbox.addEventListener('change', () => {
             const passwordInputs = [passwordOld, passwordNew, passwordRetNew];
             passwordInputs.forEach((input) => {
@@ -67,7 +66,6 @@ export class ChangePassword {
                 }
             });
         });
-        ////////////////////////////////////////////////////////////////////////
 
         const changePasswordButton = document.querySelector('.btn__change-pass');
 
@@ -81,7 +79,6 @@ export class ChangePassword {
             const newPassword = newPasswordInput.value;
             const repeatNewPassword = repeatNewPasswordInput.value;
 
-            // Проверка на совпадение
             if (newPassword !== repeatNewPassword) {
                 showToastError('New passwords do not match. Please make sure they are the same.');
                 return;
@@ -103,14 +100,14 @@ export class ChangePassword {
                 return;
             }
 
-            changePassworObj.passwordOld = passwordOld.inputHTML.value;
-            changePassworObj.passwordNew = passwordNew.inputHTML.value;
+            passwordChanger.passwordOld = passwordOld.inputHTML.value;
+            passwordChanger.passwordNew = passwordNew.inputHTML.value;
             (async () => {
                 const customerManager = new changeCustomerPassword();
                 try {
-                    const response = await customerManager.changePasword(
-                        changePassworObj.passwordOld,
-                        changePassworObj.passwordNew,
+                    const response = await customerManager.changePassword(
+                        passwordChanger.passwordOld,
+                        passwordChanger.passwordNew,
                         dataCustomer.version,
                         dataCustomer.id
                     );
@@ -119,8 +116,6 @@ export class ChangePassword {
                         showToastError('The given current password does not match');
                         return;
                     } else {
-                        // Другие статусы ответа
-
                         showToast('Password changed');
                         await logoutAction();
                         if (changePasswordButton && changePasswordButton instanceof HTMLButtonElement) {
@@ -131,7 +126,6 @@ export class ChangePassword {
                     console.error('Error removing address:', error);
                 }
             })();
-            // await logoutAction();
 
             if (changePasswordButton && changePasswordButton instanceof HTMLButtonElement) {
                 changePasswordButton.disabled = false;
@@ -140,7 +134,6 @@ export class ChangePassword {
             this.closeForm(passwordContainer);
         });
 
-        /////////////////////////////////////////////////////////////////////////
         const сancelButton = document.createElement('button');
         сancelButton.type = 'button';
 
@@ -158,6 +151,6 @@ export class ChangePassword {
     }
 
     closeForm(container: HTMLDivElement) {
-        container.remove(); // Функция для закрытия формы
+        container.remove();
     }
 }
