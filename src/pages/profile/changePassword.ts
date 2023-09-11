@@ -12,7 +12,7 @@ export class ChangePassword {
         this.container = this.createContainer();
     }
 
-    createContainer(): HTMLDivElement {
+    private createContainer(): HTMLDivElement {
         const passwordContainer = document.createElement('div');
         passwordContainer.classList.add('password__container-title');
 
