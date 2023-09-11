@@ -1,6 +1,6 @@
 import { countries } from '../../../../data/country';
 
-export function startPostcodeValidation(value: string, errorHTML: HTMLElement, id: string) {
+export function startPostcodeValidation(value: string, errorHTML: HTMLElement, id: string): void {
     const countryInput = document.getElementById(id) as HTMLInputElement;
     countries.forEach((country) => {
         if (value !== '') {

@@ -1,7 +1,7 @@
 import { constants } from '../../../data/constants';
 import { Modal } from '../classes/modalClass';
 
-export function getModal() {
+export function getModal(): void {
     document.addEventListener('click', (event) => {
         const target = event.target as HTMLElement;
         if (target.classList.contains('main-image')) {

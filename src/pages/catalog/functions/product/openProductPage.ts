@@ -6,7 +6,7 @@ import { CatalogRender } from '../../classes/catalogRenderClass';
 import { spanHTML } from '../../classes/elementBuilder';
 import { getImagesFromProduct } from './getImagesFromProduct';
 
-export function openProductPage(prod: IProduct) {
+export function openProductPage(prod: IProduct): void {
     const prodList = document.querySelector('.full-catalog') as HTMLDivElement;
     prodList.remove();
 

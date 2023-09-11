@@ -1,4 +1,4 @@
-export function startEmailValidation(value: string, errorHTML: HTMLElement) {
+export function startEmailValidation(value: string, errorHTML: HTMLElement): void {
     if (value === '') {
         errorHTML.textContent = '';
     } else if (value[0] === ' ' || value.at(-1) === ' ') {

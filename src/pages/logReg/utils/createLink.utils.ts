@@ -1,4 +1,9 @@
-export function createLink(href: string, goto: string | null, text: string | null, customClass: string | null) {
+export function createLink(
+    href: string,
+    goto: string | null,
+    text: string | null,
+    customClass: string | null
+): HTMLDivElement {
     const linkContainer = document.createElement('div');
     linkContainer.classList.add('links__container');
     const linkText = document.createElement('p');

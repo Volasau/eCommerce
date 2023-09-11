@@ -1,6 +1,6 @@
 import { countries } from '../../../../../data/country';
 
-export function checkCountryInput(target: HTMLInputElement, errorHTML: HTMLElement) {
+export function checkCountryInput(target: HTMLInputElement, errorHTML: HTMLElement): void {
     let countryValid = false;
     if (target.value === '') {
         errorHTML.innerHTML = '';

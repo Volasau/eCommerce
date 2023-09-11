@@ -1,7 +1,7 @@
 import Toastify from 'toastify-js';
 import 'toastify-js/src/toastify.css';
 
-export function showToast(message: string) {
+export function showToast(message: string): void {
     Toastify({
         text: message,
         duration: 3000,
@@ -13,7 +13,7 @@ export function showToast(message: string) {
     }).showToast();
 }
 
-export function showToastError(message: string) {
+export function showToastError(message: string): void {
     Toastify({
         text: message,
         duration: 3000,

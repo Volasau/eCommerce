@@ -6,7 +6,7 @@ import { startPasswordValidation } from './validationFunction/startPasswordValid
 import { startPostcodeValidation } from './validationFunction/startPostcodeValidation';
 import { startStreetValidation } from './validationFunction/startStreetValidation';
 
-export function validateThisInput(input: HTMLInputElement, error: HTMLElement) {
+export function validateThisInput(input: HTMLInputElement, error: HTMLElement): void {
     input.addEventListener('input', (event: Event) => {
         const target = event.target as HTMLInputElement;
         switch (target.id) {

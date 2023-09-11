@@ -4,7 +4,7 @@ import { openCategoryPage } from '../functions/catalog/openCategoryPage';
 import { openSubcategoryPage } from '../functions/catalog/openSubcategoryPage';
 import { buildProductItem } from '../functions/product/buildProductItem';
 
-export function resetFilter() {
+export function resetFilter(): void {
     document.addEventListener('click', (event) => {
         const target = event.target as HTMLButtonElement;
         if (target.id === 'reset-but') {

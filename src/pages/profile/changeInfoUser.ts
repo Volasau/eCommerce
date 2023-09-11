@@ -4,7 +4,7 @@ import { InnerForm } from '../logReg/formClasses/classForm';
 import { logoutAction } from '../logReg/utils/logOutFunc.utils';
 import { showToast, showToastError } from '../logReg/utils/funcToastify.utils';
 
-export default function showChangeInfoUser(bodyProfile: HTMLElement) {
+export default function showChangeInfoUser(bodyProfile: HTMLElement): void {
     const UserChangeForm = document.createElement('form');
     const email = new InnerForm('Email', 'text', 'email', 'email', 'emailp-error', `${dataCustomer.email}`);
     const firstName = new InnerForm('First Name', 'text', 'name', 'name', 'name-error', `${dataCustomer.firstName}`);
@@ -81,16 +81,9 @@ export default function showChangeInfoUser(bodyProfile: HTMLElement) {
                 const newLastName = await newInfo.changeLastName(lastNameValue, newFistName.version, dataCustomer.id);
                 const newEmail = await newInfo.changeEmail(emailValue, newLastName.version, dataCustomer.id);
                 const newBirthDay = await newInfo.changeBirthDate(birthDateValue, newEmail.version, dataCustomer.id);
-
-                if (
-                    newFistName.statusCode === 400 ||
-                    newLastName.statusCode === 400 ||
-                    newEmail.statusCode == 400 ||
-                    newBirthDay.statusCode === 400
-                ) {
-                    showToastError('Error change');
-                }
+                return newBirthDay;
             } catch (error) {
+                showToastError('Error change');
                 console.error('Error change');
             }
         })();

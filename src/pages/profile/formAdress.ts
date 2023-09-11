@@ -94,7 +94,7 @@ export class Address {
         return this.createElement('p', className, `${title}: <span class='${className}'>${content}</span>`);
     }
 
-    showEditForm(countryText: string, cityText: string, streetNameText: string, codePostText: string) {
+    showEditForm(countryText: string, cityText: string, streetNameText: string, codePostText: string): void {
         const form = document.createElement('form');
         form.classList.add('form__adress');
 
@@ -203,20 +203,15 @@ export class Address {
                     if (billingDefaultCheckbox.checked) {
                         billingAddressDefault = await customerManager.setDefaultBillingAddress();
                     }
-                    if (
-                        (response && response.statusCode === 409) ||
-                        (billingAddressDefault && billingAddressDefault.statusCode === 409) ||
-                        (shippingAddressDefault && shippingAddressDefault.statusCode === 409)
-                    ) {
-                        showToastError('ERROR');
-                    } else {
-                        showToast('CHANGE ADDRES');
 
-                        if (btnEdit && btnEdit instanceof HTMLButtonElement) {
-                            btnEdit.disabled = true;
-                        }
+                    showToast('CHANGE ADDRES');
+
+                    if (btnEdit && btnEdit instanceof HTMLButtonElement) {
+                        btnEdit.disabled = true;
                     }
+                    return [response, shippingAddressDefault, billingAddressDefault];
                 } catch (error) {
+                    showToastError('ERROR');
                     console.error('Error removing address:', error);
                 }
             })();
@@ -258,17 +253,15 @@ export class Address {
                         dataCustomer.id
                     );
 
-                    if (response.statusCode === 409) {
-                        showToastError('This address has already been deleted');
-                    } else {
-                        showToast('This address DELETED');
-                        await logoutAction();
+                    showToast('This address DELETED');
+                    await logoutAction();
 
-                        if (btnEdit && btnEdit instanceof HTMLButtonElement) {
-                            btnEdit.disabled = true;
-                        }
+                    if (btnEdit && btnEdit instanceof HTMLButtonElement) {
+                        btnEdit.disabled = true;
                     }
+                    return response;
                 } catch (error) {
+                    showToastError('This address has already been deleted');
                     console.error('Error removing address:', error);
                 }
             })();

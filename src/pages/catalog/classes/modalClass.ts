@@ -13,7 +13,7 @@ export class Modal implements IModal {
         this.modalHTML = buildModal(id, url, productName) as HTMLDivElement;
     }
 
-    startModal() {
+    startModal(): void {
         document.body.prepend(this.modalHTML);
         const nextButton = document.querySelector('.next') as HTMLButtonElement;
         if (constants.modalImages.length === 1) nextButton.disabled = true;

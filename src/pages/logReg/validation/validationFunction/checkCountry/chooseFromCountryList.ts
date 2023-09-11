@@ -5,7 +5,7 @@ export function chooseFromCountryList(
     list: Element,
     postCodeHTML: HTMLInputElement,
     errorHTML: HTMLElement
-) {
+): void {
     list.addEventListener('click', (event) => {
         const target = event.target as HTMLDivElement;
         const country = target.textContent ? target.textContent : '';

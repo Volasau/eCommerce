@@ -1,7 +1,7 @@
 import { ChangePassword } from '../changePassword';
 import { AddressNew } from '../formAddNewAdress';
 
-export function addBlock(button: HTMLElement, container: HTMLElement) {
+export function addBlock(button: HTMLElement, container: HTMLElement): void {
     button.addEventListener('click', () => {
         const but = button as HTMLButtonElement;
         but.disabled = true;

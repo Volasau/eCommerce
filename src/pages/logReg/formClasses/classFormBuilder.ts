@@ -39,7 +39,7 @@ export class FormBuilder implements IFormBuilder {
         checkServErrors(this.formHTML);
     }
 
-    build() {
+    build(): HTMLFormElement {
         return this.formHTML;
     }
 }

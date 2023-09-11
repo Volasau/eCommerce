@@ -1,6 +1,6 @@
 import { constants } from '../../../data/constants';
 
-export function removeModal() {
+export function removeModal(): void {
     document.addEventListener('click', (event) => {
         const target = event.target as HTMLDivElement;
         if (target.className === 'modal-wrap') {

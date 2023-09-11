@@ -1,4 +1,4 @@
-export function addCheckboxToInput(formId: string, labelText: string, innerForm: HTMLElement) {
+export function addCheckboxToInput(formId: string, labelText: string, innerForm: HTMLElement): void {
     if (innerForm.children[1].id === formId) {
         const checkId = labelText.toLowerCase().split(' ').join('-');
         const checkbox = document.createElement('input') as HTMLInputElement;

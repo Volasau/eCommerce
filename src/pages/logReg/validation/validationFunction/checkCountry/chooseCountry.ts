@@ -9,7 +9,7 @@ export function chooseCountry(
     countryId: string,
     listId: string,
     codeId: string
-) {
+): void {
     if (target.id === countryId) {
         const list = document.getElementById(listId) as HTMLElement;
         const countryInput = document.getElementById(countryId) as HTMLInputElement;

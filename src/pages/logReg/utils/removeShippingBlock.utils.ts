@@ -2,7 +2,7 @@ import { constants } from '../../../data/constants';
 import { validateThisInput } from '../validation/validateThisInput';
 import { saveAsDefaultAddress } from './saveAsDefaultAddress.utils';
 
-export function removeShippingBlock(checkbox: HTMLInputElement) {
+export function removeShippingBlock(checkbox: HTMLInputElement): void {
     checkbox.addEventListener('change', () => {
         const shipping = document.getElementById('shipping') as HTMLDivElement;
         if (checkbox.checked) {

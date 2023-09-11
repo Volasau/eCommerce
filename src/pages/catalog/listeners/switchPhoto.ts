@@ -1,4 +1,4 @@
-export function switchPhoto() {
+export function switchPhoto(): void {
     document.addEventListener('click', (event) => {
         const target = event.target as HTMLImageElement;
         const mainImage = document.querySelector('.main-image') as HTMLImageElement;

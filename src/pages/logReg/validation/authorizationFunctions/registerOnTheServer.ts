@@ -10,7 +10,7 @@ import {
     noDefaultAddress,
 } from '../../utils/customerManager.utils';
 
-export async function registerOnTheServer(reg: IRegistration) {
+export async function registerOnTheServer(reg: IRegistration): Promise<void> {
     const customerManager: IConsolidatedData = await customerManagerData(reg);
     const addressBilling: IAddressBilling = customerManager.addressBilling;
     const addressShipping: IAddressShipping = customerManager.addressShipping;

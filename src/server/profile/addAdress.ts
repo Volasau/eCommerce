@@ -55,7 +55,7 @@ export class CustomerAddAdress {
         }
     }
 
-    async createBillingAddress(customerId: string) {
+    async createBillingAddress(customerId: string): Promise<ICustomerResponse | Error | void> {
         const requestData = {
             version: this.customerVersion,
             actions: [
@@ -71,7 +71,7 @@ export class CustomerAddAdress {
             const auth = `Bearer ${await bearer_token_cc}`;
             const res: Response = await request.postAuth(url, auth, PARSE.Json, JSON.stringify(requestData));
 
-            const billingAddress = await res.json();
+            const billingAddress: ICustomerResponse = await res.json();
             console.log('TEST:', billingAddress);
             this.customerVersion = this.customerVersion + 1;
             return billingAddress;
@@ -81,7 +81,7 @@ export class CustomerAddAdress {
         }
     }
 
-    async createShippingAddress(customerId: string) {
+    async createShippingAddress(customerId: string): Promise<ICustomerResponse | Error | void> {
         const requestData = {
             version: this.customerVersion,
             actions: [
@@ -97,7 +97,7 @@ export class CustomerAddAdress {
             const auth = `Bearer ${await bearer_token_cc}`;
             const res = await request.postAuth(url, auth, PARSE.Json, JSON.stringify(requestData));
 
-            const shippingAddress = await res.json();
+            const shippingAddress: ICustomerResponse = await res.json();
             this.customerVersion = this.customerVersion + 1;
 
             return shippingAddress;
@@ -107,7 +107,7 @@ export class CustomerAddAdress {
         }
     }
 
-    async setDefaultBillingAddress(customerId: string) {
+    async setDefaultBillingAddress(customerId: string): Promise<ICustomerResponse | Error | void> {
         const requestData = {
             version: this.customerVersion,
             actions: [
@@ -123,7 +123,7 @@ export class CustomerAddAdress {
             const auth = `Bearer ${await bearer_token_cc}`;
             const res = await request.postAuth(url, auth, PARSE.Json, JSON.stringify(requestData));
 
-            const defaultBillingAddress = await res.json();
+            const defaultBillingAddress: ICustomerResponse = await res.json();
             this.customerVersion = this.customerVersion + 1;
 
             return defaultBillingAddress;
@@ -133,7 +133,7 @@ export class CustomerAddAdress {
         }
     }
 
-    async setDefaultShippingAddress(customerId: string) {
+    async setDefaultShippingAddress(customerId: string): Promise<ICustomerResponse | Error | void> {
         const requestData = {
             version: this.customerVersion,
             actions: [
@@ -149,7 +149,7 @@ export class CustomerAddAdress {
             const auth = `Bearer ${await bearer_token_cc}`;
             const res = await request.postAuth(url, auth, PARSE.Json, JSON.stringify(requestData));
 
-            const defaultShippingAddress = await res.json();
+            const defaultShippingAddress: ICustomerResponse = await res.json();
             this.customerVersion = this.customerVersion + 1;
 
             return defaultShippingAddress;

@@ -9,7 +9,12 @@ export class changeCustomerPassword {
     constructor() {
         this.customerVersion = 0;
     }
-    async changePassword(passwordOld: string, passwordNew: string, customerVersion: number, customerId: string) {
+    async changePassword(
+        passwordOld: string,
+        passwordNew: string,
+        customerVersion: number,
+        customerId: string
+    ): Promise<Response | Error | void> {
         const requestData = {
             id: customerId,
             version: customerVersion,
@@ -21,7 +26,7 @@ export class changeCustomerPassword {
             const url = `${constants.apiUrlCustomers}/password`;
             const auth = `Bearer ${await bearer_token_cc}`;
             const res = await request.postAuth(url, auth, PARSE.Json, JSON.stringify(requestData));
-            const response = await res.json();
+            const response: Response = await res.json();
             this.customerVersion = this.customerVersion + 1;
             return response;
         } catch (error) {

@@ -1,4 +1,5 @@
 import { bearer_token_cc } from '../..';
+import { ICustomerResponse } from '../../core/interfaces/customerResponse';
 import { constants } from '../../data/constants';
 import { request } from '../classes/requestClass';
 import { PARSE } from '../interfaces/parseEnum';
@@ -13,7 +14,7 @@ export class changeCustomerInfo {
         this.addressId = '';
         this.auth = '';
     }
-    async changeLastName(lastName: string, customerVersion: number, customerId: string) {
+    async changeLastName(lastName: string, customerVersion: number, customerId: string): Promise<ICustomerResponse> {
         const requestData = {
             version: customerVersion,
             actions: [
@@ -27,7 +28,7 @@ export class changeCustomerInfo {
         try {
             const url = `${constants.apiUrlCustomers}/${customerId}`;
             const res = await request.postAuth(url, this.auth, PARSE.Json, JSON.stringify(requestData));
-            const response = await res.json();
+            const response: ICustomerResponse = await res.json();
             return response;
         } catch (error) {
             console.error('Error creating billing address:', error);
@@ -35,7 +36,7 @@ export class changeCustomerInfo {
         }
     }
 
-    async changeFistName(fistName: string, customerVersion: number, customerId: string) {
+    async changeFistName(fistName: string, customerVersion: number, customerId: string): Promise<ICustomerResponse> {
         const requestData = {
             version: customerVersion,
             actions: [
@@ -50,7 +51,7 @@ export class changeCustomerInfo {
             this.auth = `Bearer ${await bearer_token_cc}`;
             const url = `${constants.apiUrlCustomers}/${customerId}`;
             const res = await request.postAuth(url, this.auth, PARSE.Json, JSON.stringify(requestData));
-            const response = await res.json();
+            const response: ICustomerResponse = await res.json();
             return response;
         } catch (error) {
             console.error('Error creating billing address:', error);
@@ -58,7 +59,7 @@ export class changeCustomerInfo {
         }
     }
 
-    async changeBirthDate(birthDate: string, customerVersion: number, customerId: string) {
+    async changeBirthDate(birthDate: string, customerVersion: number, customerId: string): Promise<ICustomerResponse> {
         const requestData = {
             version: customerVersion,
             actions: [
@@ -72,14 +73,14 @@ export class changeCustomerInfo {
         try {
             const url = `${constants.apiUrlCustomers}/${customerId}`;
             const res = await request.postAuth(url, this.auth, PARSE.Json, JSON.stringify(requestData));
-            const response = await res.json();
+            const response: ICustomerResponse = await res.json();
             return response;
         } catch (error) {
             console.error('Error creating billing address:', error);
             throw error;
         }
     }
-    async changeEmail(email: string, customerVersion: number, customerId: string) {
+    async changeEmail(email: string, customerVersion: number, customerId: string): Promise<ICustomerResponse> {
         const requestData = {
             version: customerVersion,
             actions: [
@@ -93,7 +94,7 @@ export class changeCustomerInfo {
         try {
             const url = `${constants.apiUrlCustomers}/${customerId}`;
             const res = await request.postAuth(url, this.auth, PARSE.Json, JSON.stringify(requestData));
-            const response = await res.json();
+            const response: ICustomerResponse = await res.json();
             return response;
         } catch (error) {
             console.error('Error creating billing address:', error);

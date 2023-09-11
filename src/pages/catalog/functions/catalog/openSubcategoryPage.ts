@@ -7,7 +7,7 @@ import { getSubCategoryWithAllAttr } from '../filter/getSubCategoryWithAllAttr';
 import { buildProductItem } from '../product/buildProductItem';
 import { changeQuantity } from './changeQuantity';
 
-export function openSubcategoryPage(subCateg: ISubCategoryResp) {
+export function openSubcategoryPage(subCateg: ISubCategoryResp): void {
     const title = document.querySelector('h1') as HTMLElement;
     let category = '';
     const subCategoryResp: ISubCategoryResp[] = [];

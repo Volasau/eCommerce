@@ -29,7 +29,7 @@ class App {
         this.header = new Header('header', 'header');
     }
 
-    static async renderNewPage(idPage: string) {
+    static async renderNewPage(idPage: string): Promise<void> {
         const currentPageHTML = document.querySelector(`#${App.defaultPageId}`);
         if (currentPageHTML) {
             currentPageHTML.remove();
@@ -74,7 +74,7 @@ class App {
         }
     }
 
-    private checkAuthenticationAndRedirect() {
+    private checkAuthenticationAndRedirect(): void {
         const hash = window.location.hash.slice(2);
         if (hash === PageId.LoginPage) {
             if (constants.logIn) {
@@ -83,7 +83,7 @@ class App {
         }
     }
 
-    private async enableRouteChange() {
+    private async enableRouteChange(): Promise<void> {
         window.addEventListener('hashchange', async () => {
             this.checkAuthenticationAndRedirect();
             const hash1 = window.location.hash;
@@ -96,7 +96,7 @@ class App {
         });
     }
 
-    async run() {
+    async run(): Promise<void> {
         App.container.append(this.header.render());
 
         await App.renderNewPage('main');

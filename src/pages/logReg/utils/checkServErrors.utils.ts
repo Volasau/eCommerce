@@ -1,4 +1,4 @@
-export function checkServErrors(formHTML: HTMLFormElement) {
+export function checkServErrors(formHTML: HTMLFormElement): void {
     const inputs = formHTML.querySelectorAll('.input') as NodeList;
     inputs.forEach((input) => {
         const inp = input as HTMLInputElement;

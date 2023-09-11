@@ -144,18 +144,16 @@ export class AddressNew {
                             billingAddressDefault = await customerManager.setDefaultBillingAddress(dataCustomer.id);
                         }
 
-                        if (
-                            (response && response.status === 409) ||
-                            (billingAddress && billingAddress.statusCode === 409) ||
-                            (shippingAddress && shippingAddress.statusCode === 409) ||
-                            (billingAddressDefault && billingAddressDefault.statusCode === 409) ||
-                            (shippingAddressDefault && shippingAddressDefault.statusCode === 409)
-                        ) {
-                            showToastError('Error ');
-                        } else {
-                            showToast('Add address');
-                        }
+                        showToast('Add address');
+                        return [
+                            response,
+                            shippingAddress,
+                            billingAddress,
+                            shippingAddressDefault,
+                            billingAddressDefault,
+                        ];
                     } catch (error) {
+                        showToastError('Error ');
                         console.error('Error removing address:', error);
                     }
                 })();

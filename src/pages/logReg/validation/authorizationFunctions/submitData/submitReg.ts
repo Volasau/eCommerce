@@ -4,7 +4,7 @@ import { registerOnTheServer } from '../registerOnTheServer';
 import { checkInputsForErrors } from './checkInputsForErrors';
 import { saveUsersData } from './saveUsersData';
 
-export function submitReg(reg: IRegistration) {
+export function submitReg(reg: IRegistration): void {
     document.addEventListener('click', (event) => {
         const target = event.target as HTMLButtonElement;
         if (target.id === 'registr-submit') {

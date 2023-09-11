@@ -112,17 +112,14 @@ export class ChangePassword {
                         dataCustomer.id
                     );
 
-                    if (response.statusCode === 400) {
-                        showToastError('The given current password does not match');
-                        return;
-                    } else {
-                        showToast('Password changed');
-                        await logoutAction();
-                        if (changePasswordButton && changePasswordButton instanceof HTMLButtonElement) {
-                            changePasswordButton.disabled = false;
-                        }
+                    showToast('Password changed');
+                    await logoutAction();
+                    if (changePasswordButton && changePasswordButton instanceof HTMLButtonElement) {
+                        changePasswordButton.disabled = false;
                     }
+                    return response;
                 } catch (error) {
+                    showToastError('The given current password does not match');
                     console.error('Error removing address:', error);
                 }
             })();
