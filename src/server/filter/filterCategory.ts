@@ -7,9 +7,9 @@ import {
     IPricesStr,
     IProduct,
     IProductProjection,
-    IVariantProps,
-} from '../interfaces/productProjectionInterface';
-import { IProductResp } from '../../pages/catalog/interfaces/categoryResponse/categoryResponseInterface';
+    IProductsData,
+    IVariantObj,
+} from '../products/queryProductProjections';
 import { request } from '../classes/requestClass';
 
 export class ProductFilter {
@@ -21,39 +21,42 @@ export class ProductFilter {
         this.baseURL = `${constants.baseURL}?limit=60`;
     }
 
-    async filterByBrand(url: string): Promise<IProductResp[]> {
+    async filterByBrand(url: string): Promise<IProduct[]> {
         try {
-            const res = await request.getAuth(url);
-            const data = await res.json();
-
-            const productsWithAttributes: IProductResp[] = data.results.map((product: IProductProjection) => {
+            const res: Response = await request.getAuth(url);
+            const data: IProductsData = await res.json();
+            const productsWithAttributes: IProduct[] = data.results.map((product: IProductProjection) => {
                 const categoriesArr: ICategories[] = [...product.categories];
-                // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                const variants: any[] = [];
-                product.variants.map((variant) => {
+                const variantObjs: IVariantObj[] = product.variants.map((variant) => {
                     const { attributes, images, prices } = variant;
-                    const variantAttr: IAttributes[] = [...attributes];
-                    const variantImg: IImages[] = [...images];
-                    const variantPrices: IPricesStr[] = [...prices];
 
-                    const variantProps: IVariantProps = {
-                        variantAttr,
-                        variantImg,
-                        variantPrices,
+                    const variantObj: IVariantObj = {
+                        variantAttr: attributes ? [...attributes] : [],
+                        variantImg: images ? [...images] : [],
+                        variantPrices: prices ? [...prices] : [],
                     };
 
-                    variants.push(variantProps);
+                    return variantObj;
                 });
 
-                const allVarAttrArr: IAttributes[] = variants.reduce(
-                    (acc, variant) => [...acc, ...variant.variantAttr],
-                    []
-                );
-                const allVarImgArr: IImages[] = variants.reduce((acc, variant) => [...acc, ...variant.variantImg], []);
-                const allVarPricesArr: IPricesStr[] = variants.reduce(
-                    (acc, variant) => [...acc, ...variant.variantPrices],
-                    []
-                );
+                const allVarAttrArr: IAttributes[] = variantObjs.reduce((acc: IAttributes[], variant: IVariantObj) => {
+                    if (variant.variantAttr) {
+                        acc.push(...variant.variantAttr);
+                    }
+                    return acc;
+                }, []);
+                const allVarImgArr: IImages[] = variantObjs.reduce((acc: IImages[], variant) => {
+                    if (variant.variantImg) {
+                        acc.push(...variant.variantImg);
+                    }
+                    return acc;
+                }, []);
+                const allVarPricesArr: IPricesStr[] = variantObjs.reduce((acc: IPricesStr[], variant) => {
+                    if (variant.variantPrices) {
+                        acc.push(...variant.variantPrices);
+                    }
+                    return acc;
+                }, []);
 
                 const allVariants: IAllVariants[] = [
                     {
@@ -68,17 +71,18 @@ export class ProductFilter {
                     },
                 ];
 
-                const productProps: IProduct = {
+                const productObj: IProduct = {
                     id: product.id,
                     name: product.name.en,
                     description: product.description.en,
                     categories: categoriesArr,
                     allVariants,
                 };
-                return productProps;
+                return productObj;
             });
             constants.productList = [];
-            productsWithAttributes.forEach((product: IProductResp) => {
+            productsWithAttributes.forEach((product: IProduct) => {
+                console.log(product);
                 constants.productList.push(product);
             });
             return productsWithAttributes;

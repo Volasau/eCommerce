@@ -1,9 +1,10 @@
 import { bearer_token_cc } from '../..';
+import { ICustomerResponse } from '../../core/interfaces/customerResponse';
 import { constants } from '../../data/constants';
 import { request } from '../classes/requestClass';
 import { PARSE } from '../interfaces/parseEnum';
 
-export class CustomerAddAddress {
+export class CustomerAddAdress {
     private customerVersion: number;
 
     protected addressId: string;
@@ -12,7 +13,13 @@ export class CustomerAddAddress {
         this.customerVersion = customerVersion;
         this.addressId = '';
     }
-    async addAddress(country: string, city: string, street: string, postalCode: string, customerId: string) {
+    async addAddress(
+        country: string,
+        city: string,
+        street: string,
+        postalCode: string,
+        customerId: string
+    ): Promise<Response> {
         const requestData = {
             version: this.customerVersion,
             actions: [
@@ -31,15 +38,16 @@ export class CustomerAddAddress {
         try {
             const url = `${constants.apiUrlCustomers}/${customerId}`;
             const auth = `Bearer ${await bearer_token_cc}`;
-            const res = await request.postAuth(url, auth, PARSE.Json, JSON.stringify(requestData));
+            const res: Response = await request.postAuth(url, auth, PARSE.Json, JSON.stringify(requestData));
 
-            const response = await res.json();
+            const response: ICustomerResponse = await res.json();
             const index: number = response.addresses.length - 1;
 
             if (response.addresses && response.addresses.length > index) {
                 this.addressId = response.addresses[index].id;
             }
             this.customerVersion = this.customerVersion + 1;
+            console.log(res);
             return res;
         } catch (error) {
             console.error('Error creating billing address:', error);
@@ -61,9 +69,10 @@ export class CustomerAddAddress {
         try {
             const url = `${constants.apiUrlCustomers}/${customerId}`;
             const auth = `Bearer ${await bearer_token_cc}`;
-            const res = await request.postAuth(url, auth, PARSE.Json, JSON.stringify(requestData));
+            const res: Response = await request.postAuth(url, auth, PARSE.Json, JSON.stringify(requestData));
 
             const billingAddress = await res.json();
+            console.log('TEST:', billingAddress);
             this.customerVersion = this.customerVersion + 1;
             return billingAddress;
         } catch (error) {

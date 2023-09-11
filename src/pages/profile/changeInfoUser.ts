@@ -1,5 +1,5 @@
 import { changeCustomerInfo } from '../../server/profile/changePerson';
-import { dataCustomer } from '../../server/customerLogin';
+import { dataCustomer } from '../../server/customer/customerLogin';
 import { InnerForm } from '../logReg/formClasses/classForm';
 import { logoutAction } from '../logReg/utils/logOutFunc.utils';
 import { showToast, showToastError } from '../logReg/utils/funcToastify.utils';

@@ -1,12 +1,12 @@
 import urlImg from '../../../../assets/icons/arrow.svg';
 import { constants } from '../../../../data/constants';
 import { categoryResponse } from '../../../../server/function/structureCategories';
+import { IProduct } from '../../../../server/products/queryProductProjections';
 import { CatalogRender } from '../../classes/catalogRenderClass';
 import { spanHTML } from '../../classes/elementBuilder';
-import { IProductResp } from '../../interfaces/categoryResponse/categoryResponseInterface';
 import { getImagesFromProduct } from './getImagesFromProduct';
 
-export function openProductPage(prod: IProductResp) {
+export function openProductPage(prod: IProduct) {
     const prodList = document.querySelector('.full-catalog') as HTMLDivElement;
     prodList.remove();
 

@@ -1,6 +1,6 @@
-import { constants } from '../data/constants';
-import { request } from './classes/requestClass';
-import { PARSE } from './interfaces/parseEnum';
+import { constants } from '../../data/constants';
+import { request } from '../classes/requestClass';
+import { PARSE } from '../interfaces/parseEnum';
 
 export class TokenRevoker {
     private async revokeToken(token: string, tokenTypeHint: string): Promise<void> {

@@ -1,6 +1,6 @@
-import { IProductResp } from '../../interfaces/categoryResponse/categoryResponseInterface';
+import { IProduct } from '../../../../server/products/queryProductProjections';
 
-export function getImagesFromProduct(product: IProductResp): string[] {
+export function getImagesFromProduct(product: IProduct): string[] {
     const images: string[] = [];
     product.allVariants.forEach((variant) => {
         variant.images.forEach((image) => {

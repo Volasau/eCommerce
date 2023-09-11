@@ -1,7 +1,8 @@
 import { Customer } from '@commercetools/platform-sdk';
-import { constants } from '../data/constants';
-import { request } from './classes/requestClass';
-import { PARSE } from './interfaces/parseEnum';
+import { constants } from '../../data/constants';
+import { request } from '../classes/requestClass';
+import { PARSE } from '../interfaces/parseEnum';
+import { ICustomerSignInResponse } from '../../core/interfaces/customerSignInResponse';
 
 export class CustomerManager {
     private url: string;
@@ -22,9 +23,9 @@ export class CustomerManager {
 
     private addressId: string;
 
-    protected billingAddressId: null;
+    protected billingAddressId: string;
 
-    protected shippingAddressId: null;
+    protected shippingAddressId: string;
 
     protected defaultBillingAddressId: string;
 
@@ -39,14 +40,14 @@ export class CustomerManager {
         this.customerId = '';
         this.customerVersion = 0;
         this.addressId = '';
-        this.billingAddressId = null;
-        this.shippingAddressId = null;
+        this.billingAddressId = '';
+        this.shippingAddressId = '';
         this.defaultBillingAddressId = '';
         this.defaultShippingAddressId = '';
         this.url = '';
     }
 
-    async createCustomer() {
+    async createCustomer(): Promise<Customer> {
         const data = {
             email: this.email,
             firstName: this.firstName,
@@ -55,9 +56,14 @@ export class CustomerManager {
         };
 
         try {
-            const res = await request.postAuth(constants.apiUrlCustomers, this.auth, PARSE.Json, JSON.stringify(data));
+            const res: Response = await request.postAuth(
+                constants.apiUrlCustomers,
+                this.auth,
+                PARSE.Json,
+                JSON.stringify(data)
+            );
 
-            const response = await res.json();
+            const response: ICustomerSignInResponse = await res.json();
             const customer: Customer = response.customer;
             this.customerId = customer.id;
             this.url = `${constants.apiUrlCustomers}/${this.customerId}`;
@@ -69,7 +75,7 @@ export class CustomerManager {
         }
     }
 
-    async createBirthDate(birthDate: string) {
+    async createBirthDate(birthDate: string): Promise<Customer> {
         const requestData = {
             version: this.customerVersion,
             actions: [
@@ -81,8 +87,8 @@ export class CustomerManager {
         };
 
         try {
-            const res = await request.postAuth(this.url, this.auth, PARSE.Json, JSON.stringify(requestData));
-            const response = await res.json();
+            const res: Response = await request.postAuth(this.url, this.auth, PARSE.Json, JSON.stringify(requestData));
+            const response: Customer = await res.json();
             this.customerVersion = this.customerVersion + 1;
             return response;
         } catch (error) {
@@ -91,7 +97,13 @@ export class CustomerManager {
         }
     }
 
-    async createAddress(streetName: string, city: string, postalCode: string, country: string, index: number) {
+    async createAddress(
+        streetName: string,
+        city: string,
+        postalCode: string,
+        country: string,
+        index: number
+    ): Promise<Customer | undefined> {
         const requestData = {
             version: this.customerVersion,
             actions: [
@@ -108,9 +120,9 @@ export class CustomerManager {
         };
 
         try {
-            const res = await request.postAuth(this.url, this.auth, PARSE.Json, JSON.stringify(requestData));
-            const response = await res.json();
-            this.addressId = response.addresses[index].id;
+            const res: Response = await request.postAuth(this.url, this.auth, PARSE.Json, JSON.stringify(requestData));
+            const response: Customer = await res.json();
+            this.addressId = response.addresses[index].id as string;
             this.customerVersion = this.customerVersion + 1;
             return response;
         } catch (error) {
@@ -119,7 +131,7 @@ export class CustomerManager {
         }
     }
 
-    async createBillingAddress() {
+    async createBillingAddress(): Promise<Customer> {
         const requestData = {
             version: this.customerVersion,
             actions: [
@@ -131,8 +143,8 @@ export class CustomerManager {
         };
 
         try {
-            const res = await request.postAuth(this.url, this.auth, PARSE.Json, JSON.stringify(requestData));
-            const billingAddress = await res.json();
+            const res: Response = await request.postAuth(this.url, this.auth, PARSE.Json, JSON.stringify(requestData));
+            const billingAddress: Customer = await res.json();
             this.billingAddressId = billingAddress.id;
             this.customerVersion = this.customerVersion + 1;
             return billingAddress;
@@ -142,7 +154,7 @@ export class CustomerManager {
         }
     }
 
-    async createShippingAddress() {
+    async createShippingAddress(): Promise<Customer> {
         const requestData = {
             version: this.customerVersion,
             actions: [
@@ -154,8 +166,8 @@ export class CustomerManager {
         };
 
         try {
-            const res = await request.postAuth(this.url, this.auth, PARSE.Json, JSON.stringify(requestData));
-            const shippingAddress = await res.json();
+            const res: Response = await request.postAuth(this.url, this.auth, PARSE.Json, JSON.stringify(requestData));
+            const shippingAddress: Customer = await res.json();
             this.shippingAddressId = shippingAddress.id;
             this.customerVersion = this.customerVersion + 1;
             return shippingAddress;
@@ -165,7 +177,7 @@ export class CustomerManager {
         }
     }
 
-    async setDefaultBillingAddress() {
+    async setDefaultBillingAddress(): Promise<Customer> {
         const requestData = {
             version: this.customerVersion,
             actions: [
@@ -177,8 +189,8 @@ export class CustomerManager {
         };
 
         try {
-            const res = await request.postAuth(this.url, this.auth, PARSE.Json, JSON.stringify(requestData));
-            const defaultBillingAddress = await res.json();
+            const res: Response = await request.postAuth(this.url, this.auth, PARSE.Json, JSON.stringify(requestData));
+            const defaultBillingAddress: Customer = await res.json();
             this.defaultBillingAddressId = defaultBillingAddress.id;
             this.customerVersion = this.customerVersion + 1;
             return defaultBillingAddress;
@@ -188,7 +200,7 @@ export class CustomerManager {
         }
     }
 
-    async setDefaultShippingAddress() {
+    async setDefaultShippingAddress(): Promise<Customer> {
         const requestData = {
             version: this.customerVersion,
             actions: [
@@ -200,8 +212,8 @@ export class CustomerManager {
         };
 
         try {
-            const res = await request.postAuth(this.url, this.auth, PARSE.Json, JSON.stringify(requestData));
-            const defaultShippingAddress = await res.json();
+            const res: Response = await request.postAuth(this.url, this.auth, PARSE.Json, JSON.stringify(requestData));
+            const defaultShippingAddress: Customer = await res.json();
             this.defaultShippingAddressId = defaultShippingAddress.id;
             this.customerVersion = this.customerVersion + 1;
             return defaultShippingAddress;

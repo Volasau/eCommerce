@@ -1,7 +1,7 @@
-import { PARSE } from './interfaces/parseEnum';
-import { request } from './classes/requestClass';
-import { IAccessTokenResponse } from './interfaces/accessTokenResponseInterface';
-import { constants } from '../data/constants';
+import { PARSE } from '../interfaces/parseEnum';
+import { request } from '../classes/requestClass';
+import { IAccessTokenResponse } from '../interfaces/accessTokenResponseInterface';
+import { constants } from '../../data/constants';
 
 export class AccessTokenFetcher {
     private requestData: URLSearchParams;
@@ -15,7 +15,12 @@ export class AccessTokenFetcher {
 
     async fetchAccessToken(): Promise<string> {
         try {
-            const res = await request.postAuth(constants.authURL, constants.authHeader, PARSE.Xwww, this.requestData);
+            const res: Response = await request.postAuth(
+                constants.authURL,
+                constants.authHeader,
+                PARSE.Xwww,
+                this.requestData
+            );
 
             if (!res.ok) {
                 throw new Error(`Request failed with status: ${res.status}`);

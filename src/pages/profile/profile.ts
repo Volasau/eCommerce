@@ -2,7 +2,7 @@ import Page from '../../core/template/page';
 import '../../css/profile.css';
 import { renderAddresses } from './renderAdresses';
 import { User } from './formUser';
-import { dataCustomer as customer } from '../../server/customerLogin';
+import { dataCustomer as customer } from '../../server/customer/customerLogin';
 import { createLink } from '../logReg/utils/createLink.utils';
 import { buttonHTML, divHTML } from '../catalog/classes/elementBuilder';
 import { addBlock } from './listeners/addBlock';

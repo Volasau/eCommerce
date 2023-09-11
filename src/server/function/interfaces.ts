@@ -12,7 +12,7 @@ export interface IName {
     en: string;
 }
 
-export interface ICategoryResponse {
+export interface ICategoryResponseResult {
     id: string;
     version: number;
     versionModifiedAt: string;
@@ -31,4 +31,12 @@ export interface ICategoryResponse {
     metaTitle: IName;
     metaDescription: IName;
     assets: [];
+}
+
+export interface ICategoryResponse {
+    limit: number;
+    offset: number;
+    count: number;
+    total: number;
+    results: ICategoryResponseResult[];
 }

@@ -1,7 +1,7 @@
-import { IProductResp } from '../../pages/catalog/interfaces/categoryResponse/categoryResponseInterface';
 import { ICreateCartRequest } from './createCartRequest';
 import { IAuthorization } from './authorizationInterface';
 import { IRegistration } from './registrationInterface';
+import { IProduct } from '../../server/products/queryProductProjections';
 
 export interface IConstants {
     logIn: boolean;
@@ -29,5 +29,5 @@ export interface IConstants {
     authorization: IAuthorization;
     modalPage: number;
     modalImages: string[];
-    productList: IProductResp[];
+    productList: IProduct[];
 }

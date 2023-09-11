@@ -1,8 +1,8 @@
-import { constants } from '../data/constants';
-import { IAccessTokenResponse } from '../core/interfaces/accessTokenResponse';
-import { handleServerErrorsLog } from './handleServerErrorsLog';
-import { request } from './classes/requestClass';
-import { PARSE } from './interfaces/parseEnum';
+import { constants } from '../../data/constants';
+import { IAccessTokenResponse } from '../../core/interfaces/accessTokenResponse';
+import { handleServerErrorsLog } from '../function/handleServerErrorsLog';
+import { request } from '../classes/requestClass';
+import { PARSE } from '../interfaces/parseEnum';
 
 export class TokenManager {
     private requestData: URLSearchParams;
@@ -21,10 +21,15 @@ export class TokenManager {
         const email = page.querySelector('#email') as HTMLInputElement;
         const password = page.querySelector('#password') as HTMLInputElement;
         try {
-            const res = await request.postAuth(constants.tokenUrl, constants.authHeader, PARSE.Xwww, this.requestData);
+            const res: Response = await request.postAuth(
+                constants.tokenUrl,
+                constants.authHeader,
+                PARSE.Xwww,
+                this.requestData
+            );
 
             if (!res.ok) {
-                const status = res.status;
+                const status: number = res.status;
                 handleServerErrorsLog(status, servError, email, password);
             }
 

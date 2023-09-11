@@ -1,8 +1,10 @@
-import { ProductFilter } from '../../../server/filter/filterCategory';
-import { buildProductItem } from '../functions/product/buildProductItem';
-import { IProductResp } from '../interfaces/categoryResponse/categoryResponseInterface';
-import { ISelectedFilters } from '../interfaces/selectedFiltersInterface';
+interface ISelectedFilters {
+    [key: string]: string[] | undefined;
+}
 
+import { ProductFilter } from '../../../server/filter/filterCategory';
+import { IProduct } from '../../../server/products/queryProductProjections';
+import { buildProductItem } from '../functions/product/buildProductItem';
 const productFilter = new ProductFilter();
 
 export function filterProductList() {
@@ -18,7 +20,7 @@ export function filterProductList() {
                 selectedFilters[attribute] = [value];
             }
             try {
-                const filteredProductsList: IProductResp[] = await filterProducts(selectedFilters);
+                const filteredProductsList: IProduct[] = await filterProducts(selectedFilters);
                 const quantity = document.querySelector('.quantity') as HTMLSpanElement;
                 quantity.textContent = `${filteredProductsList.length}`;
 
@@ -34,7 +36,7 @@ export function filterProductList() {
     });
 }
 
-async function filterProducts(selectedFilters: ISelectedFilters): Promise<IProductResp[]> {
+async function filterProducts(selectedFilters: ISelectedFilters): Promise<IProduct[]> {
     const filterParams: string[] = [];
 
     for (const attribute in selectedFilters) {
@@ -58,9 +60,9 @@ async function filterProducts(selectedFilters: ISelectedFilters): Promise<IProdu
         }
     }
 
-    const queryString = filterParams.join('&');
+    const queryString: string = filterParams.join('&');
 
     const fullUrl = `${productFilter.baseURL}&${queryString}`;
-    const filteredProducts = await productFilter.filterByBrand(fullUrl);
+    const filteredProducts: IProduct[] = await productFilter.filterByBrand(fullUrl);
     return filteredProducts;
 }

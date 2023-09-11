@@ -1,4 +1,4 @@
-import { CustomerManager } from '../../server/customerRegistration';
+import { CustomerManager } from '../../server/customer/customerRegistration';
 import { IAddressBilling } from './addressBilling';
 import { IAddressShipping } from './addressShipping';
 

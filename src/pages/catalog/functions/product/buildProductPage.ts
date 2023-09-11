@@ -1,9 +1,9 @@
 import urlImg from '../../../../assets/icons/discount.svg';
 import { cartSVG } from '../../../../data/cartSVG';
+import { IProduct } from '../../../../server/products/queryProductProjections';
 import { buttonHTML, divHTML, imgHTML } from '../../classes/elementBuilder';
-import { IProductResp } from '../../interfaces/categoryResponse/categoryResponseInterface';
 
-export function buildProductPage(prod: IProductResp): HTMLDivElement {
+export function buildProductPage(prod: IProduct): HTMLDivElement {
     const id = prod.id;
     const name = prod.name;
     const description = prod.description;
@@ -57,8 +57,10 @@ export function buildProductPage(prod: IProductResp): HTMLDivElement {
     if (allImages.length > 1) images.append(addImages);
 
     prod.allVariants[0].attributesRaw.forEach((attr) => {
-        const attribute = attr.name;
-        const value = Array.isArray(attr.value) ? attr.value[0].label : attr.value.label;
+        const attribute: string = attr.name;
+        const value = (
+            Array.isArray(attr.value) ? attr.value[0].label : (attr.value as { label: string }).label
+        ) as string;
         attributtes.innerHTML += `<p>${attribute}: ${value}</p>`;
     });
 

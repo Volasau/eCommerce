@@ -1,4 +1,4 @@
-import { TokenRevoker } from '../../../server/logout';
+import { TokenRevoker } from '../../../server/customer/logout';
 import { showToast } from './funcToastify.utils';
 import App, { PageId } from '../../app/app';
 import { bearer_token_pf } from '../validation/authorizationFunctions/logInToServer';

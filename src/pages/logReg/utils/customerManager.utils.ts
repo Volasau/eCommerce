@@ -1,4 +1,4 @@
-import { CustomerManager } from '../../../server/customerRegistration';
+import { CustomerManager } from '../../../server/customer/customerRegistration';
 import { IRegistration } from '../../../core/interfaces/registrationInterface';
 import { getISOCodeByCountryName } from './getISOCode.utils';
 import { IAddressBilling } from '../../../core/interfaces/addressBilling';

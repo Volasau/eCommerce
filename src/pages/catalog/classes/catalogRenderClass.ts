@@ -1,4 +1,5 @@
 import { constants } from '../../../data/constants';
+import { IProduct } from '../../../server/products/queryProductProjections';
 import { buildCategoryName } from '../functions/catalog/buildCategoryName';
 import { buildDiscountBlock } from '../functions/catalog/buildDiscountBlock';
 import { buildHashChain } from '../functions/catalog/buildHashChain';
@@ -7,7 +8,7 @@ import { createSearchingWindow } from '../functions/filter/createSearchingWindow
 import { buildProductPage } from '../functions/product/buildProductPage';
 import { ICatalog } from '../interfaces/catalogInterface';
 import { ICategory } from '../interfaces/categoryInterface';
-import { ICategoryResp, IProductResp } from '../interfaces/categoryResponse/categoryResponseInterface';
+import { ICategoryResp } from '../interfaces/categoryResponse/categoryResponseInterface';
 import { Category } from './categoryClass';
 import { divHTML } from './elementBuilder';
 
@@ -29,8 +30,8 @@ export class CatalogRender implements ICatalog {
     catalogViewer: HTMLDivElement;
 
     categories: ICategory[];
-    product: IProductResp;
-    constructor(categoryResponse: ICategoryResp[] | ICategory[] | IProductResp, title: HTMLElement) {
+    product: IProduct;
+    constructor(categoryResponse: ICategoryResp[] | ICategory[] | IProduct, title: HTMLElement) {
         this.categories = [];
         this.product = constants.productList[0];
         if (Array.isArray(categoryResponse)) {

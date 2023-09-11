@@ -1,4 +1,4 @@
-import { dataCustomer } from '../../server/customerLogin';
+import { dataCustomer } from '../../server/customer/customerLogin';
 import { ChangeCustomerAddAddress } from '../../server/profile/changeAddress';
 import { CustomerEditManager } from '../../server/profile/deletAddress';
 import { InnerForm } from '../logReg/formClasses/classForm';

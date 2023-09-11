@@ -1,17 +1,17 @@
 import { productForm } from '../../../server/function/productForm';
+import { IProduct } from '../../../server/products/queryProductProjections';
 import { ProductSort } from '../../../server/sort/sort';
 import { changeQuantity } from '../functions/catalog/changeQuantity';
 import { buildProductItem } from '../functions/product/buildProductItem';
-import { IProductResp } from '../interfaces/categoryResponse/categoryResponseInterface';
 
-export function sortByValue(value: string) {
+export function sortByValue(value: string): void {
     document.addEventListener('click', async (event) => {
         const target = event.target as HTMLButtonElement;
 
         if (target.id === value) {
             try {
                 const productSort = new ProductSort();
-                let result: IProductResp[] = [];
+                let result: IProduct[] = [];
                 if (value === 'cheap-view') {
                     const data = await productSort.sortBy('price asc');
                     result = productForm(data);
@@ -35,7 +35,7 @@ export function sortByValue(value: string) {
     });
 }
 
-function mainCatalogSort(result: IProductResp[]) {
+function mainCatalogSort(result: IProduct[]) {
     const prodList = document.getElementById('product-view') as HTMLDivElement;
     prodList.innerHTML = '';
     result.forEach((prod) => {
@@ -43,7 +43,7 @@ function mainCatalogSort(result: IProductResp[]) {
     });
 }
 
-function subCategorySort(result: IProductResp[], currCategoryLastTagId: string) {
+function subCategorySort(result: IProduct[], currCategoryLastTagId: string) {
     const currCategoryIdArr: string[] = currCategoryLastTagId.split('-');
     currCategoryIdArr.splice(-2);
     const currCategoryId: string = currCategoryIdArr.join('-');
@@ -53,6 +53,7 @@ function subCategorySort(result: IProductResp[], currCategoryLastTagId: string) 
         const prodList = document.getElementById('product-view') as HTMLDivElement;
         prodList.innerHTML = '';
         result.forEach((prod) => {
+            console.log(prod.categories[0].id);
             if (catTest.includes(prod.categories[0].id)) {
                 prodList.append(buildProductItem(prod));
             }

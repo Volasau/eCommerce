@@ -1,7 +1,9 @@
 import { IName, IUser } from '../../../../server/function/interfaces';
+import { IProduct } from '../../../../server/products/queryProductProjections';
 
 export interface ICatId {
     id: string;
+    typeId?: string;
 }
 
 export interface IAttrValueResp {
@@ -42,18 +44,10 @@ export interface IVariantResp {
     prices: IPriceResp[];
 }
 
-export interface IProductResp {
-    id: string;
-    name: string;
-    description: string;
-    categories: ICatId[];
-    allVariants: IVariantResp[];
-}
-
 export interface ISubCategoryResp {
     id: string;
     name: IName;
-    products: IProductResp[];
+    products: IProduct[];
 }
 
 export interface ICategoryResp {

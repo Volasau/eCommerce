@@ -1,12 +1,12 @@
 import { constants } from '../../../data/constants';
+import { IProduct } from '../../../server/products/queryProductProjections';
 import { buildModal } from '../functions/product/buildModal';
-import { IProductResp } from '../interfaces/categoryResponse/categoryResponseInterface';
 import { IModal } from '../interfaces/modalInterface';
 
 export class Modal implements IModal {
     modalHTML: HTMLDivElement;
 
-    constructor(product: IProductResp) {
+    constructor(product: IProduct) {
         const productName = product.name;
         const url = product.allVariants[0].images[0].url;
         const id = product.id;

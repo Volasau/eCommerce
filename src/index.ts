@@ -4,7 +4,7 @@ import { addProductLink } from './pages/catalog/listeners/addProductLink';
 import { getModal } from './pages/catalog/listeners/getModal';
 import { paginateModal } from './pages/catalog/listeners/paginateModal';
 import { removeModal } from './pages/catalog/listeners/removeModal';
-import { tokenFetcher } from './server/accessTokenCC';
+import { tokenFetcher } from './server/token/accessTokenCC';
 import { plusMinusOneProduct } from './pages/catalog/listeners/plusMinusOneProduct';
 import { constants } from './data/constants';
 import { submitLogin } from './pages/logReg/validation/authorizationFunctions/submitData/submitLogin';

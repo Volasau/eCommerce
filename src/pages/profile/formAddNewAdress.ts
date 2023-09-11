@@ -1,5 +1,5 @@
-import { dataCustomer } from '../../server/customerLogin';
-import { CustomerAddAddress } from '../../server/profile/addAdress';
+import { dataCustomer } from '../../server/customer/customerLogin';
+import { CustomerAddAdress } from '../../server/profile/addAdress';
 import { InnerForm } from '../logReg/formClasses/classForm';
 import { showToast, showToastError } from '../logReg/utils/funcToastify.utils';
 import { getISOCodeByCountryName } from '../logReg/utils/getISOCode.utils';
@@ -117,7 +117,7 @@ export class AddressNew {
 
                 const counry = await getISOCodeByCountryName(newAddress.country);
                 (async () => {
-                    const customerManager = new CustomerAddAddress(dataCustomer.version);
+                    const customerManager = new CustomerAddAdress(dataCustomer.version);
                     try {
                         const response = await customerManager.addAddress(
                             counry,
