@@ -1,4 +1,4 @@
-import showChangeInfoUser from './changeInfoUser';
+import showChangeInfoUser from './changeUser/changeInfoUser';
 
 export class User {
     container: HTMLDivElement;
