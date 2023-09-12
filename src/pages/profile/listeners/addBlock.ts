@@ -1,4 +1,4 @@
-import { ChangePassword } from '../changePassword';
+import { ChangePassword } from '../changePassword/changePassword';
 import { AddressNew } from '../formAddNewAdress';
 
 export function addBlock(button: HTMLElement, container: HTMLElement): void {

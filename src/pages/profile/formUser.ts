@@ -7,7 +7,7 @@ export class User {
         this.container = this.createContainer(email, firstName, lastName, dateOfBirth);
     }
 
-    createContainer(email: string, firstName: string, lastName: string, dateOfBirth: string): HTMLDivElement {
+    private createContainer(email: string, firstName: string, lastName: string, dateOfBirth: string): HTMLDivElement {
         const userData = document.createElement('div');
         userData.classList.add('user__container');
 
