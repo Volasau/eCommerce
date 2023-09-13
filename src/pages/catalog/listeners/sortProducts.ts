@@ -35,7 +35,7 @@ export function sortByValue(value: string): void {
     });
 }
 
-function mainCatalogSort(result: IProduct[]) {
+function mainCatalogSort(result: IProduct[]): void {
     const prodList = document.getElementById('product-view') as HTMLDivElement;
     prodList.innerHTML = '';
     result.forEach((prod) => {
@@ -43,7 +43,7 @@ function mainCatalogSort(result: IProduct[]) {
     });
 }
 
-function subCategorySort(result: IProduct[], currCategoryLastTagId: string) {
+function subCategorySort(result: IProduct[], currCategoryLastTagId: string): void {
     const currCategoryIdArr: string[] = currCategoryLastTagId.split('-');
     currCategoryIdArr.splice(-2);
     const currCategoryId: string = currCategoryIdArr.join('-');
@@ -69,7 +69,7 @@ function subCategorySort(result: IProduct[], currCategoryLastTagId: string) {
     }
 }
 
-function categoryRelatedIds() {
+function categoryRelatedIds(): string[] | void {
     if (document.getElementById('category-view')) {
         const catViewElem = document.getElementById('category-view') as HTMLElement;
 
@@ -87,7 +87,7 @@ function categoryRelatedIds() {
     }
 }
 
-function sort(target: HTMLButtonElement) {
+function sort(target: HTMLButtonElement): void {
     changeQuantity();
 
     const choice = target.textContent === 'CHEAP' ? 'alpha' : 'cheap';

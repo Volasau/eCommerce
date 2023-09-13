@@ -1,4 +1,4 @@
-export function showFilter() {
+export function showFilter(): void {
     document.addEventListener('click', (event) => {
         const target = event.target as HTMLButtonElement;
         const filterBlock = document.getElementById('other-attr-wrap') as HTMLFormElement;

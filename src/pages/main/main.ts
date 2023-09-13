@@ -10,7 +10,7 @@ class MainPage extends Page {
         this.text = 'HOME Page';
     }
 
-    async render() {
+    async render(): Promise<HTMLElement> {
         const title = this.createHeaderTitle(this.text);
         const registrLink = createLink('#/registr', '', 'Registration➕', '');
         const loginLink = createLink('#/login', '', 'Login🔑', '');

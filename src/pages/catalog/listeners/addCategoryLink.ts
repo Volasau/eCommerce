@@ -1,7 +1,7 @@
 import { categoryResponse } from '../../../server/function/structureCategories';
 import { ICategoryResp } from '../interfaces/categoryResponse/categoryResponseInterface';
 
-export function addCategoryLink() {
+export function addCategoryLink(): void {
     document.addEventListener('click', (event) => {
         const target = event.target as HTMLElement;
         if (target.classList.contains('cat-card-dark')) {

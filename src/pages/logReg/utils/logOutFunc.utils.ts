@@ -4,7 +4,7 @@ import App, { PageId } from '../../app/app';
 import { bearer_token_pf } from '../validation/authorizationFunctions/logInToServer';
 import { constants } from '../../../data/constants';
 
-export const logoutAction = async () => {
+export const logoutAction = async (): Promise<void> => {
     const tokenRevoker = new TokenRevoker();
 
     try {

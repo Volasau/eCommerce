@@ -1,4 +1,4 @@
-export function startPasswordValidation(value: string, errorHTML: HTMLElement) {
+export function startPasswordValidation(value: string, errorHTML: HTMLElement): void {
     if (value === '') {
         errorHTML.textContent = '';
     } else if (value.length < 8) {

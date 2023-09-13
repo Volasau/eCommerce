@@ -3,7 +3,7 @@ import { openProductPage } from '../functions/product/openProductPage';
 import { openSubcategoryPage } from '../functions/catalog/openSubcategoryPage';
 import { openCategoryPage } from '../functions/catalog/openCategoryPage';
 
-export function routeProductPage(locHash: string) {
+export function routeProductPage(locHash: string): void {
     const localHash = locHash.replace(/_/g, ' ');
 
     categoryResponse.forEach((cat) => {

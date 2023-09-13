@@ -7,7 +7,7 @@ import { IConsolidatedData } from '../../../core/interfaces/consolidatedData';
 import { showToast } from './funcToastify.utils';
 import { bearer_token_cc } from '../../..';
 
-export async function customerManagerData(reg: IRegistration) {
+export async function customerManagerData(reg: IRegistration): Promise<IConsolidatedData> {
     const authBearer = `Bearer ${await bearer_token_cc}`;
     const customerManager = new CustomerManager(authBearer, reg.email, reg.name, reg.lastName, reg.password);
     await customerManager.createCustomer();
@@ -40,7 +40,7 @@ export async function customerManagerData(reg: IRegistration) {
     return consolidatedData;
 }
 
-export async function noDefaultAddress(consolidatedData: IConsolidatedData) {
+export async function noDefaultAddress(consolidatedData: IConsolidatedData): Promise<void> {
     const customerManager = consolidatedData.customerManager;
     const addressBilling: IAddressBilling = consolidatedData.addressBilling;
     const addressShipping: IAddressShipping = consolidatedData.addressShipping;
@@ -70,7 +70,7 @@ export async function noDefaultAddress(consolidatedData: IConsolidatedData) {
     }
 }
 
-export async function defaultBillingAddress(consolidatedData: IConsolidatedData) {
+export async function defaultBillingAddress(consolidatedData: IConsolidatedData): Promise<void> {
     const customerManager = consolidatedData.customerManager;
     const addressBilling: IAddressBilling = consolidatedData.addressBilling;
     const addressShipping: IAddressShipping = consolidatedData.addressShipping;
@@ -101,7 +101,7 @@ export async function defaultBillingAddress(consolidatedData: IConsolidatedData)
     }
 }
 
-export async function defaultShippingAddress(consolidatedData: IConsolidatedData) {
+export async function defaultShippingAddress(consolidatedData: IConsolidatedData): Promise<void> {
     const customerManager = consolidatedData.customerManager;
     const addressBilling: IAddressBilling = consolidatedData.addressBilling;
     const addressShipping: IAddressShipping = consolidatedData.addressShipping;
@@ -131,7 +131,7 @@ export async function defaultShippingAddress(consolidatedData: IConsolidatedData
         console.error('An error occurred:', error);
     }
 }
-export async function defaultAddresses(consolidatedData: IConsolidatedData) {
+export async function defaultAddresses(consolidatedData: IConsolidatedData): Promise<void> {
     const customerManager = consolidatedData.customerManager;
     const addressBilling: IAddressBilling = consolidatedData.addressBilling;
     const addressShipping: IAddressShipping = consolidatedData.addressShipping;

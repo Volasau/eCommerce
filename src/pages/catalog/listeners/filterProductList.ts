@@ -7,7 +7,7 @@ import { IProduct } from '../../../server/products/queryProductProjections';
 import { buildProductItem } from '../functions/product/buildProductItem';
 const productFilter = new ProductFilter();
 
-export function filterProductList() {
+export function filterProductList(): void {
     const selectedFilters: ISelectedFilters = {};
 
     document.addEventListener('change', async (event) => {

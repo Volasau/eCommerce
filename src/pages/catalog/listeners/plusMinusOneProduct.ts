@@ -1,4 +1,4 @@
-export function plusMinusOneProduct() {
+export function plusMinusOneProduct(): void {
     let count = 1;
     document.addEventListener('click', (event) => {
         const target = event.target as HTMLButtonElement;

@@ -1,4 +1,4 @@
-export function addCredentialsAndPersData(formHTML: HTMLFormElement, innerFormList: HTMLElement[]) {
+export function addCredentialsAndPersData(formHTML: HTMLFormElement, innerFormList: HTMLElement[]): void {
     innerFormList.forEach((innerForm) => {
         if (
             innerForm.children[1].id !== 'country' &&

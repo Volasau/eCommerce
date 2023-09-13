@@ -1,6 +1,6 @@
 import { ICountryProp } from '../../../../../core/interfaces/countryPropInterface';
 
-export function getCountryListHTML(countriesArr: ICountryProp[], listId: string) {
+export function getCountryListHTML(countriesArr: ICountryProp[], listId: string): void {
     if (countriesArr.length > 0) {
         const html = countriesArr
             .map(

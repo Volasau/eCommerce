@@ -7,7 +7,7 @@ import { Customer } from '@commercetools/platform-sdk';
 
 export let bearer_token_pf = '';
 
-export async function logInToServer(log: IAuthorization, page: HTMLElement) {
+export async function logInToServer(log: IAuthorization, page: HTMLElement): Promise<Customer | Error | void> {
     try {
         const requestData: ILoginRequest = {
             email: log.email,

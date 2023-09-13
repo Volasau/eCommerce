@@ -1,4 +1,4 @@
-export function switchPageByHashChain() {
+export function switchPageByHashChain(): void {
     document.addEventListener('click', (event) => {
         const target = event.target as HTMLSpanElement;
         if (target.classList.contains('chain')) {

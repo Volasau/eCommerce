@@ -1,6 +1,6 @@
 import { constants } from '../../../data/constants';
 
-export function paginateModal() {
+export function paginateModal(): void {
     document.addEventListener('click', (event) => {
         const target = event.target as HTMLButtonElement;
         if (target.className === 'next') {

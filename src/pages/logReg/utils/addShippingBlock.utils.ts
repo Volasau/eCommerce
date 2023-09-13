@@ -1,6 +1,6 @@
 import { addCheckboxToInput } from './addCheckboxToInput.utils';
 
-export function addShippingBlock(formHTML: HTMLFormElement, innerFormList: HTMLElement[]) {
+export function addShippingBlock(formHTML: HTMLFormElement, innerFormList: HTMLElement[]): void {
     const shippingBlock = document.createElement('div') as HTMLDivElement;
     shippingBlock.setAttribute('id', 'shipping');
     shippingBlock.innerHTML = '<h3>SHIPPING ADDRESS</h3>';

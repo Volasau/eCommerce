@@ -1,4 +1,4 @@
-export function addButton(formHTML: HTMLFormElement, innerFormList: HTMLElement[]) {
+export function addButton(formHTML: HTMLFormElement, innerFormList: HTMLElement[]): void {
     const button = document.createElement('button') as HTMLButtonElement;
     button.type = 'button';
     if (innerFormList.length <= 2) {

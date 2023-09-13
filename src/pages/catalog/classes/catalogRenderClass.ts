@@ -30,7 +30,9 @@ export class CatalogRender implements ICatalog {
     catalogViewer: HTMLDivElement;
 
     categories: ICategory[];
+
     product: IProduct;
+
     constructor(categoryResponse: ICategoryResp[] | ICategory[] | IProduct, title: HTMLElement) {
         this.categories = [];
         this.product = constants.productList[0];
@@ -57,18 +59,18 @@ export class CatalogRender implements ICatalog {
         this.catalogViewer = buildProductViewer(this.categories);
     }
 
-    renderCatalog() {
+    renderCatalog(): void {
         this.wrapper.append(this.hashChain, this.search, this.discount, this.categoryName, this.catalogViewer);
         this.title.after(this.wrapper);
     }
 
-    renderCategory() {
+    renderCategory(): void {
         if (this.curCatalog !== null) this.curCatalog.remove();
         this.wrapper.append(this.hashChain, this.search, this.discount, this.categoryName, this.catalogViewer);
         this.title.after(this.wrapper);
     }
 
-    renderSubCategory() {
+    renderSubCategory(): void {
         if (this.curCatalog !== null) this.curCatalog.remove();
         this.wrapper.append(this.hashChain, this.search, this.discount, this.categoryName, this.catalogViewer);
         this.title.after(this.wrapper);
@@ -76,7 +78,7 @@ export class CatalogRender implements ICatalog {
         categoryBlock.remove();
     }
 
-    renderProduct() {
+    renderProduct(): void {
         if (this.curCatalog !== null) this.curCatalog.remove();
         this.wrapper.append(this.hashChain, this.search, buildProductPage(this.product));
         this.title.after(this.wrapper);

@@ -2,7 +2,7 @@ import { IAuthorization } from '../../../../../core/interfaces/authorizationInte
 import { IRegistration } from '../../../../../core/interfaces/registrationInterface';
 import { constants } from '../../../../../data/constants';
 
-export function saveUsersData(inputList: NodeList, regLog: IAuthorization | IRegistration) {
+export function saveUsersData(inputList: NodeList, regLog: IAuthorization | IRegistration): void {
     inputList.forEach((inp) => {
         const input = inp as HTMLInputElement;
         Object.defineProperty(regLog, input.id, { value: input.value });

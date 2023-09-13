@@ -3,7 +3,7 @@ import { logInToServer } from '../logInToServer';
 import { checkInputsForErrors } from './checkInputsForErrors';
 import { saveUsersData } from './saveUsersData';
 
-export function submitLogin(log: IAuthorization) {
+export function submitLogin(log: IAuthorization): void {
     document.addEventListener('click', (event) => {
         const target = event.target as HTMLButtonElement;
         if (target.id === 'login-submit') {

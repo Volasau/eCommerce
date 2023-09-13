@@ -40,7 +40,7 @@ export class InnerForm implements IInnerForm {
         this.error = document.createElement('span');
     }
 
-    create() {
+    create(): HTMLElement {
         this.formGroup.classList.add('form-group');
         this.label.setAttribute('for', this.inputId);
         this.label.textContent = this.labelText + ':';
@@ -65,7 +65,7 @@ export class InnerForm implements IInnerForm {
         return this.formGroup;
     }
 
-    valid() {
+    valid(): void {
         validateThisInput(this.inputHTML, this.error);
     }
 }

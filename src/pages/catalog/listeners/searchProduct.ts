@@ -3,7 +3,7 @@ import { productForm } from '../../../server/function/productForm';
 import { buildProductItem } from '../functions/product/buildProductItem';
 import { IProduct, IProductsData } from '../../../server/products/queryProductProjections';
 
-export function searchByButton() {
+export function searchByButton(): void {
     document.addEventListener('click', async (event) => {
         const target = event.target as HTMLImageElement;
 
@@ -31,7 +31,7 @@ export function searchByButton() {
     });
 }
 
-export function searchByEnter() {
+export function searchByEnter(): void {
     document.addEventListener('keypress', async (event) => {
         const target = event.target as HTMLInputElement;
         if (target.classList.contains('search-input') && event.key === 'Enter') {
