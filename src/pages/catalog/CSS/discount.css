@@ -1,0 +1,33 @@
+#discount-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 7vw;
+  background-color: rgb(255, 149, 0);
+}
+
+#discount {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 1000px;
+  font-size: 7vw;
+  color: rgb(252, 249, 249);
+  animation: bit 8s infinite;
+}
+
+@keyframes bit {
+  0% {transform: translateX(20%);}
+  50% {transform: translateX(-20%);}
+  100% {transform: translateX(20%);}
+}
+
+#discount-wrap:hover {
+  cursor: pointer;
+}
+
+#discount-wrap:hover > #discount {
+  animation: none;
+  cursor: pointer;
+}
+

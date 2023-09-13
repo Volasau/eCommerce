@@ -4,7 +4,6 @@ describe('startNameValidation', () => {
     let errorElement: HTMLDivElement;
 
     beforeEach(() => {
-        // Подготовка: Создаем пустой элемент для вывода ошибки перед каждым тестом
         errorElement = document.createElement('div');
     });
 

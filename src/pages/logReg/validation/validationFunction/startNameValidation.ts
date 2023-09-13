@@ -1,4 +1,4 @@
-export function startNameValidation(value: string, errorHTML: HTMLElement) {
+export function startNameValidation(value: string, errorHTML: HTMLElement): void {
     if (value === '') {
         errorHTML.textContent = '';
     } else if (/(?=.*[!@#$%^&*])/.test(value)) {

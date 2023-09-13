@@ -1,10 +1,9 @@
-import { startBirthDateValidation } from "../src/pages/logReg/validation/validationFunction/startBirthDateValidation";
+import { startBirthDateValidation } from '../src/pages/logReg/validation/validationFunction/startBirthDateValidation';
 
 describe('startBirthDateValidation', () => {
     let errorElement: HTMLDivElement;
 
     beforeEach(() => {
-        // Создаем пустой элемент для вывода ошибки перед каждым тестом
         errorElement = document.createElement('div');
     });
 

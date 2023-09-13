@@ -1,22 +1,22 @@
 import Page from '../../core/template/page';
-import { createLink } from '../logReg/functions/createLink';
 import '../../css/style.css';
+import { createLink } from '../logReg/utils/createLink.utils';
 
 class MainPage extends Page {
-    static TextOject = {
-        MainTitle: 'HOME Page',
-    };
+    text: string;
+
     constructor(id: string) {
         super(id);
+        this.text = 'HOME Page';
     }
 
-    render() {
-        const title = this.createHeaderTitle(MainPage.TextOject.MainTitle);
+    async render(): Promise<HTMLElement> {
+        const title = this.createHeaderTitle(this.text);
         const registrLink = createLink('#/registr', '', 'Registration➕', '');
         const loginLink = createLink('#/login', '', 'Login🔑', '');
         const logoutLink = createLink('#/logout', '', 'Logout❌', 'logout__page');
-        this.container.append(loginLink, registrLink, logoutLink, title);
-        return this.container;
+        this._container.append(loginLink, registrLink, logoutLink, title);
+        return this._container;
     }
 }
 

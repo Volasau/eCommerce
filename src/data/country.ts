@@ -1,6 +1,6 @@
-import { ICountryObj } from '../core/interfaces/countryObjInterface';
+import { ICountryProp } from '../core/interfaces/countryPropInterface';
 
-export const countries: ICountryObj[] = [
+export const countries: ICountryProp[] = [
     {
         Note: 'The first two digits (ranging from 10–43) correspond to the province, while the last two digits correspond either to the city/delivery zone (range 01–50) or to the district/delivery zone (range 51–99). Afghanistan Postal code lookup',
         Country: 'Afghanistan',

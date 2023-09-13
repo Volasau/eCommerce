@@ -1,5 +1,4 @@
-import { checkCountryInput } from './validationFunction/checkCountryInput';
-import { chooseCountry } from './validationFunction/chooseCountry/chooseCountry';
+import { checkCountry } from './validationFunction/checkCountry/checkCountry';
 import { startBirthDateValidation } from './validationFunction/startBirthDateValidation';
 import { startEmailValidation } from './validationFunction/startEmailValidation';
 import { startNameValidation } from './validationFunction/startNameValidation';
@@ -7,27 +6,40 @@ import { startPasswordValidation } from './validationFunction/startPasswordValid
 import { startPostcodeValidation } from './validationFunction/startPostcodeValidation';
 import { startStreetValidation } from './validationFunction/startStreetValidation';
 
-export function validateThisInput(input: HTMLInputElement, error: HTMLElement) {
+export function validateThisInput(input: HTMLInputElement, error: HTMLElement): void {
     input.addEventListener('input', (event: Event) => {
-        const targ = event.target as HTMLInputElement;
-        if (targ.id === 'email') {
-            startEmailValidation(targ.value, error);
-        } else if (targ.id === 'password') {
-            startPasswordValidation(targ.value, error);
-        } else if (targ.id === 'name' || targ.id === 'lastName' || targ.id === 'city' || targ.id === 'cityShip') {
-            startNameValidation(targ.value, error);
-        } else if (targ.id === 'birthDate') {
-            startBirthDateValidation(targ.value, error);
-        } else if (targ.id === 'postcode' || targ.id === 'postcodeShip') {
-            startPostcodeValidation(targ.value, error, targ.id === 'postcode' ? 'country' : 'countryShip');
-        } else if (targ.id === 'country' || targ.id === 'countryShip') {
-            const countryId = targ.id;
-            const listId = targ.id === 'country' ? 'country-list' : 'country-listShip';
-            const codeId = targ.id === 'country' ? 'postcode' : 'postcodeShip';
-            checkCountryInput(targ, error, targ.id);
-            chooseCountry(targ, error, countryId, listId, codeId);
-        } else if (targ.id === 'street' || targ.id === 'streetShip') {
-            startStreetValidation(targ.value, error);
+        const target = event.target as HTMLInputElement;
+        switch (target.id) {
+            case 'email':
+                startEmailValidation(target.value, error);
+                break;
+            case 'password':
+            case 'passwordOld':
+            case 'passwordNew':
+            case 'passwordRet':
+                startPasswordValidation(target.value, error);
+                break;
+            case 'name':
+            case 'lastName':
+            case 'city':
+            case 'cityShip':
+                startNameValidation(target.value, error);
+                break;
+            case 'birthDate':
+                startBirthDateValidation(target.value, error);
+                break;
+            case 'postcode':
+            case 'postcodeShip':
+                startPostcodeValidation(target.value, error, target.id === 'postcode' ? 'country' : 'countryShip');
+                break;
+            case 'country':
+            case 'countryShip':
+                checkCountry(target, error);
+                break;
+            case 'street':
+            case 'streetShip':
+                startStreetValidation(target.value, error);
+                break;
         }
     });
 }

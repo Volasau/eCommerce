@@ -1,20 +1,20 @@
 abstract class Page {
-    protected container: HTMLElement;
-    static TextOject = {};
+    protected _container: HTMLElement;
+    abstract text: string;
 
     constructor(id: string) {
-        this.container = document.createElement('div');
-        this.container.id = id;
+        this._container = document.createElement('div');
+        this._container.id = id;
     }
 
-    protected createHeaderTitle(text: string) {
+    protected createHeaderTitle(text: string): HTMLHeadingElement {
         const headerTitle = document.createElement('h1');
         headerTitle.innerText = text;
         return headerTitle;
     }
 
-    render() {
-        return this.container;
+    render(): Promise<HTMLElement> {
+        return Promise.resolve(this._container);
     }
 }
 

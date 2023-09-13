@@ -1,16 +1,31 @@
-import { IInnerForm } from '../../../core/interfaces/InnerFormInterface';
+import { IInnerForm } from '../../../core/interfaces/innerFormInterface';
 import { validateThisInput } from '../validation/validateThisInput';
+import { addCountryList } from '../validation/validationFunction/checkCountry/addCountryList';
+
+enum List {
+    country = 'country',
+    countryShip = 'countryShip',
+}
 
 export class InnerForm implements IInnerForm {
     labelText: string;
+
     inputType: string;
+
     inputId: string;
+
     inputName: string;
+
     errorId: string;
+
     formGroup: HTMLElement;
+
     label: HTMLElement;
+
     inputHTML: HTMLInputElement;
+
     error: HTMLElement;
+
     constructor(labelText: string, inpType: string, inpId: string, inpName: string, errId: string, plHolder: string) {
         this.labelText = labelText;
         this.inputType = inpType;
@@ -25,7 +40,7 @@ export class InnerForm implements IInnerForm {
         this.error = document.createElement('span');
     }
 
-    create() {
+    create(): HTMLElement {
         this.formGroup.classList.add('form-group');
         this.label.setAttribute('for', this.inputId);
         this.label.textContent = this.labelText + ':';
@@ -37,22 +52,20 @@ export class InnerForm implements IInnerForm {
         this.error.classList.add('error');
         this.error.id = this.errorId;
 
-        const list = document.createElement('div');
-        if (this.inputId === 'country') {
-            list.setAttribute('id', 'country-list');
-            this.formGroup.append(this.label, this.inputHTML, this.error, list);
-        } else if (this.inputId === 'countryShip') {
-            list.setAttribute('id', 'country-listShip');
-            this.formGroup.append(this.label, this.inputHTML, this.error, list);
-        } else {
-            this.formGroup.append(this.label, this.inputHTML, this.error);
+        switch (this.inputId) {
+            case List.country:
+            case List.countryShip:
+                addCountryList(this.inputId, this.label, this.inputHTML, this.error, this.formGroup);
+                break;
+            default:
+                this.formGroup.append(this.label, this.inputHTML, this.error);
         }
 
         this.valid();
         return this.formGroup;
     }
 
-    valid() {
+    valid(): void {
         validateThisInput(this.inputHTML, this.error);
     }
 }

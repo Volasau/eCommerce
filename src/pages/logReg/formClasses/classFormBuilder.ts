@@ -1,18 +1,21 @@
-import { IFormBuilder } from '../../../core/interfaces/FormBuilderInterface';
-import { addCredentialsAndPersData } from '../functions/addCredentialsAndPersData';
-import { addServerError } from '../functions/addServerError';
-import { addButton } from '../functions/addButton';
-import { addBillingBlock } from '../functions/addBillingBlock';
-import { addShippingBlock } from '../functions/addShippingBlock';
-import { saveAsDefaultAddress } from '../functions/saveAsDefaultAddress';
-import { makeVisiblePassword } from '../functions/makeVisiblePassword';
-import { removeShippingBlock } from '../functions/removeShippingBlock';
-import { checkServErrors } from '../functions/checkServErrors';
+import { IFormBuilder } from '../../../core/interfaces/formBuilderInterface';
+import { addBillingBlock } from '../utils/addBillingBlock.utils';
+import { addButton } from '../utils/addButton.utils';
+import { addCredentialsAndPersData } from '../utils/addCredentialsAndPersData.utils';
+import { addServerError } from '../utils/addServerError.utils';
+import { addShippingBlock } from '../utils/addShippingBlock.utils';
+import { checkServErrors } from '../utils/checkServErrors.utils';
+import { makeVisiblePassword } from '../utils/makeVisiblePassword.utils';
+import { removeShippingBlock } from '../utils/removeShippingBlock.utils';
+import { saveAsDefaultAddress } from '../utils/saveAsDefaultAddress.utils';
 
 export class FormBuilder implements IFormBuilder {
     formHTML: HTMLFormElement;
+
     formId: string;
+
     innerFormList: HTMLElement[];
+
     constructor(formId: string, innerFormList: HTMLElement[]) {
         this.formHTML = document.createElement('form');
         this.formId = formId;
@@ -36,7 +39,7 @@ export class FormBuilder implements IFormBuilder {
         checkServErrors(this.formHTML);
     }
 
-    build() {
+    build(): HTMLFormElement {
         return this.formHTML;
     }
 }

@@ -2,16 +2,21 @@ import MainPage from '../main/main';
 import RegistrPage from '../logReg/registrationPage';
 import Page from '../../core/template/page';
 import LoginPage from '../logReg/loginPage';
-import Header from '../../components/header';
-import ErrorPage from '../error';
-import { isLoggedIn } from '../../data/isLoggedIn';
-import { logoutAction } from '../logReg/functions/logout_func';
+import Header from '../../components/header/header';
+import ErrorPage from '../error/error';
+import CatalogPage from '../catalog/catalog';
+import ProfilePage from '../profile/profile';
+import { constants } from '../../data/constants';
+import { logoutAction } from '../logReg/utils/logOutFunc.utils';
+import { routeProductPage } from '../catalog/listeners/routeProductPage';
 
-export const enum PageIds {
+export const enum PageId {
     MainPage = 'main',
+    CatalogPage = 'catalog',
     RegistrPage = 'registr',
     LoginPage = 'login',
     LogoutPage = 'logout',
+    ProfilePage = 'profile',
 }
 class App {
     private static container: HTMLElement = document.body;
@@ -19,56 +24,82 @@ class App {
     private initialPage: MainPage;
     private header: Header;
 
-    static async renderNewPage(idPage: string) {
+    constructor() {
+        this.initialPage = new MainPage('main');
+        this.header = new Header('header', 'header');
+    }
+
+    static async renderNewPage(idPage: string): Promise<void> {
         const currentPageHTML = document.querySelector(`#${App.defaultPageId}`);
         if (currentPageHTML) {
             currentPageHTML.remove();
         }
 
         let page: Page | null = null;
-        if (idPage === PageIds.MainPage) {
-            page = new MainPage(idPage);
-        } else if (idPage === PageIds.LoginPage) {
-            page = new LoginPage(idPage);
-        } else if (idPage === PageIds.RegistrPage) {
-            page = new RegistrPage(idPage);
-        } else if (idPage === PageIds.LogoutPage) {
-            await logoutAction();
-        } else {
-            page = new ErrorPage(idPage, '404');
+        switch (idPage) {
+            case PageId.MainPage:
+                page = new MainPage(idPage);
+                break;
+            case PageId.CatalogPage:
+                page = new CatalogPage(idPage);
+                break;
+            case PageId.LoginPage:
+                page = new LoginPage(idPage);
+                break;
+            case PageId.RegistrPage:
+                page = new RegistrPage(idPage);
+                break;
+            case PageId.LogoutPage:
+                if (document.querySelector('a.logout__page.block')) {
+                    await logoutAction();
+                } else {
+                    page = new MainPage(idPage);
+                }
+                break;
+            case PageId.ProfilePage:
+                if (document.querySelector('a.profile__page.block')) {
+                    page = new ProfilePage(idPage);
+                } else {
+                    page = new LoginPage(idPage);
+                }
+                break;
+            default:
+                page = new ErrorPage(idPage, '404');
         }
+
         if (page) {
-            const pageHTML = page.render();
+            const pageHTML = await page.render();
             pageHTML.id = App.defaultPageId;
             App.container.append(pageHTML);
         }
     }
 
-    private checkAuthenticationAndRedirect() {
+    private checkAuthenticationAndRedirect(): void {
         const hash = window.location.hash.slice(2);
-        if (hash === PageIds.LoginPage) {
-            if (isLoggedIn) {
-                window.location.hash = `/${PageIds.MainPage}`;
+        if (hash === PageId.LoginPage) {
+            if (constants.logIn) {
+                window.location.hash = `/${PageId.MainPage}`;
             }
         }
     }
 
-    private enableRouteChange() {
-        window.addEventListener('hashchange', () => {
+    private async enableRouteChange(): Promise<void> {
+        window.addEventListener('hashchange', async () => {
             this.checkAuthenticationAndRedirect();
-            const hash = window.location.hash.slice(2);
-            App.renderNewPage(hash);
+            const hash1 = window.location.hash;
+            if (hash1.split('/').length > 2) {
+                routeProductPage(hash1);
+            } else {
+                const hash2 = window.location.hash.slice(2);
+                await App.renderNewPage(hash2);
+            }
         });
     }
 
-    constructor() {
-        this.initialPage = new MainPage('main');
-        this.header = new Header('header', 'header');
-    }
-    run() {
+    async run(): Promise<void> {
         App.container.append(this.header.render());
 
-        App.renderNewPage('main');
+        await App.renderNewPage('main');
         this.enableRouteChange();
     }
 }
