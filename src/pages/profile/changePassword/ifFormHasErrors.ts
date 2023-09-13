@@ -1,4 +1,4 @@
-export function ifPassFormHasErrors(form: HTMLFormElement): boolean {
+export function ifFormHasErrors(form: HTMLFormElement): boolean {
     const errorSpans = form.querySelectorAll('.error');
     let hasError = false;
     errorSpans.forEach((errorSpan) => {

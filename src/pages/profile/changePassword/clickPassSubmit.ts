@@ -2,7 +2,7 @@ import { showToastError } from '../../logReg/utils/funcToastify.utils';
 import { passwordChanger } from '../interfaces/dataForUpdate';
 import { IForm } from '../interfaces/iFormInterface';
 import { changePasswordApi } from './changePasswordApi';
-import { ifPassFormHasErrors } from './ifPassFormHasErrors';
+import { ifFormHasErrors } from './ifFormHasErrors';
 
 export function clickPassSubmit(but: HTMLButtonElement, form: IForm, container: HTMLDivElement): void {
     but.addEventListener('click', async () => {
@@ -20,7 +20,7 @@ export function clickPassSubmit(but: HTMLButtonElement, form: IForm, container: 
             return;
         }
 
-        if (ifPassFormHasErrors(form.form)) {
+        if (ifFormHasErrors(form.form)) {
             showToastError('Please fix the errors before saving.');
             return;
         }

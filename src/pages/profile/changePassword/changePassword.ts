@@ -1,7 +1,7 @@
 import { divHTML } from '../../catalog/classes/elementBuilder';
 import { addShowPassCheckbox } from './addShowPassCheckbox';
 import { checkBoxCheck } from './checkBoxCheck';
-import { clickPassCancelBut } from './clickPassCancelBut';
+import { clickCancelBut } from './clickCancelBut';
 import { clickPassSubmit } from './clickPassSubmit';
 import { createButton } from './createButton';
 import { getPasswordChangeForm } from './getPasswordChangeForm';
@@ -27,8 +27,9 @@ export class ChangePassword {
         const submitButton = createButton('Submit');
         clickPassSubmit(submitButton, passwordChangeForm, passwordContainer);
 
+        const changePasswordButton = document.querySelector('.btn__change-pass') as HTMLButtonElement;
         const cancelButton = createButton('Cancel');
-        clickPassCancelBut(cancelButton, passwordContainer);
+        clickCancelBut(cancelButton, changePasswordButton, passwordContainer);
 
         passwordChangeForm.form.append(submitButton, cancelButton);
         passwordContainer.appendChild(passwordChangeForm.form);

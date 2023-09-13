@@ -1,5 +1,5 @@
 import { ChangePassword } from '../changePassword/changePassword';
-import { AddressNew } from '../formAddNewAdress';
+import { AddressNew } from '../changeAddress/formAddNewAdress';
 
 export function addBlock(button: HTMLElement, container: HTMLElement): void {
     button.addEventListener('click', () => {
