@@ -45,8 +45,9 @@ export async function customerAddressApi(
         showToast('CHANGE ADDRES');
 
         const btnEdit = document.querySelector(`.edit-${id}`) as HTMLButtonElement;
-        btnEdit.disabled = true;
-
+        if (btnEdit) {
+            btnEdit.disabled = true;
+        }
         return [response, shippingAddressDefault, billingAddressDefault];
     } catch (error) {
         showToastError('ERROR');

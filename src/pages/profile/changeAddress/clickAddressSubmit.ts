@@ -39,7 +39,9 @@ export function clickAddressSubmit(
 
             const btnAddAddress = document.querySelector('.btn__add-address') as HTMLButtonElement;
             cont.remove();
-            btnAddAddress.disabled = false;
+            if (btnAddAddress) {
+                btnAddAddress.disabled = false;
+            }
         } else {
             showToastError('Please fill in all fields and select at least one checkbox before submitting.');
         }

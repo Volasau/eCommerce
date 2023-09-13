@@ -107,6 +107,7 @@ export class Address {
         clickCancelBut(cancelButton, btnEdit, form.form);
 
         const deleteButton = createButton('Delet❌') as HTMLButtonElement;
+        deleteButton.classList.add('btn_adress-card');
         deleteButton.classList.add(`${this.id}`);
         deleteButton.id = `delete-${this.id}`;
         clickDeleteBut(deleteButton, this.id, btnEdit, form.form);

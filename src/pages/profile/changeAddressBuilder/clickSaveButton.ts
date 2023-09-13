@@ -57,7 +57,9 @@ export function clickSaveButton(
         );
 
         const btnEdit = document.querySelector(`.edit-${id}`) as HTMLButtonElement;
-        btnEdit.disabled = false;
+        if (btnEdit) {
+            btnEdit.disabled = false;
+        }
         await logoutAction();
         form.form.remove();
     });
