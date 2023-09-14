@@ -84,6 +84,13 @@
   background-color: #fff;
 }
 
+@media screen and (max-width: 1000px) {
+  .header-container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+
 @media screen and (max-width: 761px) {
   a {
     font-size: medium;
