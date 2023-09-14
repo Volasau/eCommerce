@@ -15,12 +15,14 @@ class CatalogPage extends Page {
     async render(): Promise<HTMLElement> {
         const categoryResponse = await categoryStructuring();
         const title = this.createHeaderTitle(this.text);
+        const basketLink = createLink('#/basket', '', 'Basket🧺', '');
+        const aboutUsLink = createLink('#/aboutus', '', 'AboutUs👥', '');
         const bodyCatalog = document.createElement('div');
         bodyCatalog.classList.add('product-card');
 
         const homeLink = createLink('#/main', 'To return to the home page click ', 'Here🏠', '');
 
-        this._container.append(title, bodyCatalog, homeLink);
+        this._container.append(basketLink, aboutUsLink, title, bodyCatalog, homeLink);
 
         const catalog = new CatalogRender(categoryResponse, title);
         catalog.renderCatalog();
