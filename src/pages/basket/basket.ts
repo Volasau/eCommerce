@@ -1,7 +1,7 @@
 import Page from '../../core/template/page';
 import { createLink } from '../logReg/utils/createLink.utils';
 
-class CartPage extends Page {
+class BasketPage extends Page {
     text: string;
 
     constructor(id: string) {
@@ -17,4 +17,4 @@ class CartPage extends Page {
     }
 }
 
-export default CartPage;
+export default BasketPage;

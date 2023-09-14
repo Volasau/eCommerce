@@ -33,7 +33,9 @@
 .registr__page,
 .home__page,
 .catalog__page,
-.logout__page {
+.logout__page,
+.basket__page,
+.profile__page {
   margin-right: 20px;
 }
 
