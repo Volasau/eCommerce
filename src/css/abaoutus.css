@@ -33,6 +33,9 @@
   font-weight: 600;
 }
 
+.img__rss {
+  width: 150px;
+}
 
 .git__link-icon {
   width: 16px;
