@@ -1,0 +1,40 @@
+.aboutus__container {
+  max-width: 1300px;
+  margin: 0 auto;
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+}
+
+.img__person {
+  border-radius: 50%;
+  width: 200px;
+  height: 200px;
+}
+
+.description__container {
+  max-width: 900px;
+}
+
+.card__person {
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid black;
+  margin-bottom: 20px;
+}
+
+.paragraph__conrtainer {
+  text-align: left;
+  margin: 5px 0;
+}
+
+.text__name {
+  font-weight: 600;
+}
+
+
+.git__link-icon {
+  width: 16px;
+  height: 16px;
+}
