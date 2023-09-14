@@ -41,6 +41,11 @@ const Buttons = [
         text: 'Profile👤',
         class: 'profile__page',
     },
+    {
+        id: PageId.AboutPage,
+        text: 'AboutUs👥',
+        class: 'about__page',
+    },
 ];
 
 class Header extends Component {

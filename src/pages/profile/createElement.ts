@@ -1,4 +1,4 @@
-export function createElement(tagName: string, classNames: string, innerHTML: string): HTMLElement {
+export function createElement(tagName: string, classNames: string, innerHTML?: string): HTMLElement {
     const element = document.createElement(tagName);
     if (classNames) {
         if (Array.isArray(classNames)) {

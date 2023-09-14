@@ -9,6 +9,7 @@ import ProfilePage from '../profile/profile';
 import { constants } from '../../data/constants';
 import { logoutAction } from '../logReg/utils/logOutFunc.utils';
 import { routeProductPage } from '../catalog/listeners/routeProductPage';
+import AboutPage from '../aboutus/aboutUs';
 
 export const enum PageId {
     MainPage = 'main',
@@ -17,6 +18,7 @@ export const enum PageId {
     LoginPage = 'login',
     LogoutPage = 'logout',
     ProfilePage = 'profile',
+    AboutPage = 'about',
 }
 class App {
     private static container: HTMLElement = document.body;
@@ -39,6 +41,9 @@ class App {
         switch (idPage) {
             case PageId.MainPage:
                 page = new MainPage(idPage);
+                break;
+            case PageId.AboutPage:
+                page = new AboutPage(idPage);
                 break;
             case PageId.CatalogPage:
                 page = new CatalogPage(idPage);
