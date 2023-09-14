@@ -12,10 +12,9 @@ class MainPage extends Page {
 
     async render(): Promise<HTMLElement> {
         const title = this.createHeaderTitle(this.text);
-        const registrLink = createLink('#/registr', '', 'Registration➕', '');
-        const loginLink = createLink('#/login', '', 'Login🔑', '');
-        const logoutLink = createLink('#/logout', '', 'Logout❌', 'logout__page');
-        this._container.append(loginLink, registrLink, logoutLink, title);
+        const basketLink = createLink('#/basket', '', 'Basket🧺', '');
+        const aboutUsLink = createLink('#/aboutus', '', 'AboutUs👥', '');
+        this._container.append(basketLink, aboutUsLink, title);
         return this._container;
     }
 }
