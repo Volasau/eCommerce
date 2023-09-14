@@ -1,10 +1,10 @@
 import Page from '../../core/template/page';
-import '../../css/abaoutus.css';
+import '../../css/aboutUs.css';
 import { aboutInfo } from './data/infoAboutUs';
 import CardRenderer from './formAboutUs';
 import { createElement } from '../profile/createElement';
 import { textDescription } from './data/infoDescription';
-import rsslogo from '../../assets/images/RSS.png';
+import rssLogo from '../../assets/images/RSS.png';
 
 class AboutPage extends Page {
     text: string;
@@ -24,14 +24,14 @@ class AboutPage extends Page {
         rssLink.target = '_blank';
         const rssIcon = document.createElement('img');
         rssIcon.classList.add('img__rss');
-        rssIcon.src = rsslogo;
+        rssIcon.src = rssLogo;
         rssIcon.alt = 'rsschool';
         rssLink.append(rssIcon);
         linkSchool.append(rssLink);
 
-        const countriCards = createElement('div', 'container__cards');
+        const countryCards = createElement('div', 'container__cards');
         aboutInfo.forEach((info) => {
-            const cardRenderer = new CardRenderer(countriCards, info);
+            const cardRenderer = new CardRenderer(countryCards, info);
             cardRenderer.render();
         });
         const introduction = createElement('p', 'paragraph__conrtainer', textDescription.introduction);
@@ -47,7 +47,7 @@ class AboutPage extends Page {
             paragraphTwo,
             paragraphThree,
             conclusion,
-            countriCards
+            countryCards
         );
         this._container.append(title, containerInfo);
         return this._container;

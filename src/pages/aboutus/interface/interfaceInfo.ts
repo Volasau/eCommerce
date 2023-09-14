@@ -1,7 +1,7 @@
 export interface IAboutInfo {
     fistName: string;
     role: string;
-    foto: string;
-    linkgithub: string;
+    photo: string;
+    linkGitHub: string;
     description: string;
 }

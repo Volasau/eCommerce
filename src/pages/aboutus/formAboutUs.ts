@@ -1,4 +1,4 @@
-import { IAboutInfo } from './interface/interfesInfo';
+import { IAboutInfo } from './interface/interfaceInfo';
 import iconGitHub from '../../assets/icons/github-logo.png';
 import { createElement } from '../profile/createElement';
 
@@ -16,7 +16,7 @@ class CardRenderer {
 
         const image = document.createElement('img');
         image.classList.add('img__person');
-        image.src = this.data.foto;
+        image.src = this.data.photo;
         image.alt = this.data.fistName;
         card.appendChild(image);
 
@@ -25,7 +25,7 @@ class CardRenderer {
 
         const githubLink = document.createElement('a');
         githubLink.classList.add('git__link');
-        githubLink.href = this.data.linkgithub;
+        githubLink.href = this.data.linkGitHub;
         githubLink.target = '_blank';
 
         const githubIcon = document.createElement('img');
