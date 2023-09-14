@@ -11,8 +11,9 @@ class BasketPage extends Page {
 
     async render() {
         const title = this.createHeaderTitle(this.text);
+        const aboutUsLink = createLink('#/aboutus', '', 'AboutUs👥', '');
         const catalog = createLink('#/catalog', 'To go to the catalog click here ', 'Catalog📦', '');
-        this._container.append(title, catalog);
+        this._container.append(aboutUsLink, title, catalog);
         return this._container;
     }
 }
