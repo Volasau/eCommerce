@@ -1,6 +1,5 @@
 import Page from '../../core/template/page';
 import '../../css/abaoutus.css';
-// import { createLink } from '../logReg/utils/createLink.utils';
 import { aboutInfo } from './data/infoAboutUs';
 import CardRenderer from './formAboutUs';
 import { createElement } from '../profile/createElement';
@@ -50,7 +49,6 @@ class AboutPage extends Page {
             conclusion,
             countriCards
         );
-        // const catalog = createLink('#/catalog', 'To go to the catalog click here ', 'Catalog📦', '');
         this._container.append(title, containerInfo);
         return this._container;
     }

@@ -20,7 +20,7 @@ export const enum PageId {
     LogoutPage = 'logout',
     ProfilePage = 'profile',
     BasketPage = 'basket',
-    AboutPage = 'about',
+    AboutPage = 'aboutus',
 }
 class App {
     private static container: HTMLElement = document.body;
