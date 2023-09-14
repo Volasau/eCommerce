@@ -22,6 +22,11 @@ const Buttons = [
         class: 'catalog__page',
     },
     {
+        id: PageId.BasketPage,
+        text: 'Basket🧺',
+        class: 'basket__page',
+    },
+    {
         id: PageId.LoginPage,
         text: 'Login🔑',
         class: 'login__page',
