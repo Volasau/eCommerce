@@ -16,6 +16,8 @@ export default class ProfilePage extends Page {
     }
 
     async render(): Promise<HTMLElement> {
+        const basketLink = createLink('#/basket', '', 'Basket🧺', '');
+        const aboutUsLink = createLink('#/aboutus', '', 'AboutUs👥', '');
         const text = 'After any changes, you must login again!';
         const title = this.createHeaderTitle(this.text);
         const textInfo = divHTML.getElement(text, 'txt-info', 'text__information');
@@ -38,7 +40,7 @@ export default class ProfilePage extends Page {
         bodyProfile.append(userContainer, passwordContainer, addressesContainer);
 
         const homeLink = createLink('#/main', 'To return to the home page click ', 'Here🏠', '');
-        this._container.append(title, textInfo, bodyProfile, homeLink);
+        this._container.append(basketLink, aboutUsLink, title, textInfo, bodyProfile, homeLink);
 
         return this._container;
     }
