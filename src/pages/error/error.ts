@@ -18,10 +18,9 @@ class ErrorPage extends Page {
 
     async render(): Promise<HTMLElement> {
         const title = this.createHeaderTitle(this.text);
-        const basketLink = createLink('#/basket', '', 'Basket🧺', '');
-        const aboutUsLink = createLink('#/aboutus', '', 'AboutUs👥', '');
+
         const mainLink = createLink('#/main', 'To return to the home page click ', 'HOME', '');
-        this._container.append(basketLink, aboutUsLink, title, mainLink);
+        this._container.append(title, mainLink);
         return this._container;
     }
 }

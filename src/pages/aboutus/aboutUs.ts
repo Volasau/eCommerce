@@ -6,7 +6,6 @@ import CardRenderer from './formAboutUs';
 import { createElement } from '../profile/createElement';
 import { textDescription } from './data/infoDescription';
 import rsslogo from '../../assets/images/RSS.png';
-import { createLink } from '../logReg/utils/createLink.utils';
 
 class AboutPage extends Page {
     text: string;
@@ -18,7 +17,6 @@ class AboutPage extends Page {
 
     async render(): Promise<HTMLElement> {
         const title = this.createHeaderTitle(this.text);
-        const basketLink = createLink('#/basket', '', 'Basket🧺', '');
         const containerInfo = createElement('div', 'aboutus__container');
         const linkSchool = createElement('p', 'link-school__container');
         const rssLink = document.createElement('a');
@@ -53,7 +51,7 @@ class AboutPage extends Page {
             countriCards
         );
         // const catalog = createLink('#/catalog', 'To go to the catalog click here ', 'Catalog📦', '');
-        this._container.append(basketLink, title, containerInfo);
+        this._container.append(title, containerInfo);
         return this._container;
     }
 }

@@ -13,11 +13,9 @@ class LoginPage extends Page {
 
     async render(): Promise<HTMLElement> {
         const title = this.createHeaderTitle(this.text);
-        const basketLink = createLink('#/basket', '', 'Basket🧺', '');
-        const aboutUsLink = createLink('#/aboutus', '', 'AboutUs👥', '');
         const loginForm = login.build();
         const registrLink = createLink('#/registr', "Haven't registered yet? Sing up ", 'Here➕', '');
-        this._container.append(basketLink, aboutUsLink, title, loginForm, registrLink);
+        this._container.append(title, loginForm, registrLink);
         return this._container;
     }
 }
