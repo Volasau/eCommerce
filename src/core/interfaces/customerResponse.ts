@@ -1,7 +1,8 @@
-interface ILastModifiedBy {
+export interface ILastModifiedBy {
     clientId?: string;
     isPlatformClient: boolean;
     user?: IUser;
+    anonymousId?: string;
 }
 
 interface IUser {
