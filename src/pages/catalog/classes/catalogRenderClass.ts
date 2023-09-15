@@ -25,6 +25,8 @@ export class CatalogRender implements ICatalog {
 
     discount: HTMLDivElement;
 
+    cartStatus: string;
+
     categoryName: HTMLDivElement;
 
     catalogViewer: HTMLDivElement;
@@ -33,7 +35,7 @@ export class CatalogRender implements ICatalog {
 
     product: IProduct;
 
-    constructor(categoryResponse: ICategoryResp[] | ICategory[] | IProduct, title: HTMLElement) {
+    constructor(categoryResponse: ICategoryResp[] | ICategory[] | IProduct, title: HTMLElement, cartStatus: string) {
         this.categories = [];
         this.product = constants.productList[0];
         if (Array.isArray(categoryResponse)) {
@@ -55,6 +57,7 @@ export class CatalogRender implements ICatalog {
         this.hashChain = buildHashChain();
         this.search = createSearchingWindow();
         this.discount = buildDiscountBlock();
+        this.cartStatus = cartStatus;
         this.categoryName = buildCategoryName();
         this.catalogViewer = buildProductViewer(this.categories);
     }
@@ -80,7 +83,7 @@ export class CatalogRender implements ICatalog {
 
     renderProduct(): void {
         if (this.curCatalog !== null) this.curCatalog.remove();
-        this.wrapper.append(this.hashChain, this.search, buildProductPage(this.product));
+        this.wrapper.append(this.hashChain, this.search, buildProductPage(this.product, this.cartStatus));
         this.title.after(this.wrapper);
     }
 }

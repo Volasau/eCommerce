@@ -17,6 +17,7 @@
 .product {
   position: relative;
   width: 150px;
+  height: 267.1px;
   padding: 5px;
   border: 1px solid grey;
   border-radius: 10px;
@@ -95,8 +96,10 @@
   margin-top: 3%;
   color: white;
   cursor: pointer;
-  border-style:outset;
+  border-style: outset;
   transition: 0.5s;
+  position: absolute;
+  left: 19px;
 }
 
 .cart-but:hover {

@@ -8,6 +8,7 @@ export interface ICatalog {
     hashChain: HTMLDivElement;
     search: HTMLDivElement;
     discount: HTMLDivElement;
+    cartStatus: string;
     categoryName: HTMLDivElement;
     catalogViewer: HTMLDivElement;
     categories: ICategory[];

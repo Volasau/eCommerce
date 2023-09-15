@@ -17,6 +17,7 @@ import { searchByButton, searchByEnter } from './pages/catalog/listeners/searchP
 import { sortByValue } from './pages/catalog/listeners/sortProducts';
 import { showFilter } from './pages/catalog/listeners/showFilter';
 import { switchPageByHashChain } from './pages/catalog/listeners/switchPageByHashChain';
+import { addProductToCartFromCatalog } from './pages/catalog/listeners/addProductToCartFromCatalog';
 
 const app = new App();
 app.run();
@@ -38,3 +39,4 @@ sortByValue('cheap-view');
 sortByValue('alpha-view');
 showFilter();
 switchPageByHashChain();
+addProductToCartFromCatalog();
