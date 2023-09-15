@@ -1,4 +1,4 @@
-export function defineCartBut(target: HTMLElement) {
+export function defineCartBut(target: HTMLElement): HTMLButtonElement {
     let cartBut = document.createElement('button');
     if (target.className === 'cart-but') {
         cartBut = target as HTMLButtonElement;
