@@ -53,7 +53,7 @@ export interface ProductVariant {
      *
      *
      */
-    readonly images?: Image[];
+    readonly images: Image[];
     /**
      *	Media assets of the Product Variant.
      *

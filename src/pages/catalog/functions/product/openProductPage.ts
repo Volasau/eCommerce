@@ -13,7 +13,7 @@ export function openProductPage(prod: IProduct): void {
     const prodList = document.querySelector('.full-catalog') as HTMLDivElement;
     prodList.remove();
 
-    const title = document.querySelector('h1') as HTMLElement;
+    const title = document.querySelector('.header__page') as HTMLElement;
     const productPage = new CatalogRender(prod, title, cartStatus);
     productPage.renderProduct();
 
