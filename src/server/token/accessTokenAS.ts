@@ -37,3 +37,5 @@ export class AnonymousTokenManager {
         }
     }
 }
+
+export const anonymousTokenManager = new AnonymousTokenManager();

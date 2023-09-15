@@ -18,14 +18,13 @@ import { sortByValue } from './pages/catalog/listeners/sortProducts';
 import { showFilter } from './pages/catalog/listeners/showFilter';
 import { switchPageByHashChain } from './pages/catalog/listeners/switchPageByHashChain';
 import { addProductToCartFromCatalog } from './pages/catalog/listeners/addProductToCartFromCatalog';
-import { AnonymousTokenManager } from './server/token/accessTokenAS';
+import { anonymousTokenManager } from './server/token/accessTokenAS';
 import { IAccessTokenResponse } from './server/interfaces/accessTokenResponseInterface';
-import { CartCreateManager } from './server/cart/createCart';
+import { addItemToCart } from './server/cart/addLineItem';
+import { cartManager } from './server/cart/createCart';
 import { ICart } from './server/function/interfaces';
-import { getProductsId } from './server/products/queryProductById';
-
-import { AddLineItem } from './server/cart/addLineItem';
-import { Product } from '@commercetools/platform-sdk';
+// import { AddLineItem } from './server/cart/addLineItem';
+// import { getCartManager } from './server/cart/getCartById';
 
 const app = new App();
 app.run();
@@ -54,30 +53,17 @@ addProductToCartFromCatalog();
 export let bearerTokenAs = '';
 
 (async () => {
-    const anonymousTokenManager = new AnonymousTokenManager();
     const anonymousTokenResponse = (await anonymousTokenManager.getAnonymousToken()) as IAccessTokenResponse;
     bearerTokenAs = anonymousTokenResponse.access_token as string;
     localStorage.setItem('anonymousToken', bearerTokenAs);
     console.log(bearerTokenAs);
 
-    (async () => {
-        const productBlock: Product = await getProductsId();
-        console.log(productBlock);
-        const cartManager = new CartCreateManager();
-        const cartResponse = (await cartManager.createCart()) as ICart;
-        const cart = new AddLineItem(cartResponse.id);
-        console.log(cart);
-        const addLineItemResp = await cart.addToCart();
-        console.log(addLineItemResp);
-        return cartResponse;
-    })();
-
     return bearerTokenAs;
 })();
 
-// (async () => {
-//     const cart = new AddLineItem('6ab0ada0-03a9-4066-9829-be3f481f9f5c');
-//     console.log(cart);
-//     const addLineItemResp = await cart.addToCart();
-//     console.log(addLineItemResp);
-// })();
+(async () => {
+    const cartResponse = (await cartManager.createCart()) as ICart;
+    localStorage.setItem('newCartId', cartResponse.id);
+    return cartResponse;
+})();
+addItemToCart();
