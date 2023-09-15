@@ -8,7 +8,7 @@ import { buildProductItem } from '../product/buildProductItem';
 import { changeQuantity } from './changeQuantity';
 
 export function openSubcategoryPage(subCateg: ISubCategoryResp): void {
-    const title = document.querySelector('h1') as HTMLElement;
+    const title = document.querySelector('.header__page') as HTMLElement;
     let category = '';
     const subCategoryResp: ISubCategoryResp[] = [];
 

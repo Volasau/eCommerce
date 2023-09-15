@@ -8,7 +8,7 @@ import { buildProductItem } from '../product/buildProductItem';
 import { changeQuantity } from './changeQuantity';
 
 export function openCategoryPage(cat: ICategoryResp): void {
-    const title = document.querySelector('h1') as HTMLElement;
+    const title = document.querySelector('.header__page') as HTMLElement;
     const categoryResp = categoryResponse.filter((catResp) => catResp.id === cat.id);
     const subCategory = getSubCategoriesFrom(categoryResp[0]);
 

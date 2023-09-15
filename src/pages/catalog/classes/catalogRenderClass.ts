@@ -68,6 +68,7 @@ export class CatalogRender implements ICatalog {
     }
 
     renderCategory(): void {
+        console.log(this.curCatalog !== null);
         if (this.curCatalog !== null) this.curCatalog.remove();
         this.wrapper.append(this.hashChain, this.search, this.discount, this.categoryName, this.catalogViewer);
         this.title.after(this.wrapper);

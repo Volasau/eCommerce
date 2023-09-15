@@ -1,6 +1,6 @@
 import { cartSVG } from '../../../../data/cartSVG';
 
-export function changeCarButView(but: HTMLButtonElement, text: string) {
+export function changeCarButView(but: HTMLButtonElement, text: string): void {
     let id = '';
     if (text === 'DELETE') id = but.id.replace('-cartBut', '');
     if (text === 'IN CART') id = but.id.replace('-cart', '');

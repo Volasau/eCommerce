@@ -29,7 +29,7 @@ export function buildProductPage(prod: IProduct, cartStatus: string): HTMLDivEle
         `${name} image`
     ) as HTMLImageElement;
     const addImages = divHTML.getElement('', `${id}-addIMG`, 'add-images') as HTMLDivElement;
-    const attributtes = divHTML.getElement('', `${id}-attributtes`, 'attributtes') as HTMLDivElement;
+    const attributes = divHTML.getElement('', `${id}-attributes`, 'attributes') as HTMLDivElement;
     const prices = divHTML.getElement('', `${id}-prices`, 'prices-block') as HTMLDivElement;
     const priceBlock = divHTML.getElement('', `${id}-pric`, 'price-cart') as HTMLDivElement;
     const oldPrice = divHTML.getElement('', 'discount-price', 'dis-price') as HTMLDivElement;
@@ -61,7 +61,7 @@ export function buildProductPage(prod: IProduct, cartStatus: string): HTMLDivEle
         const value = (
             Array.isArray(attr.value) ? attr.value[0].label : (attr.value as { label: string }).label
         ) as string;
-        attributtes.innerHTML += `<p>${attribute}: ${value}</p>`;
+        attributes.innerHTML += `<p>${attribute}: ${value}</p>`;
     });
 
     realPrice.textContent = prodDiscount ? String(prodDiscount) : String(price);
@@ -74,7 +74,7 @@ export function buildProductPage(prod: IProduct, cartStatus: string): HTMLDivEle
     priceBlock.append(realPrice, oldPrice, cartButtonBlock);
     prices.append(priceBlock, deliveryBlock);
 
-    main.append(images, attributtes, prices);
+    main.append(images, attributes, prices);
 
     productBlock.append(main, descriptWord, descript);
 
