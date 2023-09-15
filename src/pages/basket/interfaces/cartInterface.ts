@@ -6,14 +6,14 @@ import {
     CartOrigin,
     CartState,
     CentPrecisionMoney,
-    CreatedBy,
+    ClientLogging,
     CustomFields,
     CustomLineItem,
     CustomerGroupReference,
+    CustomerReference,
     DirectDiscount,
     DiscountCodeInfo,
     InventoryMode,
-    LastModifiedBy,
     PaymentInfo,
     RoundingMode,
     Shipping,
@@ -27,12 +27,41 @@ import {
 } from '@commercetools/platform-sdk';
 import { LineItem } from './lineItemInterface';
 
+export interface LastModifiedBy extends ClientLogging {
+    /**
+     *	`id` of the [APIClient](ctp:api:type:ApiClient) which modified the resource.
+     *
+     *
+     */
+    readonly clientId?: string;
+    /**
+     *	[External user ID](/../api/client-logging#external-user-ids) provided by `X-External-User-ID` HTTP Header.
+     *
+     *
+     */
+    readonly isPlatformClient: boolean;
+    readonly externalUserId?: string;
+    /**
+     *	Indicates the [Customer](ctp:api:type:Customer) who modified the resource using a token from the [password flow](/authorization#password-flow).
+     *
+     *
+     */
+    readonly customer?: CustomerReference;
+    /**
+     *	Indicates the [anonymous session](ctp:api:type:AnonymousSession) during which the resource was modified.
+     *
+     *
+     */
+    readonly anonymousId?: string;
+}
+
 export interface Cart extends BaseResource {
     /**
      *	Unique identifier of the Cart.
      *
      *
      */
+    readonly type: string;
     readonly id: string;
     /**
      *	Current version of the Cart.
@@ -40,6 +69,8 @@ export interface Cart extends BaseResource {
      *
      */
     readonly version: number;
+    readonly versionModifiedAt: string;
+    readonly lastMessageSequenceNumber: number;
     /**
      *	User-defined unique identifier of the Cart.
      *
@@ -286,5 +317,5 @@ export interface Cart extends BaseResource {
      *
      *
      */
-    readonly createdBy?: CreatedBy;
+    readonly createdBy?: LastModifiedBy;
 }

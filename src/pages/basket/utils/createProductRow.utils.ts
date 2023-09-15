@@ -6,13 +6,13 @@ export function createProductRow(prod: LineItem): HTMLDivElement {
     const quantity = String(prod.quantity);
     const price = String(prod.price.value.centAmount);
     const sum = String(+quantity * +price);
-    const wrapper = divHTML.getElement('', `${prod.id}-cart-row-wrap`, 'row-wrapper') as HTMLDivElement;
-    const prodImage = divHTML.getElement('', 'cart-prod-image-block', 'cart-row') as HTMLDivElement;
-    const prodName = divHTML.getElement(name, 'cart-prod-name', 'cart-row') as HTMLDivElement;
-    const prodQuantity = divHTML.getElement('', 'cart-prod-quant', 'cart-row') as HTMLDivElement;
-    const prodPrice = divHTML.getElement(price, 'cart-prod-price', 'cart-row') as HTMLDivElement;
-    const prodSum = divHTML.getElement(sum, 'cart-prod-sum', 'cart-row') as HTMLDivElement;
-    const deleteBlock = divHTML.getElement('', 'cart-prod-delete', 'cart-row') as HTMLDivElement;
+    const wrapper = divHTML.getElement('', `${prod.id}-cart-row-wrap`, 'row-wrapper cart-prod-wrap') as HTMLDivElement;
+    const prodImage = divHTML.getElement('', 'cart-prod-image-block', 'cart-row cart-image') as HTMLDivElement;
+    const prodName = divHTML.getElement(name, 'cart-prod-name', 'cart-row cart-name') as HTMLDivElement;
+    const prodQuantity = divHTML.getElement('', 'cart-prod-quant', 'cart-row cart-quantity') as HTMLDivElement;
+    const prodPrice = divHTML.getElement(price, 'cart-prod-price', 'cart-row cart-price') as HTMLDivElement;
+    const prodSum = divHTML.getElement(sum, 'cart-prod-sum', 'cart-row cart-sum') as HTMLDivElement;
+    const deleteBlock = divHTML.getElement('', 'cart-prod-delete', 'cart-row cart-delete') as HTMLDivElement;
 
     const img = new Image();
     img.src = prod.variant.images[0].url;
