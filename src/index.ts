@@ -18,11 +18,12 @@ import { sortByValue } from './pages/catalog/listeners/sortProducts';
 import { showFilter } from './pages/catalog/listeners/showFilter';
 import { switchPageByHashChain } from './pages/catalog/listeners/switchPageByHashChain';
 import { addProductToCartFromCatalog } from './pages/catalog/listeners/addProductToCartFromCatalog';
-import { anonymousTokenManager } from './server/token/accessTokenAS';
-import { IAccessTokenResponse } from './server/interfaces/accessTokenResponseInterface';
+import { createAnonymousToken } from './server/token/accessTokenAS';
+// import { IAccessTokenResponse } from './server/interfaces/accessTokenResponseInterface';
 import { addItemToCart } from './server/cart/addLineItem';
-import { cartManager } from './server/cart/createCart';
-import { ICart } from './server/function/interfaces';
+import { createCart } from './server/cart/createCart';
+// import { cartManager } from './server/cart/createCart';
+// import { ICart } from './server/function/interfaces';
 // import { AddLineItem } from './server/cart/addLineItem';
 // import { getCartManager } from './server/cart/getCartById';
 
@@ -50,20 +51,12 @@ addProductToCartFromCatalog();
 
 // это пойдет в add item to basket
 
-export let bearerTokenAs = '';
+async () => {
+    await createAnonymousToken();
+};
 
-(async () => {
-    const anonymousTokenResponse = (await anonymousTokenManager.getAnonymousToken()) as IAccessTokenResponse;
-    bearerTokenAs = anonymousTokenResponse.access_token as string;
-    localStorage.setItem('anonymousToken', bearerTokenAs);
-    console.log(bearerTokenAs);
+async () => {
+    await createCart();
+};
 
-    return bearerTokenAs;
-})();
-
-(async () => {
-    const cartResponse = (await cartManager.createCart()) as ICart;
-    localStorage.setItem('newCartId', cartResponse.id);
-    return cartResponse;
-})();
 addItemToCart();

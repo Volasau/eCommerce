@@ -9,6 +9,8 @@ export const logoutAction = async (): Promise<void> => {
 
     try {
         await tokenRevoker.revokeAccessToken(bearer_token_pf);
+        localStorage.removeItem('anonymousToken');
+        localStorage.removeItem('newCartId');
         showToast('You went out');
         const newUrl = window.location.href.replace(`#/${PageId.LogoutPage}`, `#/${PageId.LoginPage}`);
         window.history.replaceState({}, document.title, newUrl);

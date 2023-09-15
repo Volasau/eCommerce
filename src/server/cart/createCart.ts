@@ -27,17 +27,6 @@ export class CartCreateManager {
             );
 
             const data: ICart = await res.json();
-            // console.log(data);
-            // const cartId: string = data.id;
-            // console.log('Inside cartId', cartId);
-            // const cart = new AddLineItem(cartId);
-            // console.log('Inside cart', cart);
-            // const addLineItemResp = await cart.addToCart();
-            // let cartVersion = data.version;
-            // cartVersion += 1;
-            // console.log(cartVersion);
-            // console.log('Inside cartversion', cartVersion);
-            // console.log('Inside addline', addLineItemResp);
             return data;
         } catch (error) {
             if (error === '400') {
@@ -48,3 +37,11 @@ export class CartCreateManager {
 }
 
 export const cartManager = new CartCreateManager();
+
+export async function createCart() {
+    await (async () => {
+        const cartResponse = (await cartManager.createCart()) as ICart;
+        localStorage.setItem('newCartId', cartResponse.id);
+        return cartResponse;
+    })();
+}

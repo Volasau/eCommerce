@@ -1,13 +1,9 @@
-// import { bearer_token_pf } from '../../pages/logReg/validation/authorizationFunctions/logInToServer';
 import { constants } from '../../data/constants';
-import { Product } from '@commercetools/platform-sdk';
+import { Cart, Product } from '@commercetools/platform-sdk';
 import { getProductsId } from '../products/queryProductById';
 import { request } from '../classes/requestClass';
 import { PARSE } from '../interfaces/parseEnum';
 import { getCartManager } from './getCartById';
-// import { cartManager } from './createCart';
-// import { ICart } from '../function/interfaces';
-// import { bearerTokenAs } from '../..';
 
 export class AddLineItem {
     private apiUrl: string;
@@ -57,10 +53,17 @@ export function addItemToCart() {
         console.log(target);
         if (target.className === 'cart-but') {
             const productBlock: Product = await getProductsId();
-            // const cartResponse = (await cartManager.createCart()) as ICart;
-            const cartId = localStorage.getItem('newCartId');
-            const getCart = await getCartManager.getCartById(cartId as string);
-            const cart = new AddLineItem(getCart.id, getCart.version);
+            const cartId = localStorage.getItem('newCartId') as string;
+            const getCart: Cart = await getCartManager.getCartById(cartId as string);
+            let cartState: string = getCart.cartState;
+            let cart: AddLineItem;
+            if (cartState === 'Merged') {
+                cartState = 'Active';
+                cart = new AddLineItem(getCart.id, getCart.version);
+            } else {
+                cart = new AddLineItem(getCart.id, getCart.version);
+            }
+
             console.log(cart);
             const productId: string = productBlock.id;
             const addLineItemResp = await cart.addToCart(productId);
