@@ -18,6 +18,14 @@ import { sortByValue } from './pages/catalog/listeners/sortProducts';
 import { showFilter } from './pages/catalog/listeners/showFilter';
 import { switchPageByHashChain } from './pages/catalog/listeners/switchPageByHashChain';
 import { addProductToCartFromCatalog } from './pages/catalog/listeners/addProductToCartFromCatalog';
+import { createAnonymousToken } from './server/token/accessTokenAS';
+// import { IAccessTokenResponse } from './server/interfaces/accessTokenResponseInterface';
+import { addItemToCart } from './server/cart/addLineItem';
+import { createCart } from './server/cart/createCart';
+// import { cartManager } from './server/cart/createCart';
+// import { ICart } from './server/function/interfaces';
+// import { AddLineItem } from './server/cart/addLineItem';
+// import { getCartManager } from './server/cart/getCartById';
 
 const app = new App();
 app.run();
@@ -40,3 +48,15 @@ sortByValue('alpha-view');
 showFilter();
 switchPageByHashChain();
 addProductToCartFromCatalog();
+
+// это пойдет в add item to basket
+
+async () => {
+    await createAnonymousToken();
+};
+
+async () => {
+    await createCart();
+};
+
+addItemToCart();

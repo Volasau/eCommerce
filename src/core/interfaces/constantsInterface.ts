@@ -18,9 +18,11 @@ export interface IConstants {
     authHeader: string;
     authURL: string;
     tokenUrl: string;
+    anonymousTokenUrl: string;
     revokeUrl: string;
     categoryEndpoint: string;
     productsEndpoint: string;
+    meCartEndpoint: string;
     client_secret: string;
     projectKey: string;
     scope: string;

@@ -16,9 +16,11 @@ export const constants: IConstants = {
     authHeader: `Basic ${Buffer.from('evZAyazdZMrrHjVRwC-BYTHe:SjCFe1mgZ1njSSpehCpExMvHpXRjCBND').toString('base64')}`,
     authURL: 'https://auth.europe-west1.gcp.commercetools.com/oauth/token',
     tokenUrl: `https://auth.europe-west1.gcp.commercetools.com/oauth/01082023/customers/token`,
+    anonymousTokenUrl: `https://auth.europe-west1.gcp.commercetools.com/oauth/01082023/anonymous/token`,
     revokeUrl: `https://auth.europe-west1.gcp.commercetools.com/oauth/token/revoke`,
     categoryEndpoint: 'https://api.commercetools.com/01082023/categories',
     productsEndpoint: 'https://api.europe-west1.gcp.commercetools.com/01082023/products?limit=60',
+    meCartEndpoint: 'https://api.europe-west1.gcp.commercetools.com/01082023/me/carts',
     projectKey: '01082023',
     scope: 'manage_project:01082023',
     requestDataCart: {
