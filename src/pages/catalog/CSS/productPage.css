@@ -90,8 +90,10 @@
   flex-direction: column;
   row-gap: 1rem;
   align-items: center;
-  justify-content: center;
+  justify-content: start;
   margin-top: 1rem;
+  position: relative;
+  height: 4.5rem;
 }
 
 .cart-button {
@@ -107,8 +109,10 @@
   margin: auto;
   color: white;
   cursor: pointer;
-  border-style:outset;
+  border-style: outset;
   transition: 0.5s;
+  position: absolute;
+  bottom: 0;
 }
 
 .cart-button:hover {

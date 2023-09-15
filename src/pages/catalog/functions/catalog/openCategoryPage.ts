@@ -12,7 +12,7 @@ export function openCategoryPage(cat: ICategoryResp): void {
     const categoryResp = categoryResponse.filter((catResp) => catResp.id === cat.id);
     const subCategory = getSubCategoriesFrom(categoryResp[0]);
 
-    const category = new CatalogRender(subCategory, title);
+    const category = new CatalogRender(subCategory, title, '');
     category.renderCategory();
 
     const hash = document.getElementById('row-chain') as HTMLSpanElement;

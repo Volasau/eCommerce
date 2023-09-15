@@ -7,11 +7,14 @@ import { spanHTML } from '../../classes/elementBuilder';
 import { getImagesFromProduct } from './getImagesFromProduct';
 
 export function openProductPage(prod: IProduct): void {
+    const prodCartBut = document.getElementById(`${prod.id}-cart`) as HTMLButtonElement;
+    const cartStatus = prodCartBut.textContent?.split(' ').at(-1) as string;
+
     const prodList = document.querySelector('.full-catalog') as HTMLDivElement;
     prodList.remove();
 
     const title = document.querySelector('h1') as HTMLElement;
-    const productPage = new CatalogRender(prod, title);
+    const productPage = new CatalogRender(prod, title, cartStatus);
     productPage.renderProduct();
 
     const minusBut = document.querySelector('.minus-button') as HTMLButtonElement;

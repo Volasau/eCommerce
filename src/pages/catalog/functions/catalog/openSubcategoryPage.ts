@@ -24,7 +24,7 @@ export function openSubcategoryPage(subCateg: ISubCategoryResp): void {
     });
 
     const subCategory = getSubCategoryWithAllAttr(subCategoryResp[0]);
-    const subCat = new CatalogRender(subCategory, title);
+    const subCat = new CatalogRender(subCategory, title, '');
     subCat.renderSubCategory();
 
     const hash = document.getElementById('row-chain') as HTMLSpanElement;

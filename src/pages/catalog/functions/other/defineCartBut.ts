@@ -5,7 +5,6 @@ export function defineCartBut(target: HTMLElement) {
     } else {
         let elem = target as HTMLElement;
         while (elem.tagName !== 'BUTTON') {
-            console.log(elem.tagName);
             elem = elem.parentElement as HTMLElement;
         }
         cartBut = elem as HTMLButtonElement;

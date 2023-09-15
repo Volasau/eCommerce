@@ -3,7 +3,7 @@ import { cartSVG } from '../../../../data/cartSVG';
 import { IProduct } from '../../../../server/products/queryProductProjections';
 import { buttonHTML, divHTML, imgHTML } from '../../classes/elementBuilder';
 
-export function buildProductPage(prod: IProduct): HTMLDivElement {
+export function buildProductPage(prod: IProduct, cartStatus: string): HTMLDivElement {
     const id = prod.id;
     const name = prod.name;
     const description = prod.description;
@@ -67,7 +67,9 @@ export function buildProductPage(prod: IProduct): HTMLDivElement {
     realPrice.textContent = prodDiscount ? String(prodDiscount) : String(price);
     oldPrice.textContent = prodDiscount ? String(price) : '';
     productCount.append(minusBut, count, plusBut);
-    cartButton.innerHTML = `${cartSVG} BUY`;
+    cartButton.innerHTML = `${cartSVG} ${cartStatus === 'CART' ? 'DELETE' : 'BUY'}`;
+    if (cartStatus === 'CART') cartButton.style.backgroundColor = 'orange';
+    if (cartStatus === 'CART') cartButton.style.fontSize = '10px';
     cartButtonBlock.append(productCount, cartButton);
     priceBlock.append(realPrice, oldPrice, cartButtonBlock);
     prices.append(priceBlock, deliveryBlock);

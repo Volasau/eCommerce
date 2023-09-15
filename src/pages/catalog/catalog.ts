@@ -22,7 +22,7 @@ class CatalogPage extends Page {
 
         this._container.append(title, bodyCatalog, homeLink);
 
-        const catalog = new CatalogRender(categoryResponse, title);
+        const catalog = new CatalogRender(categoryResponse, title, '');
         catalog.renderCatalog();
 
         this._container.style.position = 'relative';
