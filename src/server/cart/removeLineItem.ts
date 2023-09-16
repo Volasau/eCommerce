@@ -45,7 +45,7 @@ export class RemoveLineItem {
             this.cartVersion += 3;
             return responseData;
         } catch (error) {
-            console.error('Error with adding line item');
+            console.error('Error with removing line item');
         }
     }
 }
@@ -57,6 +57,24 @@ export async function removeItemFromCart(productIdToFind: string): Promise<Cart 
         const matchingLineItem: LineItem | undefined = getCart.lineItems.find(
             (lineItem) => lineItem.productId === productIdToFind
         );
+        let lineItemId = '';
+        if (matchingLineItem) {
+            lineItemId = matchingLineItem.id;
+        }
+        const cart = new RemoveLineItem(getCart.id, getCart.version);
+        const removeLineItemResp: Cart | undefined = await cart.removeFromCart(lineItemId);
+        return removeLineItemResp;
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+export async function removeItemFromBasket(itemId: string): Promise<Cart | undefined> {
+    try {
+        const cartId = localStorage.getItem('newCartId') as string;
+        const getCart = (await getCartManager.getCartById(cartId as string)) as Cart;
+        const matchingLineItem: LineItem | undefined = getCart.lineItems.find((lineItem) => lineItem.id === itemId);
+
         let lineItemId = '';
         if (matchingLineItem) {
             lineItemId = matchingLineItem.id;
