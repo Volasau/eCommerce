@@ -23,7 +23,9 @@ export class CartViewer implements ICartViewer {
     view(): HTMLDivElement {
         const cartHeader = createCartHeader();
         this.container.append(cartHeader);
-        if (this.cartProducts.length === 0) this.container.append(addEmptyInfo());
+        if (this.cartProducts.length === 0) {
+            this.container.append(addEmptyInfo());
+        }
         this.cartProducts.forEach((prod) => {
             const productRow = createProductRow(prod);
             this.container.append(productRow);
@@ -32,6 +34,8 @@ export class CartViewer implements ICartViewer {
 
         const totalSumRow = createTotalSumRow(this.totalSum);
         this.container.append(totalSumRow);
+        const clearBut = this.container.querySelector('#cart-cleaner') as HTMLButtonElement;
+        clearBut.disabled = true;
         return this.container;
     }
 }
