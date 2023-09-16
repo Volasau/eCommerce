@@ -2,6 +2,7 @@ import Page from '../../core/template/page';
 import { cart } from '../../data/cart';
 import { createLink } from '../logReg/utils/createLink.utils';
 import { CartViewer } from './classes/cartViewer';
+import { disableMinusButtons } from './functions/disableMinusButtons';
 
 class BasketPage extends Page {
     text: string;
@@ -16,6 +17,7 @@ class BasketPage extends Page {
         const catalog = createLink('#/catalog', 'To go to the catalog click here ', 'Catalog📦', '');
         const myCart = new CartViewer(cart);
         this._container.append(title, myCart.view(), catalog);
+        disableMinusButtons();
         return this._container;
     }
 }

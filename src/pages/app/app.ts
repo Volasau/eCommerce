@@ -11,6 +11,7 @@ import { logoutAction } from '../logReg/utils/logOutFunc.utils';
 import { routeProductPage } from '../catalog/listeners/routeProductPage';
 import AboutPage from '../aboutus/aboutUs';
 import BasketPage from '../basket/basket';
+import { disableMinusButtons } from '../basket/functions/disableMinusButtons';
 
 export const enum PageId {
     MainPage = 'main',
@@ -102,6 +103,7 @@ class App {
             } else {
                 const hash2 = window.location.hash.slice(2);
                 await App.renderNewPage(hash2);
+                disableMinusButtons();
             }
         });
     }
