@@ -37,10 +37,6 @@ export function buildProductPage(prod: IProduct, cartStatus: string): HTMLDivEle
     const deliveryBlock = divHTML.getElement('Some Info', `${id}-delivery`, 'delivery-block') as HTMLDivElement;
     const cartButtonBlock = divHTML.getElement('', `${id}-cartButton`, 'cart-button-block') as HTMLDivElement;
     const cartButton = buttonHTML.getElement('', `${id}-cartBut`, 'cart-button');
-    const productCount = divHTML.getElement('', `${id}-countBlock`, 'count-block') as HTMLDivElement;
-    const count = divHTML.getElement('1', `${id}-count`, 'count') as HTMLDivElement;
-    const plusBut = buttonHTML.getElement('+', `${id}-plus`, 'plus-button') as HTMLButtonElement;
-    const minusBut = buttonHTML.getElement('-', `${id}-minus`, 'minus-button') as HTMLButtonElement;
 
     allImages.forEach((imagesURL) => {
         const addIMG = imgHTML.getElement(
@@ -66,11 +62,10 @@ export function buildProductPage(prod: IProduct, cartStatus: string): HTMLDivEle
 
     realPrice.textContent = prodDiscount ? String(prodDiscount) : String(price);
     oldPrice.textContent = prodDiscount ? String(price) : '';
-    productCount.append(minusBut, count, plusBut);
     cartButton.innerHTML = `${cartSVG} ${cartStatus === 'CART' ? 'DELETE' : 'BUY'}`;
     if (cartStatus === 'CART') cartButton.style.backgroundColor = 'orange';
     if (cartStatus === 'CART') cartButton.style.fontSize = '10px';
-    cartButtonBlock.append(productCount, cartButton);
+    cartButtonBlock.append(cartButton);
     priceBlock.append(realPrice, oldPrice, cartButtonBlock);
     prices.append(priceBlock, deliveryBlock);
 

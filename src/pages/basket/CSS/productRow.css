@@ -13,23 +13,6 @@
   align-items: center;
 }
 
-.cart-minus-button,
-.cart-plus-button,
-.count {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 1.5rem;
-  height: 1.5rem;
-  border-radius: 8px;
-  margin: 0.2rem;
-}
-
-.cart-minus-button,
-.cart-plus-button {
-    background-color: rgb(255, 149, 0);
-}
-
 .delete-cart-prod {
   display: flex;
   flex-direction: row;
@@ -54,7 +37,8 @@
 .cart-image,
 .cart-quantity,
 .cart-price, 
-.cart-delete {
+.cart-delete,
+.cart-sum {
   width: 10%;
 }
 

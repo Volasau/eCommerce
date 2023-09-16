@@ -5,7 +5,7 @@ import { getModal } from './pages/catalog/listeners/getModal';
 import { paginateModal } from './pages/catalog/listeners/paginateModal';
 import { removeModal } from './pages/catalog/listeners/removeModal';
 import { tokenFetcher } from './server/token/accessTokenCC';
-import { plusMinusOneProduct } from './pages/catalog/listeners/plusMinusOneProduct';
+import { plusMinusOneProduct } from './pages/basket/listeners/changeQuantity/plusMinusOneProduct';
 import { constants } from './data/constants';
 import { submitLogin } from './pages/logReg/validation/authorizationFunctions/submitData/submitLogin';
 import { submitReg } from './pages/logReg/validation/authorizationFunctions/submitData/submitReg';

@@ -23,7 +23,6 @@ export class CartViewer implements ICartViewer {
         const cartHeader = createCartHeader();
         this.container.append(cartHeader);
         const totalSumRow = createTotalSumRow(this.totalSum);
-        console.log(this.cartProducts);
         this.cartProducts.forEach((prod) => {
             const productRow = createProductRow(prod);
             this.container.append(productRow);
