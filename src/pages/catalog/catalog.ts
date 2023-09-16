@@ -1,8 +1,6 @@
 import Page from '../../core/template/page';
 import '../../css/catalog.css';
-import { createCart } from '../../server/cart/createCart';
 import { categoryStructuring } from '../../server/function/structureCategories';
-import { createAnonymousToken } from '../../server/token/accessTokenAS';
 import { createLink } from '../logReg/utils/createLink.utils';
 import { CatalogRender } from './classes/catalogRenderClass';
 
@@ -25,16 +23,6 @@ class CatalogPage extends Page {
         this._container.append(title, bodyCatalog, homeLink);
 
         const catalog = new CatalogRender(categoryResponse, title, '');
-        if (localStorage.getItem('anonymousToken') === null) {
-            (async () => {
-                await createAnonymousToken();
-            })();
-        }
-        if (localStorage.getItem('newCartId') === null) {
-            setTimeout(async () => {
-                await createCart();
-            }, 50);
-        }
 
         catalog.renderCatalog();
 

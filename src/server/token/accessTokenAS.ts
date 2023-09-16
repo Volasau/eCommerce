@@ -37,15 +37,12 @@ export class AnonymousTokenManager {
         }
     }
 }
-export const anonymousTokenManager = new AnonymousTokenManager();
 
 export async function createAnonymousToken() {
-    await (async () => {
-        const anonymousTokenResponse = (await anonymousTokenManager.getAnonymousToken()) as IAccessTokenResponse;
-        const bearerTokenAs = anonymousTokenResponse.access_token as string;
-        localStorage.setItem('anonymousToken', bearerTokenAs);
-        console.log(bearerTokenAs);
+    const anonymousTokenManager = new AnonymousTokenManager();
+    const anonymousTokenResponse = (await anonymousTokenManager.getAnonymousToken()) as IAccessTokenResponse;
+    const bearerTokenAs = anonymousTokenResponse.access_token as string;
+    localStorage.setItem('anonymousToken', bearerTokenAs);
 
-        return bearerTokenAs;
-    })();
+    return bearerTokenAs;
 }

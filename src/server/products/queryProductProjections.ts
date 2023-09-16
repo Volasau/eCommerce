@@ -132,7 +132,7 @@ export class QueryProductProjections {
     async getAllProducts(): Promise<IProduct[]> {
         try {
             const url = `${constants.apiUrl}/product-projections?limit=60`;
-            const response = await request.getAuth(url);
+            const response: Response = await request.getAuth(url);
 
             if (!response.ok) {
                 throw new Error(`Failed to fetch products: ${response.statusText}`);

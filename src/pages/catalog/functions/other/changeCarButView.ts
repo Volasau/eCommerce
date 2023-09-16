@@ -1,6 +1,9 @@
 import { cartSVG } from '../../../../data/cartSVG';
+import { createCart } from '../../../../server/cart/createCart';
+import { removeItemFromCart } from '../../../../server/cart/removeLineItem';
+import { addCartLogic } from '../../../../server/function/addCartLogic';
 
-export function changeCarButView(but: HTMLButtonElement, text: string): void {
+export async function changeCarButView(but: HTMLButtonElement, text: string): Promise<void> {
     let id = '';
     if (text === 'DELETE') id = but.id.replace('-cartBut', '');
     if (text === 'IN CART') id = but.id.replace('-cart', '');
@@ -10,14 +13,15 @@ export function changeCarButView(but: HTMLButtonElement, text: string): void {
         but.innerHTML = `${cartSVG} ${text}`;
         but.style.fontSize = '10px';
         if (text === 'IN CART') but.disabled = true;
-        console.log(id);
-        // Запрос на добавление товара в корзину (id товара вывел в переменную)
+        await addCartLogic(id);
     } else {
         but.style.backgroundColor = '';
         but.style.color = '';
         but.innerHTML = `${cartSVG} BUY`;
         but.style.fontSize = '';
-        console.log(id);
-        // Запрос по удалению товара из корзины (id товара вывел в переменную)
+        if (localStorage.getItem('newCartId') === null) {
+            await createCart();
+        }
+        await removeItemFromCart(id);
     }
 }
