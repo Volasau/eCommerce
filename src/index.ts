@@ -22,6 +22,7 @@ import { createAnonymousToken } from './server/token/accessTokenAS';
 // import { IAccessTokenResponse } from './server/interfaces/accessTokenResponseInterface';
 import { addItemToCart } from './server/cart/addLineItem';
 import { createCart } from './server/cart/createCart';
+import { removeProductFromCart } from './pages/basket/listeners/removeProductFromCart';
 // import { cartManager } from './server/cart/createCart';
 // import { ICart } from './server/function/interfaces';
 // import { AddLineItem } from './server/cart/addLineItem';
@@ -48,6 +49,7 @@ sortByValue('alpha-view');
 showFilter();
 switchPageByHashChain();
 addProductToCartFromCatalog();
+removeProductFromCart();
 
 // это пойдет в add item to basket
 

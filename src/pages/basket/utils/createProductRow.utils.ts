@@ -20,7 +20,7 @@ export function createProductRow(prod: LineItem): HTMLDivElement {
     addProdImageToCartRow(prod, prodImage, id);
     addCounterToCartRow(prodQuantity, quantity, id);
 
-    const deleteBut = buttonHTML.getElement('DELETE', 'delete-cart-prod', 'delete-cart-prod') as HTMLButtonElement;
+    const deleteBut = buttonHTML.getElement('DELETE', `${id}-del-cart-prod`, 'delete-cart-prod') as HTMLButtonElement;
     deleteBlock.append(deleteBut);
 
     wrapper.append(prodImage, prodName, prodQuantity, prodPrice, prodSum, deleteBlock);
