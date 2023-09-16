@@ -9,6 +9,7 @@ export class CartGetManager {
     }
 
     async getCartById(cartId: string): Promise<Cart | undefined> {
+        this.bearerTokenAs = localStorage.getItem('anonymousToken') as string;
         const fullUrl = `${constants.apiUrl}/carts/${cartId}`;
         try {
             const response: Response = await fetch(fullUrl, {

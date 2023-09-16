@@ -14,6 +14,7 @@ export class CartCreateManager {
     }
 
     async createCart(): Promise<ICart | undefined> {
+        this.bearerTokenAs = localStorage.getItem('anonymousToken') as string;
         const requestData = {
             currency: this.currency,
         };
@@ -36,14 +37,9 @@ export class CartCreateManager {
     }
 }
 
-export const cartManager = new CartCreateManager();
-
 export async function createCart(): Promise<void> {
-    await (async (): Promise<void> => {
-        if (localStorage.getItem('newCartId') === null) {
-            const cartResponse = (await cartManager.createCart()) as ICart;
-            localStorage.setItem('newCartId', cartResponse.id);
-            return;
-        }
-    })();
+    const cartManager = new CartCreateManager();
+    const cartResponse = (await cartManager.createCart()) as ICart;
+    localStorage.setItem('newCartId', cartResponse.id);
+    return;
 }

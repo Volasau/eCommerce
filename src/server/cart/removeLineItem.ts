@@ -16,6 +16,7 @@ export class RemoveLineItem {
     }
 
     async removeFromCart(lineItemId: string): Promise<Cart | undefined> {
+        this.accessToken = localStorage.getItem('anonymousToken') as string;
         try {
             const requestData = {
                 version: this.cartVersion,

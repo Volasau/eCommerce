@@ -3,7 +3,7 @@ import { createCart } from '../../../../server/cart/createCart';
 import { removeItemFromCart } from '../../../../server/cart/removeLineItem';
 import { addCartLogic } from '../../../../server/function/addCartLogic';
 
-export function changeCarButView(but: HTMLButtonElement, text: string): void {
+export async function changeCarButView(but: HTMLButtonElement, text: string): Promise<void> {
     let id = '';
     if (text === 'DELETE') id = but.id.replace('-cartBut', '');
     if (text === 'IN CART') id = but.id.replace('-cart', '');
@@ -14,7 +14,7 @@ export function changeCarButView(but: HTMLButtonElement, text: string): void {
         but.style.fontSize = '10px';
         if (text === 'IN CART') but.disabled = true;
         console.log(id);
-        addCartLogic(id);
+        await addCartLogic(id);
     } else {
         but.style.backgroundColor = '';
         but.style.color = '';
