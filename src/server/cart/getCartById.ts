@@ -1,3 +1,4 @@
+import { Cart } from '@commercetools/platform-sdk';
 import { constants } from '../../data/constants';
 
 export class CartGetManager {
@@ -7,7 +8,7 @@ export class CartGetManager {
         this.bearerTokenAs = localStorage.getItem('anonymousToken') as string;
     }
 
-    async getCartById(cartId: string) {
+    async getCartById(cartId: string): Promise<Cart | undefined> {
         const fullUrl = `${constants.apiUrl}/carts/${cartId}`;
         try {
             const response: Response = await fetch(fullUrl, {
@@ -21,7 +22,7 @@ export class CartGetManager {
                 throw new Error(`HTTP error! Status: ${response.status}`);
             }
 
-            const data = await response.json();
+            const data: Cart = await response.json();
             console.log(data);
             return data;
         } catch (error) {

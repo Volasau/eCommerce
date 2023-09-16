@@ -22,31 +22,16 @@ export class GetProduct {
     }
 }
 
-export function getProductsId(): Promise<Product> {
-    return new Promise((resolve, reject) => {
-        const clickHandler = async (event: Event): Promise<void> => {
-            try {
-                const target = event.target as HTMLButtonElement;
-                const indexOfJunkStr: number = target.id.lastIndexOf('-cart');
-                const productId: string | null = indexOfJunkStr !== -1 ? target.id.substring(0, indexOfJunkStr) : null;
-
-                if (productId) {
-                    const getProductManager = new GetProduct();
-                    const getProductResponse: Product | null = await getProductManager.getProductById(productId);
-
-                    if (getProductResponse) {
-                        resolve(getProductResponse);
-                    } else {
-                        reject('Product not found');
-                    }
-                } else {
-                    return;
-                }
-            } catch (error) {
-                reject(error);
-            }
-        };
-
-        document.addEventListener('click', clickHandler);
-    });
+export async function getProductsId(productId: string): Promise<Product | null | undefined> {
+    try {
+        if (productId) {
+            const getProductManager = new GetProduct();
+            const getProductResponse: Product | null = await getProductManager.getProductById(productId);
+            return getProductResponse;
+        } else {
+            return;
+        }
+    } catch (error) {
+        console.error(error);
+    }
 }

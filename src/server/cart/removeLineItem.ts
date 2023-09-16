@@ -1,11 +1,10 @@
 import { constants } from '../../data/constants';
-import { Cart, Product } from '@commercetools/platform-sdk';
-import { getProductsId } from '../products/queryProductById';
+import { Cart, LineItem } from '@commercetools/platform-sdk';
 import { request } from '../classes/requestClass';
 import { PARSE } from '../interfaces/parseEnum';
 import { getCartManager } from './getCartById';
 
-export class AddLineItem {
+export class RemoveLineItem {
     private apiUrl: string;
     private accessToken: string;
     private cartVersion: number;
@@ -16,15 +15,14 @@ export class AddLineItem {
         this.accessToken = localStorage.getItem('anonymousToken') as string;
     }
 
-    async addToCart(productId: string): Promise<Cart | undefined> {
+    async removeFromCart(lineItemId: string): Promise<Cart | undefined> {
         try {
             const requestData = {
                 version: this.cartVersion,
                 actions: [
                     {
-                        action: 'addLineItem',
-                        productId,
-                        variantId: 1,
+                        action: 'removeLineItem',
+                        lineItemId,
                         quantity: 1,
                     },
                 ],
@@ -52,24 +50,21 @@ export class AddLineItem {
     }
 }
 
-export async function addItemToCart(productId: string): Promise<Cart | undefined> {
+export async function removeItemFromCart(productIdToFind: string): Promise<Cart | undefined> {
     try {
-        const productBlock = (await getProductsId(productId)) as Product;
         const cartId = localStorage.getItem('newCartId') as string;
         const getCart = (await getCartManager.getCartById(cartId as string)) as Cart;
-        let cartState: string = getCart.cartState;
-        let cart: AddLineItem;
-        if (cartState === 'Merged') {
-            cartState = 'Active';
-            cart = new AddLineItem(getCart.id, getCart.version);
-        } else {
-            cart = new AddLineItem(getCart.id, getCart.version);
+        const matchingLineItem: LineItem | undefined = getCart.lineItems.find(
+            (lineItem) => lineItem.productId === productIdToFind
+        );
+        let lineItemId = '';
+        if (matchingLineItem) {
+            lineItemId = matchingLineItem.id;
         }
-
+        const cart = new RemoveLineItem(getCart.id, getCart.version);
         console.log(cart);
-        const productIdForAdding: string = productBlock.id;
-        const addLineItemResp: Cart | undefined = await cart.addToCart(productIdForAdding);
-        return addLineItemResp;
+        const removeLineItemResp: Cart | undefined = await cart.removeFromCart(lineItemId);
+        return removeLineItemResp;
     } catch (error) {
         console.error(error);
     }
