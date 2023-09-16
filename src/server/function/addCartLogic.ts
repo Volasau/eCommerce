@@ -7,17 +7,18 @@ export function addCartLogic(id: string) {
         (async () => {
             await createAnonymousToken();
             console.log('1');
-            await createCart();
-
-            if (localStorage.getItem('newCartId') === null) {
+            (async () => {
                 await createCart();
-                console.log('2');
-                await addItemToCart(id);
-                console.log('3');
-            } else {
-                await addItemToCart(id);
-                console.log('3');
-            }
+                if (localStorage.getItem('newCartId') === null) {
+                    await createCart();
+                    console.log('2');
+                    await addItemToCart(id);
+                    console.log('3');
+                } else {
+                    await addItemToCart(id);
+                    console.log('3');
+                }
+            })();
         })();
     } else if (localStorage.getItem('newCartId') === null) {
         (async () => {
