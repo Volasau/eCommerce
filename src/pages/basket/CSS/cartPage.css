@@ -1,4 +1,5 @@
 @import './productRow.css';
+@import './clearCartModal.css';
 
 #cart-list {
   width: 80%;

@@ -16,7 +16,11 @@ export function removeProductFromCart(): void {
 
             const header = document.getElementById('cart-header') as HTMLDivElement;
             const prodRows = document.querySelectorAll('.cart-prod-wrap') as NodeList;
-            if (prodRows.length === 0) header.after(addEmptyInfo());
+            if (prodRows.length === 0) {
+                header.after(addEmptyInfo());
+                const clearBut = document.getElementById('cart-cleaner') as HTMLButtonElement;
+                clearBut.disabled = true;
+            }
         }
     });
 }

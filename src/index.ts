@@ -19,6 +19,9 @@ import { showFilter } from './pages/catalog/listeners/showFilter';
 import { switchPageByHashChain } from './pages/catalog/listeners/switchPageByHashChain';
 import { addProductToCartFromCatalog } from './pages/catalog/listeners/addProductToCartFromCatalog';
 import { removeProductFromCart } from './pages/basket/listeners/removeProductFromCart';
+import { clearTheCart } from './pages/basket/listeners/cartCleaner/clearTheCart';
+import { reallyClearTheCart } from './pages/basket/listeners/cartCleaner/reallyClearTheCart';
+import { doNotClearTheCart } from './pages/basket/listeners/cartCleaner/doNotClearTheCart';
 
 const app = new App();
 app.run();
@@ -42,3 +45,6 @@ showFilter();
 switchPageByHashChain();
 addProductToCartFromCatalog();
 removeProductFromCart();
+clearTheCart();
+reallyClearTheCart();
+doNotClearTheCart();
