@@ -66,7 +66,6 @@ export async function addItemToCart(productId: string): Promise<Cart | undefined
             cart = new AddLineItem(getCart.id, getCart.version);
         }
 
-        console.log(cart);
         const productIdForAdding: string = productBlock.id;
         const addLineItemResp: Cart | undefined = await cart.addToCart(productIdForAdding);
         return addLineItemResp;
