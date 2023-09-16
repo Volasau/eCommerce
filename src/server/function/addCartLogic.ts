@@ -19,3 +19,13 @@ export async function addCartLogic(id: string) {
         await addItemToCart(id);
     }
 }
+
+export async function createCartLogic() {
+    if (localStorage.getItem('anonymousToken') === null) {
+        await createAnonymousToken();
+        await createCart();
+        if (localStorage.getItem('newCartId') === null) {
+            await createCart();
+        }
+    }
+}
