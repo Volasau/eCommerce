@@ -71,3 +71,25 @@
   background-color: grey;
   color: azure;
 }
+
+.minus-button,
+.plus-button,
+.count {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 8px;
+  margin: 0.2rem;
+}
+
+.minus-button,
+.plus-button {
+    background-color: rgb(255, 149, 0);
+}
+
+.minus-button:hover,
+.plus-button:hover {
+  cursor: pointer;
+}

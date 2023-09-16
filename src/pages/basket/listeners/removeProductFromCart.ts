@@ -1,6 +1,7 @@
+import { addEmptyInfo } from '../utils/addEmptyInfo';
 import { addUpAllTheSums } from './changeQuantity/addUpAllTheSums';
 
-export function removeProductFromCart() {
+export function removeProductFromCart(): void {
     document.addEventListener('click', (event) => {
         const target = event.target as HTMLButtonElement;
         if (target.id.includes('-del-cart-prod')) {
@@ -10,6 +11,10 @@ export function removeProductFromCart() {
 
             const totalSumBlock = document.getElementById('cart-sum') as HTMLDivElement;
             totalSumBlock.innerHTML = String(addUpAllTheSums());
+
+            const header = document.getElementById('cart-header') as HTMLDivElement;
+            const prodRows = document.querySelectorAll('.cart-prod-wrap') as NodeList;
+            if (prodRows.length === 0) header.after(addEmptyInfo());
         }
     });
 }

@@ -5,6 +5,7 @@ import { Cart } from '../interfaces/cartInterface';
 import { createProductRow } from '../utils/createProductRow.utils';
 import { createTotalSumRow } from '../utils/createTotalSumRow';
 import { createCartHeader } from '../utils/createCartHeader';
+import { addEmptyInfo } from '../utils/addEmptyInfo';
 
 export class CartViewer implements ICartViewer {
     container: HTMLDivElement;
@@ -22,6 +23,7 @@ export class CartViewer implements ICartViewer {
     view(): HTMLDivElement {
         const cartHeader = createCartHeader();
         this.container.append(cartHeader);
+        if (this.cartProducts.length === 0) this.container.append(addEmptyInfo());
         this.cartProducts.forEach((prod) => {
             const productRow = createProductRow(prod);
             this.container.append(productRow);
