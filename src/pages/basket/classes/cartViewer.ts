@@ -22,12 +22,13 @@ export class CartViewer implements ICartViewer {
     view(): HTMLDivElement {
         const cartHeader = createCartHeader();
         this.container.append(cartHeader);
-        const totalSumRow = createTotalSumRow(this.totalSum);
-        console.log(this.cartProducts);
         this.cartProducts.forEach((prod) => {
             const productRow = createProductRow(prod);
             this.container.append(productRow);
+            this.totalSum += +prod.price.value.centAmount;
         });
+
+        const totalSumRow = createTotalSumRow(this.totalSum);
         this.container.append(totalSumRow);
         return this.container;
     }
