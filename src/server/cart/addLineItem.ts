@@ -30,7 +30,6 @@ export class AddLineItem {
                     },
                 ],
             };
-            console.log(this.accessToken);
             const auth = `Bearer ${this.accessToken}`;
             const response: Response = await request.postAuth(
                 this.apiUrl,
