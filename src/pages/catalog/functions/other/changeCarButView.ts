@@ -13,22 +13,15 @@ export async function changeCarButView(but: HTMLButtonElement, text: string): Pr
         but.innerHTML = `${cartSVG} ${text}`;
         but.style.fontSize = '10px';
         if (text === 'IN CART') but.disabled = true;
-        console.log(id);
         await addCartLogic(id);
     } else {
         but.style.backgroundColor = '';
         but.style.color = '';
         but.innerHTML = `${cartSVG} BUY`;
         but.style.fontSize = '';
-        console.log(id);
         if (localStorage.getItem('newCartId') === null) {
-            setTimeout(async () => {
-                await createCart();
-                console.log('2');
-            }, 50);
+            await createCart();
         }
-        (async () => {
-            removeItemFromCart(id);
-        })();
+        await removeItemFromCart(id);
     }
 }

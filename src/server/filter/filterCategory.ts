@@ -82,7 +82,6 @@ export class ProductFilter {
             });
             constants.productList = [];
             productsWithAttributes.forEach((product: IProduct) => {
-                console.log(product);
                 constants.productList.push(product);
             });
             return productsWithAttributes;

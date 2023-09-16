@@ -28,11 +28,10 @@ export async function logInToServer(log: IAuthorization, page: HTMLElement): Pro
             const customerLogin = new CustomerLogin(tokenResponse.access_token);
             const loginResponse = (await customerLogin.loginUser(requestData)) as Customer;
             const cart = await cartByCustomerId.getCartsByCustomerId(loginResponse.id);
-            console.log(cart);
             localStorage.setItem('newCartId', cart.id);
             localStorage.setItem('bearer_token_pf', `${bearer_token_pf}`);
 
-            // return loginResponse;
+            return loginResponse;
         } else {
             requestData = {
                 email: log.email,

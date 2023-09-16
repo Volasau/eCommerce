@@ -43,7 +43,6 @@ export async function createAnonymousToken() {
     const anonymousTokenResponse = (await anonymousTokenManager.getAnonymousToken()) as IAccessTokenResponse;
     const bearerTokenAs = anonymousTokenResponse.access_token as string;
     localStorage.setItem('anonymousToken', bearerTokenAs);
-    console.log(bearerTokenAs);
 
     return bearerTokenAs;
 }

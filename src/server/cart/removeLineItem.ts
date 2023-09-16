@@ -28,7 +28,6 @@ export class RemoveLineItem {
                     },
                 ],
             };
-            console.log(this.accessToken);
             const auth = `Bearer ${this.accessToken}`;
             const response: Response = await request.postAuth(
                 this.apiUrl,
@@ -63,7 +62,6 @@ export async function removeItemFromCart(productIdToFind: string): Promise<Cart 
             lineItemId = matchingLineItem.id;
         }
         const cart = new RemoveLineItem(getCart.id, getCart.version);
-        console.log(cart);
         const removeLineItemResp: Cart | undefined = await cart.removeFromCart(lineItemId);
         return removeLineItemResp;
     } catch (error) {
