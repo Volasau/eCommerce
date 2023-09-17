@@ -34,7 +34,7 @@ export class CartViewer implements ICartViewer {
         const totalSumRow = createTotalSumRow(this.totalSum);
         this.container.append(totalSumRow);
         const clearBut = this.container.querySelector('#cart-cleaner') as HTMLButtonElement;
-        clearBut.disabled = true;
+        if (this.cartProducts.length === 0) clearBut.disabled = true;
         return this.container;
     }
 }

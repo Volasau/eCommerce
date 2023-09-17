@@ -2,8 +2,11 @@ interface ISelectedFilters {
     [key: string]: string[] | undefined;
 }
 
+import { getCartManager } from '../../../server/cart/getCartById';
 import { ProductFilter } from '../../../server/filter/filterCategory';
+import { createCartLogic } from '../../../server/function/addCartLogic';
 import { IProduct } from '../../../server/products/queryProductProjections';
+import { Cart } from '../../basket/interfaces/cartInterface';
 import { buildProductItem } from '../functions/product/buildProductItem';
 const productFilter = new ProductFilter();
 
@@ -24,11 +27,15 @@ export function filterProductList(): void {
                 const quantity = document.querySelector('.quantity') as HTMLSpanElement;
                 quantity.textContent = `${filteredProductsList.length}`;
 
-                const prodList = document.getElementById('product-view') as HTMLDivElement;
-                prodList.innerHTML = '';
-                filteredProductsList.forEach((prod) => {
-                    prodList.append(buildProductItem(prod));
-                });
+                (async () => {
+                    await createCartLogic();
+                    const cart = (await getCartManager.getCartById(sessionStorage.newCartId)) as Cart;
+                    const prodList = document.getElementById('product-view') as HTMLDivElement;
+                    prodList.innerHTML = '';
+                    filteredProductsList.forEach((prod) => {
+                        prodList.append(buildProductItem(prod, cart));
+                    });
+                })();
             } catch (error) {
                 console.error('Error filtering products:', error);
             }

@@ -1,6 +1,9 @@
+import { getCartManager } from '../../../server/cart/getCartById';
+import { createCartLogic } from '../../../server/function/addCartLogic';
 import { productForm } from '../../../server/function/productForm';
 import { IProduct } from '../../../server/products/queryProductProjections';
 import { ProductSort } from '../../../server/sort/sort';
+import { Cart } from '../../basket/interfaces/cartInterface';
 import { changeQuantity } from '../functions/catalog/changeQuantity';
 import { buildProductItem } from '../functions/product/buildProductItem';
 
@@ -38,9 +41,14 @@ export function sortByValue(value: string): void {
 function mainCatalogSort(result: IProduct[]): void {
     const prodList = document.getElementById('product-view') as HTMLDivElement;
     prodList.innerHTML = '';
-    result.forEach((prod) => {
-        prodList.append(buildProductItem(prod));
-    });
+
+    (async () => {
+        await createCartLogic();
+        const cart = (await getCartManager.getCartById(sessionStorage.newCartId)) as Cart;
+        result.forEach((prod) => {
+            prodList.append(buildProductItem(prod, cart));
+        });
+    })();
 }
 
 function subCategorySort(result: IProduct[], currCategoryLastTagId: string): void {
@@ -48,25 +56,29 @@ function subCategorySort(result: IProduct[], currCategoryLastTagId: string): voi
     currCategoryIdArr.splice(-2);
     const currCategoryId: string = currCategoryIdArr.join('-');
     const catTest = categoryRelatedIds() as string[];
-    if (catTest) {
-        catTest.unshift(currCategoryId);
-        const prodList = document.getElementById('product-view') as HTMLDivElement;
-        prodList.innerHTML = '';
-        result.forEach((prod) => {
-            console.log(prod.categories[0].id);
-            if (catTest.includes(prod.categories[0].id)) {
-                prodList.append(buildProductItem(prod));
-            }
-        });
-    } else {
-        const prodList = document.getElementById('product-view') as HTMLDivElement;
-        prodList.innerHTML = '';
-        result.forEach((prod) => {
-            if (prod.categories[0].id === currCategoryId) {
-                prodList.append(buildProductItem(prod));
-            }
-        });
-    }
+    (async () => {
+        await createCartLogic();
+        const cart = (await getCartManager.getCartById(sessionStorage.newCartId)) as Cart;
+        if (catTest) {
+            catTest.unshift(currCategoryId);
+            const prodList = document.getElementById('product-view') as HTMLDivElement;
+            prodList.innerHTML = '';
+            result.forEach((prod) => {
+                console.log(prod.categories[0].id);
+                if (catTest.includes(prod.categories[0].id)) {
+                    prodList.append(buildProductItem(prod, cart));
+                }
+            });
+        } else {
+            const prodList = document.getElementById('product-view') as HTMLDivElement;
+            prodList.innerHTML = '';
+            result.forEach((prod) => {
+                if (prod.categories[0].id === currCategoryId) {
+                    prodList.append(buildProductItem(prod, cart));
+                }
+            });
+        }
+    })();
 }
 
 function categoryRelatedIds(): string[] | void {

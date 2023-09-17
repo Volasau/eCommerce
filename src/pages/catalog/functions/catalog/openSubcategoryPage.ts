@@ -1,5 +1,8 @@
 import urlImg from '../../../../assets/icons/arrow.svg';
+import { getCartManager } from '../../../../server/cart/getCartById';
+import { createCartLogic } from '../../../../server/function/addCartLogic';
 import { categoryResponse } from '../../../../server/function/structureCategories';
+import { Cart } from '../../../basket/interfaces/cartInterface';
 import { CatalogRender } from '../../classes/catalogRenderClass';
 import { buttonHTML, spanHTML } from '../../classes/elementBuilder';
 import { ISubCategoryResp } from '../../interfaces/categoryResponse/categoryResponseInterface';
@@ -47,11 +50,14 @@ export function openSubcategoryPage(subCateg: ISubCategoryResp): void {
     subNameHTML.textContent = `${subCateg.name.en}`;
     subNameHTML.append(filterBut);
 
-    const prodList = document.getElementById('product-view') as HTMLDivElement;
-    prodList.innerHTML = '';
-    subCateg.products.forEach((prod) => {
-        prodList.append(buildProductItem(prod));
-    });
-
-    changeQuantity();
+    (async () => {
+        await createCartLogic();
+        const cart = (await getCartManager.getCartById(sessionStorage.newCartId)) as Cart;
+        const prodList = document.getElementById('product-view') as HTMLDivElement;
+        prodList.innerHTML = '';
+        subCateg.products.forEach((prod) => {
+            prodList.append(buildProductItem(prod, cart));
+        });
+        changeQuantity();
+    })();
 }

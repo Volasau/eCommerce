@@ -37,9 +37,9 @@ export class CartCreateManager {
     }
 }
 
-export async function createCart(): Promise<void> {
+export async function createCart(): Promise<ICart> {
     const cartManager = new CartCreateManager();
     const cartResponse = (await cartManager.createCart()) as ICart;
     sessionStorage.setItem('newCartId', cartResponse.id);
-    return;
+    return cartResponse;
 }
