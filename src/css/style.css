@@ -12,3 +12,16 @@
 .link:hover {
   background-color: #294db9;
 }
+
+.main__page {
+  background-image: url('../assets/images/fon_page.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 100vh;
+}
+
+.header__page {
+  max-width: 1300px;
+  margin: 0 auto;
+}

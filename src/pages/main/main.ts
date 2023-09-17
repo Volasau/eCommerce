@@ -7,12 +7,13 @@ class MainPage extends Page {
 
     constructor(id: string) {
         super(id);
-        this.text = 'HOME Page';
+        this.text = 'WELCOME TO OUR ONLINE STORE';
     }
 
     async render(): Promise<HTMLElement> {
         const title = this.createHeaderTitle(this.text);
         this._container.append(title);
+        this._container.classList.add('main__page');
         return this._container;
     }
 }
