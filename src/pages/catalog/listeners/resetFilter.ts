@@ -1,4 +1,7 @@
+import { getCartManager } from '../../../server/cart/getCartById';
+import { createCartLogic } from '../../../server/function/addCartLogic';
 import { categoryResponse } from '../../../server/function/structureCategories';
+import { Cart } from '../../basket/interfaces/cartInterface';
 import { changeQuantity } from '../functions/catalog/changeQuantity';
 import { openCategoryPage } from '../functions/catalog/openCategoryPage';
 import { openSubcategoryPage } from '../functions/catalog/openSubcategoryPage';
@@ -16,33 +19,37 @@ export function resetFilter(): void {
             const preLastChainElem = lastChainElem.previousElementSibling as HTMLSpanElement;
             const nameChainElem = preLastChainElem.textContent;
 
-            if (chainCount === 4) {
-                categoryResponse.forEach((cat) => {
-                    cat.subcategories.forEach((sub) => {
-                        sub.products.forEach((prod) => {
-                            productList.append(buildProductItem(prod));
-                            changeQuantity();
+            (async () => {
+                await createCartLogic();
+                const cart = (await getCartManager.getCartById(sessionStorage.newCartId)) as Cart;
+                if (chainCount === 4) {
+                    categoryResponse.forEach((cat) => {
+                        cat.subcategories.forEach((sub) => {
+                            sub.products.forEach((prod) => {
+                                productList.append(buildProductItem(prod, cart));
+                                changeQuantity();
+                            });
                         });
                     });
-                });
-            } else {
-                categoryResponse.forEach((cat) => {
-                    cat.subcategories.forEach((sub) => {
-                        if (nameChainElem === sub.name.en || nameChainElem === cat.name.en) {
-                            switch (chainCount) {
-                                case 6:
-                                    openCategoryPage(cat);
-                                    changeQuantity();
-                                    break;
-                                case 8:
-                                    openSubcategoryPage(sub);
-                                    changeQuantity();
-                                    break;
+                } else {
+                    categoryResponse.forEach((cat) => {
+                        cat.subcategories.forEach((sub) => {
+                            if (nameChainElem === sub.name.en || nameChainElem === cat.name.en) {
+                                switch (chainCount) {
+                                    case 6:
+                                        openCategoryPage(cat);
+                                        changeQuantity();
+                                        break;
+                                    case 8:
+                                        openSubcategoryPage(sub);
+                                        changeQuantity();
+                                        break;
+                                }
                             }
-                        }
+                        });
                     });
-                });
-            }
+                }
+            })();
         }
     });
 }

@@ -6,6 +6,9 @@ import { ICategoryResp } from '../../interfaces/categoryResponse/categoryRespons
 import { getSubCategoriesFrom } from './getSubCategoriesFrom';
 import { buildProductItem } from '../product/buildProductItem';
 import { changeQuantity } from './changeQuantity';
+import { createCartLogic } from '../../../../server/function/addCartLogic';
+import { Cart } from '../../../basket/interfaces/cartInterface';
+import { getCartManager } from '../../../../server/cart/getCartById';
 
 export function openCategoryPage(cat: ICategoryResp): void {
     const title = document.querySelector('.header__page') as HTMLElement;
@@ -37,13 +40,16 @@ export function openCategoryPage(cat: ICategoryResp): void {
     categoryNameHTML.textContent = `${cat.name.en}`;
     categoryNameHTML.append(filterBut);
 
-    const prodList = document.getElementById('product-view') as HTMLDivElement;
-    prodList.innerHTML = '';
-    cat.subcategories.forEach((sub) => {
-        sub.products.forEach((prod) => {
-            prodList.append(buildProductItem(prod));
+    (async () => {
+        await createCartLogic();
+        const cart = (await getCartManager.getCartById(sessionStorage.newCartId)) as Cart;
+        const prodList = document.getElementById('product-view') as HTMLDivElement;
+        prodList.innerHTML = '';
+        cat.subcategories.forEach((sub) => {
+            sub.products.forEach((prod) => {
+                prodList.append(buildProductItem(prod, cart));
+            });
         });
-    });
-
-    changeQuantity();
+        changeQuantity();
+    })();
 }

@@ -1,5 +1,5 @@
-import { Cart } from '@commercetools/platform-sdk';
 import { constants } from '../../data/constants';
+import { Cart } from '../../pages/basket/interfaces/cartInterface';
 
 export class CartGetManager {
     private bearerTokenAs: string;

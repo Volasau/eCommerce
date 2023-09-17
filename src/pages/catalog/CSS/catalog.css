@@ -14,8 +14,8 @@
   flex-direction: column;
   row-gap: 0.5rem;
   justify-content: center;
-  margin-left: 2%;
-  margin-right: 2%;
+  margin-left: 3%;
+  margin-right: 3%;
 }
 
 #viewer-wrap {

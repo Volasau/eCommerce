@@ -2,6 +2,9 @@ import { ProductSearchManager } from '../../../server/search/search';
 import { productForm } from '../../../server/function/productForm';
 import { buildProductItem } from '../functions/product/buildProductItem';
 import { IProduct, IProductsData } from '../../../server/products/queryProductProjections';
+import { createCartLogic } from '../../../server/function/addCartLogic';
+import { Cart } from '../../basket/interfaces/cartInterface';
+import { getCartManager } from '../../../server/cart/getCartById';
 
 export function searchByButton(): void {
     document.addEventListener('click', async (event) => {
@@ -18,9 +21,13 @@ export function searchByButton(): void {
 
                     const prodList = document.getElementById('product-view') as HTMLDivElement;
                     prodList.innerHTML = '';
-                    result.forEach((prod) => {
-                        prodList.append(buildProductItem(prod));
-                    });
+                    (async () => {
+                        await createCartLogic();
+                        const cart = (await getCartManager.getCartById(sessionStorage.newCartId)) as Cart;
+                        result.forEach((prod) => {
+                            prodList.append(buildProductItem(prod, cart));
+                        });
+                    })();
                     const quantity = document.querySelector('.quantity') as HTMLSpanElement;
                     quantity.textContent = `${result.length}`;
                 } catch (error) {
