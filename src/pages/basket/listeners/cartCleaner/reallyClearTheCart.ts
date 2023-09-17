@@ -1,3 +1,4 @@
+import { removeItemFromBasket } from '../../../../server/cart/removeLineItem';
 import { addEmptyInfo } from '../../utils/addEmptyInfo';
 
 export function reallyClearTheCart(): void {
@@ -5,10 +6,15 @@ export function reallyClearTheCart(): void {
         const target = event.target as HTMLButtonElement;
         if (target.id === 'yes-but') {
             const cartProducts = document.querySelectorAll('.cart-prod-wrap') as NodeList;
-            cartProducts.forEach((prod) => {
-                const product = prod as HTMLDivElement;
-                product.remove();
-            });
+
+            (async () => {
+                for await (const prod of cartProducts) {
+                    const product = prod as HTMLDivElement;
+                    const id = product.id.replace('-cart-row-wrap', '');
+                    await removeItemFromBasket(id);
+                    product.remove();
+                }
+            })();
 
             const quantity = document.getElementById('cart-sum') as HTMLDivElement;
             quantity.innerHTML = '0';
