@@ -17,7 +17,6 @@ class CartByCustomerId {
         }
 
         const data: Cart = await response.json();
-        console.log(data);
         return data;
     }
 }
