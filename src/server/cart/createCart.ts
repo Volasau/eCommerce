@@ -10,11 +10,11 @@ export class CartCreateManager {
 
     constructor() {
         this.currency = 'GBP';
-        this.bearerTokenAs = localStorage.getItem('anonymousToken') as string;
+        this.bearerTokenAs = sessionStorage.getItem('anonymousToken') as string;
     }
 
     async createCart(): Promise<ICart | undefined> {
-        this.bearerTokenAs = localStorage.getItem('anonymousToken') as string;
+        this.bearerTokenAs = sessionStorage.getItem('anonymousToken') as string;
         const requestData = {
             currency: this.currency,
         };
@@ -40,6 +40,6 @@ export class CartCreateManager {
 export async function createCart(): Promise<void> {
     const cartManager = new CartCreateManager();
     const cartResponse = (await cartManager.createCart()) as ICart;
-    localStorage.setItem('newCartId', cartResponse.id);
+    sessionStorage.setItem('newCartId', cartResponse.id);
     return;
 }

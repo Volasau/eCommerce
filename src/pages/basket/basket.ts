@@ -18,7 +18,7 @@ class BasketPage extends Page {
         const title = this.createHeaderTitle(this.text);
         const catalog = createLink('#/catalog', 'To go to the catalog click here ', 'Catalog📦', '');
         await createCartLogic();
-        const cartId = localStorage.getItem('newCartId') as string;
+        const cartId = sessionStorage.getItem('newCartId') as string;
         const cart = (await getCartManager.getCartById(cartId)) as Cart;
         const myCart = new CartViewer(cart);
         this._container.append(title, myCart.view(), catalog);

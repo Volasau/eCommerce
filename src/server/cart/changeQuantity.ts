@@ -12,11 +12,11 @@ export class ChangeLineItemQuantity {
     constructor(cartId: string, cartVersion: number) {
         this.cartVersion = cartVersion;
         this.apiUrl = `${constants.apiUrl}/carts/${cartId}/`;
-        this.accessToken = localStorage.getItem('anonymousToken') as string;
+        this.accessToken = sessionStorage.getItem('anonymousToken') as string;
     }
 
     async increaseInCart(lineItemId: string, amount: number): Promise<Cart | undefined> {
-        this.accessToken = localStorage.getItem('anonymousToken') as string;
+        this.accessToken = sessionStorage.getItem('anonymousToken') as string;
         try {
             amount += 1;
             const requestData = {
@@ -51,7 +51,7 @@ export class ChangeLineItemQuantity {
     }
 
     async decreaseInCart(lineItemId: string, amount: number): Promise<Cart | undefined> {
-        this.accessToken = localStorage.getItem('anonymousToken') as string;
+        this.accessToken = sessionStorage.getItem('anonymousToken') as string;
         try {
             amount -= 1;
             const requestData = {
@@ -88,7 +88,7 @@ export class ChangeLineItemQuantity {
 
 export async function increaseItemInBasket(itemId: string): Promise<Cart | undefined> {
     try {
-        const cartId = localStorage.getItem('newCartId') as string;
+        const cartId = sessionStorage.getItem('newCartId') as string;
         const getCart = (await getCartManager.getCartById(cartId as string)) as Cart;
         const matchingLineItem: LineItem | undefined = getCart.lineItems.find((lineItem) => lineItem.id === itemId);
 
@@ -107,7 +107,7 @@ export async function increaseItemInBasket(itemId: string): Promise<Cart | undef
 
 export async function decreaseItemInBasket(itemId: string): Promise<Cart | undefined> {
     try {
-        const cartId = localStorage.getItem('newCartId') as string;
+        const cartId = sessionStorage.getItem('newCartId') as string;
         const getCart = (await getCartManager.getCartById(cartId as string)) as Cart;
         const matchingLineItem: LineItem | undefined = getCart.lineItems.find((lineItem) => lineItem.id === itemId);
 

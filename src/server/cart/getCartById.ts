@@ -5,11 +5,11 @@ export class CartGetManager {
     private bearerTokenAs: string;
 
     constructor() {
-        this.bearerTokenAs = localStorage.getItem('anonymousToken') as string;
+        this.bearerTokenAs = sessionStorage.getItem('anonymousToken') as string;
     }
 
     async getCartById(cartId: string): Promise<Cart | undefined> {
-        this.bearerTokenAs = localStorage.getItem('anonymousToken') as string;
+        this.bearerTokenAs = sessionStorage.getItem('anonymousToken') as string;
         const fullUrl = `${constants.apiUrl}/carts/${cartId}`;
         try {
             const response: Response = await fetch(fullUrl, {
