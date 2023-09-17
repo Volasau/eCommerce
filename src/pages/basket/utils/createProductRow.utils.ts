@@ -7,8 +7,12 @@ export function createProductRow(prod: LineItem): HTMLDivElement {
     const id = prod.id;
     const name = prod.name.en;
     const quantity = String(prod.quantity);
-    const price = String(prod.price.value.centAmount);
-    const sum = String(+quantity * +price);
+    const price = String(
+        prod.price.discounted
+            ? (prod.price.discounted.value.centAmount / 100).toFixed(2)
+            : (prod.price.value.centAmount / 100).toFixed(2)
+    );
+    const sum = String((+quantity * +price).toFixed(2));
     const wrapper = divHTML.getElement('', `${id}-cart-row-wrap`, 'row-wrapper cart-prod-wrap') as HTMLDivElement;
     const prodImage = divHTML.getElement('', `${id}-cart-prod-image-block`, 'cart-row cart-image') as HTMLDivElement;
     const prodName = divHTML.getElement(name, `${id}-cart-prod-name`, 'cart-row cart-name') as HTMLDivElement;

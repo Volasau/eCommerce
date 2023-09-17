@@ -12,11 +12,11 @@ export class RemoveLineItem {
     constructor(cartId: string, cartVersion: number) {
         this.cartVersion = cartVersion;
         this.apiUrl = `${constants.apiUrl}/carts/${cartId}/`;
-        this.accessToken = localStorage.getItem('anonymousToken') as string;
+        this.accessToken = sessionStorage.getItem('anonymousToken') as string;
     }
 
     async removeFromCart(lineItemId: string, amount: number): Promise<Cart | undefined> {
-        this.accessToken = localStorage.getItem('anonymousToken') as string;
+        this.accessToken = sessionStorage.getItem('anonymousToken') as string;
         try {
             const requestData = {
                 version: this.cartVersion,
@@ -52,7 +52,7 @@ export class RemoveLineItem {
 
 export async function removeItemFromCart(productIdToFind: string): Promise<Cart | undefined> {
     try {
-        const cartId = localStorage.getItem('newCartId') as string;
+        const cartId = sessionStorage.getItem('newCartId') as string;
         const getCart = (await getCartManager.getCartById(cartId as string)) as Cart;
         const matchingLineItem: LineItem | undefined = getCart.lineItems.find(
             (lineItem) => lineItem.productId === productIdToFind
@@ -72,7 +72,7 @@ export async function removeItemFromCart(productIdToFind: string): Promise<Cart 
 
 export async function removeItemFromBasket(itemId: string): Promise<Cart | undefined> {
     try {
-        const cartId = localStorage.getItem('newCartId') as string;
+        const cartId = sessionStorage.getItem('newCartId') as string;
         const getCart = (await getCartManager.getCartById(cartId as string)) as Cart;
         const matchingLineItem: LineItem | undefined = getCart.lineItems.find((lineItem) => lineItem.id === itemId);
 

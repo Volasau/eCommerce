@@ -3,16 +3,16 @@ import { createCart } from '../cart/createCart';
 import { createAnonymousToken } from '../token/accessTokenAS';
 
 export async function addCartLogic(id: string) {
-    if (localStorage.getItem('anonymousToken') === null) {
+    if (sessionStorage.getItem('anonymousToken') === null) {
         await createAnonymousToken();
         await createCart();
-        if (localStorage.getItem('newCartId') === null) {
+        if (sessionStorage.getItem('newCartId') === null) {
             await createCart();
             await addItemToCart(id);
         } else {
             await addItemToCart(id);
         }
-    } else if (localStorage.getItem('newCartId') === null) {
+    } else if (sessionStorage.getItem('newCartId') === null) {
         await createCart();
         await addItemToCart(id);
     } else {
@@ -21,10 +21,10 @@ export async function addCartLogic(id: string) {
 }
 
 export async function createCartLogic() {
-    if (localStorage.getItem('anonymousToken') === null) {
+    if (sessionStorage.getItem('anonymousToken') === null) {
         await createAnonymousToken();
         await createCart();
-        if (localStorage.getItem('newCartId') === null) {
+        if (sessionStorage.getItem('newCartId') === null) {
             await createCart();
         }
     }

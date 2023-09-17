@@ -10,13 +10,13 @@ export function plusMinusOneProduct(): void {
         if (target.className === 'plus-button') {
             const id = target.id.replace('-cart-prod-plus', '');
             plusOne(target, count);
-            await increaseItemInBasket(id);
-            recalculateValues(id);
+            const cart = await increaseItemInBasket(id);
+            recalculateValues(id, cart?.totalPrice.centAmount);
         } else if (target.className === 'minus-button') {
             const id = target.id.replace('-cart-prod-minus', '');
             minusOne(target, count);
-            await decreaseItemInBasket(id);
-            recalculateValues(id);
+            const cart = await decreaseItemInBasket(id);
+            recalculateValues(id, cart?.totalPrice.centAmount);
         }
     });
 }

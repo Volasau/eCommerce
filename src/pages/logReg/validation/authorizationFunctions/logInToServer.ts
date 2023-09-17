@@ -9,7 +9,7 @@ import { cartByCustomerId } from '../../../../server/cart/getCartByCustomerId';
 export let bearer_token_pf = '';
 
 export async function logInToServer(log: IAuthorization, page: HTMLElement): Promise<Customer | Error | void> {
-    const cartId: string | null = localStorage.getItem('newCartId');
+    const cartId: string | null = sessionStorage.getItem('newCartId');
     try {
         let requestData: ILoginRequest;
         if (cartId) {
@@ -28,8 +28,8 @@ export async function logInToServer(log: IAuthorization, page: HTMLElement): Pro
             const customerLogin = new CustomerLogin(tokenResponse.access_token);
             const loginResponse = (await customerLogin.loginUser(requestData)) as Customer;
             const cart = await cartByCustomerId.getCartsByCustomerId(loginResponse.id);
-            localStorage.setItem('newCartId', cart.id);
-            localStorage.setItem('bearer_token_pf', `${bearer_token_pf}`);
+            sessionStorage.setItem('newCartId', cart.id);
+            sessionStorage.setItem('bearer_token_pf', `${bearer_token_pf}`);
 
             return loginResponse;
         } else {

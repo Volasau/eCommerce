@@ -19,7 +19,7 @@ export async function changeCarButView(but: HTMLButtonElement, text: string): Pr
         but.style.color = '';
         but.innerHTML = `${cartSVG} BUY`;
         but.style.fontSize = '';
-        if (localStorage.getItem('newCartId') === null) {
+        if (sessionStorage.getItem('newCartId') === null) {
             await createCart();
         }
         await removeItemFromCart(id);

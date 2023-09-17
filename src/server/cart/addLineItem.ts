@@ -13,11 +13,11 @@ export class AddLineItem {
     constructor(cartId: string, cartVersion: number) {
         this.cartVersion = cartVersion;
         this.apiUrl = `${constants.apiUrl}/carts/${cartId}/`;
-        this.accessToken = localStorage.getItem('anonymousToken') as string;
+        this.accessToken = sessionStorage.getItem('anonymousToken') as string;
     }
 
     async addToCart(productId: string): Promise<Cart | undefined> {
-        this.accessToken = localStorage.getItem('anonymousToken') as string;
+        this.accessToken = sessionStorage.getItem('anonymousToken') as string;
         try {
             const requestData = {
                 version: this.cartVersion,
@@ -55,7 +55,7 @@ export class AddLineItem {
 export async function addItemToCart(productId: string): Promise<Cart | undefined> {
     try {
         const productBlock = (await getProductsId(productId)) as Product;
-        const cartId = localStorage.getItem('newCartId') as string;
+        const cartId = sessionStorage.getItem('newCartId') as string;
         const getCart = (await getCartManager.getCartById(cartId as string)) as Cart;
         let cartState: string = getCart.cartState;
         let cart: AddLineItem;

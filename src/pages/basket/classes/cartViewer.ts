@@ -17,7 +17,7 @@ export class CartViewer implements ICartViewer {
     constructor(cart: Cart) {
         this.container = divHTML.getElement('', 'cart-list', 'cart-list') as HTMLDivElement;
         this.cartProducts = cart.lineItems;
-        this.totalSum = 0;
+        this.totalSum = cart.totalPrice.centAmount / 100;
     }
 
     view(): HTMLDivElement {
@@ -29,7 +29,6 @@ export class CartViewer implements ICartViewer {
         this.cartProducts.forEach((prod) => {
             const productRow = createProductRow(prod);
             this.container.append(productRow);
-            this.totalSum += +prod.price.value.centAmount;
         });
 
         const totalSumRow = createTotalSumRow(this.totalSum);
