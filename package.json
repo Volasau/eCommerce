@@ -22,6 +22,7 @@
     "license": "ISC",
     "homepage": "",
     "devDependencies": {
+        "@testing-library/dom": "^9.3.3",
         "@types/jest": "^29.5.3",
         "@types/node-fetch": "^2.6.4",
         "@types/toastify-js": "^1.12.0",
