@@ -1,4 +1,5 @@
 import { removeItemFromBasket } from '../../../../server/cart/removeLineItem';
+import { showToast } from '../../../logReg/utils/funcToastify.utils';
 import { addEmptyInfo } from '../../utils/addEmptyInfo';
 
 export function reallyClearTheCart(): void {
@@ -26,6 +27,7 @@ export function reallyClearTheCart(): void {
 
             const clearBut = document.getElementById('cart-cleaner') as HTMLButtonElement;
             clearBut.disabled = true;
+            showToast('All products removed from basket');
         }
     });
 }

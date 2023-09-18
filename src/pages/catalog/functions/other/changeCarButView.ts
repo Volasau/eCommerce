@@ -2,6 +2,7 @@ import { cartSVG } from '../../../../data/cartSVG';
 import { createCart } from '../../../../server/cart/createCart';
 import { removeItemFromCart } from '../../../../server/cart/removeLineItem';
 import { addCartLogic } from '../../../../server/function/addCartLogic';
+import { showToast } from '../../../logReg/utils/funcToastify.utils';
 
 export async function changeCarButView(but: HTMLButtonElement, text: string): Promise<void> {
     let id = '';
@@ -22,6 +23,7 @@ export async function changeCarButView(but: HTMLButtonElement, text: string): Pr
         if (sessionStorage.getItem('newCartId') === null) {
             await createCart();
         }
+        showToast('Product removed from basket');
         await removeItemFromCart(id);
     }
 }
