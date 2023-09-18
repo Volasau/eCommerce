@@ -15,6 +15,7 @@ export function reallyClearTheCart(): void {
                     await removeItemFromBasket(id);
                     product.remove();
                 }
+                showToast('All products were removed from basket');
             })();
 
             const quantity = document.getElementById('cart-sum') as HTMLDivElement;
@@ -27,7 +28,6 @@ export function reallyClearTheCart(): void {
 
             const clearBut = document.getElementById('cart-cleaner') as HTMLButtonElement;
             clearBut.disabled = true;
-            showToast('All products removed from basket');
         }
     });
 }
