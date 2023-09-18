@@ -1,4 +1,5 @@
 import { removeItemFromBasket } from '../../../../server/cart/removeLineItem';
+import { showToast } from '../../../logReg/utils/funcToastify.utils';
 import { addEmptyInfo } from '../../utils/addEmptyInfo';
 
 export function reallyClearTheCart(): void {
@@ -14,6 +15,7 @@ export function reallyClearTheCart(): void {
                     await removeItemFromBasket(id);
                     product.remove();
                 }
+                showToast('All products were removed from basket');
             })();
 
             const quantity = document.getElementById('cart-sum') as HTMLDivElement;
