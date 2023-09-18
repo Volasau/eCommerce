@@ -3,9 +3,9 @@ import { divHTML } from '../../catalog/classes/elementBuilder';
 import { LineItem } from '../interfaces/lineItemInterface';
 import { Cart } from '../interfaces/cartInterface';
 import { createProductRow } from '../utils/createProductRow.utils';
-import { createTotalSumRow } from '../utils/createTotalSumRow';
-import { createCartHeader } from '../utils/createCartHeader';
-import { addEmptyInfo } from '../utils/addEmptyInfo';
+import { createTotalSumRow } from '../utils/createTotalSumRow.utils';
+import { createCartHeader } from '../utils/createCartHeader.utils';
+import { addEmptyInfo } from '../utils/addEmptyInfo.utils';
 import { addPromoButBigSum } from '../functions/addPromoButBigSum';
 
 export class CartViewer implements ICartViewer {

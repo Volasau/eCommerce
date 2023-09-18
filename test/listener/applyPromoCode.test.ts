@@ -1,5 +1,5 @@
 import { fireEvent } from '@testing-library/dom';
-// import { applyPromoCode } from '../../src/pages/basket/listeners/applyPromoCode';
+import { applyPromoCode } from '../../src/pages/basket/listeners/applyPromoCode';
 
 describe('applyPromoCode', () => {
     beforeEach(() => {
@@ -19,7 +19,7 @@ describe('applyPromoCode', () => {
     it('should log the clicked button when lap-promo-but is clicked', () => {
         const consoleLogSpy = jest.spyOn(console, 'log');
 
-        // applyPromoCode();
+        applyPromoCode();
 
         const button = document.querySelector('.lap-promo-but');
         if (button) {

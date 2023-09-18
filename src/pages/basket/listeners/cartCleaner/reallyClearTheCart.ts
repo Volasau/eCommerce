@@ -1,6 +1,6 @@
 import { removeItemFromBasket } from '../../../../server/cart/removeLineItem';
 import { showToast } from '../../../logReg/utils/funcToastify.utils';
-import { addEmptyInfo } from '../../utils/addEmptyInfo';
+import { addEmptyInfo } from '../../utils/addEmptyInfo.utils';
 
 export function reallyClearTheCart(): void {
     document.addEventListener('click', (event) => {
@@ -25,6 +25,9 @@ export function reallyClearTheCart(): void {
 
             const modal = document.getElementById('clear-dark') as HTMLDivElement;
             modal.remove();
+
+            const promoSum = document.getElementById('promo-total-sum') as HTMLDivElement;
+            if (promoSum) promoSum.remove();
 
             const clearBut = document.getElementById('cart-cleaner') as HTMLButtonElement;
             clearBut.disabled = true;

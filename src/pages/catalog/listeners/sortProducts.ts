@@ -64,7 +64,6 @@ function subCategorySort(result: IProduct[], currCategoryLastTagId: string): voi
             const prodList = document.getElementById('product-view') as HTMLDivElement;
             prodList.innerHTML = '';
             result.forEach((prod) => {
-                console.log(prod.categories[0].id);
                 if (catTest.includes(prod.categories[0].id)) {
                     prodList.append(buildProductItem(prod, cart));
                 }

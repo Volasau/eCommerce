@@ -1,6 +1,6 @@
 import Page from '../../core/template/page';
 import '../../css/style.css';
-import { createPromoWindow } from '../basket/utils/createPromoWindow';
+import { createPromoWindow } from '../basket/utils/createPromoWindow.utils';
 // import { createLink } from '../logReg/utils/createLink.utils';
 
 class MainPage extends Page {
