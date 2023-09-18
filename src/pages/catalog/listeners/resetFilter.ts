@@ -1,11 +1,8 @@
-import { getCartManager } from '../../../server/cart/getCartById';
-import { createCartLogic } from '../../../server/function/addCartLogic';
+import { constants } from '../../../data/constants';
 import { categoryResponse } from '../../../server/function/structureCategories';
-import { Cart } from '../../basket/interfaces/cartInterface';
-import { changeQuantity } from '../functions/catalog/changeQuantity';
 import { openCategoryPage } from '../functions/catalog/openCategoryPage';
 import { openSubcategoryPage } from '../functions/catalog/openSubcategoryPage';
-import { buildProductItem } from '../functions/product/buildProductItem';
+import { renderNewCatalog } from '../functions/catalog/renderNewCatalog';
 
 export function resetFilter(): void {
     document.addEventListener('click', (event) => {
@@ -19,37 +16,35 @@ export function resetFilter(): void {
             const preLastChainElem = lastChainElem.previousElementSibling as HTMLSpanElement;
             const nameChainElem = preLastChainElem.textContent;
 
-            (async () => {
-                await createCartLogic();
-                const cart = (await getCartManager.getCartById(sessionStorage.newCartId)) as Cart;
-                if (chainCount === 4) {
-                    categoryResponse.forEach((cat) => {
-                        cat.subcategories.forEach((sub) => {
-                            sub.products.forEach((prod) => {
-                                productList.append(buildProductItem(prod, cart));
-                                changeQuantity();
-                            });
+            if (chainCount === 4) {
+                let count = 0;
+                constants.productList = [];
+                categoryResponse.forEach((cat) => {
+                    cat.subcategories.forEach((sub) => {
+                        sub.products.forEach((prod) => {
+                            constants.productList.push(prod);
+                            count += 1;
                         });
                     });
-                } else {
-                    categoryResponse.forEach((cat) => {
-                        cat.subcategories.forEach((sub) => {
-                            if (nameChainElem === sub.name.en || nameChainElem === cat.name.en) {
-                                switch (chainCount) {
-                                    case 6:
-                                        openCategoryPage(cat);
-                                        changeQuantity();
-                                        break;
-                                    case 8:
-                                        openSubcategoryPage(sub);
-                                        changeQuantity();
-                                        break;
-                                }
+                });
+
+                renderNewCatalog(count);
+            } else {
+                categoryResponse.forEach((cat) => {
+                    cat.subcategories.forEach((sub) => {
+                        if (nameChainElem === sub.name.en || nameChainElem === cat.name.en) {
+                            switch (chainCount) {
+                                case 6:
+                                    openCategoryPage(cat);
+                                    break;
+                                case 8:
+                                    openSubcategoryPage(sub);
+                                    break;
                             }
-                        });
+                        }
                     });
-                }
-            })();
+                });
+            }
         }
     });
 }

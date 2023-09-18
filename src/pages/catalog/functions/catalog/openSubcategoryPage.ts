@@ -1,14 +1,12 @@
 import urlImg from '../../../../assets/icons/arrow.svg';
-import { getCartManager } from '../../../../server/cart/getCartById';
-import { createCartLogic } from '../../../../server/function/addCartLogic';
+import { constants } from '../../../../data/constants';
 import { categoryResponse } from '../../../../server/function/structureCategories';
-import { Cart } from '../../../basket/interfaces/cartInterface';
 import { CatalogRender } from '../../classes/catalogRenderClass';
 import { buttonHTML, spanHTML } from '../../classes/elementBuilder';
 import { ISubCategoryResp } from '../../interfaces/categoryResponse/categoryResponseInterface';
 import { getSubCategoryWithAllAttr } from '../filter/getSubCategoryWithAllAttr';
-import { buildProductItem } from '../product/buildProductItem';
-import { changeQuantity } from './changeQuantity';
+
+import { renderNewCatalog } from './renderNewCatalog';
 
 export function openSubcategoryPage(subCateg: ISubCategoryResp): void {
     const title = document.querySelector('.header__page') as HTMLElement;
@@ -50,14 +48,12 @@ export function openSubcategoryPage(subCateg: ISubCategoryResp): void {
     subNameHTML.textContent = `${subCateg.name.en}`;
     subNameHTML.append(filterBut);
 
-    (async () => {
-        await createCartLogic();
-        const cart = (await getCartManager.getCartById(sessionStorage.newCartId)) as Cart;
-        const prodList = document.getElementById('product-view') as HTMLDivElement;
-        prodList.innerHTML = '';
-        subCateg.products.forEach((prod) => {
-            prodList.append(buildProductItem(prod, cart));
-        });
-        changeQuantity();
-    })();
+    let count = 0;
+    constants.productList = [];
+    subCateg.products.forEach((prod) => {
+        constants.productList.push(prod);
+        count += 1;
+    });
+
+    renderNewCatalog(count);
 }
