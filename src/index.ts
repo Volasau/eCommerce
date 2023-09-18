@@ -23,7 +23,6 @@ import { clearTheCart } from './pages/basket/listeners/cartCleaner/clearTheCart'
 import { reallyClearTheCart } from './pages/basket/listeners/cartCleaner/reallyClearTheCart';
 import { doNotClearTheCart } from './pages/basket/listeners/cartCleaner/doNotClearTheCart';
 import { copyPromoCode } from './pages/basket/listeners/copyPromoCode';
-import { applyPromoCode } from './pages/basket/listeners/applyPromoCode';
 
 const app = new App();
 app.run();
@@ -52,4 +51,3 @@ reallyClearTheCart();
 doNotClearTheCart();
 copyPromoCode('lap');
 copyPromoCode('sum');
-applyPromoCode();
