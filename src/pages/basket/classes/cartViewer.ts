@@ -7,7 +7,7 @@ import { createTotalSumRow } from '../utils/createTotalSumRow';
 import { createCartHeader } from '../utils/createCartHeader';
 import { addEmptyInfo } from '../utils/addEmptyInfo';
 import { addPromoButBigSum } from '../functions/addPromoButBigSum';
-
+import { applyPromoCode } from '../listeners/applyPromoCode';
 
 export class CartViewer implements ICartViewer {
     container: HTMLDivElement;
