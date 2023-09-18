@@ -1,4 +1,4 @@
-import { addCredentialsAndPersData } from '../../src/pages/logReg/utils/addCredentialsAndPersData.utils'; // Замените на путь к вашему модулю
+import { addCredentialsAndPersData } from '../../src/pages/logReg/utils/addCredentialsAndPersData.utils';
 
 describe('addCredentialsAndPersData function', () => {
     it('should append innerForm elements to formHTML except for specific ids', () => {
