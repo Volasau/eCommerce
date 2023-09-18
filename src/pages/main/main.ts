@@ -13,7 +13,7 @@ class MainPage extends Page {
 
     async render(): Promise<HTMLElement> {
         const title = this.createHeaderTitle(this.text);
-        this._container.append(title, createPromoWindow());
+        this._container.append(title, await createPromoWindow());
         this._container.classList.add('main__page');
         return this._container;
     }

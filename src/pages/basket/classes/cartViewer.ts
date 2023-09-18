@@ -8,6 +8,7 @@ import { createCartHeader } from '../utils/createCartHeader';
 import { addEmptyInfo } from '../utils/addEmptyInfo';
 import { addPromoButBigSum } from '../functions/addPromoButBigSum';
 
+
 export class CartViewer implements ICartViewer {
     container: HTMLDivElement;
 
@@ -30,6 +31,7 @@ export class CartViewer implements ICartViewer {
         this.cartProducts.forEach((prod) => {
             const productRow = createProductRow(prod);
             this.container.append(productRow);
+            applyPromoCode(prod.id);
         });
 
         const totalSumRow = createTotalSumRow(this.totalSum);
