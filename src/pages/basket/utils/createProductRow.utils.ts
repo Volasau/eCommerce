@@ -1,8 +1,8 @@
 import { buttonHTML, divHTML } from '../../catalog/classes/elementBuilder';
 import { addPromoBut } from '../functions/addPromoBut';
 import { LineItem } from '../interfaces/lineItemInterface';
-import { addCounterToCartRow } from './addCounterToCartRow';
-import { addProdImageToCartRow } from './addProdImageToCartRow';
+import { addCounterToCartRow } from './addCounterToCartRow.utils';
+import { addProdImageToCartRow } from './addProdImageToCartRow.utils';
 
 export function createProductRow(prod: LineItem): HTMLDivElement {
     const id = prod.id;
@@ -15,6 +15,7 @@ export function createProductRow(prod: LineItem): HTMLDivElement {
     const sum = String((+quantity * +price).toFixed(2));
     const wrapper = divHTML.getElement('', `${id}-cart-row-wrap`, 'row-wrapper cart-prod-wrap') as HTMLDivElement;
     const prodImage = divHTML.getElement('', `${id}-cart-prod-image-block`, 'cart-row cart-image') as HTMLDivElement;
+    const prodAttr = divHTML.getElement('', `${id}-cart-prod-attr-block`, 'cart-row cart-attr') as HTMLDivElement;
     const prodName = divHTML.getElement(prod.name.en, `${id}-cart-prod-name`, 'cart-row cart-name') as HTMLDivElement;
     const prodQuantity = divHTML.getElement('', `${id}-cart-prod-quant`, 'cart-row cart-quantity') as HTMLDivElement;
     const prodPrice = divHTML.getElement(price, `${id}-cart-prod-price`, 'cart-row cart-price') as HTMLDivElement;
@@ -28,7 +29,8 @@ export function createProductRow(prod: LineItem): HTMLDivElement {
     const deleteBut = buttonHTML.getElement('DELETE', `${id}-del-cart-prod`, 'delete-cart-prod') as HTMLButtonElement;
     deleteBlock.append(deleteBut);
 
-    wrapper.append(prodImage, prodName, prodQuantity, prodPrice, prodSum, deleteBlock);
+    prodAttr.append(prodName, prodQuantity, prodPrice, prodSum, deleteBlock);
+    wrapper.append(prodImage, prodAttr);
 
     return wrapper;
 }
