@@ -15,7 +15,8 @@
 
 .delete-cart-prod,
 #cart-cleaner,
-.lap-promo-but {
+.lap-promo-but,
+.sum-promo-but {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -34,7 +35,8 @@
 
 .delete-cart-prod:hover,
 #cart-cleaner:hover,
-.lap-promo-but:hover {
+.lap-promo-but:hover,
+.sum-promo-but:hover {
   background-color: rgb(255, 149, 0);
 }
 
@@ -58,7 +60,8 @@
   font-weight: 900;
 }
 
-#lap-promo {
+#lap-promo,
+#sum-promo {
   display: flex;
   flex-direction: row;
   height: 1.5rem;
