@@ -20,8 +20,12 @@ export function renderNewCatalog(count: number) {
             }
         }
         prodList.append(products);
-        const button = buttonHTML.getElement('>>>NEXT', 'next-prod', 'next-prod') as HTMLButtonElement;
-        prodList.append(button);
+        const buttonBlock = divHTML.getElement('', 'next-prev', 'next-prev') as HTMLDivElement;
+        const nextBut = buttonHTML.getElement('>>>NEXT', 'next-prod', 'next-prod') as HTMLButtonElement;
+        const prevBut = buttonHTML.getElement('PREV<<<', 'prev-prod', 'prev-prod') as HTMLButtonElement;
+        prevBut.disabled = true;
+        buttonBlock.append(prevBut, nextBut);
+        prodList.append(buttonBlock);
         const quantity = document.querySelector('.quantity') as HTMLSpanElement;
         quantity.textContent = `${count}`;
     })();

@@ -19,8 +19,12 @@ export function buildProductList(): HTMLDivElement {
             }
         }
         productList.append(products);
-        const button = buttonHTML.getElement('>>>NEXT', 'next-prod', 'next-prod') as HTMLButtonElement;
-        productList.append(button);
+        const buttonBlock = divHTML.getElement('', 'next-prev', 'next-prev') as HTMLDivElement;
+        const nextBut = buttonHTML.getElement('>>>NEXT', 'next-prod', 'next-prod') as HTMLButtonElement;
+        const prevBut = buttonHTML.getElement('PREV<<<', 'prev-prod', 'prev-prod') as HTMLButtonElement;
+        prevBut.disabled = true;
+        buttonBlock.append(prevBut, nextBut);
+        productList.append(buttonBlock);
     })();
 
     return productList;
