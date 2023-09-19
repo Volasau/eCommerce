@@ -3,11 +3,10 @@ import { divHTML } from '../../catalog/classes/elementBuilder';
 import { LineItem } from '../interfaces/lineItemInterface';
 import { Cart } from '../interfaces/cartInterface';
 import { createProductRow } from '../utils/createProductRow.utils';
-import { createTotalSumRow } from '../utils/createTotalSumRow';
-import { createCartHeader } from '../utils/createCartHeader';
-import { addEmptyInfo } from '../utils/addEmptyInfo';
+import { createTotalSumRow } from '../utils/createTotalSumRow.utils';
+import { createCartHeader } from '../utils/createCartHeader.utils';
+import { addEmptyInfo } from '../utils/addEmptyInfo.utils';
 import { addPromoButBigSum } from '../functions/addPromoButBigSum';
-import { applyPromoCode } from '../listeners/applyPromoCode';
 
 export class CartViewer implements ICartViewer {
     container: HTMLDivElement;
@@ -31,7 +30,6 @@ export class CartViewer implements ICartViewer {
         this.cartProducts.forEach((prod) => {
             const productRow = createProductRow(prod);
             this.container.append(productRow);
-            applyPromoCode(prod.id);
         });
 
         const totalSumRow = createTotalSumRow(this.totalSum);
