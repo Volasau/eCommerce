@@ -1,4 +1,5 @@
 import { constants } from '../data/constants';
+import { applyPromoCode } from '../pages/basket/listeners/applyPromoCode';
 import { clearTheCart } from '../pages/basket/listeners/cartCleaner/clearTheCart';
 import { doNotClearTheCart } from '../pages/basket/listeners/cartCleaner/doNotClearTheCart';
 import { reallyClearTheCart } from '../pages/basket/listeners/cartCleaner/reallyClearTheCart';
@@ -50,4 +51,5 @@ export function addListeners() {
     copyPromoCode('sum');
     viewNextPage();
     viewPrevPage();
+    applyPromoCode();
 }
