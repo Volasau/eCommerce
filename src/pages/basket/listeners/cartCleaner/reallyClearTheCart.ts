@@ -31,9 +31,6 @@ export function reallyClearTheCart(): void {
 
             const clearBut = document.getElementById('cart-cleaner') as HTMLButtonElement;
             clearBut.disabled = true;
-
-            const promoSum = document.getElementById('promo-total-sum') as HTMLDivElement;
-            if (promoSum) promoSum.remove();
         }
     });
 }
