@@ -5,7 +5,7 @@ import { Cart } from '../../../basket/interfaces/cartInterface';
 import { buttonHTML, divHTML } from '../../classes/elementBuilder';
 import { buildProductItem } from '../product/buildProductItem';
 
-export function renderNewCatalog(count: number) {
+export function renderNewCatalog(count: number): void {
     (async () => {
         constants.page = 0;
         await createCartLogic();

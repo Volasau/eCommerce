@@ -14,7 +14,7 @@ class BasketPage extends Page {
         this.text = 'Basket';
     }
 
-    async render() {
+    async render(): Promise<HTMLElement> {
         const title = this.createHeaderTitle(this.text);
         const catalog = createLink('#/catalog', 'To go to the catalog click here ', 'Catalog📦', '');
         await createCartLogic();

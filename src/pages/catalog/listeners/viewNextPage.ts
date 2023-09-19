@@ -5,7 +5,7 @@ import { Cart } from '../../basket/interfaces/cartInterface';
 import { divHTML } from '../classes/elementBuilder';
 import { buildProductItem } from '../functions/product/buildProductItem';
 
-export function viewNextPage() {
+export function viewNextPage(): void {
     document.addEventListener('click', (event) => {
         const target = event.target as HTMLButtonElement;
         if (target.id === 'next-prod') {
@@ -33,7 +33,6 @@ export function viewNextPage() {
                 }
 
                 prodView.prepend(newViewer);
-                console.log(constants.page);
             })();
         }
     });
