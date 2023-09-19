@@ -1,7 +1,7 @@
 export function recalculatePromo(id: string) {
     const sumBlock = document.getElementById(`${id}-cart-prod-sum`) as HTMLDivElement;
     const priceBlock = document.getElementById(`${id}-cart-prod-price`) as HTMLDivElement;
-    const totalSumBlock = document.getElementById('cart-sum') as HTMLDivElement;
+    const totalSumBlock = document.getElementById('cart-promo-sum') as HTMLDivElement;
     const quantityBlock = document.getElementById(`${id}-count`) as HTMLDivElement;
     const allSums = document.querySelectorAll('.sum') as NodeList;
     let totalSum = 0;
@@ -11,5 +11,5 @@ export function recalculatePromo(id: string) {
         const summa = sum as HTMLDivElement;
         totalSum += +summa.innerHTML;
     });
-    totalSumBlock.innerHTML = String(totalSum.toFixed(2));
+    totalSumBlock.innerHTML = `SPECIAL PRICE: ${totalSum.toFixed(2)}`;
 }
