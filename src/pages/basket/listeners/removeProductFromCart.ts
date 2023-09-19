@@ -17,6 +17,11 @@ export function removeProductFromCart(): void {
             const promoSum = document.getElementById('promo-total-sum') as HTMLDivElement;
             if (promoSum && +totalSumBlock.innerHTML <= 200) promoSum.remove();
 
+            if (+totalSumBlock.innerHTML <= 200) {
+                const promoSum = document.getElementById('promo-total-sum') as HTMLDivElement;
+                if (promoSum) promoSum.remove();
+            }
+
             const header = document.getElementById('cart-header') as HTMLDivElement;
             const prodRows = document.querySelectorAll('.cart-prod-wrap') as NodeList;
             if (prodRows.length === 0) {

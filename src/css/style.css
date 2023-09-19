@@ -60,6 +60,7 @@
   background-color: #121212;
   color: #efefef;
   cursor: pointer;
+  border-color: orange;
 }
 
 .copyText:hover {

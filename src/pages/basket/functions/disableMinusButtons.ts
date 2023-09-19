@@ -1,4 +1,4 @@
-export function disableMinusButtons() {
+export function disableMinusButtons(): void {
     const minusButtons = document.querySelectorAll('.minus-button') as NodeList;
     minusButtons.forEach((but) => {
         const button = but as HTMLButtonElement;

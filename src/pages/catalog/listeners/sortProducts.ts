@@ -1,11 +1,8 @@
-import { getCartManager } from '../../../server/cart/getCartById';
-import { createCartLogic } from '../../../server/function/addCartLogic';
+import { constants } from '../../../data/constants';
 import { productForm } from '../../../server/function/productForm';
 import { IProduct } from '../../../server/products/queryProductProjections';
 import { ProductSort } from '../../../server/sort/sort';
-import { Cart } from '../../basket/interfaces/cartInterface';
-import { changeQuantity } from '../functions/catalog/changeQuantity';
-import { buildProductItem } from '../functions/product/buildProductItem';
+import { renderNewCatalog } from '../functions/catalog/renderNewCatalog';
 
 export function sortByValue(value: string): void {
     document.addEventListener('click', async (event) => {
@@ -39,16 +36,14 @@ export function sortByValue(value: string): void {
 }
 
 function mainCatalogSort(result: IProduct[]): void {
-    const prodList = document.getElementById('product-view') as HTMLDivElement;
-    prodList.innerHTML = '';
+    let count = 0;
+    constants.productList = [];
+    result.forEach((prod) => {
+        constants.productList.push(prod);
+        count += 1;
+    });
 
-    (async () => {
-        await createCartLogic();
-        const cart = (await getCartManager.getCartById(sessionStorage.newCartId)) as Cart;
-        result.forEach((prod) => {
-            prodList.append(buildProductItem(prod, cart));
-        });
-    })();
+    renderNewCatalog(count);
 }
 
 function subCategorySort(result: IProduct[], currCategoryLastTagId: string): void {
@@ -56,28 +51,30 @@ function subCategorySort(result: IProduct[], currCategoryLastTagId: string): voi
     currCategoryIdArr.splice(-2);
     const currCategoryId: string = currCategoryIdArr.join('-');
     const catTest = categoryRelatedIds() as string[];
-    (async () => {
-        await createCartLogic();
-        const cart = (await getCartManager.getCartById(sessionStorage.newCartId)) as Cart;
-        if (catTest) {
-            catTest.unshift(currCategoryId);
-            const prodList = document.getElementById('product-view') as HTMLDivElement;
-            prodList.innerHTML = '';
-            result.forEach((prod) => {
-                if (catTest.includes(prod.categories[0].id)) {
-                    prodList.append(buildProductItem(prod, cart));
-                }
-            });
-        } else {
-            const prodList = document.getElementById('product-view') as HTMLDivElement;
-            prodList.innerHTML = '';
-            result.forEach((prod) => {
-                if (prod.categories[0].id === currCategoryId) {
-                    prodList.append(buildProductItem(prod, cart));
-                }
-            });
-        }
-    })();
+    if (catTest) {
+        catTest.unshift(currCategoryId);
+        let count = 0;
+        constants.productList = [];
+        result.forEach((prod) => {
+            if (catTest.includes(prod.categories[0].id)) {
+                constants.productList.push(prod);
+                count += 1;
+            }
+        });
+
+        renderNewCatalog(count);
+    } else {
+        let count = 0;
+        constants.productList = [];
+        result.forEach((prod) => {
+            if (prod.categories[0].id === currCategoryId) {
+                constants.productList.push(prod);
+                count += 1;
+            }
+        });
+
+        renderNewCatalog(count);
+    }
 }
 
 function categoryRelatedIds(): string[] | void {
@@ -99,8 +96,6 @@ function categoryRelatedIds(): string[] | void {
 }
 
 function sort(target: HTMLButtonElement): void {
-    changeQuantity();
-
     const choice = target.textContent === 'CHEAP' ? 'alpha' : 'cheap';
     const secondBut = document.getElementById(`${choice}-view`) as HTMLButtonElement;
     secondBut.style.color = '';

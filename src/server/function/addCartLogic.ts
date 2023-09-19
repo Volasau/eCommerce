@@ -2,7 +2,7 @@ import { addItemToCart } from '../cart/addLineItem';
 import { createCart } from '../cart/createCart';
 import { createAnonymousToken } from '../token/accessTokenAS';
 
-export async function addCartLogic(id: string) {
+export async function addCartLogic(id: string): Promise<void> {
     if (sessionStorage.getItem('anonymousToken') === null) {
         await createAnonymousToken();
         await createCart();
@@ -20,7 +20,7 @@ export async function addCartLogic(id: string) {
     }
 }
 
-export async function createCartLogic() {
+export async function createCartLogic(): Promise<void> {
     if (sessionStorage.getItem('anonymousToken') === null) {
         await createAnonymousToken();
         await createCart();

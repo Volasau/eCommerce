@@ -1,6 +1,7 @@
 import { IConstants } from '../core/interfaces/constantsInterface';
 
 export const constants: IConstants = {
+    page: 0,
     logIn: false,
     shipDefault: false,
     billDefault: false,

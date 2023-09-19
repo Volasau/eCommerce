@@ -13,7 +13,6 @@ export class PromoCodes {
         let results: DiscountCode[];
         try {
             const bearer_token_cc: string = await tokenFetcher.fetchAccessToken();
-            console.log(bearer_token_cc);
             const response = await fetch(this.baseUrl, {
                 method: 'GET',
                 headers: {
@@ -21,7 +20,6 @@ export class PromoCodes {
                     'Content-Type': 'application/json',
                 },
             });
-            console.log(response);
             const data: DiscountCodePagedQueryResponse = await response.json();
             results = data.results;
             return results;

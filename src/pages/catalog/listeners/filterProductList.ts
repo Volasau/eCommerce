@@ -2,12 +2,10 @@ interface ISelectedFilters {
     [key: string]: string[] | undefined;
 }
 
-import { getCartManager } from '../../../server/cart/getCartById';
+import { constants } from '../../../data/constants';
 import { ProductFilter } from '../../../server/filter/filterCategory';
-import { createCartLogic } from '../../../server/function/addCartLogic';
 import { IProduct } from '../../../server/products/queryProductProjections';
-import { Cart } from '../../basket/interfaces/cartInterface';
-import { buildProductItem } from '../functions/product/buildProductItem';
+import { renderNewCatalog } from '../functions/catalog/renderNewCatalog';
 const productFilter = new ProductFilter();
 
 export function filterProductList(): void {
@@ -27,15 +25,14 @@ export function filterProductList(): void {
                 const quantity = document.querySelector('.quantity') as HTMLSpanElement;
                 quantity.textContent = `${filteredProductsList.length}`;
 
-                (async () => {
-                    await createCartLogic();
-                    const cart = (await getCartManager.getCartById(sessionStorage.newCartId)) as Cart;
-                    const prodList = document.getElementById('product-view') as HTMLDivElement;
-                    prodList.innerHTML = '';
-                    filteredProductsList.forEach((prod) => {
-                        prodList.append(buildProductItem(prod, cart));
-                    });
-                })();
+                let count = 0;
+                constants.productList = [];
+                filteredProductsList.forEach((prod) => {
+                    constants.productList.push(prod);
+                    count += 1;
+                });
+
+                renderNewCatalog(count);
             } catch (error) {
                 console.error('Error filtering products:', error);
             }

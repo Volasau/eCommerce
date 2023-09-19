@@ -3,14 +3,16 @@ import { getCartManager } from '../../../../server/cart/getCartById';
 import { createCartLogic } from '../../../../server/function/addCartLogic';
 import { Cart } from '../../../basket/interfaces/cartInterface';
 import { buttonHTML, divHTML } from '../../classes/elementBuilder';
-import { buildProductItem } from './buildProductItem';
+import { buildProductItem } from '../product/buildProductItem';
 
-export function buildProductList(): HTMLDivElement {
-    const productList = divHTML.getElement('', 'product-view-list', 'viewer-inner') as HTMLDivElement;
-    const products = divHTML.getElement('', 'product-view', 'viewer-prod') as HTMLDivElement;
+export function renderNewCatalog(count: number): void {
     (async () => {
+        constants.page = 0;
         await createCartLogic();
         const cart = (await getCartManager.getCartById(sessionStorage.newCartId)) as Cart;
+        const prodList = document.getElementById('product-view-list') as HTMLDivElement;
+        const products = divHTML.getElement('', 'product-view', 'viewer-prod') as HTMLDivElement;
+        prodList.innerHTML = '';
 
         for (let i = 0; i < 6; i += 1) {
             if (constants.productList[i]) {
@@ -18,14 +20,15 @@ export function buildProductList(): HTMLDivElement {
                 products.append(product);
             }
         }
-        productList.append(products);
+        prodList.append(products);
         const buttonBlock = divHTML.getElement('', 'next-prev', 'next-prev') as HTMLDivElement;
         const nextBut = buttonHTML.getElement('>>>NEXT', 'next-prod', 'next-prod') as HTMLButtonElement;
         const prevBut = buttonHTML.getElement('PREV<<<', 'prev-prod', 'prev-prod') as HTMLButtonElement;
         prevBut.disabled = true;
+        if (count <= 6) nextBut.disabled = true;
         buttonBlock.append(prevBut, nextBut);
-        productList.append(buttonBlock);
+        prodList.append(buttonBlock);
+        const quantity = document.querySelector('.quantity') as HTMLSpanElement;
+        quantity.textContent = `${count}`;
     })();
-
-    return productList;
 }

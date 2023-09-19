@@ -5,6 +5,14 @@
   width: calc(100% - 170px);
 }
 
+#product-view-list {
+  display: flex;
+  flex-direction: column;
+  row-gap: 2rem;
+  justify-content: center;
+  align-items: center;
+}
+
 #product-view {
   display: flex;
   flex-direction: row;
@@ -111,4 +119,15 @@
   width: 70%;
   top: -15%;
   right: -24%;
+}
+
+#next-prev {
+  display: flex;
+  column-gap: 1rem;
+}
+
+#prev-prod:hover,
+#next-prod:hover {
+  cursor: pointer;
+  background-color: rgb(207, 205, 205);
 }

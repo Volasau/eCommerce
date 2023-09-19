@@ -4,6 +4,7 @@ import { IRegistration } from './registrationInterface';
 import { IProduct } from '../../server/products/queryProductProjections';
 
 export interface IConstants {
+    page: number;
     logIn: boolean;
     shipDefault: boolean;
     billDefault: boolean;

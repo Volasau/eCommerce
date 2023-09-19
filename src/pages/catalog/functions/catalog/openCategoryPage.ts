@@ -4,11 +4,8 @@ import { CatalogRender } from '../../classes/catalogRenderClass';
 import { buttonHTML, spanHTML } from '../../classes/elementBuilder';
 import { ICategoryResp } from '../../interfaces/categoryResponse/categoryResponseInterface';
 import { getSubCategoriesFrom } from './getSubCategoriesFrom';
-import { buildProductItem } from '../product/buildProductItem';
-import { changeQuantity } from './changeQuantity';
-import { createCartLogic } from '../../../../server/function/addCartLogic';
-import { Cart } from '../../../basket/interfaces/cartInterface';
-import { getCartManager } from '../../../../server/cart/getCartById';
+import { constants } from '../../../../data/constants';
+import { renderNewCatalog } from './renderNewCatalog';
 
 export function openCategoryPage(cat: ICategoryResp): void {
     const title = document.querySelector('.header__page') as HTMLElement;
@@ -40,16 +37,14 @@ export function openCategoryPage(cat: ICategoryResp): void {
     categoryNameHTML.textContent = `${cat.name.en}`;
     categoryNameHTML.append(filterBut);
 
-    (async () => {
-        await createCartLogic();
-        const cart = (await getCartManager.getCartById(sessionStorage.newCartId)) as Cart;
-        const prodList = document.getElementById('product-view') as HTMLDivElement;
-        prodList.innerHTML = '';
-        cat.subcategories.forEach((sub) => {
-            sub.products.forEach((prod) => {
-                prodList.append(buildProductItem(prod, cart));
-            });
+    let count = 0;
+    constants.productList = [];
+    cat.subcategories.forEach((sub) => {
+        sub.products.forEach((prod) => {
+            constants.productList.push(prod);
+            count += 1;
         });
-        changeQuantity();
-    })();
+    });
+
+    renderNewCatalog(count);
 }
