@@ -7,6 +7,7 @@ import { buildProductItem } from '../product/buildProductItem';
 
 export function renderNewCatalog(count: number) {
     (async () => {
+        constants.page = 0;
         await createCartLogic();
         const cart = (await getCartManager.getCartById(sessionStorage.newCartId)) as Cart;
         const prodList = document.getElementById('product-view-list') as HTMLDivElement;
@@ -24,6 +25,7 @@ export function renderNewCatalog(count: number) {
         const nextBut = buttonHTML.getElement('>>>NEXT', 'next-prod', 'next-prod') as HTMLButtonElement;
         const prevBut = buttonHTML.getElement('PREV<<<', 'prev-prod', 'prev-prod') as HTMLButtonElement;
         prevBut.disabled = true;
+        if (count <= 6) nextBut.disabled = true;
         buttonBlock.append(prevBut, nextBut);
         prodList.append(buttonBlock);
         const quantity = document.querySelector('.quantity') as HTMLSpanElement;
