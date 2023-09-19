@@ -113,6 +113,7 @@ class App {
         App.container.append(this.header.render());
 
         await App.renderNewPage('main');
+        window.location.hash = '/main';
         this.enableRouteChange();
     }
 }
