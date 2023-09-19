@@ -7,7 +7,7 @@ export function applyPromoCode() {
             const id = target.id.replace('-lap-but', '');
             const input = document.getElementById(`${id}-promo-input`) as HTMLInputElement;
             const price = document.getElementById(`${id}-cart-prod-price`) as HTMLDivElement;
-            const prodName = document.querySelector(`#${id}-cart-prod-name`) as HTMLDivElement;
+            const prodName = document.getElementById(`${id}-cart-prod-name`) as HTMLDivElement;
             if (target.innerHTML === 'Apply') {
                 if (input.value === 'promo-laptop') {
                     input.remove();

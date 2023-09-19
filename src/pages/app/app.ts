@@ -109,6 +109,7 @@ class App {
     }
 
     async run(): Promise<void> {
+        sessionStorage.clear();
         App.container.append(this.header.render());
 
         await App.renderNewPage('main');
