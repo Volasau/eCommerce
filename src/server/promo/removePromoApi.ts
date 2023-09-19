@@ -60,7 +60,6 @@ export async function discardPromoFromCart(): Promise<Cart | undefined | void> {
         if (getCart?.discountCodes[0].discountCode.id) {
             const cart = new RemovePromo(getCart.id, getCart.version);
             const addPromoResp: Cart | undefined = await cart.removePromoFromCart(getCart);
-            console.log(addPromoResp);
             return addPromoResp;
         }
     } catch (error) {

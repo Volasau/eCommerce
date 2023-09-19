@@ -56,7 +56,6 @@ export async function applyPromoToCart(code: string): Promise<Cart | undefined> 
 
         const cart = new AddPromo(getCart.id, getCart.version);
         const addPromoResp: Cart | undefined = await cart.addPromoToCart(code);
-        console.log(addPromoResp);
         return addPromoResp;
     } catch (error) {
         console.error(error);
