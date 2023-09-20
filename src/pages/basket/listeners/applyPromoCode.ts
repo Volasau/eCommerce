@@ -1,4 +1,5 @@
 import { CartGetManager } from '../../../server/cart/getCartById';
+import { isPromoLap } from '../functions/isPromoLap';
 import { recalculatePromo } from './changeQuantity/recalculatePromo';
 import { recalculateValues } from './changeQuantity/recalculateValues';
 
@@ -28,7 +29,7 @@ export function applyPromoCode() {
                     recalculatePromo(id);
                 }
             } else {
-                promoSumBlock.innerHTML = '';
+                if (isPromoLap()) promoSumBlock.innerHTML = '';
                 if (target.parentElement) target.parentElement.remove();
                 prodName.innerHTML += `<div id="lap-promo">
                                         <input id="${id}-promo-input" type="text" placeholder="PROMO">
@@ -36,8 +37,8 @@ export function applyPromoCode() {
                                     </div>`;
                 price.innerHTML = sessionStorage.getItem(id) as string;
                 sessionStorage.removeItem(id);
+                if (isPromoLap()) recalculatePromo(id);
                 recalculateValues(id, cart?.totalPrice.centAmount);
-                // recalculatePromo(id);
             }
         }
     });

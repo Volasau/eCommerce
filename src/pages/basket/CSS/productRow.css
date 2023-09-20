@@ -126,10 +126,6 @@
   cursor: pointer;
 }
 
-#cart-promo-sum {
-  color: rgb(248, 75, 153);
-}
-
 #lap-promo {
   margin-bottom: 0.4rem;
 }
@@ -140,28 +136,7 @@
   }
 }
 
-@media screen and (max-width: 800px) {
-  #cart-total-sum {
-    display: flex;
-    flex-direction: column;
-    row-gap: 0.2rem;
-    justify-content: center;
-    align-items: center;
-    height: 8rem;
-    background-color: grey;
-    color: azure;
-  }
-
-  #cart-sum {
-    text-align: center;
-  }
-
-  #cart-sum::before {
-    content: '';
-  }
-}
-
-@media screen and (max-width: 720px) {
+@media screen and (max-width: 680px) {
   .cart-attr {
     flex-direction: column;
     width: 60%;
@@ -194,5 +169,24 @@
 
   #lap-promo {
     margin-bottom: 0.5rem;
+  }
+
+  #cart-total-sum {
+    display: flex;
+    flex-direction: column;
+    row-gap: 0.2rem;
+    justify-content: center;
+    align-items: center;
+    height: 6rem;
+    background-color: grey;
+    color: azure;
+  }
+
+  #cart-sum {
+    text-align: center;
+  }
+
+  #cart-sum::before {
+    content: '';
   }
 }
