@@ -67,6 +67,12 @@
   background-color: grey;
 }
 
+.footer {
+  width: 18rem;
+  margin: auto;
+  padding-bottom: 1rem;
+}
+
 @media screen and (max-width: 420px) {
   .promo-wrap {
     margin-top: 2rem;

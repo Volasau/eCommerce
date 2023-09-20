@@ -16,12 +16,13 @@ class BasketPage extends Page {
 
     async render(): Promise<HTMLElement> {
         const title = this.createHeaderTitle(this.text);
-        const catalog = createLink('#/catalog', 'To go to the catalog click here ', 'Catalog📦', '');
+        const link = createLink('#/catalog', 'To go to the catalog click here ', 'Catalog📦', '');
+        link.classList.add('footer');
         await createCartLogic();
         const cartId = sessionStorage.getItem('newCartId') as string;
         const cart = (await getCartManager.getCartById(cartId)) as Cart;
         const myCart = new CartViewer(cart);
-        this._container.append(title, myCart.view(), catalog);
+        this._container.append(title, myCart.view(), link);
         disableMinusButtons();
         return this._container;
     }
