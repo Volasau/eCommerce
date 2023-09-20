@@ -109,9 +109,11 @@ class App {
     }
 
     async run(): Promise<void> {
+        sessionStorage.clear();
         App.container.append(this.header.render());
 
         await App.renderNewPage('main');
+        window.location.hash = '/main';
         this.enableRouteChange();
     }
 }

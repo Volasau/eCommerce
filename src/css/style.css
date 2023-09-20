@@ -1,3 +1,4 @@
+
 .link {
   height: 75%;
   letter-spacing: 1px;
@@ -23,7 +24,6 @@
 
 .header__page {
   max-width: 1300px;
-  margin: 0 auto;
 }
 
 #lap-text,
@@ -65,6 +65,12 @@
 
 .copyText:hover {
   background-color: grey;
+}
+
+.footer {
+  width: 18rem;
+  margin: auto;
+  padding-bottom: 1rem;
 }
 
 @media screen and (max-width: 420px) {

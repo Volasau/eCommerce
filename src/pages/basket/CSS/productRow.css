@@ -40,6 +40,7 @@
   cursor: pointer;
   border-style: outset;
   transition: 0.5s;
+  max-height: 2rem;
 }
 
 .delete-cart-prod:hover,
@@ -64,7 +65,7 @@
 .cart-name {
   display: flex;
   flex-direction: column;
-  row-gap: 0.5rem;
+  row-gap: 0.3rem;
   width: 20%;
   font-weight: 900;
 }
@@ -125,13 +126,17 @@
   cursor: pointer;
 }
 
+#lap-promo {
+  margin-bottom: 0.4rem;
+}
+
 @media screen and (max-width: 880px) {
   #lap-promo {
     width: 7rem;
   }
 }
 
-@media screen and (max-width: 720px) {
+@media screen and (max-width: 680px) {
   .cart-attr {
     flex-direction: column;
     width: 60%;
@@ -162,6 +167,10 @@
     display: none;
   }
 
+  #lap-promo {
+    margin-bottom: 0.5rem;
+  }
+
   #cart-total-sum {
     display: flex;
     flex-direction: column;
@@ -180,5 +189,4 @@
   #cart-sum::before {
     content: '';
   }
-
 }

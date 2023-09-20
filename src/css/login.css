@@ -66,6 +66,9 @@ button[type="button"]:hover {
   padding: 0 10px;
 }
 
+.none {
+  display: none;
+}
 
 @media screen and (max-width: 761px) {
   form {

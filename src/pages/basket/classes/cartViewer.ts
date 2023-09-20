@@ -6,7 +6,6 @@ import { createProductRow } from '../utils/createProductRow.utils';
 import { createTotalSumRow } from '../utils/createTotalSumRow.utils';
 import { createCartHeader } from '../utils/createCartHeader.utils';
 import { addEmptyInfo } from '../utils/addEmptyInfo.utils';
-import { addPromoButBigSum } from '../functions/addPromoButBigSum';
 
 export class CartViewer implements ICartViewer {
     container: HTMLDivElement;
@@ -33,7 +32,6 @@ export class CartViewer implements ICartViewer {
         });
 
         const totalSumRow = createTotalSumRow(this.totalSum);
-        if (this.totalSum > 200) addPromoButBigSum(totalSumRow);
         this.container.append(totalSumRow);
         const clearBut = this.container.querySelector('#cart-cleaner') as HTMLButtonElement;
         if (this.cartProducts.length === 0) clearBut.disabled = true;
