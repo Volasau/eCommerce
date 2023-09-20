@@ -36,6 +36,10 @@ export class CustomerLogin {
                 btnLogout.forEach((el) => {
                     el.classList.add('block');
                 });
+                const btnLogin: Element | null = document.querySelector('.login__page');
+                btnLogin?.classList.add('none');
+                const btnRegistr: Element | null = document.querySelector('.registr__page');
+                btnRegistr?.classList.add('none');
 
                 const btnProfile: Element | null = document.querySelector('.profile__page');
                 if (btnProfile) {
