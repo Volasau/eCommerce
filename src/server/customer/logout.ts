@@ -17,6 +17,10 @@ export class TokenRevoker {
 
             if (response.status === 200) {
                 console.log('Token successfully revoked.');
+                const btnLogin: Element | null = document.querySelector('.login__page');
+                btnLogin?.classList.remove('none');
+                const btnRegistr: Element | null = document.querySelector('.registr__page');
+                btnRegistr?.classList.remove('none');
             } else {
                 console.log('Failed to revoke token.');
             }
