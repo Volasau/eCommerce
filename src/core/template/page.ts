@@ -4,6 +4,7 @@ import { createElement } from '../../pages/profile/createElement';
 abstract class Page {
     protected _container: HTMLElement;
     abstract text: string;
+    abstract render(): Promise<HTMLElement>;
 
     constructor(id: string) {
         this._container = document.createElement('div');
@@ -20,10 +21,6 @@ abstract class Page {
 
         headerContainer.append(basketLink, aboutUsLink, headerTitle);
         return headerContainer;
-    }
-
-    render(): Promise<HTMLElement> {
-        return Promise.resolve(this._container);
     }
 }
 
