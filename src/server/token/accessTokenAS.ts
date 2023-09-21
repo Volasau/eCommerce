@@ -4,7 +4,7 @@ import { request } from '../classes/requestClass';
 import { PARSE } from '../interfaces/parseEnum';
 
 export class AnonymousTokenManager {
-    private requestData: URLSearchParams;
+    private readonly requestData: URLSearchParams;
 
     constructor() {
         this.requestData = new URLSearchParams({

@@ -4,11 +4,10 @@ import { PARSE } from '../interfaces/parseEnum';
 import { ICart } from '../function/interfaces';
 
 export class CartCreateManager {
-    private currency: string;
     private bearerTokenAs: string;
+    private readonly currency = 'GBP';
 
     constructor() {
-        this.currency = 'GBP';
         this.bearerTokenAs = sessionStorage.getItem('anonymousToken') as string;
     }
 

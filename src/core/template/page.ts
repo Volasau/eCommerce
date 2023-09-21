@@ -3,7 +3,6 @@ import { createElement } from '../../pages/profile/createElement';
 
 abstract class Page {
     protected _container: HTMLElement;
-    abstract text: string;
     abstract render(): Promise<HTMLElement> | HTMLElement;
 
     constructor(id: string) {
