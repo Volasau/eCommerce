@@ -4,7 +4,7 @@ import { buildModal } from '../functions/product/buildModal';
 import { IModal } from '../interfaces/modalInterface';
 
 export class Modal implements IModal {
-    modalHTML: HTMLDivElement;
+    private modalHTML: HTMLDivElement;
 
     constructor(product: IProduct) {
         const productName = product.name;

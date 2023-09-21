@@ -1,7 +1,7 @@
 import { IBuilder } from '../interfaces/builderInterface';
 
 class ElementBuilder implements IBuilder {
-    tag: string;
+    private tag: string;
 
     constructor(tag: string) {
         this.tag = tag;

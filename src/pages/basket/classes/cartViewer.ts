@@ -8,11 +8,11 @@ import { createCartHeader } from '../utils/createCartHeader.utils';
 import { addEmptyInfo } from '../utils/addEmptyInfo.utils';
 
 export class CartViewer implements ICartViewer {
-    container: HTMLDivElement;
+    private container: HTMLDivElement;
 
-    cartProducts: LineItem[];
+    private cartProducts: LineItem[];
 
-    totalSum: number;
+    private totalSum: number;
 
     constructor(cart: Cart) {
         this.container = divHTML.getElement('', 'cart-list', 'cart-list') as HTMLDivElement;

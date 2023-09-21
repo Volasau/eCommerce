@@ -13,27 +13,27 @@ import { Category } from './categoryClass';
 import { divHTML } from './elementBuilder';
 
 export class CatalogRender implements ICatalog {
-    curCatalog: Element | null;
+    private curCatalog: Element | null;
 
-    title: HTMLElement;
+    private title: HTMLElement;
 
-    wrapper: HTMLDivElement;
+    private wrapper: HTMLDivElement;
 
-    hashChain: HTMLDivElement;
+    private hashChain: HTMLDivElement;
 
-    search: HTMLDivElement;
+    private search: HTMLDivElement;
 
-    discount: HTMLDivElement;
+    private discount: HTMLDivElement;
 
-    cartStatus: string;
+    private cartStatus: string;
 
-    categoryName: HTMLDivElement;
+    private categoryName: HTMLDivElement;
 
-    catalogViewer: HTMLDivElement;
+    private catalogViewer: HTMLDivElement;
 
-    categories: ICategory[];
+    private categories: ICategory[];
 
-    product: IProduct;
+    private product: IProduct;
 
     constructor(categoryResponse: ICategoryResp[] | ICategory[] | IProduct, title: HTMLElement, cartStatus: string) {
         this.categories = [];
