@@ -7,7 +7,6 @@ export async function createPromoWindow(): Promise<HTMLDivElement> {
     const promo = new PromoCodes();
     const promoCodes = (await promo.getPromoCodes()) as DiscountCode[];
     const firstPromo: string = promoCodes[1].code;
-    // const secondPromo: string = promoCodes[0].code;
     wrapper.innerHTML = `!!!Don't miss the chance!!!
                         <div id="lap-text">PROMO CODE FOR BUYING THE LAPTOP</div>
                         <div id="laptop">

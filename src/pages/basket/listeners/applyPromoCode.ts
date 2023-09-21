@@ -11,7 +11,6 @@ export function applyPromoCode() {
             const input = document.getElementById(`${id}-promo-input`) as HTMLInputElement;
             const price = document.getElementById(`${id}-cart-prod-price`) as HTMLDivElement;
             const prodName = document.getElementById(`${id}-cart-prod-name`) as HTMLDivElement;
-            // const totalSumBlock = document.getElementById('cart-sum') as HTMLDivElement;
             const promoSumBlock = document.getElementById('cart-promo-sum') as HTMLDivElement;
             const cartId = sessionStorage.getItem('newCartId') as string;
             const myCart = new CartGetManager();
