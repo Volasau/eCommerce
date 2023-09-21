@@ -22,7 +22,7 @@ class BasketPage extends Page {
         const cartId = sessionStorage.getItem('newCartId') as string;
         const cart = (await getCartManager.getCartById(cartId)) as Cart;
         const myCart = new CartViewer(cart);
-        this._container.append(title, myCart.view(), link);
+        this._container.append(title, myCart.createView(), link);
         disableMinusButtons();
         return this._container;
     }

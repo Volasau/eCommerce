@@ -9,7 +9,7 @@ export function plusMinusOneProduct(): void {
         const target = event.target as HTMLButtonElement;
         if (target.className === 'plus-button') {
             const id = target.id.replace('-cart-prod-plus', '');
-            plusOne(target, count);
+            plusOne(target);
             const cart = await increaseItemInBasket(id);
 
             recalculate(id, cart?.totalPrice.centAmount);
