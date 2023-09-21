@@ -1,6 +1,6 @@
 import { IAuthorization } from '../../../../core/interfaces/authorizationInterface';
 import { ILoginRequest } from '../../../../core/interfaces/loginRequest';
-import { TokenManager } from '../../../../server/token/accessTokenPF';
+import { TokenManager } from '../../../../server/token/tokenManager';
 import { IAccessTokenResponse } from '../../../../core/interfaces/accessTokenResponse';
 import { CustomerLogin } from '../../../../server/customer/customerLogin';
 import { Customer } from '@commercetools/platform-sdk';

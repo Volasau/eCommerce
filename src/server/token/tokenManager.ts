@@ -5,7 +5,7 @@ import { request } from '../classes/requestClass';
 import { PARSE } from '../interfaces/parseEnum';
 
 export class TokenManager {
-    private requestData: URLSearchParams;
+    private readonly requestData: URLSearchParams;
 
     constructor(email: string, password: string) {
         this.requestData = new URLSearchParams({

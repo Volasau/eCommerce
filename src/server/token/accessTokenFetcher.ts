@@ -4,7 +4,7 @@ import { IAccessTokenResponse } from '../interfaces/accessTokenResponseInterface
 import { constants } from '../../data/constants';
 
 export class AccessTokenFetcher {
-    private requestData: URLSearchParams;
+    private readonly requestData: URLSearchParams;
 
     constructor() {
         this.requestData = new URLSearchParams({

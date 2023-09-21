@@ -1,6 +1,6 @@
 import { addItemToCart } from '../cart/addLineItem';
 import { createCart } from '../cart/createCart';
-import { createAnonymousToken } from '../token/accessTokenAS';
+import { createAnonymousToken } from '../token/anonymousTokenManager';
 
 export async function addCartLogic(id: string): Promise<void> {
     if (sessionStorage.getItem('anonymousToken') === null) {
