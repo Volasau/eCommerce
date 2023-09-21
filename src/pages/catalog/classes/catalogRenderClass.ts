@@ -70,18 +70,13 @@ export class CatalogRender implements ICatalog {
 
     renderCategory(): void {
         if (this.curCatalog !== null) this.curCatalog.remove();
-        this.wrapper.append(this.hashChain, this.search, this.discount, this.categoryName, this.catalogViewer);
-        this.title.after(this.wrapper);
-        constants.page = 0;
+        this.renderCatalog();
     }
 
     renderSubCategory(): void {
-        if (this.curCatalog !== null) this.curCatalog.remove();
-        this.wrapper.append(this.hashChain, this.search, this.discount, this.categoryName, this.catalogViewer);
-        this.title.after(this.wrapper);
+        this.renderCategory();
         const categoryBlock = document.getElementById('category-view') as HTMLDivElement;
         categoryBlock.remove();
-        constants.page = 0;
     }
 
     renderProduct(): void {
