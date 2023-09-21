@@ -14,7 +14,7 @@ class AboutPage extends Page {
         this.text = 'About US';
     }
 
-    async render(): Promise<HTMLElement> {
+    render(): HTMLElement {
         const title = this.createHeaderTitle(this.text);
         const containerInfo = createElement('div', 'aboutus__container');
         const linkSchool = createElement('p', 'link-school__container');
