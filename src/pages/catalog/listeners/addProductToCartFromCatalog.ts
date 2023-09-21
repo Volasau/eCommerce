@@ -8,11 +8,7 @@ export function addProductToCartFromCatalog(): void {
             const hashChain = document.getElementById('row-chain') as Node;
             const hashLength = hashChain.childNodes.length;
             const cartBut = defineCartBut(target);
-            if (hashLength === 9) {
-                await changeCarButView(cartBut, 'DELETE');
-            } else {
-                await changeCarButView(cartBut, 'IN CART');
-            }
+            await changeCarButView(cartBut, hashLength === 9 ? 'DELETE' : 'IN CART');
         }
     });
 }
