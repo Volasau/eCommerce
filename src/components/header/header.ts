@@ -1,8 +1,7 @@
 import Component from '../../core/template/component';
-import App, { PageId } from '../../pages/app/app';
+import { PageId } from '../../pages/app/app';
 import '../../css/header.css';
 import logo from '../../assets/images/logo.jpg';
-import { constants } from '../../data/constants';
 
 const Buttons = [
     {
@@ -76,17 +75,6 @@ class Header extends Component {
             pageButtons.append(buttonHTML);
         });
         this._container.append(pageButtons);
-    }
-
-    async handleButtonClick(pageId: PageId): Promise<void> {
-        if (pageId === PageId.LogoutPage) {
-            const logoutBtn = document.querySelector('.logout__page');
-            constants.logIn = false;
-            logoutBtn?.classList.remove('block');
-            await App.renderNewPage(PageId.LoginPage);
-        } else {
-            await App.renderNewPage(pageId);
-        }
     }
 
     render(): HTMLElement {

@@ -117,8 +117,7 @@ export async function decreaseItemInBasket(itemId: string): Promise<Cart | undef
         }
         const cart = new ChangeLineItemQuantity(getCart.id, getCart.version);
         const amount = matchingLineItem?.quantity as number;
-        const removeLineItemResp: Cart | undefined = await cart.decreaseInCart(lineItemId, amount);
-        return removeLineItemResp;
+        return await cart.decreaseInCart(lineItemId, amount);
     } catch (error) {
         console.error(error);
     }

@@ -1,4 +1,4 @@
-import { changeCarButView } from '../functions/other/changeCarButView';
+import { changeCartButView } from '../functions/other/changeCartButtonView';
 import { defineCartBut } from '../functions/other/defineCartBut';
 
 export function addProductToCartFromCatalog(): void {
@@ -8,7 +8,7 @@ export function addProductToCartFromCatalog(): void {
             const hashChain = document.getElementById('row-chain') as Node;
             const hashLength = hashChain.childNodes.length;
             const cartBut = defineCartBut(target);
-            await changeCarButView(cartBut, hashLength === 9 ? 'DELETE' : 'IN CART');
+            await changeCartButView(cartBut, hashLength === 9 ? 'DELETE' : 'IN CART');
         }
     });
 }

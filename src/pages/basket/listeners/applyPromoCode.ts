@@ -3,7 +3,7 @@ import { isPromoLap } from '../functions/isPromoLap';
 import { recalculatePromo } from './changeQuantity/recalculatePromo';
 import { recalculateValues } from './changeQuantity/recalculateValues';
 
-export function applyPromoCode() {
+export function applyPromoCode(): void {
     document.addEventListener('click', async (event) => {
         const target = event.target as HTMLButtonElement;
         if (target.id.includes('-lap-but')) {

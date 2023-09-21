@@ -24,7 +24,7 @@ import { viewPrevPage } from '../pages/catalog/listeners/viewPrevPage';
 import { submitLogin } from '../pages/logReg/validation/authorizationFunctions/submitData/submitLogin';
 import { submitReg } from '../pages/logReg/validation/authorizationFunctions/submitData/submitReg';
 
-export function addListeners() {
+export function addListeners(): void {
     submitLogin(constants.authorization);
     submitReg(constants.registration);
     getModal();

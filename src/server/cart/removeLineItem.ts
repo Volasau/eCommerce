@@ -57,10 +57,8 @@ export async function removeItemFromCart(productIdToFind: string): Promise<Cart 
         const matchingLineItem: LineItem | undefined = getCart.lineItems.find(
             (lineItem) => lineItem.productId === productIdToFind
         );
-        let lineItemId = '';
-        if (matchingLineItem) {
-            lineItemId = matchingLineItem.id;
-        }
+        const lineItemId = matchingLineItem ? matchingLineItem.id : '';
+
         const cart = new RemoveLineItem(getCart.id, getCart.version);
         const amount = matchingLineItem?.quantity as number;
         const removeLineItemResp: Cart | undefined = await cart.removeFromCart(lineItemId, amount);
@@ -76,14 +74,11 @@ export async function removeItemFromBasket(itemId: string): Promise<Cart | undef
         const getCart = (await getCartManager.getCartById(cartId as string)) as Cart;
         const matchingLineItem: LineItem | undefined = getCart.lineItems.find((lineItem) => lineItem.id === itemId);
 
-        let lineItemId = '';
-        if (matchingLineItem) {
-            lineItemId = matchingLineItem.id;
-        }
+        const lineItemId = matchingLineItem ? matchingLineItem.id : '';
+
         const cart = new RemoveLineItem(getCart.id, getCart.version);
         const amount = matchingLineItem?.quantity as number;
-        const removeLineItemResp: Cart | undefined = await cart.removeFromCart(lineItemId, amount);
-        return removeLineItemResp;
+        return await cart.removeFromCart(lineItemId, amount);
     } catch (error) {
         console.error(error);
     }
