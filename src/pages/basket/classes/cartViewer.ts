@@ -20,7 +20,7 @@ export class CartViewer implements ICartViewer {
         this.totalSum = cart.totalPrice.centAmount / 100;
     }
 
-    view(): HTMLDivElement {
+    createView(): HTMLDivElement {
         const cartHeader = createCartHeader();
         this.container.append(cartHeader);
         if (this.cartProducts.length === 0) {
