@@ -2,8 +2,6 @@ import { constants } from '../../data/constants';
 import { request } from '../classes/requestClass';
 import { PARSE } from '../interfaces/parseEnum';
 import { ICart } from '../function/interfaces';
-// import { discardPromoFromCart } from '../promo/removePromoApi';
-// import { AddLineItem } from './addLineItem';
 
 export class CartCreateManager {
     private currency: string;
