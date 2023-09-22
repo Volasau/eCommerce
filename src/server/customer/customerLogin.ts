@@ -7,6 +7,7 @@ import { ICustomerSignInResponse } from '../../core/interfaces/customerSignInRes
 import { request } from '../classes/requestClass';
 import { PARSE } from '../interfaces/parseEnum';
 import { Customer } from '@commercetools/platform-sdk';
+import { updateElementClasses } from '../function/changeLinks';
 
 export let dataCustomer: ICustomerResponse;
 
@@ -32,15 +33,11 @@ export class CustomerLogin {
                 const newUrl: string = window.location.href.replace(`#/${PageId.LoginPage}`, `#/${PageId.MainPage}`);
                 window.history.replaceState({}, document.title, newUrl);
                 App.renderNewPage(PageId.MainPage);
+                updateElementClasses();
                 const btnLogout: NodeListOf<Element> = document.querySelectorAll('.logout__page');
                 btnLogout.forEach((el) => {
                     el.classList.add('block');
                 });
-                const btnLogin: Element | null = document.querySelector('.login__page');
-                btnLogin?.classList.add('none');
-                const btnRegistr: Element | null = document.querySelector('.registr__page');
-                btnRegistr?.classList.add('none');
-
                 const btnProfile: Element | null = document.querySelector('.profile__page');
                 if (btnProfile) {
                     btnProfile.classList.add('block');
