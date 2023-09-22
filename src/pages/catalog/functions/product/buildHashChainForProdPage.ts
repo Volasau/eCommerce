@@ -1,7 +1,7 @@
 import urlImg from '../../../../assets/icons/arrow.svg';
 import { IProduct } from '../../../../server/products/queryProductProjections';
 import { spanHTML } from '../../classes/elementBuilder';
-import { ICategoryResp, ISubCategoryResp } from '../../interfaces/categoryResponse/categoryResponseInterface';
+import { ICategoryResp, ISubCategoryResp } from '../../interfaces/categoryResponse/categoryResponse.interfaces';
 
 export function buildHashChainForProdPage(cat: ICategoryResp, sub: ISubCategoryResp, prod: IProduct): void {
     const hash = document.getElementById('row-chain') as HTMLSpanElement;

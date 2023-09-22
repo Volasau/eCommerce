@@ -1,6 +1,6 @@
 import { showToast, showToastError } from '../../logReg/utils/funcToastify.utils';
 import { logoutAction } from '../../logReg/utils/logOutFunc.utils';
-import { IForm } from '../interfaces/iFormInterface';
+import { IForm } from '../interfaces/iForm.interfaces';
 import { changeCustomerApi } from './changeCustomerApi';
 import { inputHasError } from './inputHasError';
 import { inputIsEmpty } from './inputIsEmpty';

@@ -1,4 +1,4 @@
-import { IAboutInfo } from './interface/interfaceInfo';
+import { IAboutInfo } from './interface/info.interfaces';
 import iconGitHub from '../../assets/icons/github-logo.png';
 import { createElement } from '../profile/createElement';
 

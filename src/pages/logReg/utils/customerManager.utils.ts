@@ -1,9 +1,9 @@
 import { CustomerManager } from '../../../server/customer/customerRegistration';
-import { IRegistration } from '../../../core/interfaces/registrationInterface';
+import { IRegistration } from '../../../core/interfaces/registration.interfaces';
 import { getISOCodeByCountryName } from './getISOCode.utils';
-import { IAddressBilling } from '../../../core/interfaces/addressBilling';
-import { IAddressShipping } from '../../../core/interfaces/addressShipping';
-import { IConsolidatedData } from '../../../core/interfaces/consolidatedData';
+import { IAddressBilling } from '../../../core/interfaces/addressBilling.interfaces';
+import { IAddressShipping } from '../../../core/interfaces/addressShipping.interfaces';
+import { IConsolidatedData } from '../../../core/interfaces/consolidatedData.interfaces';
 import { showToast } from './funcToastify.utils';
 import { bearer_token_cc } from '../../..';
 

@@ -1,7 +1,7 @@
 import { dataCustomer } from '../../../server/customer/customerLogin';
 import { ChangeCustomerAddAddress } from '../../../server/profile/changeAddress';
 import { showToast, showToastError } from '../../logReg/utils/funcToastify.utils';
-import { changeAddress } from '../interfaces/dataForUpdate';
+import { changeAddress } from '../interfaces/dataForUpdate.interfaces';
 
 export async function customerAddressApi(
     chbxs: HTMLInputElement[],

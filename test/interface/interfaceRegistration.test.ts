@@ -1,4 +1,4 @@
-import { IRegistration } from '../../src/core/interfaces/registrationInterface';
+import { IRegistration } from '../../src/core/interfaces/registration.interfaces';
 
 const testRegistration: IRegistration = {
     email: 'string',

@@ -1,4 +1,4 @@
-import { INewInformUser } from '../../src/pages/profile/interfaces/newInFormUserInterface';
+import { INewInformUser } from '../../src/pages/profile/interfaces/newInFormUser.interfaces';
 
 const testNewInformUser: INewInformUser = {
     email: 'ryhor@gmail.com',

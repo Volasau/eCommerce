@@ -1,7 +1,7 @@
 import { constants } from '../../../../data/constants';
 import { getCartManager } from '../../../../server/cart/getCartById';
 import { createCartLogic } from '../../../../server/function/addCartLogic';
-import { Cart } from '../../../basket/interfaces/cartInterface';
+import { Cart } from '../../../basket/interfaces/cart.interfaces';
 import { buttonHTML, divHTML } from '../../classes/elementBuilder';
 import { buildProductItem } from '../product/buildProductItem';
 

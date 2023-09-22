@@ -1,5 +1,5 @@
 import { categoryResponse } from '../../../server/function/structureCategories';
-import { ICategoryResp } from '../interfaces/categoryResponse/categoryResponseInterface';
+import { ICategoryResp } from '../interfaces/categoryResponse/categoryResponse.interfaces';
 
 export function addCategoryLink(): void {
     document.addEventListener('click', (event) => {

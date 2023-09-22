@@ -1,5 +1,5 @@
 import { InnerForm } from '../../logReg/formClasses/classForm';
-import { IForm } from '../interfaces/iFormInterface';
+import { IForm } from '../interfaces/iForm.interfaces';
 
 export function getAddressForm(
     countryText: string,

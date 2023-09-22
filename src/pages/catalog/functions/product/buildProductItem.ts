@@ -1,7 +1,7 @@
 import urlImg from '../../../../assets/icons/discount.svg';
 import { cartSVG } from '../../../../data/cartSVG';
 import { IProduct } from '../../../../server/products/queryProductProjections';
-import { Cart } from '../../../basket/interfaces/cartInterface';
+import { Cart } from '../../../basket/interfaces/cart.interfaces';
 import { buttonHTML, divHTML, imgHTML } from '../../classes/elementBuilder';
 
 export function buildProductItem(prod: IProduct, cart: Cart): HTMLDivElement {

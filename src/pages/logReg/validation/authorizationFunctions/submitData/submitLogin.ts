@@ -1,4 +1,4 @@
-import { IAuthorization } from '../../../../../core/interfaces/authorizationInterface';
+import { IAuthorization } from '../../../../../core/interfaces/authorization.interfaces';
 import { logInToServer } from '../logInToServer';
 import { checkInputsForErrors } from './checkInputsForErrors';
 import { saveUsersData } from './saveUsersData';

@@ -6,9 +6,9 @@ import { buildHashChain } from '../functions/catalog/buildHashChain';
 import { buildProductViewer } from '../functions/catalog/buildProductViewer';
 import { createSearchingWindow } from '../functions/filter/createSearchingWindow';
 import { buildProductPage } from '../functions/product/buildProductPage';
-import { ICatalog } from '../interfaces/catalogInterface';
-import { ICategory } from '../interfaces/categoryInterface';
-import { ICategoryResp } from '../interfaces/categoryResponse/categoryResponseInterface';
+import { ICatalog } from '../interfaces/catalog.interfaces';
+import { ICategory } from '../interfaces/category.interfaces';
+import { ICategoryResp } from '../interfaces/categoryResponse/categoryResponse.interfaces';
 import { Category } from './categoryClass';
 import { divHTML } from './elementBuilder';
 

@@ -1,4 +1,4 @@
-import { IForm } from '../interfaces/iFormInterface';
+import { IForm } from '../interfaces/iForm.interfaces';
 
 export function clickCancelButton(but: HTMLButtonElement, form: IForm, changeInfoUser: HTMLButtonElement): void {
     but.addEventListener('click', () => {

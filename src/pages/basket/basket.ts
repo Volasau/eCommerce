@@ -2,7 +2,7 @@ import Page from '../../core/template/page';
 import { getCartManager } from '../../server/cart/getCartById';
 import { createLink } from '../logReg/utils/createLink.utils';
 import { CartViewer } from './classes/cartViewer';
-import { Cart } from './interfaces/cartInterface';
+import { Cart } from './interfaces/cart.interfaces';
 import { disableMinusButtons } from './functions/disableMinusButtons';
 import { createCartLogic } from '../../server/function/addCartLogic';
 

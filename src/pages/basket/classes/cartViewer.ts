@@ -1,7 +1,7 @@
-import { ICartViewer } from '../interfaces/cartViewerInterface';
+import { ICartViewer } from '../interfaces/cartViewer.interfaces';
 import { divHTML } from '../../catalog/classes/elementBuilder';
-import { LineItem } from '../interfaces/lineItemInterface';
-import { Cart } from '../interfaces/cartInterface';
+import { LineItem } from '../interfaces/lineItem.interfaces';
+import { Cart } from '../interfaces/cart.interfaces';
 import { createProductRow } from '../utils/createProductRow.utils';
 import { createTotalSumRow } from '../utils/createTotalSumRow.utils';
 import { createCartHeader } from '../utils/createCartHeader.utils';

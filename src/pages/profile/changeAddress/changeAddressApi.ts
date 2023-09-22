@@ -1,8 +1,8 @@
-import { ICustomerResponse } from '../../../core/interfaces/customerResponse';
+import { ICustomerResponse } from '../../../core/interfaces/customerResponse.interfaces';
 import { dataCustomer } from '../../../server/customer/customerLogin';
 import { CustomerAddAdress } from '../../../server/profile/addAdress';
 import { showToast, showToastError } from '../../logReg/utils/funcToastify.utils';
-import { newAddress } from '../interfaces/dataForUpdate';
+import { newAddress } from '../interfaces/dataForUpdate.interfaces';
 
 export type CustomerResp = void | ICustomerResponse | Error;
 

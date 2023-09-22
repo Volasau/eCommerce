@@ -1,7 +1,7 @@
-import { IChangeAddress } from './changeAddressInterface';
-import { IChangePassword } from './changePasswordInterface';
-import { INewAddress } from './newAddressInterface';
-import { INewInformUser } from './newInFormUserInterface';
+import { IChangeAddress } from './changeAddress.interfaces';
+import { IChangePassword } from './changePassword.interfaces';
+import { INewAddress } from './newAddress.interfaces';
+import { INewInformUser } from './newInFormUser.interfaces';
 
 export const newAddress: INewAddress = {
     country: '',

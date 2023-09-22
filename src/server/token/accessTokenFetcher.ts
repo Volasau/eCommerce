@@ -1,6 +1,6 @@
 import { PARSE } from '../interfaces/parseEnum';
 import { request } from '../classes/requestClass';
-import { IAccessTokenResponse } from '../interfaces/accessTokenResponseInterface';
+import { IAccessTokenResponse } from '../interfaces/accessTokenResponse.interfaces';
 import { constants } from '../../data/constants';
 
 export class AccessTokenFetcher {

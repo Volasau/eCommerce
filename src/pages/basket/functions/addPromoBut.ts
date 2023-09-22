@@ -1,4 +1,4 @@
-import { LineItem } from '../interfaces/lineItemInterface';
+import { LineItem } from '../interfaces/lineItem.interfaces';
 
 export function addPromoBut(prod: LineItem, prodName: HTMLDivElement): void {
     if (prod.productType.id === '64bd85fb-bf4c-4916-bd82-e067776f1574') {

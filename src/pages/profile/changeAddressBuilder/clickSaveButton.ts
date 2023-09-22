@@ -2,8 +2,8 @@ import { showToastError } from '../../logReg/utils/funcToastify.utils';
 import { getISOCodeByCountryName } from '../../logReg/utils/getISOCode.utils';
 import { logoutAction } from '../../logReg/utils/logOutFunc.utils';
 import { ifFormHasErrors } from '../changePassword/ifFormHasErrors';
-import { changeAddress } from '../interfaces/dataForUpdate';
-import { IForm } from '../interfaces/iFormInterface';
+import { changeAddress } from '../interfaces/dataForUpdate.interfaces';
+import { IForm } from '../interfaces/iForm.interfaces';
 import { customerAddressApi } from './customerAddressApi';
 import { ifInputIsEmpty } from './ifInputIsEmpty';
 

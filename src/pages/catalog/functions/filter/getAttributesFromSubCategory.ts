@@ -1,6 +1,6 @@
 import { IAttributes } from '../../../../server/products/queryProductProjections';
-import { IAttr } from '../../interfaces/attrInterface';
-import { IAttrValueResp, ISubCategoryResp } from '../../interfaces/categoryResponse/categoryResponseInterface';
+import { IAttr } from '../../interfaces/attr.interfaces';
+import { IAttrValueResp, ISubCategoryResp } from '../../interfaces/categoryResponse/categoryResponse.interfaces';
 
 export function getAttributesFromSubCategory(subCategory: ISubCategoryResp): IAttr[] {
     const result: IAttr[] = [];

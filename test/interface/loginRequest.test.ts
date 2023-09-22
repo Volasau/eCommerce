@@ -1,4 +1,4 @@
-import { ILoginRequest } from '../../src/core/interfaces/loginRequest';
+import { ILoginRequest } from '../../src/core/interfaces/loginRequest.interfaces';
 
 describe('Login Request Interface', () => {
     it('should have the required properties', () => {

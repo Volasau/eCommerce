@@ -25,7 +25,7 @@ import {
     TaxMode,
     TaxedPrice,
 } from '@commercetools/platform-sdk';
-import { LineItem } from './lineItemInterface';
+import { LineItem } from './lineItem.interfaces';
 
 export interface LastModifiedBy extends ClientLogging {
     /**

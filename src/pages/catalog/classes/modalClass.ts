@@ -1,7 +1,7 @@
 import { constants } from '../../../data/constants';
 import { IProduct } from '../../../server/products/queryProductProjections';
 import { buildModal } from '../functions/product/buildModal';
-import { IModal } from '../interfaces/modalInterface';
+import { IModal } from '../interfaces/modal.interfaces';
 
 export class Modal implements IModal {
     private modalHTML: HTMLDivElement;

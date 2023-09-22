@@ -1,5 +1,5 @@
 import { bearer_token_cc } from '../..';
-import { IRequest } from '../interfaces/requestInterface';
+import { IRequest } from '../interfaces/request.interfaces';
 
 class Request implements IRequest {
     async getAuth(endpoint: string): Promise<Response> {

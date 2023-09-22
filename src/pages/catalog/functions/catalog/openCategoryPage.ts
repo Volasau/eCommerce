@@ -2,7 +2,7 @@ import { categoryResponse } from '../../../../server/function/structureCategorie
 import urlImg from '../../../../assets/icons/arrow.svg';
 import { CatalogRender } from '../../classes/catalogRenderClass';
 import { buttonHTML, spanHTML } from '../../classes/elementBuilder';
-import { ICategoryResp } from '../../interfaces/categoryResponse/categoryResponseInterface';
+import { ICategoryResp } from '../../interfaces/categoryResponse/categoryResponse.interfaces';
 import { getSubCategoriesFrom } from './getSubCategoriesFrom';
 import { constants } from '../../../../data/constants';
 import { renderNewCatalog } from './renderNewCatalog';

@@ -1,4 +1,4 @@
-import { IAttr } from '../../src/pages/catalog/interfaces/attrInterface';
+import { IAttr } from '../../src/pages/catalog/interfaces/attr.interfaces';
 
 describe('IAttr interface', () => {
     it('should have the correct structure', () => {

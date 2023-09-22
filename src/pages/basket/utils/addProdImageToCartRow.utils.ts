@@ -1,4 +1,4 @@
-import { LineItem } from '../interfaces/lineItemInterface';
+import { LineItem } from '../interfaces/lineItem.interfaces';
 
 export function addProdImageToCartRow(prod: LineItem, prodImage: HTMLDivElement, id: string): void {
     const img = new Image();

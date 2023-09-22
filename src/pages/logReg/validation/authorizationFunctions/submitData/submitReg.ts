@@ -1,4 +1,4 @@
-import { IRegistration } from '../../../../../core/interfaces/registrationInterface';
+import { IRegistration } from '../../../../../core/interfaces/registration.interfaces';
 import { logInToServer } from '../logInToServer';
 import { registerOnTheServer } from '../registerOnTheServer';
 import { checkInputsForErrors } from './checkInputsForErrors';

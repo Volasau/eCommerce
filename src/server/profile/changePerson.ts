@@ -1,5 +1,5 @@
 import { bearer_token_cc } from '../..';
-import { ICustomerResponse } from '../../core/interfaces/customerResponse';
+import { ICustomerResponse } from '../../core/interfaces/customerResponse.interfaces';
 import { constants } from '../../data/constants';
 import { request } from '../classes/requestClass';
 import { PARSE } from '../interfaces/parseEnum';

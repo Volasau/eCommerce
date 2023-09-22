@@ -1,9 +1,9 @@
 import App, { PageId } from '../../pages/app/app';
 import { constants } from '../../data/constants';
 import { showToast } from '../../pages/logReg/utils/funcToastify.utils';
-import { ICustomerResponse } from '../../core/interfaces/customerResponse';
-import { ILoginRequest } from '../../core/interfaces/loginRequest';
-import { ICustomerSignInResponse } from '../../core/interfaces/customerSignInResponse';
+import { ICustomerResponse } from '../../core/interfaces/customerResponse.interfaces';
+import { ILoginRequest } from '../../core/interfaces/loginRequest.interfaces';
+import { ICustomerSignInResponse } from '../../core/interfaces/customerSignInResponse.interfaces';
 import { request } from '../classes/requestClass';
 import { PARSE } from '../interfaces/parseEnum';
 import { Customer } from '@commercetools/platform-sdk';

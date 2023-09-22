@@ -1,4 +1,4 @@
-import { IAboutInfo } from '../interface/interfaceInfo';
+import { IAboutInfo } from '../interface/info.interfaces';
 import photoRyhor from '../../../assets/photo/Ruhor.jpg';
 import photoAzim from '../../../assets/photo/Azim.jpg';
 import photoMikalai from '../../../assets/photo/Mikalai.jpg';

@@ -1,5 +1,5 @@
-import { ILastModifiedBy } from '../../core/interfaces/customerResponse';
-import { IPriceValueResp } from '../../pages/catalog/interfaces/categoryResponse/categoryResponseInterface';
+import { ILastModifiedBy } from '../../core/interfaces/customerResponse.interfaces';
+import { IPriceValueResp } from '../../pages/catalog/interfaces/categoryResponse/categoryResponse.interfaces';
 
 export interface IUser {
     typeId: string;

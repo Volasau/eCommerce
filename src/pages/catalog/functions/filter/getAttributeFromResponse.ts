@@ -1,6 +1,6 @@
 import { IAttributes } from '../../../../server/products/queryProductProjections';
-import { IAttr } from '../../interfaces/attrInterface';
-import { IAttrValueResp, ICategoryResp } from '../../interfaces/categoryResponse/categoryResponseInterface';
+import { IAttr } from '../../interfaces/attr.interfaces';
+import { IAttrValueResp, ICategoryResp } from '../../interfaces/categoryResponse/categoryResponse.interfaces';
 
 export function getAttributeFromResponse(categoryResponse: ICategoryResp): IAttr[] {
     const result: IAttr[] = [];

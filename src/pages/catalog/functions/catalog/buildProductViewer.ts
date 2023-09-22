@@ -1,6 +1,6 @@
 import { constants } from '../../../../data/constants';
 import { buttonHTML, divHTML } from '../../classes/elementBuilder';
-import { ICategory } from '../../interfaces/categoryInterface';
+import { ICategory } from '../../interfaces/category.interfaces';
 import { createFilterBlock } from '../filter/createFilterBlock';
 import { buildProductList } from '../product/buildProductList';
 import buildCategoryItem from './buildCategoryItem';

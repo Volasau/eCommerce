@@ -1,5 +1,5 @@
 import { constants } from '../../data/constants';
-import { Cart } from '../../pages/basket/interfaces/cartInterface';
+import { Cart } from '../../pages/basket/interfaces/cart.interfaces';
 
 export class CartGetManager {
     private bearerTokenAs: string;

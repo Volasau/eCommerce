@@ -1,4 +1,4 @@
-import { IAddressShipping } from '../../src/core/interfaces/addressShipping';
+import { IAddressShipping } from '../../src/core/interfaces/addressShipping.interfaces';
 
 const testAddressShiping: IAddressShipping = {
     streetName: 'Pushkin',

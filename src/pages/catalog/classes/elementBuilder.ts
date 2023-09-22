@@ -1,4 +1,4 @@
-import { IBuilder } from '../interfaces/builderInterface';
+import { IBuilder } from '../interfaces/builder.interfaces';
 
 class ElementBuilder implements IBuilder {
     private tag: string;

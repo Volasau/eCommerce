@@ -2,7 +2,7 @@ import { constants } from '../../data/constants';
 import {
     ICategoryResp,
     ISubCategoryResp,
-} from '../../pages/catalog/interfaces/categoryResponse/categoryResponseInterface';
+} from '../../pages/catalog/interfaces/categoryResponse/categoryResponse.interfaces';
 import { QueryAllCategories } from '../categories/queryAllCategories';
 import { IProduct, QueryProductProjections } from '../products/queryProductProjections';
 import { ICategoryResponseResult } from './interfaces';

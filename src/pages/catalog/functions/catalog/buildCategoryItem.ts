@@ -1,5 +1,5 @@
 import { divHTML } from '../../classes/elementBuilder';
-import { ICategory } from '../../interfaces/categoryInterface';
+import { ICategory } from '../../interfaces/category.interfaces';
 
 export default function buildCategoryItem(category: ICategory): HTMLDivElement {
     const wrapper = divHTML.getElement('', 'category-item', 'cards') as HTMLDivElement;

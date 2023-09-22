@@ -1,5 +1,5 @@
 import { constants } from '../../data/constants';
-import { IAccessTokenResponse } from '../../core/interfaces/accessTokenResponse';
+import { IAccessTokenResponse } from '../../core/interfaces/accessTokenResponse.interfaces';
 import { request } from '../classes/requestClass';
 import { PARSE } from '../interfaces/parseEnum';
 

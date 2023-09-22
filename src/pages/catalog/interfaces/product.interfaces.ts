@@ -1,4 +1,4 @@
-import { IVariant } from './variantInterface';
+import { IVariant } from './variant.interfaces';
 
 export interface IProduct {
     id: string;

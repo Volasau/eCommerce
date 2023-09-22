@@ -1,7 +1,7 @@
-import { IAuthorization } from '../../../../core/interfaces/authorizationInterface';
-import { ILoginRequest } from '../../../../core/interfaces/loginRequest';
+import { IAuthorization } from '../../../../core/interfaces/authorization.interfaces';
+import { ILoginRequest } from '../../../../core/interfaces/loginRequest.interfaces';
 import { TokenManager } from '../../../../server/token/tokenManager';
-import { IAccessTokenResponse } from '../../../../core/interfaces/accessTokenResponse';
+import { IAccessTokenResponse } from '../../../../core/interfaces/accessTokenResponse.interfaces';
 import { CustomerLogin } from '../../../../server/customer/customerLogin';
 import { Customer } from '@commercetools/platform-sdk';
 import { cartByCustomerId } from '../../../../server/cart/getCartByCustomerId';

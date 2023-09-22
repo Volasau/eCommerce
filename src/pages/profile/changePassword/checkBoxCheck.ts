@@ -1,4 +1,4 @@
-import { IInnerForm } from '../../../core/interfaces/innerFormInterface';
+import { IInnerForm } from '../../../core/interfaces/innerForm.interfaces';
 
 export function checkBoxCheck(but: HTMLInputElement, inputs: IInnerForm[]): void {
     but.addEventListener('change', () => {

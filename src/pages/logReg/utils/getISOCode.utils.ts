@@ -1,4 +1,4 @@
-import { ICountryProp } from '../../../core/interfaces/countryPropInterface';
+import { ICountryProp } from '../../../core/interfaces/countryProp.interfaces';
 import { countries } from '../../../data/country';
 
 export async function getISOCodeByCountryName(countryName: string): Promise<string> {

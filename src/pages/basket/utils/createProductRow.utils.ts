@@ -1,6 +1,6 @@
 import { buttonHTML, divHTML } from '../../catalog/classes/elementBuilder';
 import { addPromoBut } from '../functions/addPromoBut';
-import { LineItem } from '../interfaces/lineItemInterface';
+import { LineItem } from '../interfaces/lineItem.interfaces';
 import { addCounterToCartRow } from './addCounterToCartRow.utils';
 import { addProdImageToCartRow } from './addProdImageToCartRow.utils';
 
