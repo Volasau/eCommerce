@@ -1,10 +1,10 @@
 import { PARSE } from '../interfaces/parseEnum';
 import { request } from '../classes/requestClass';
-import { IAccessTokenResponse } from '../interfaces/accessTokenResponseInterface';
+import { IAccessTokenResponse } from '../interfaces/accessTokenResponse.interfaces';
 import { constants } from '../../data/constants';
 
 export class AccessTokenFetcher {
-    private requestData: URLSearchParams;
+    private readonly requestData: URLSearchParams;
 
     constructor() {
         this.requestData = new URLSearchParams({

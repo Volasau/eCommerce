@@ -2,8 +2,8 @@ import { showToastError } from '../../logReg/utils/funcToastify.utils';
 import { getISOCodeByCountryName } from '../../logReg/utils/getISOCode.utils';
 import { logoutAction } from '../../logReg/utils/logOutFunc.utils';
 import { ifFormHasErrors } from '../changePassword/ifFormHasErrors';
-import { newAddress } from '../interfaces/dataForUpdate';
-import { IForm } from '../interfaces/iFormInterface';
+import { newAddress } from '../interfaces/dataForUpdate.interfaces';
+import { IForm } from '../interfaces/iForm.interfaces';
 import { changeAddressApi } from './changeAddressApi';
 
 export function clickAddressSubmit(

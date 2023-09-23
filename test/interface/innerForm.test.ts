@@ -1,4 +1,4 @@
-import { IInnerForm } from '../../src/core/interfaces/innerFormInterface';
+import { IInnerForm } from '../../src/core/interfaces/innerForm.interfaces';
 
 describe('IInnerForm interface', () => {
     it('should have the required properties', () => {

@@ -1,4 +1,4 @@
-import { IFormBuilder } from '../../src/core/interfaces/formBuilderInterface';
+import { IFormBuilder } from '../../src/core/interfaces/formBuilder.interfaces';
 
 describe('IFormBuilder interface', () => {
     it('should have the required properties', () => {

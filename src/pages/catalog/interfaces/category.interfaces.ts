@@ -1,4 +1,4 @@
-import { IAttr } from './attrInterface';
+import { IAttr } from './attr.interfaces';
 
 export interface ICategory {
     catId: string;

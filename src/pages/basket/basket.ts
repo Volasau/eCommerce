@@ -2,7 +2,7 @@ import Page from '../../core/template/page';
 import { getCartManager } from '../../server/cart/getCartById';
 import { createLink } from '../logReg/utils/createLink.utils';
 import { CartViewer } from './classes/cartViewer';
-import { Cart } from './interfaces/cartInterface';
+import { Cart } from './interfaces/cart.interfaces';
 import { disableMinusButtons } from './functions/disableMinusButtons';
 import { createCartLogic } from '../../server/function/addCartLogic';
 
@@ -22,7 +22,7 @@ class BasketPage extends Page {
         const cartId = sessionStorage.getItem('newCartId') as string;
         const cart = (await getCartManager.getCartById(cartId)) as Cart;
         const myCart = new CartViewer(cart);
-        this._container.append(title, myCart.view(), link);
+        this._container.append(title, myCart.createView(), link);
         disableMinusButtons();
         return this._container;
     }

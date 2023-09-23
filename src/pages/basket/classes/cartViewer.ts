@@ -1,18 +1,18 @@
-import { ICartViewer } from '../interfaces/cartViewerInterface';
+import { ICartViewer } from '../interfaces/cartViewer.interfaces';
 import { divHTML } from '../../catalog/classes/elementBuilder';
-import { LineItem } from '../interfaces/lineItemInterface';
-import { Cart } from '../interfaces/cartInterface';
+import { LineItem } from '../interfaces/lineItem.interfaces';
+import { Cart } from '../interfaces/cart.interfaces';
 import { createProductRow } from '../utils/createProductRow.utils';
 import { createTotalSumRow } from '../utils/createTotalSumRow.utils';
 import { createCartHeader } from '../utils/createCartHeader.utils';
 import { addEmptyInfo } from '../utils/addEmptyInfo.utils';
 
 export class CartViewer implements ICartViewer {
-    container: HTMLDivElement;
+    private container: HTMLDivElement;
 
-    cartProducts: LineItem[];
+    private cartProducts: LineItem[];
 
-    totalSum: number;
+    private totalSum: number;
 
     constructor(cart: Cart) {
         this.container = divHTML.getElement('', 'cart-list', 'cart-list') as HTMLDivElement;
@@ -20,7 +20,7 @@ export class CartViewer implements ICartViewer {
         this.totalSum = cart.totalPrice.centAmount / 100;
     }
 
-    view(): HTMLDivElement {
+    createView(): HTMLDivElement {
         const cartHeader = createCartHeader();
         this.container.append(cartHeader);
         if (this.cartProducts.length === 0) {

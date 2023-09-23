@@ -1,17 +1,11 @@
 import { Cart } from '@commercetools/platform-sdk';
-import { bearer_token_pf } from '../../pages/logReg/validation/authorizationFunctions/logInToServer';
 import { constants } from '../../data/constants';
+import { request } from '../classes/requestClass';
 
 class CartByCustomerId {
     async getCartsByCustomerId(customerId: string): Promise<Cart> {
-        const response: Response = await fetch(`${constants.apiUrlCarts}/customer-id=${customerId}`, {
-            method: 'GET',
-            headers: {
-                Authorization: `Bearer ${bearer_token_pf}`,
-                'Content-Type': 'application/json',
-            },
-        });
-
+        const endpoint = `${constants.apiUrlCarts}/customer-id=${customerId}`;
+        const response: Response = await request.getPassFlow(endpoint);
         if (!response.ok) {
             throw new Error(`Failed to fetch customer carts: ${response.statusText}`);
         }

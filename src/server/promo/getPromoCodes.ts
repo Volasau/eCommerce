@@ -1,6 +1,6 @@
 import { DiscountCode, DiscountCodePagedQueryResponse } from '@commercetools/platform-sdk';
 import { constants } from '../../data/constants';
-import { tokenFetcher } from '../token/accessTokenCC';
+import { tokenFetcher } from '../token/accessTokenFetcher';
 
 export class PromoCodes {
     private baseUrl: string;

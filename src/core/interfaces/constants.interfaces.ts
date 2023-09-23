@@ -1,6 +1,6 @@
-import { ICreateCartRequest } from './createCartRequest';
-import { IAuthorization } from './authorizationInterface';
-import { IRegistration } from './registrationInterface';
+import { ICreateCartRequest } from './createCartRequest.interfaces';
+import { IAuthorization } from './authorization.interfaces';
+import { IRegistration } from './registration.interfaces';
 import { IProduct } from '../../server/products/queryProductProjections';
 
 export interface IConstants {

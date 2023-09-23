@@ -1,14 +1,12 @@
 import Page from '../../core/template/page';
 import '../../css/style.css';
 import { createPromoWindow } from '../basket/utils/createPromoWindow.utils';
-// import { createLink } from '../logReg/utils/createLink.utils';
 
 class MainPage extends Page {
-    text: string;
+    private readonly text: string = 'WELCOME TO OUR ONLINE STORE';
 
     constructor(id: string) {
         super(id);
-        this.text = 'WELCOME TO OUR ONLINE STORE';
     }
 
     async render(): Promise<HTMLElement> {

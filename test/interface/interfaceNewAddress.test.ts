@@ -1,4 +1,4 @@
-import { INewAddress } from '../../src/pages/profile/interfaces/newAddressInterface';
+import { INewAddress } from '../../src/pages/profile/interfaces/newAddress.interfaces';
 
 const testNewAddress: INewAddress = {
     country: 'Belarus',

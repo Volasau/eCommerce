@@ -1,6 +1,6 @@
 import { dataCustomer } from '../../../server/customer/customerLogin';
 import { InnerForm } from '../../logReg/formClasses/classForm';
-import { IForm } from '../interfaces/iFormInterface';
+import { IForm } from '../interfaces/iForm.interfaces';
 
 export function createUserChangeForm(): IForm {
     const userChangeForm = document.createElement('form') as HTMLFormElement;

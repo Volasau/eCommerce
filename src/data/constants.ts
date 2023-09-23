@@ -1,4 +1,4 @@
-import { IConstants } from '../core/interfaces/constantsInterface';
+import { IConstants } from '../core/interfaces/constants.interfaces';
 
 export const constants: IConstants = {
     page: 0,

@@ -1,4 +1,4 @@
-import { ICustomerResponse } from '../../src/core/interfaces/customerResponse';
+import { ICustomerResponse } from '../../src/core/interfaces/customerResponse.interfaces';
 
 describe('Customer Response Interface', () => {
     it('should have the required properties and types', () => {

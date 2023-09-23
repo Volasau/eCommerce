@@ -1,5 +1,5 @@
 import { buttonHTML, divHTML, formHTML, selectHTML } from '../../classes/elementBuilder';
-import { ICategory } from '../../interfaces/categoryInterface';
+import { ICategory } from '../../interfaces/category.interfaces';
 import { createBrandFilterBlock } from './createBrandFilterBlock';
 import { createPriceFilter } from './createPriceFilter';
 import { getAttributesFromCategories } from './getAttributesFromCategories';

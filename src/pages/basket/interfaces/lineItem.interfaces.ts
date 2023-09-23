@@ -15,7 +15,7 @@ import {
     TaxRate,
     TaxedItemPrice,
 } from '@commercetools/platform-sdk';
-import { ProductVariant } from './productVariantInterface';
+import { ProductVariant } from './productVariant.interfaces';
 
 interface ProductType {
     readonly typeId: 'product-type';

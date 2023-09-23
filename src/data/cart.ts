@@ -1,4 +1,4 @@
-import { Cart } from '../pages/basket/interfaces/cartInterface';
+import { Cart } from '../pages/basket/interfaces/cart.interfaces';
 
 export const cart: Cart = {
     type: 'Cart',

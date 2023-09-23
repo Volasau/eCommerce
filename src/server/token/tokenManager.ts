@@ -1,11 +1,11 @@
 import { constants } from '../../data/constants';
-import { IAccessTokenResponse } from '../../core/interfaces/accessTokenResponse';
+import { IAccessTokenResponse } from '../../core/interfaces/accessTokenResponse.interfaces';
 import { handleServerErrorsLog } from '../function/handleServerErrorsLog';
 import { request } from '../classes/requestClass';
 import { PARSE } from '../interfaces/parseEnum';
 
 export class TokenManager {
-    private requestData: URLSearchParams;
+    private readonly requestData: URLSearchParams;
 
     constructor(email: string, password: string) {
         this.requestData = new URLSearchParams({

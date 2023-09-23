@@ -4,35 +4,31 @@ import { IProduct } from '../../../server/products/queryProductProjections';
 import { ProductSort } from '../../../server/sort/sort';
 import { renderNewCatalog } from '../functions/catalog/renderNewCatalog';
 
-export function sortByValue(value: string): void {
-    document.addEventListener('click', async (event) => {
-        const target = event.target as HTMLButtonElement;
-
-        if (target.id === value) {
-            try {
-                const productSort = new ProductSort();
-                let result: IProduct[] = [];
-                if (value === 'cheap-view') {
-                    const data = await productSort.sortBy('price asc');
-                    result = productForm(data);
-                } else if (value === 'alpha-view') {
-                    const data = await productSort.sortBy('name.en asc');
-                    result = productForm(data);
-                }
-                const chain = document.getElementById('row-chain') as HTMLElement;
-                const chainChildren: HTMLCollectionOf<HTMLSpanElement> = chain.getElementsByTagName('span');
-                const currCategoryLastTagId: string = chainChildren[chainChildren.length - 1].id;
-                if (currCategoryLastTagId === 'catalog-chain') {
-                    mainCatalogSort(result);
-                } else {
-                    subCategorySort(result, currCategoryLastTagId);
-                }
-                sort(target);
-            } catch (error) {
-                console.error('Error:', error);
+export function sortByValue(target: HTMLElement): void {
+    (async () => {
+        try {
+            const productSort = new ProductSort();
+            let result: IProduct[] = [];
+            if (target.id === 'cheap-view') {
+                const data = await productSort.sortBy('price asc');
+                result = productForm(data);
+            } else if (target.id === 'alpha-view') {
+                const data = await productSort.sortBy('name.en asc');
+                result = productForm(data);
             }
+            const chain = document.getElementById('row-chain') as HTMLElement;
+            const chainChildren: HTMLCollectionOf<HTMLSpanElement> = chain.getElementsByTagName('span');
+            const currCategoryLastTagId: string = chainChildren[chainChildren.length - 1].id;
+            if (currCategoryLastTagId === 'catalog-chain') {
+                mainCatalogSort(result);
+            } else {
+                subCategorySort(result, currCategoryLastTagId);
+            }
+            sort(target);
+        } catch (error) {
+            console.error('Error:', error);
         }
-    });
+    })();
 }
 
 function mainCatalogSort(result: IProduct[]): void {
@@ -95,7 +91,7 @@ function categoryRelatedIds(): string[] | void {
     }
 }
 
-function sort(target: HTMLButtonElement): void {
+function sort(target: HTMLElement): void {
     const choice = target.textContent === 'CHEAP' ? 'alpha' : 'cheap';
     const secondBut = document.getElementById(`${choice}-view`) as HTMLButtonElement;
     secondBut.style.color = '';

@@ -1,6 +1,6 @@
 import { showToastError } from '../../logReg/utils/funcToastify.utils';
-import { passwordChanger } from '../interfaces/dataForUpdate';
-import { IForm } from '../interfaces/iFormInterface';
+import { passwordChanger } from '../interfaces/dataForUpdate.interfaces';
+import { IForm } from '../interfaces/iForm.interfaces';
 import { changePasswordApi } from './changePasswordApi';
 import { ifFormHasErrors } from './ifFormHasErrors';
 

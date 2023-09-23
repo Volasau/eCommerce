@@ -1,4 +1,4 @@
-import { IAboutInfo } from '../../src/pages/aboutus/interface/interfaceInfo';
+import { IAboutInfo } from '../../src/pages/aboutus/interface/info.interfaces';
 
 const testAboutInfo: IAboutInfo = {
     fistName: 'Ryhor',

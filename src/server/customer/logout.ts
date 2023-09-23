@@ -1,5 +1,6 @@
 import { constants } from '../../data/constants';
 import { request } from '../classes/requestClass';
+import { updateElementClasses } from '../function/changeLinks';
 import { PARSE } from '../interfaces/parseEnum';
 
 export class TokenRevoker {
@@ -17,10 +18,7 @@ export class TokenRevoker {
 
             if (response.status === 200) {
                 console.log('Token successfully revoked.');
-                const btnLogin: Element | null = document.querySelector('.login__page');
-                btnLogin?.classList.remove('none');
-                const btnRegistr: Element | null = document.querySelector('.registr__page');
-                btnRegistr?.classList.remove('none');
+                updateElementClasses();
             } else {
                 console.log('Failed to revoke token.');
             }

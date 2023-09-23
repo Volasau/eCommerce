@@ -57,18 +57,10 @@ export async function addItemToCart(productId: string): Promise<Cart | undefined
         const productBlock = (await getProductsId(productId)) as Product;
         const cartId = sessionStorage.getItem('newCartId') as string;
         const getCart = (await getCartManager.getCartById(cartId as string)) as Cart;
-        let cartState: string = getCart.cartState;
-        let cart: AddLineItem;
-        if (cartState === 'Merged') {
-            cartState = 'Active';
-            cart = new AddLineItem(getCart.id, getCart.version);
-        } else {
-            cart = new AddLineItem(getCart.id, getCart.version);
-        }
+        const cart = new AddLineItem(getCart.id, getCart.version);
 
         const productIdForAdding: string = productBlock.id;
-        const addLineItemResp: Cart | undefined = await cart.addToCart(productIdForAdding);
-        return addLineItemResp;
+        return await cart.addToCart(productIdForAdding);
     } catch (error) {
         console.error(error);
     }

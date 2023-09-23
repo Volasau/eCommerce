@@ -1,4 +1,4 @@
-import { ICustomerResponse } from '../../core/interfaces/customerResponse';
+import { ICustomerResponse } from '../../core/interfaces/customerResponse.interfaces';
 import { divHTML } from '../catalog/classes/elementBuilder';
 import { findCountryNameByISO } from './findCountry';
 import { Address } from './formAdress';

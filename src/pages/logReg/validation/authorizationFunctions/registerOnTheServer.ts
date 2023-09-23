@@ -1,7 +1,7 @@
-import { IRegistration } from '../../../../core/interfaces/registrationInterface';
-import { IConsolidatedData } from '../../../../core/interfaces/consolidatedData';
-import { IAddressBilling } from '../../../../core/interfaces/addressBilling';
-import { IAddressShipping } from '../../../../core/interfaces/addressShipping';
+import { IRegistration } from '../../../../core/interfaces/registration.interfaces';
+import { IConsolidatedData } from '../../../../core/interfaces/consolidatedData.interfaces';
+import { IAddressBilling } from '../../../../core/interfaces/addressBilling.interfaces';
+import { IAddressShipping } from '../../../../core/interfaces/addressShipping.interfaces';
 import {
     customerManagerData,
     defaultAddresses,

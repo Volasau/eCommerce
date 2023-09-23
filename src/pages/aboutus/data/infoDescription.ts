@@ -1,4 +1,4 @@
-import { IAboutDescription } from '../interface/interfaceDeascription';
+import { IAboutDescription } from '../interface/deascription.interfaces';
 
 export const textDescription: IAboutDescription = {
     introduction: `

@@ -1,23 +1,12 @@
 import { constants } from '../../data/constants';
-import { Cart } from '../../pages/basket/interfaces/cartInterface';
+import { Cart } from '../../pages/basket/interfaces/cart.interfaces';
+import { request } from '../classes/requestClass';
 
 export class CartGetManager {
-    private bearerTokenAs: string;
-
-    constructor() {
-        this.bearerTokenAs = sessionStorage.getItem('anonymousToken') as string;
-    }
-
     async getCartById(cartId: string): Promise<Cart | undefined> {
-        this.bearerTokenAs = sessionStorage.getItem('anonymousToken') as string;
-        const fullUrl = `${constants.apiUrl}/carts/${cartId}`;
+        const endpoint = `${constants.apiUrl}/carts/${cartId}`;
         try {
-            const response: Response = await fetch(fullUrl, {
-                method: 'GET',
-                headers: {
-                    Authorization: `Bearer ${this.bearerTokenAs}`,
-                },
-            });
+            const response: Response = await request.getAnonymous(endpoint);
 
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);

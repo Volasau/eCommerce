@@ -1,7 +1,7 @@
 import './global.css';
 import { addListeners } from './listeners/addListeners';
 import App from './pages/app/app';
-import { tokenFetcher } from './server/token/accessTokenCC';
+import { tokenFetcher } from './server/token/accessTokenFetcher';
 
 const app = new App();
 app.run();

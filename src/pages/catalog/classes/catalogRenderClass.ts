@@ -6,34 +6,34 @@ import { buildHashChain } from '../functions/catalog/buildHashChain';
 import { buildProductViewer } from '../functions/catalog/buildProductViewer';
 import { createSearchingWindow } from '../functions/filter/createSearchingWindow';
 import { buildProductPage } from '../functions/product/buildProductPage';
-import { ICatalog } from '../interfaces/catalogInterface';
-import { ICategory } from '../interfaces/categoryInterface';
-import { ICategoryResp } from '../interfaces/categoryResponse/categoryResponseInterface';
+import { ICatalog } from '../interfaces/catalog.interfaces';
+import { ICategory } from '../interfaces/category.interfaces';
+import { ICategoryResp } from '../interfaces/categoryResponse/categoryResponse.interfaces';
 import { Category } from './categoryClass';
 import { divHTML } from './elementBuilder';
 
 export class CatalogRender implements ICatalog {
-    curCatalog: Element | null;
+    private curCatalog: Element | null;
 
-    title: HTMLElement;
+    private title: HTMLElement;
 
-    wrapper: HTMLDivElement;
+    private wrapper: HTMLDivElement;
 
-    hashChain: HTMLDivElement;
+    private hashChain: HTMLDivElement;
 
-    search: HTMLDivElement;
+    private search: HTMLDivElement;
 
-    discount: HTMLDivElement;
+    private discount: HTMLDivElement;
 
-    cartStatus: string;
+    private cartStatus: string;
 
-    categoryName: HTMLDivElement;
+    private categoryName: HTMLDivElement;
 
-    catalogViewer: HTMLDivElement;
+    private catalogViewer: HTMLDivElement;
 
-    categories: ICategory[];
+    private categories: ICategory[];
 
-    product: IProduct;
+    private product: IProduct;
 
     constructor(categoryResponse: ICategoryResp[] | ICategory[] | IProduct, title: HTMLElement, cartStatus: string) {
         this.categories = [];
@@ -70,18 +70,13 @@ export class CatalogRender implements ICatalog {
 
     renderCategory(): void {
         if (this.curCatalog !== null) this.curCatalog.remove();
-        this.wrapper.append(this.hashChain, this.search, this.discount, this.categoryName, this.catalogViewer);
-        this.title.after(this.wrapper);
-        constants.page = 0;
+        this.renderCatalog();
     }
 
     renderSubCategory(): void {
-        if (this.curCatalog !== null) this.curCatalog.remove();
-        this.wrapper.append(this.hashChain, this.search, this.discount, this.categoryName, this.catalogViewer);
-        this.title.after(this.wrapper);
+        this.renderCategory();
         const categoryBlock = document.getElementById('category-view') as HTMLDivElement;
         categoryBlock.remove();
-        constants.page = 0;
     }
 
     renderProduct(): void {

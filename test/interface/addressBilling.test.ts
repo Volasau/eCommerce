@@ -1,4 +1,4 @@
-import { IAddressBilling } from '../../src/core/interfaces/addressBilling';
+import { IAddressBilling } from '../../src/core/interfaces/addressBilling.interfaces';
 
 const testAddressBilling: IAddressBilling = {
     streetName: 'Pushkin',

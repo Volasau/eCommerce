@@ -60,11 +60,13 @@ export function buildProductPage(prod: IProduct, cartStatus: string): HTMLDivEle
         attributes.innerHTML += `<p>${attribute}: ${value}</p>`;
     });
 
-    realPrice.textContent = prodDiscount ? String(prodDiscount) : String(price);
-    oldPrice.textContent = prodDiscount ? String(price) : '';
+    realPrice.textContent = prodDiscount ? `${prodDiscount}` : `${price}`;
+    oldPrice.textContent = prodDiscount ? `${price}` : '';
     cartButton.innerHTML = `${cartSVG} ${cartStatus === 'CART' ? 'DELETE' : 'BUY'}`;
-    if (cartStatus === 'CART') cartButton.style.backgroundColor = 'orange';
-    if (cartStatus === 'CART') cartButton.style.fontSize = '10px';
+    if (cartStatus === 'CART') {
+        cartButton.style.backgroundColor = 'orange';
+        cartButton.style.fontSize = '10px';
+    }
     cartButtonBlock.append(cartButton);
     priceBlock.append(realPrice, oldPrice, cartButtonBlock);
     prices.append(priceBlock, deliveryBlock);

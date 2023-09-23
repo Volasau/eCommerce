@@ -1,4 +1,4 @@
-import { IAboutDescription } from '../../src/pages/aboutus/interface/interfaceDeascription';
+import { IAboutDescription } from '../../src/pages/aboutus/interface/deascription.interfaces';
 
 const testAboutDescription: IAboutDescription = {
     introduction: 'introduction',

@@ -1,4 +1,4 @@
-import { IPrice } from './priceInterface';
+import { IPrice } from './price.interfaces';
 
 interface IImages {
     label: string | null;

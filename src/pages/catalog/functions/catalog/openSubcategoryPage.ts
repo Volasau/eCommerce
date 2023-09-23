@@ -3,7 +3,7 @@ import { constants } from '../../../../data/constants';
 import { categoryResponse } from '../../../../server/function/structureCategories';
 import { CatalogRender } from '../../classes/catalogRenderClass';
 import { buttonHTML, spanHTML } from '../../classes/elementBuilder';
-import { ISubCategoryResp } from '../../interfaces/categoryResponse/categoryResponseInterface';
+import { ISubCategoryResp } from '../../interfaces/categoryResponse/categoryResponse.interfaces';
 import { getSubCategoryWithAllAttr } from '../filter/getSubCategoryWithAllAttr';
 
 import { renderNewCatalog } from './renderNewCatalog';

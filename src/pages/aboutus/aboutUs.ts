@@ -14,7 +14,7 @@ class AboutPage extends Page {
         this.text = 'About US';
     }
 
-    async render(): Promise<HTMLElement> {
+    render(): HTMLElement {
         const title = this.createHeaderTitle(this.text);
         const containerInfo = createElement('div', 'aboutus__container');
         const linkSchool = createElement('p', 'link-school__container');
@@ -29,26 +29,16 @@ class AboutPage extends Page {
         rssLink.append(rssIcon);
         linkSchool.append(rssLink);
 
-        const countryCards = createElement('div', 'container__cards');
+        const countryCards: HTMLElement = createElement('div', 'container__cards');
         aboutInfo.forEach((info) => {
             const cardRenderer = new CardRenderer(countryCards, info);
             cardRenderer.render();
         });
-        const introduction = createElement('p', 'paragraph__conrtainer', textDescription.introduction);
-        const paragraphOne = createElement('p', 'paragraph__conrtainer', textDescription.paragraphOne);
-        const paragraphTwo = createElement('p', 'paragraph__conrtainer', textDescription.paragraphTwo);
-        const paragraphThree = createElement('p', 'paragraph__conrtainer', textDescription.paragraphThree);
-        const conclusion = createElement('p', 'paragraph__conrtainer', textDescription.conclusion);
-
-        containerInfo.append(
-            linkSchool,
-            introduction,
-            paragraphOne,
-            paragraphTwo,
-            paragraphThree,
-            conclusion,
-            countryCards
-        );
+        const paragraphs: HTMLElement[] = Object.values(textDescription).map((text) => {
+            const paragraph = createElement('p', 'paragraph__conrtainer', text);
+            return paragraph;
+        });
+        containerInfo.append(linkSchool, ...paragraphs, countryCards);
         this._container.append(title, containerInfo);
         return this._container;
     }

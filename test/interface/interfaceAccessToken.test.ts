@@ -1,4 +1,4 @@
-import { IAccessTokenResponse } from '../../src/core/interfaces/accessTokenResponse';
+import { IAccessTokenResponse } from '../../src/core/interfaces/accessTokenResponse.interfaces';
 
 const testAccessTokenResponse: IAccessTokenResponse = {
     access_token: 'string',

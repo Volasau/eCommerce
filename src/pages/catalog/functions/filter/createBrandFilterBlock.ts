@@ -1,4 +1,4 @@
-import { ICategory } from '../../interfaces/categoryInterface';
+import { ICategory } from '../../interfaces/category.interfaces';
 import { createBrandFilterHTML } from './createBrandFilterHTML';
 
 export function createBrandFilterBlock(categories: ICategory[]): HTMLDivElement {
