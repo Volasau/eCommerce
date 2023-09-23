@@ -2,7 +2,7 @@ import { Customer } from '@commercetools/platform-sdk';
 import { constants } from '../../data/constants';
 import { request } from '../classes/requestClass';
 import { PARSE } from '../interfaces/parseEnum';
-import { ICustomerSignInResponse } from '../../core/interfaces/customerSignInResponse';
+import { ICustomerSignInResponse } from '../../core/interfaces/customerSignInResponse.interfaces';
 
 export class CustomerManager {
     private url: string;

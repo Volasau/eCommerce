@@ -1,5 +1,5 @@
-import { ICategory } from '../../interfaces/categoryInterface';
-import { ISubCategoryResp } from '../../interfaces/categoryResponse/categoryResponseInterface';
+import { ICategory } from '../../interfaces/category.interfaces';
+import { ISubCategoryResp } from '../../interfaces/categoryResponse/categoryResponse.interfaces';
 import { getAllAttrFromProducts } from './getAllAttrFromProducts';
 
 export function getSubCategoryWithAllAttr(subCategoryResp: ISubCategoryResp): ICategory[] {

@@ -1,4 +1,4 @@
-import { ICountryProp } from '../../../../../core/interfaces/countryPropInterface';
+import { ICountryProp } from '../../../../../core/interfaces/countryProp.interfaces';
 
 export function getCountryListHTML(countriesArr: ICountryProp[], listId: string): void {
     if (countriesArr.length > 0) {

@@ -9,6 +9,9 @@ import ProfilePage from '../profile/profile';
 import { constants } from '../../data/constants';
 import { logoutAction } from '../logReg/utils/logOutFunc.utils';
 import { routeProductPage } from '../catalog/listeners/routeProductPage';
+import AboutPage from '../aboutus/aboutUs';
+import BasketPage from '../basket/basket';
+import { disableMinusButtons } from '../basket/functions/disableMinusButtons';
 
 export const enum PageId {
     MainPage = 'main',
@@ -17,6 +20,8 @@ export const enum PageId {
     LoginPage = 'login',
     LogoutPage = 'logout',
     ProfilePage = 'profile',
+    BasketPage = 'basket',
+    AboutPage = 'aboutus',
 }
 class App {
     private static container: HTMLElement = document.body;
@@ -40,8 +45,14 @@ class App {
             case PageId.MainPage:
                 page = new MainPage(idPage);
                 break;
+            case PageId.AboutPage:
+                page = new AboutPage(idPage);
+                break;
             case PageId.CatalogPage:
                 page = new CatalogPage(idPage);
+                break;
+            case PageId.BasketPage:
+                page = new BasketPage(idPage);
                 break;
             case PageId.LoginPage:
                 page = new LoginPage(idPage);
@@ -92,14 +103,17 @@ class App {
             } else {
                 const hash2 = window.location.hash.slice(2);
                 await App.renderNewPage(hash2);
+                disableMinusButtons();
             }
         });
     }
 
     async run(): Promise<void> {
+        sessionStorage.clear();
         App.container.append(this.header.render());
 
         await App.renderNewPage('main');
+        window.location.hash = '/main';
         this.enableRouteChange();
     }
 }

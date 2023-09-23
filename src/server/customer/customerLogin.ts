@@ -1,12 +1,13 @@
 import App, { PageId } from '../../pages/app/app';
 import { constants } from '../../data/constants';
 import { showToast } from '../../pages/logReg/utils/funcToastify.utils';
-import { ICustomerResponse } from '../../core/interfaces/customerResponse';
-import { ILoginRequest } from '../../core/interfaces/loginRequest';
-import { ICustomerSignInResponse } from '../../core/interfaces/customerSignInResponse';
+import { ICustomerResponse } from '../../core/interfaces/customerResponse.interfaces';
+import { ILoginRequest } from '../../core/interfaces/loginRequest.interfaces';
+import { ICustomerSignInResponse } from '../../core/interfaces/customerSignInResponse.interfaces';
 import { request } from '../classes/requestClass';
 import { PARSE } from '../interfaces/parseEnum';
 import { Customer } from '@commercetools/platform-sdk';
+import { updateElementClasses } from '../function/changeLinks';
 
 export let dataCustomer: ICustomerResponse;
 
@@ -32,11 +33,11 @@ export class CustomerLogin {
                 const newUrl: string = window.location.href.replace(`#/${PageId.LoginPage}`, `#/${PageId.MainPage}`);
                 window.history.replaceState({}, document.title, newUrl);
                 App.renderNewPage(PageId.MainPage);
+                updateElementClasses();
                 const btnLogout: NodeListOf<Element> = document.querySelectorAll('.logout__page');
                 btnLogout.forEach((el) => {
                     el.classList.add('block');
                 });
-
                 const btnProfile: Element | null = document.querySelector('.profile__page');
                 if (btnProfile) {
                     btnProfile.classList.add('block');

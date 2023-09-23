@@ -1,21 +1,18 @@
 import Page from '../../core/template/page';
 import '../../css/style.css';
-import { createLink } from '../logReg/utils/createLink.utils';
+import { createPromoWindow } from '../basket/utils/createPromoWindow.utils';
 
 class MainPage extends Page {
-    text: string;
+    private readonly text: string = 'WELCOME TO OUR ONLINE STORE';
 
     constructor(id: string) {
         super(id);
-        this.text = 'HOME Page';
     }
 
     async render(): Promise<HTMLElement> {
         const title = this.createHeaderTitle(this.text);
-        const registrLink = createLink('#/registr', '', 'Registration➕', '');
-        const loginLink = createLink('#/login', '', 'Login🔑', '');
-        const logoutLink = createLink('#/logout', '', 'Logout❌', 'logout__page');
-        this._container.append(loginLink, registrLink, logoutLink, title);
+        this._container.append(title, await createPromoWindow());
+        this._container.classList.add('main__page');
         return this._container;
     }
 }

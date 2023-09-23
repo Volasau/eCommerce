@@ -1,7 +1,7 @@
-import { IBuilder } from '../interfaces/builderInterface';
+import { IBuilder } from '../interfaces/builder.interfaces';
 
 class ElementBuilder implements IBuilder {
-    tag: string;
+    private tag: string;
 
     constructor(tag: string) {
         this.tag = tag;
@@ -16,16 +16,7 @@ class ElementBuilder implements IBuilder {
         w?: string,
         tag: string = this.tag
     ): HTMLElement {
-        let element = document.createElement(tag);
-        if (tag === 'div') {
-            element = element as HTMLDivElement;
-        } else if (tag === 'button') {
-            element = element as HTMLButtonElement;
-        } else if (tag === 'input') {
-            element = element as HTMLInputElement;
-        } else if (tag === 'img') {
-            element = element as HTMLImageElement;
-        }
+        const element = document.createElement(tag);
         element.setAttribute('id', id);
         element.setAttribute('class', klas);
         if (url) element.setAttribute('src', url);

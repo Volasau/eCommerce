@@ -1,14 +1,15 @@
 import urlImg from '../../../../assets/icons/arrow.svg';
+import { constants } from '../../../../data/constants';
 import { categoryResponse } from '../../../../server/function/structureCategories';
 import { CatalogRender } from '../../classes/catalogRenderClass';
 import { buttonHTML, spanHTML } from '../../classes/elementBuilder';
-import { ISubCategoryResp } from '../../interfaces/categoryResponse/categoryResponseInterface';
+import { ISubCategoryResp } from '../../interfaces/categoryResponse/categoryResponse.interfaces';
 import { getSubCategoryWithAllAttr } from '../filter/getSubCategoryWithAllAttr';
-import { buildProductItem } from '../product/buildProductItem';
-import { changeQuantity } from './changeQuantity';
+
+import { renderNewCatalog } from './renderNewCatalog';
 
 export function openSubcategoryPage(subCateg: ISubCategoryResp): void {
-    const title = document.querySelector('h1') as HTMLElement;
+    const title = document.querySelector('.header__page') as HTMLElement;
     let category = '';
     const subCategoryResp: ISubCategoryResp[] = [];
 
@@ -24,7 +25,7 @@ export function openSubcategoryPage(subCateg: ISubCategoryResp): void {
     });
 
     const subCategory = getSubCategoryWithAllAttr(subCategoryResp[0]);
-    const subCat = new CatalogRender(subCategory, title);
+    const subCat = new CatalogRender(subCategory, title, '');
     subCat.renderSubCategory();
 
     const hash = document.getElementById('row-chain') as HTMLSpanElement;
@@ -47,11 +48,12 @@ export function openSubcategoryPage(subCateg: ISubCategoryResp): void {
     subNameHTML.textContent = `${subCateg.name.en}`;
     subNameHTML.append(filterBut);
 
-    const prodList = document.getElementById('product-view') as HTMLDivElement;
-    prodList.innerHTML = '';
+    let count = 0;
+    constants.productList = [];
     subCateg.products.forEach((prod) => {
-        prodList.append(buildProductItem(prod));
+        constants.productList.push(prod);
+        count += 1;
     });
 
-    changeQuantity();
+    renderNewCatalog(count);
 }

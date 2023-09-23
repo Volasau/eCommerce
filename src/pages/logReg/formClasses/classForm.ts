@@ -1,4 +1,4 @@
-import { IInnerForm } from '../../../core/interfaces/innerFormInterface';
+import { IInnerForm } from '../../../core/interfaces/innerForm.interfaces';
 import { validateThisInput } from '../validation/validateThisInput';
 import { addCountryList } from '../validation/validationFunction/checkCountry/addCountryList';
 

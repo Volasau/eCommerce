@@ -18,11 +18,13 @@ class CatalogPage extends Page {
         const bodyCatalog = document.createElement('div');
         bodyCatalog.classList.add('product-card');
 
-        const homeLink = createLink('#/main', 'To return to the home page click ', 'Here🏠', '');
+        const link = createLink('#/main', 'To return to the home page click ', 'Here🏠', '');
+        link.classList.add('footer');
 
-        this._container.append(title, bodyCatalog, homeLink);
+        this._container.append(title, bodyCatalog, link);
 
-        const catalog = new CatalogRender(categoryResponse, title);
+        const catalog = new CatalogRender(categoryResponse, title, '');
+
         catalog.renderCatalog();
 
         this._container.style.position = 'relative';

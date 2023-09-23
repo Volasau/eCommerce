@@ -1,5 +1,6 @@
 import { constants } from '../../data/constants';
 import { request } from '../classes/requestClass';
+import { updateElementClasses } from '../function/changeLinks';
 import { PARSE } from '../interfaces/parseEnum';
 
 export class TokenRevoker {
@@ -17,6 +18,7 @@ export class TokenRevoker {
 
             if (response.status === 200) {
                 console.log('Token successfully revoked.');
+                updateElementClasses();
             } else {
                 console.log('Failed to revoke token.');
             }

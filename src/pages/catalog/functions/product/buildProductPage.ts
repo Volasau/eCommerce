@@ -3,7 +3,7 @@ import { cartSVG } from '../../../../data/cartSVG';
 import { IProduct } from '../../../../server/products/queryProductProjections';
 import { buttonHTML, divHTML, imgHTML } from '../../classes/elementBuilder';
 
-export function buildProductPage(prod: IProduct): HTMLDivElement {
+export function buildProductPage(prod: IProduct, cartStatus: string): HTMLDivElement {
     const id = prod.id;
     const name = prod.name;
     const description = prod.description;
@@ -29,7 +29,7 @@ export function buildProductPage(prod: IProduct): HTMLDivElement {
         `${name} image`
     ) as HTMLImageElement;
     const addImages = divHTML.getElement('', `${id}-addIMG`, 'add-images') as HTMLDivElement;
-    const attributtes = divHTML.getElement('', `${id}-attributtes`, 'attributtes') as HTMLDivElement;
+    const attributes = divHTML.getElement('', `${id}-attributes`, 'attributes') as HTMLDivElement;
     const prices = divHTML.getElement('', `${id}-prices`, 'prices-block') as HTMLDivElement;
     const priceBlock = divHTML.getElement('', `${id}-pric`, 'price-cart') as HTMLDivElement;
     const oldPrice = divHTML.getElement('', 'discount-price', 'dis-price') as HTMLDivElement;
@@ -37,10 +37,6 @@ export function buildProductPage(prod: IProduct): HTMLDivElement {
     const deliveryBlock = divHTML.getElement('Some Info', `${id}-delivery`, 'delivery-block') as HTMLDivElement;
     const cartButtonBlock = divHTML.getElement('', `${id}-cartButton`, 'cart-button-block') as HTMLDivElement;
     const cartButton = buttonHTML.getElement('', `${id}-cartBut`, 'cart-button');
-    const productCount = divHTML.getElement('', `${id}-countBlock`, 'count-block') as HTMLDivElement;
-    const count = divHTML.getElement('1', `${id}-count`, 'count') as HTMLDivElement;
-    const plusBut = buttonHTML.getElement('+', `${id}-plus`, 'plus-button') as HTMLButtonElement;
-    const minusBut = buttonHTML.getElement('-', `${id}-minus`, 'minus-button') as HTMLButtonElement;
 
     allImages.forEach((imagesURL) => {
         const addIMG = imgHTML.getElement(
@@ -61,18 +57,21 @@ export function buildProductPage(prod: IProduct): HTMLDivElement {
         const value = (
             Array.isArray(attr.value) ? attr.value[0].label : (attr.value as { label: string }).label
         ) as string;
-        attributtes.innerHTML += `<p>${attribute}: ${value}</p>`;
+        attributes.innerHTML += `<p>${attribute}: ${value}</p>`;
     });
 
-    realPrice.textContent = prodDiscount ? String(prodDiscount) : String(price);
-    oldPrice.textContent = prodDiscount ? String(price) : '';
-    productCount.append(minusBut, count, plusBut);
-    cartButton.innerHTML = `${cartSVG} BUY`;
-    cartButtonBlock.append(productCount, cartButton);
+    realPrice.textContent = prodDiscount ? `${prodDiscount}` : `${price}`;
+    oldPrice.textContent = prodDiscount ? `${price}` : '';
+    cartButton.innerHTML = `${cartSVG} ${cartStatus === 'CART' ? 'DELETE' : 'BUY'}`;
+    if (cartStatus === 'CART') {
+        cartButton.style.backgroundColor = 'orange';
+        cartButton.style.fontSize = '10px';
+    }
+    cartButtonBlock.append(cartButton);
     priceBlock.append(realPrice, oldPrice, cartButtonBlock);
     prices.append(priceBlock, deliveryBlock);
 
-    main.append(images, attributtes, prices);
+    main.append(images, attributes, prices);
 
     productBlock.append(main, descriptWord, descript);
 

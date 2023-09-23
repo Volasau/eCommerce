@@ -2,17 +2,17 @@ import { categoryResponse } from '../../../../server/function/structureCategorie
 import urlImg from '../../../../assets/icons/arrow.svg';
 import { CatalogRender } from '../../classes/catalogRenderClass';
 import { buttonHTML, spanHTML } from '../../classes/elementBuilder';
-import { ICategoryResp } from '../../interfaces/categoryResponse/categoryResponseInterface';
+import { ICategoryResp } from '../../interfaces/categoryResponse/categoryResponse.interfaces';
 import { getSubCategoriesFrom } from './getSubCategoriesFrom';
-import { buildProductItem } from '../product/buildProductItem';
-import { changeQuantity } from './changeQuantity';
+import { constants } from '../../../../data/constants';
+import { renderNewCatalog } from './renderNewCatalog';
 
 export function openCategoryPage(cat: ICategoryResp): void {
-    const title = document.querySelector('h1') as HTMLElement;
+    const title = document.querySelector('.header__page') as HTMLElement;
     const categoryResp = categoryResponse.filter((catResp) => catResp.id === cat.id);
     const subCategory = getSubCategoriesFrom(categoryResp[0]);
 
-    const category = new CatalogRender(subCategory, title);
+    const category = new CatalogRender(subCategory, title, '');
     category.renderCategory();
 
     const hash = document.getElementById('row-chain') as HTMLSpanElement;
@@ -37,13 +37,14 @@ export function openCategoryPage(cat: ICategoryResp): void {
     categoryNameHTML.textContent = `${cat.name.en}`;
     categoryNameHTML.append(filterBut);
 
-    const prodList = document.getElementById('product-view') as HTMLDivElement;
-    prodList.innerHTML = '';
+    let count = 0;
+    constants.productList = [];
     cat.subcategories.forEach((sub) => {
         sub.products.forEach((prod) => {
-            prodList.append(buildProductItem(prod));
+            constants.productList.push(prod);
+            count += 1;
         });
     });
 
-    changeQuantity();
+    renderNewCatalog(count);
 }

@@ -2,9 +2,10 @@ interface ISelectedFilters {
     [key: string]: string[] | undefined;
 }
 
+import { constants } from '../../../data/constants';
 import { ProductFilter } from '../../../server/filter/filterCategory';
 import { IProduct } from '../../../server/products/queryProductProjections';
-import { buildProductItem } from '../functions/product/buildProductItem';
+import { renderNewCatalog } from '../functions/catalog/renderNewCatalog';
 const productFilter = new ProductFilter();
 
 export function filterProductList(): void {
@@ -24,11 +25,14 @@ export function filterProductList(): void {
                 const quantity = document.querySelector('.quantity') as HTMLSpanElement;
                 quantity.textContent = `${filteredProductsList.length}`;
 
-                const prodList = document.getElementById('product-view') as HTMLDivElement;
-                prodList.innerHTML = '';
+                let count = 0;
+                constants.productList = [];
                 filteredProductsList.forEach((prod) => {
-                    prodList.append(buildProductItem(prod));
+                    constants.productList.push(prod);
+                    count += 1;
                 });
+
+                renderNewCatalog(count);
             } catch (error) {
                 console.error('Error filtering products:', error);
             }

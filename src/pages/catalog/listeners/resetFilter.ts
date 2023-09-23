@@ -1,8 +1,8 @@
+import { constants } from '../../../data/constants';
 import { categoryResponse } from '../../../server/function/structureCategories';
-import { changeQuantity } from '../functions/catalog/changeQuantity';
 import { openCategoryPage } from '../functions/catalog/openCategoryPage';
 import { openSubcategoryPage } from '../functions/catalog/openSubcategoryPage';
-import { buildProductItem } from '../functions/product/buildProductItem';
+import { renderNewCatalog } from '../functions/catalog/renderNewCatalog';
 
 export function resetFilter(): void {
     document.addEventListener('click', (event) => {
@@ -17,14 +17,18 @@ export function resetFilter(): void {
             const nameChainElem = preLastChainElem.textContent;
 
             if (chainCount === 4) {
+                let count = 0;
+                constants.productList = [];
                 categoryResponse.forEach((cat) => {
                     cat.subcategories.forEach((sub) => {
                         sub.products.forEach((prod) => {
-                            productList.append(buildProductItem(prod));
-                            changeQuantity();
+                            constants.productList.push(prod);
+                            count += 1;
                         });
                     });
                 });
+
+                renderNewCatalog(count);
             } else {
                 categoryResponse.forEach((cat) => {
                     cat.subcategories.forEach((sub) => {
@@ -32,11 +36,9 @@ export function resetFilter(): void {
                             switch (chainCount) {
                                 case 6:
                                     openCategoryPage(cat);
-                                    changeQuantity();
                                     break;
                                 case 8:
                                     openSubcategoryPage(sub);
-                                    changeQuantity();
                                     break;
                             }
                         }

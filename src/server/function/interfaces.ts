@@ -1,3 +1,6 @@
+import { ILastModifiedBy } from '../../core/interfaces/customerResponse.interfaces';
+import { IPriceValueResp } from '../../pages/catalog/interfaces/categoryResponse/categoryResponse.interfaces';
+
 export interface IUser {
     typeId: string;
     id: string;
@@ -39,4 +42,33 @@ export interface ICategoryResponse {
     count: number;
     total: number;
     results: ICategoryResponseResult[];
+}
+
+export interface ICart {
+    type: string;
+    id: string;
+    version: number;
+    versionModifiedAt: string;
+    lastMessageSequenceNumber: number;
+    createdAt: string;
+    lastModifiedAt: string;
+    lastModifiedBy: ILastModifiedBy;
+    createdBy: ILastModifiedBy;
+    anonymousId: string;
+    lineItems: [];
+    cartState: string;
+    totalPrice: IPriceValueResp;
+    shippingMode: string;
+    shipping: [];
+    customLineItems: [];
+    discountCodes: [];
+    directDiscounts: [];
+    inventoryMode: string;
+    taxMode: string;
+    taxRoundingMode: string;
+    taxCalculationMode: string;
+    deleteDaysAfterLastModification: number;
+    refusedGifts: [];
+    origin: string;
+    itemShippingAddresses: [];
 }

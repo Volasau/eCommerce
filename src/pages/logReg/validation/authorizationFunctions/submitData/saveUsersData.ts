@@ -1,5 +1,5 @@
-import { IAuthorization } from '../../../../../core/interfaces/authorizationInterface';
-import { IRegistration } from '../../../../../core/interfaces/registrationInterface';
+import { IAuthorization } from '../../../../../core/interfaces/authorization.interfaces';
+import { IRegistration } from '../../../../../core/interfaces/registration.interfaces';
 import { constants } from '../../../../../data/constants';
 
 export function saveUsersData(inputList: NodeList, regLog: IAuthorization | IRegistration): void {

@@ -1,5 +1,5 @@
-import { IAttr } from '../../interfaces/attrInterface';
-import { ICategory } from '../../interfaces/categoryInterface';
+import { IAttr } from '../../interfaces/attr.interfaces';
+import { ICategory } from '../../interfaces/category.interfaces';
 
 export function getAttributesFromCategories(categories: ICategory[]): IAttr[] {
     let allAttr: IAttr[] = [];

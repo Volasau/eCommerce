@@ -1,7 +1,7 @@
 import { getAttributeFromResponse } from '../functions/filter/getAttributeFromResponse';
-import { IAttr } from '../interfaces/attrInterface';
-import { ICategory } from '../interfaces/categoryInterface';
-import { ICategoryResp } from '../interfaces/categoryResponse/categoryResponseInterface';
+import { IAttr } from '../interfaces/attr.interfaces';
+import { ICategory } from '../interfaces/category.interfaces';
+import { ICategoryResp } from '../interfaces/categoryResponse/categoryResponse.interfaces';
 
 export class Category implements ICategory {
     catId: string;

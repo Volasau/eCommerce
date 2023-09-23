@@ -1,4 +1,4 @@
-import { ICountryProp } from '../core/interfaces/countryPropInterface';
+import { ICountryProp } from '../core/interfaces/countryProp.interfaces';
 
 export const countries: ICountryProp[] = [
     {

@@ -1,5 +1,5 @@
 import { bearer_token_cc } from '../..';
-import { ICustomerResponse } from '../../core/interfaces/customerResponse';
+import { ICustomerResponse } from '../../core/interfaces/customerResponse.interfaces';
 import { constants } from '../../data/constants';
 import { request } from '../classes/requestClass';
 import { PARSE } from '../interfaces/parseEnum';
@@ -47,7 +47,6 @@ export class CustomerAddAdress {
                 this.addressId = response.addresses[index].id;
             }
             this.customerVersion = this.customerVersion + 1;
-            console.log(res);
             return res;
         } catch (error) {
             console.error('Error creating billing address:', error);
@@ -72,7 +71,6 @@ export class CustomerAddAdress {
             const res: Response = await request.postAuth(url, auth, PARSE.Json, JSON.stringify(requestData));
 
             const billingAddress: ICustomerResponse = await res.json();
-            console.log('TEST:', billingAddress);
             this.customerVersion = this.customerVersion + 1;
             return billingAddress;
         } catch (error) {

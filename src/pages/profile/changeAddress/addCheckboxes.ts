@@ -1,4 +1,4 @@
-import { IForm } from '../interfaces/iFormInterface';
+import { IForm } from '../interfaces/iForm.interfaces';
 import { addCheckBox } from './addCheckBox';
 
 export function addCheckboxes(form: IForm): HTMLInputElement[] {

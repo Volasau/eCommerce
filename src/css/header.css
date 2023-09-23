@@ -33,7 +33,9 @@
 .registr__page,
 .home__page,
 .catalog__page,
-.logout__page {
+.logout__page,
+.basket__page,
+.profile__page {
   margin-right: 20px;
 }
 
@@ -80,6 +82,13 @@
   width: 60px;
   height: auto;
   background-color: #fff;
+}
+
+@media screen and (max-width: 1000px) {
+  .header-container {
+    display: flex;
+    flex-wrap: wrap;
+  }
 }
 
 @media screen and (max-width: 761px) {

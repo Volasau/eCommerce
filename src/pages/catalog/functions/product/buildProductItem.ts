@@ -1,9 +1,10 @@
 import urlImg from '../../../../assets/icons/discount.svg';
 import { cartSVG } from '../../../../data/cartSVG';
 import { IProduct } from '../../../../server/products/queryProductProjections';
+import { Cart } from '../../../basket/interfaces/cart.interfaces';
 import { buttonHTML, divHTML, imgHTML } from '../../classes/elementBuilder';
 
-export function buildProductItem(prod: IProduct): HTMLDivElement {
+export function buildProductItem(prod: IProduct, cart: Cart): HTMLDivElement {
     const id = prod.id;
     const prodName = prod.name;
     const firstIMG = prod.allVariants[0].images[0].url;
@@ -21,13 +22,28 @@ export function buildProductItem(prod: IProduct): HTMLDivElement {
     const oldPrice = divHTML.getElement('', 'discount-price', 'dis-price');
     const realPrice = divHTML.getElement(`${prodPrice} GBP`, `${id}-price`, 'fact-price');
     const description = divHTML.getElement(`${descript}`, `${id}-description`, 'description min');
-    const cartButton = buttonHTML.getElement('', `${id}-cart`, 'cart-but');
+    const cartButton = buttonHTML.getElement('', `${id}-cart`, 'cart-but') as HTMLButtonElement;
     const discountLabel = new Image();
     discountLabel.src = urlImg;
     discountLabel.id = 'discount-label';
-    cartButton.innerHTML = `${cartSVG} BUY`;
-    imgBlock.append(img);
 
+    if (cart.lineItems.length !== 0) {
+        cart.lineItems.forEach((product) => {
+            if (id === product.productId) {
+                cartButton.style.backgroundColor = 'orange';
+                cartButton.style.color = 'grey';
+                cartButton.innerHTML = `${cartSVG} IN CART`;
+                cartButton.style.fontSize = '10px';
+                cartButton.disabled = true;
+            } else {
+                if (cartButton.innerHTML === '') cartButton.innerHTML = `${cartSVG} BUY`;
+            }
+        });
+    } else {
+        cartButton.innerHTML = `${cartSVG} BUY`;
+    }
+
+    imgBlock.append(img);
     realPrice.textContent = prodDiscount ? String(prodDiscount) : String(prodPrice);
     oldPrice.textContent = prodDiscount ? String(prodPrice) : '';
     priceBlock.append(realPrice, oldPrice);

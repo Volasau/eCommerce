@@ -6,7 +6,7 @@ export function addShippingBlock(formHTML: HTMLFormElement, innerFormList: HTMLE
     shippingBlock.innerHTML = '<h3>SHIPPING ADDRESS</h3>';
 
     innerFormList.forEach((innerForm) => {
-        const ships = ['countryShip', 'cityShip', 'cityShip', 'postcodeShip'];
+        const ships = ['countryShip', 'cityShip', 'streetShip', 'postcodeShip'];
         const id = innerForm.children[1].id;
         if (ships.includes(id)) {
             shippingBlock.append(innerForm);

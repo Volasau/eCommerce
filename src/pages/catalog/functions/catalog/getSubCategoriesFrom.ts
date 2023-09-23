@@ -1,5 +1,5 @@
-import { ICategory } from '../../interfaces/categoryInterface';
-import { ICategoryResp } from '../../interfaces/categoryResponse/categoryResponseInterface';
+import { ICategory } from '../../interfaces/category.interfaces';
+import { ICategoryResp } from '../../interfaces/categoryResponse/categoryResponse.interfaces';
 import { getAttributesFromSubCategory } from '../filter/getAttributesFromSubCategory';
 
 export function getSubCategoriesFrom(categoryResponse: ICategoryResp): ICategory[] {
