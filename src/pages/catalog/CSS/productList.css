@@ -1,0 +1,133 @@
+#pr-wrap {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+  width: calc(100% - 170px);
+}
+
+#product-view-list {
+  display: flex;
+  flex-direction: column;
+  row-gap: 2rem;
+  justify-content: center;
+  align-items: center;
+}
+
+#product-view {
+  display: flex;
+  flex-direction: row;
+  column-gap: 0.3rem;
+  row-gap: 0.3rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.product {
+  position: relative;
+  width: 150px;
+  height: 267.1px;
+  padding: 5px;
+  border: 1px solid grey;
+  border-radius: 10px;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.product:hover {
+  border: 3px solid orange;
+  box-shadow: 8px 10px 5px 2px rgba(3, 131, 251, 0.5);
+}
+
+.description {
+  height: 40px;
+  overflow: hidden;
+  position: relative;
+  font-size: 50%;
+}
+
+.description:after {
+  content: "";
+  text-align: right;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 70%;
+  height: 1.2em;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0), white 100%);
+  pointer-events: none;
+}
+
+.imgBlock {
+  height: 130px;
+}
+
+.product-img {
+  max-height: 100%;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.name {
+  height: 35px;
+  font-weight: 600;
+}
+
+.price {
+  display: flex;
+  flex-direction: row;
+  column-gap: 8%;
+}
+
+.fact-price {
+  font-size: 20px;
+  color: red;
+  font-weight: 600;
+}
+
+.dis-price {
+  font-size: 16px;
+  color: rgb(122, 122, 122);
+  text-decoration: line-through;
+  font-weight: 400;
+}
+
+.cart-but {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  column-gap: 0.3rem;
+  background-color: rgb(88, 200, 245);
+  border-radius: 10px;
+  border: 2px solid rgb(3, 126, 103);
+  width: 100px;
+  margin: auto;
+  margin-top: 3%;
+  color: white;
+  cursor: pointer;
+  border-style: outset;
+  transition: 0.5s;
+  position: absolute;
+  left: 19px;
+}
+
+.cart-but:hover {
+  font-size: 105%;
+}
+
+#discount-label {
+  position: absolute;
+  width: 70%;
+  top: -15%;
+  right: -24%;
+}
+
+#next-prev {
+  display: flex;
+  column-gap: 1rem;
+}
+
+#prev-prod:hover,
+#next-prod:hover {
+  cursor: pointer;
+  background-color: rgb(207, 205, 205);
+}

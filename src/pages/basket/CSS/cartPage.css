@@ -1,0 +1,28 @@
+@import './productRow.css';
+@import './clearCartModal.css';
+
+#cart-list {
+  width: 80%;
+  margin: 0 10% 0 10%;
+}
+
+#empty-wrap {
+  display: flex;
+  flex-direction: column;
+  background-color: orange;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  padding-top: 0.5rem;
+  color: azure;
+}
+
+#cat-link {
+  color: azure;
+}
+
+@media screen and (max-width: 880px) {
+  #cart-list {
+    width: 94%;
+    margin: 0 3% 0 3%;
+  }
+}

@@ -1,0 +1,27 @@
+@import './modal.css';
+@import './productPage.css';
+@import './categoryItem.css';
+@import './filter.css';
+@import './discount.css';
+@import './search.css';
+@import './hashChain.css';
+@import './productList.css';
+@import './categoryName.css';
+@import './sortBlock.css';
+
+#view-catalog {
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.5rem;
+  justify-content: center;
+  margin-left: 3%;
+  margin-right: 3%;
+}
+
+#viewer-wrap {
+  display: flex;
+  flex-direction: row;
+  column-gap: 2rem;
+}
+
+
